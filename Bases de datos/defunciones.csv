@@ -1,0 +1,5088 @@
+anio,prov_res,prov_res_cat,sexo,grupo_edad,n
+2005,02,CABA,Femenino,30 a 34,1
+2005,02,CABA,Femenino,40 a 44,1
+2005,02,CABA,Femenino,50 a 54,3
+2005,02,CABA,Femenino,55 a 59,10
+2005,02,CABA,Femenino,60 a 64,8
+2005,02,CABA,Femenino,65 a 69,14
+2005,02,CABA,Femenino,70 a 74,17
+2005,02,CABA,Femenino,75 a 79,22
+2005,02,CABA,Femenino,80 y más,91
+2005,02,CABA,Masculino,25 a 29,1
+2005,02,CABA,Masculino,45 a 49,1
+2005,02,CABA,Masculino,50 a 54,9
+2005,02,CABA,Masculino,55 a 59,9
+2005,02,CABA,Masculino,60 a 64,14
+2005,02,CABA,Masculino,65 a 69,11
+2005,02,CABA,Masculino,70 a 74,21
+2005,02,CABA,Masculino,75 a 79,23
+2005,02,CABA,Masculino,80 y más,48
+2005,06,Buenos Aires,Femenino,15 a 19,2
+2005,06,Buenos Aires,Femenino,20 a 24,4
+2005,06,Buenos Aires,Femenino,25 a 29,4
+2005,06,Buenos Aires,Femenino,30 a 34,1
+2005,06,Buenos Aires,Femenino,35 a 39,7
+2005,06,Buenos Aires,Femenino,40 a 44,16
+2005,06,Buenos Aires,Femenino,45 a 49,18
+2005,06,Buenos Aires,Femenino,50 a 54,36
+2005,06,Buenos Aires,Femenino,55 a 59,62
+2005,06,Buenos Aires,Femenino,60 a 64,113
+2005,06,Buenos Aires,Femenino,65 a 69,158
+2005,06,Buenos Aires,Femenino,70 a 74,211
+2005,06,Buenos Aires,Femenino,75 a 79,224
+2005,06,Buenos Aires,Femenino,80 y más,519
+2005,06,Buenos Aires,Masculino,15 a 19,3
+2005,06,Buenos Aires,Masculino,25 a 29,3
+2005,06,Buenos Aires,Masculino,30 a 34,4
+2005,06,Buenos Aires,Masculino,35 a 39,9
+2005,06,Buenos Aires,Masculino,40 a 44,13
+2005,06,Buenos Aires,Masculino,45 a 49,32
+2005,06,Buenos Aires,Masculino,50 a 54,69
+2005,06,Buenos Aires,Masculino,55 a 59,103
+2005,06,Buenos Aires,Masculino,60 a 64,167
+2005,06,Buenos Aires,Masculino,65 a 69,174
+2005,06,Buenos Aires,Masculino,70 a 74,255
+2005,06,Buenos Aires,Masculino,75 a 79,288
+2005,06,Buenos Aires,Masculino,80 y más,326
+2005,10,Catamarca,Femenino,20 a 24,1
+2005,10,Catamarca,Femenino,25 a 29,1
+2005,10,Catamarca,Femenino,35 a 39,1
+2005,10,Catamarca,Femenino,50 a 54,1
+2005,10,Catamarca,Femenino,55 a 59,6
+2005,10,Catamarca,Femenino,60 a 64,1
+2005,10,Catamarca,Femenino,65 a 69,5
+2005,10,Catamarca,Femenino,70 a 74,9
+2005,10,Catamarca,Femenino,75 a 79,6
+2005,10,Catamarca,Femenino,80 y más,11
+2005,10,Catamarca,Masculino,35 a 39,1
+2005,10,Catamarca,Masculino,50 a 54,7
+2005,10,Catamarca,Masculino,55 a 59,3
+2005,10,Catamarca,Masculino,60 a 64,3
+2005,10,Catamarca,Masculino,65 a 69,6
+2005,10,Catamarca,Masculino,70 a 74,9
+2005,10,Catamarca,Masculino,75 a 79,6
+2005,10,Catamarca,Masculino,80 y más,14
+2005,14,Córdoba,Femenino,20 a 24,1
+2005,14,Córdoba,Femenino,25 a 29,2
+2005,14,Córdoba,Femenino,30 a 34,2
+2005,14,Córdoba,Femenino,35 a 39,4
+2005,14,Córdoba,Femenino,40 a 44,3
+2005,14,Córdoba,Femenino,45 a 49,5
+2005,14,Córdoba,Femenino,50 a 54,18
+2005,14,Córdoba,Femenino,55 a 59,25
+2005,14,Córdoba,Femenino,60 a 64,44
+2005,14,Córdoba,Femenino,65 a 69,56
+2005,14,Córdoba,Femenino,70 a 74,77
+2005,14,Córdoba,Femenino,75 a 79,110
+2005,14,Córdoba,Femenino,80 y más,224
+2005,14,Córdoba,Masculino,25 a 29,1
+2005,14,Córdoba,Masculino,30 a 34,3
+2005,14,Córdoba,Masculino,35 a 39,2
+2005,14,Córdoba,Masculino,40 a 44,5
+2005,14,Córdoba,Masculino,45 a 49,11
+2005,14,Córdoba,Masculino,50 a 54,35
+2005,14,Córdoba,Masculino,55 a 59,50
+2005,14,Córdoba,Masculino,60 a 64,82
+2005,14,Córdoba,Masculino,65 a 69,83
+2005,14,Córdoba,Masculino,70 a 74,91
+2005,14,Córdoba,Masculino,75 a 79,109
+2005,14,Córdoba,Masculino,80 y más,121
+2005,18,Corrientes,Femenino,20 a 24,1
+2005,18,Corrientes,Femenino,35 a 39,2
+2005,18,Corrientes,Femenino,45 a 49,2
+2005,18,Corrientes,Femenino,50 a 54,5
+2005,18,Corrientes,Femenino,55 a 59,4
+2005,18,Corrientes,Femenino,60 a 64,12
+2005,18,Corrientes,Femenino,65 a 69,12
+2005,18,Corrientes,Femenino,70 a 74,14
+2005,18,Corrientes,Femenino,75 a 79,22
+2005,18,Corrientes,Femenino,80 y más,19
+2005,18,Corrientes,Masculino,25 a 29,1
+2005,18,Corrientes,Masculino,40 a 44,1
+2005,18,Corrientes,Masculino,45 a 49,4
+2005,18,Corrientes,Masculino,50 a 54,2
+2005,18,Corrientes,Masculino,55 a 59,13
+2005,18,Corrientes,Masculino,60 a 64,9
+2005,18,Corrientes,Masculino,65 a 69,16
+2005,18,Corrientes,Masculino,70 a 74,18
+2005,18,Corrientes,Masculino,75 a 79,16
+2005,18,Corrientes,Masculino,80 y más,12
+2005,22,Chaco,Femenino,20 a 24,1
+2005,22,Chaco,Femenino,30 a 34,1
+2005,22,Chaco,Femenino,35 a 39,1
+2005,22,Chaco,Femenino,40 a 44,3
+2005,22,Chaco,Femenino,50 a 54,6
+2005,22,Chaco,Femenino,55 a 59,3
+2005,22,Chaco,Femenino,60 a 64,10
+2005,22,Chaco,Femenino,65 a 69,11
+2005,22,Chaco,Femenino,70 a 74,27
+2005,22,Chaco,Femenino,75 a 79,15
+2005,22,Chaco,Femenino,80 y más,30
+2005,22,Chaco,Masculino,30 a 34,1
+2005,22,Chaco,Masculino,40 a 44,2
+2005,22,Chaco,Masculino,45 a 49,1
+2005,22,Chaco,Masculino,50 a 54,6
+2005,22,Chaco,Masculino,55 a 59,15
+2005,22,Chaco,Masculino,60 a 64,10
+2005,22,Chaco,Masculino,65 a 69,15
+2005,22,Chaco,Masculino,70 a 74,10
+2005,22,Chaco,Masculino,75 a 79,19
+2005,22,Chaco,Masculino,80 y más,15
+2005,26,Chubut,Femenino,25 a 29,1
+2005,26,Chubut,Femenino,35 a 39,1
+2005,26,Chubut,Femenino,50 a 54,1
+2005,26,Chubut,Femenino,55 a 59,2
+2005,26,Chubut,Femenino,60 a 64,1
+2005,26,Chubut,Femenino,65 a 69,3
+2005,26,Chubut,Femenino,70 a 74,6
+2005,26,Chubut,Femenino,75 a 79,7
+2005,26,Chubut,Femenino,80 y más,9
+2005,26,Chubut,Masculino,30 a 34,1
+2005,26,Chubut,Masculino,40 a 44,1
+2005,26,Chubut,Masculino,45 a 49,1
+2005,26,Chubut,Masculino,50 a 54,1
+2005,26,Chubut,Masculino,55 a 59,3
+2005,26,Chubut,Masculino,60 a 64,6
+2005,26,Chubut,Masculino,65 a 69,8
+2005,26,Chubut,Masculino,70 a 74,6
+2005,26,Chubut,Masculino,75 a 79,4
+2005,26,Chubut,Masculino,80 y más,3
+2005,30,Entre Ríos,Femenino,30 a 34,1
+2005,30,Entre Ríos,Femenino,35 a 39,1
+2005,30,Entre Ríos,Femenino,40 a 44,3
+2005,30,Entre Ríos,Femenino,45 a 49,1
+2005,30,Entre Ríos,Femenino,50 a 54,3
+2005,30,Entre Ríos,Femenino,55 a 59,9
+2005,30,Entre Ríos,Femenino,60 a 64,19
+2005,30,Entre Ríos,Femenino,65 a 69,20
+2005,30,Entre Ríos,Femenino,70 a 74,27
+2005,30,Entre Ríos,Femenino,75 a 79,36
+2005,30,Entre Ríos,Femenino,80 y más,61
+2005,30,Entre Ríos,Masculino,15 a 19,1
+2005,30,Entre Ríos,Masculino,20 a 24,1
+2005,30,Entre Ríos,Masculino,40 a 44,1
+2005,30,Entre Ríos,Masculino,45 a 49,1
+2005,30,Entre Ríos,Masculino,50 a 54,5
+2005,30,Entre Ríos,Masculino,55 a 59,13
+2005,30,Entre Ríos,Masculino,60 a 64,20
+2005,30,Entre Ríos,Masculino,65 a 69,18
+2005,30,Entre Ríos,Masculino,70 a 74,24
+2005,30,Entre Ríos,Masculino,75 a 79,30
+2005,30,Entre Ríos,Masculino,80 y más,29
+2005,34,Formosa,Femenino,35 a 39,1
+2005,34,Formosa,Femenino,40 a 44,3
+2005,34,Formosa,Femenino,45 a 49,3
+2005,34,Formosa,Femenino,50 a 54,7
+2005,34,Formosa,Femenino,55 a 59,9
+2005,34,Formosa,Femenino,60 a 64,12
+2005,34,Formosa,Femenino,65 a 69,7
+2005,34,Formosa,Femenino,70 a 74,17
+2005,34,Formosa,Femenino,75 a 79,12
+2005,34,Formosa,Femenino,80 y más,15
+2005,34,Formosa,Masculino,30 a 34,1
+2005,34,Formosa,Masculino,45 a 49,1
+2005,34,Formosa,Masculino,50 a 54,5
+2005,34,Formosa,Masculino,55 a 59,10
+2005,34,Formosa,Masculino,60 a 64,9
+2005,34,Formosa,Masculino,65 a 69,8
+2005,34,Formosa,Masculino,70 a 74,12
+2005,34,Formosa,Masculino,75 a 79,11
+2005,34,Formosa,Masculino,80 y más,9
+2005,38,Jujuy,Femenino,45 a 49,1
+2005,38,Jujuy,Femenino,55 a 59,5
+2005,38,Jujuy,Femenino,60 a 64,6
+2005,38,Jujuy,Femenino,65 a 69,4
+2005,38,Jujuy,Femenino,70 a 74,8
+2005,38,Jujuy,Femenino,75 a 79,9
+2005,38,Jujuy,Femenino,80 y más,12
+2005,38,Jujuy,Masculino,40 a 44,2
+2005,38,Jujuy,Masculino,45 a 49,1
+2005,38,Jujuy,Masculino,50 a 54,6
+2005,38,Jujuy,Masculino,55 a 59,1
+2005,38,Jujuy,Masculino,60 a 64,6
+2005,38,Jujuy,Masculino,65 a 69,11
+2005,38,Jujuy,Masculino,70 a 74,3
+2005,38,Jujuy,Masculino,75 a 79,5
+2005,38,Jujuy,Masculino,80 y más,9
+2005,42,La Pampa,Femenino,60 a 64,2
+2005,42,La Pampa,Femenino,65 a 69,2
+2005,42,La Pampa,Femenino,70 a 74,1
+2005,42,La Pampa,Femenino,75 a 79,2
+2005,42,La Pampa,Femenino,80 y más,16
+2005,42,La Pampa,Masculino,50 a 54,2
+2005,42,La Pampa,Masculino,55 a 59,2
+2005,42,La Pampa,Masculino,60 a 64,3
+2005,42,La Pampa,Masculino,65 a 69,2
+2005,42,La Pampa,Masculino,70 a 74,6
+2005,42,La Pampa,Masculino,75 a 79,9
+2005,42,La Pampa,Masculino,80 y más,6
+2005,46,La Rioja,Femenino,40 a 44,1
+2005,46,La Rioja,Femenino,45 a 49,1
+2005,46,La Rioja,Femenino,50 a 54,3
+2005,46,La Rioja,Femenino,55 a 59,2
+2005,46,La Rioja,Femenino,60 a 64,2
+2005,46,La Rioja,Femenino,65 a 69,7
+2005,46,La Rioja,Femenino,70 a 74,5
+2005,46,La Rioja,Femenino,75 a 79,6
+2005,46,La Rioja,Femenino,80 y más,8
+2005,46,La Rioja,Masculino,35 a 39,1
+2005,46,La Rioja,Masculino,50 a 54,4
+2005,46,La Rioja,Masculino,55 a 59,4
+2005,46,La Rioja,Masculino,60 a 64,3
+2005,46,La Rioja,Masculino,65 a 69,2
+2005,46,La Rioja,Masculino,70 a 74,6
+2005,46,La Rioja,Masculino,80 y más,5
+2005,50,Mendoza,Femenino,30 a 34,2
+2005,50,Mendoza,Femenino,40 a 44,5
+2005,50,Mendoza,Femenino,45 a 49,4
+2005,50,Mendoza,Femenino,50 a 54,10
+2005,50,Mendoza,Femenino,55 a 59,16
+2005,50,Mendoza,Femenino,60 a 64,27
+2005,50,Mendoza,Femenino,65 a 69,47
+2005,50,Mendoza,Femenino,70 a 74,68
+2005,50,Mendoza,Femenino,75 a 79,40
+2005,50,Mendoza,Femenino,80 y más,86
+2005,50,Mendoza,Masculino,25 a 29,1
+2005,50,Mendoza,Masculino,30 a 34,1
+2005,50,Mendoza,Masculino,35 a 39,1
+2005,50,Mendoza,Masculino,40 a 44,1
+2005,50,Mendoza,Masculino,45 a 49,12
+2005,50,Mendoza,Masculino,50 a 54,9
+2005,50,Mendoza,Masculino,55 a 59,37
+2005,50,Mendoza,Masculino,60 a 64,52
+2005,50,Mendoza,Masculino,65 a 69,66
+2005,50,Mendoza,Masculino,70 a 74,67
+2005,50,Mendoza,Masculino,75 a 79,48
+2005,50,Mendoza,Masculino,80 y más,54
+2005,54,Misiones,Femenino,25 a 29,1
+2005,54,Misiones,Femenino,45 a 49,5
+2005,54,Misiones,Femenino,50 a 54,6
+2005,54,Misiones,Femenino,55 a 59,9
+2005,54,Misiones,Femenino,60 a 64,8
+2005,54,Misiones,Femenino,65 a 69,15
+2005,54,Misiones,Femenino,70 a 74,11
+2005,54,Misiones,Femenino,75 a 79,19
+2005,54,Misiones,Femenino,80 y más,32
+2005,54,Misiones,Masculino,15 a 19,1
+2005,54,Misiones,Masculino,35 a 39,1
+2005,54,Misiones,Masculino,40 a 44,2
+2005,54,Misiones,Masculino,45 a 49,3
+2005,54,Misiones,Masculino,50 a 54,8
+2005,54,Misiones,Masculino,55 a 59,8
+2005,54,Misiones,Masculino,60 a 64,11
+2005,54,Misiones,Masculino,65 a 69,20
+2005,54,Misiones,Masculino,70 a 74,24
+2005,54,Misiones,Masculino,75 a 79,18
+2005,54,Misiones,Masculino,80 y más,12
+2005,58,Neuquén,Femenino,40 a 44,2
+2005,58,Neuquén,Femenino,45 a 49,1
+2005,58,Neuquén,Femenino,50 a 54,2
+2005,58,Neuquén,Femenino,55 a 59,9
+2005,58,Neuquén,Femenino,60 a 64,4
+2005,58,Neuquén,Femenino,65 a 69,7
+2005,58,Neuquén,Femenino,70 a 74,6
+2005,58,Neuquén,Femenino,75 a 79,18
+2005,58,Neuquén,Femenino,80 y más,25
+2005,58,Neuquén,Masculino,40 a 44,2
+2005,58,Neuquén,Masculino,45 a 49,2
+2005,58,Neuquén,Masculino,50 a 54,2
+2005,58,Neuquén,Masculino,55 a 59,9
+2005,58,Neuquén,Masculino,60 a 64,9
+2005,58,Neuquén,Masculino,65 a 69,17
+2005,58,Neuquén,Masculino,70 a 74,11
+2005,58,Neuquén,Masculino,75 a 79,14
+2005,58,Neuquén,Masculino,80 y más,13
+2005,62,Río Negro,Femenino,40 a 44,1
+2005,62,Río Negro,Femenino,60 a 64,4
+2005,62,Río Negro,Femenino,65 a 69,5
+2005,62,Río Negro,Femenino,70 a 74,6
+2005,62,Río Negro,Femenino,75 a 79,8
+2005,62,Río Negro,Femenino,80 y más,16
+2005,62,Río Negro,Masculino,45 a 49,1
+2005,62,Río Negro,Masculino,50 a 54,2
+2005,62,Río Negro,Masculino,55 a 59,1
+2005,62,Río Negro,Masculino,60 a 64,4
+2005,62,Río Negro,Masculino,65 a 69,5
+2005,62,Río Negro,Masculino,70 a 74,12
+2005,62,Río Negro,Masculino,75 a 79,10
+2005,62,Río Negro,Masculino,80 y más,5
+2005,66,Salta,Femenino,20 a 24,2
+2005,66,Salta,Femenino,40 a 44,1
+2005,66,Salta,Femenino,50 a 54,2
+2005,66,Salta,Femenino,55 a 59,3
+2005,66,Salta,Femenino,60 a 64,3
+2005,66,Salta,Femenino,65 a 69,7
+2005,66,Salta,Femenino,70 a 74,11
+2005,66,Salta,Femenino,75 a 79,11
+2005,66,Salta,Femenino,80 y más,9
+2005,66,Salta,Masculino,30 a 34,1
+2005,66,Salta,Masculino,35 a 39,1
+2005,66,Salta,Masculino,40 a 44,1
+2005,66,Salta,Masculino,45 a 49,3
+2005,66,Salta,Masculino,50 a 54,3
+2005,66,Salta,Masculino,55 a 59,6
+2005,66,Salta,Masculino,60 a 64,5
+2005,66,Salta,Masculino,65 a 69,14
+2005,66,Salta,Masculino,70 a 74,6
+2005,66,Salta,Masculino,75 a 79,3
+2005,66,Salta,Masculino,80 y más,11
+2005,70,San Juan,Femenino,40 a 44,1
+2005,70,San Juan,Femenino,45 a 49,4
+2005,70,San Juan,Femenino,50 a 54,5
+2005,70,San Juan,Femenino,55 a 59,8
+2005,70,San Juan,Femenino,60 a 64,18
+2005,70,San Juan,Femenino,65 a 69,22
+2005,70,San Juan,Femenino,70 a 74,30
+2005,70,San Juan,Femenino,75 a 79,27
+2005,70,San Juan,Femenino,80 y más,40
+2005,70,San Juan,Masculino,20 a 24,1
+2005,70,San Juan,Masculino,40 a 44,2
+2005,70,San Juan,Masculino,45 a 49,2
+2005,70,San Juan,Masculino,50 a 54,6
+2005,70,San Juan,Masculino,55 a 59,11
+2005,70,San Juan,Masculino,60 a 64,19
+2005,70,San Juan,Masculino,65 a 69,28
+2005,70,San Juan,Masculino,70 a 74,24
+2005,70,San Juan,Masculino,75 a 79,33
+2005,70,San Juan,Masculino,80 y más,31
+2005,74,San Luis,Femenino,50 a 54,1
+2005,74,San Luis,Femenino,55 a 59,3
+2005,74,San Luis,Femenino,60 a 64,5
+2005,74,San Luis,Femenino,65 a 69,6
+2005,74,San Luis,Femenino,70 a 74,3
+2005,74,San Luis,Femenino,75 a 79,14
+2005,74,San Luis,Femenino,80 y más,17
+2005,74,San Luis,Masculino,35 a 39,1
+2005,74,San Luis,Masculino,40 a 44,1
+2005,74,San Luis,Masculino,50 a 54,3
+2005,74,San Luis,Masculino,55 a 59,6
+2005,74,San Luis,Masculino,60 a 64,9
+2005,74,San Luis,Masculino,65 a 69,5
+2005,74,San Luis,Masculino,70 a 74,10
+2005,74,San Luis,Masculino,75 a 79,9
+2005,74,San Luis,Masculino,80 y más,11
+2005,78,Santa Cruz,Femenino,45 a 49,1
+2005,78,Santa Cruz,Femenino,50 a 54,3
+2005,78,Santa Cruz,Femenino,55 a 59,2
+2005,78,Santa Cruz,Femenino,60 a 64,2
+2005,78,Santa Cruz,Femenino,65 a 69,1
+2005,78,Santa Cruz,Femenino,70 a 74,2
+2005,78,Santa Cruz,Femenino,75 a 79,3
+2005,78,Santa Cruz,Femenino,80 y más,7
+2005,78,Santa Cruz,Masculino,35 a 39,1
+2005,78,Santa Cruz,Masculino,45 a 49,1
+2005,78,Santa Cruz,Masculino,50 a 54,1
+2005,78,Santa Cruz,Masculino,55 a 59,4
+2005,78,Santa Cruz,Masculino,60 a 64,3
+2005,78,Santa Cruz,Masculino,65 a 69,5
+2005,78,Santa Cruz,Masculino,70 a 74,5
+2005,78,Santa Cruz,Masculino,75 a 79,4
+2005,78,Santa Cruz,Masculino,80 y más,2
+2005,82,Santa Fe,Femenino,25 a 29,1
+2005,82,Santa Fe,Femenino,30 a 34,1
+2005,82,Santa Fe,Femenino,35 a 39,1
+2005,82,Santa Fe,Femenino,40 a 44,2
+2005,82,Santa Fe,Femenino,45 a 49,7
+2005,82,Santa Fe,Femenino,50 a 54,15
+2005,82,Santa Fe,Femenino,55 a 59,31
+2005,82,Santa Fe,Femenino,60 a 64,32
+2005,82,Santa Fe,Femenino,65 a 69,59
+2005,82,Santa Fe,Femenino,70 a 74,96
+2005,82,Santa Fe,Femenino,75 a 79,113
+2005,82,Santa Fe,Femenino,80 y más,248
+2005,82,Santa Fe,Masculino,35 a 39,4
+2005,82,Santa Fe,Masculino,40 a 44,7
+2005,82,Santa Fe,Masculino,45 a 49,17
+2005,82,Santa Fe,Masculino,50 a 54,23
+2005,82,Santa Fe,Masculino,55 a 59,44
+2005,82,Santa Fe,Masculino,60 a 64,72
+2005,82,Santa Fe,Masculino,65 a 69,88
+2005,82,Santa Fe,Masculino,70 a 74,98
+2005,82,Santa Fe,Masculino,75 a 79,115
+2005,82,Santa Fe,Masculino,80 y más,139
+2005,86,Santiago del Estero,Femenino,35 a 39,1
+2005,86,Santiago del Estero,Femenino,40 a 44,1
+2005,86,Santiago del Estero,Femenino,45 a 49,2
+2005,86,Santiago del Estero,Femenino,50 a 54,6
+2005,86,Santiago del Estero,Femenino,55 a 59,4
+2005,86,Santiago del Estero,Femenino,60 a 64,9
+2005,86,Santiago del Estero,Femenino,65 a 69,12
+2005,86,Santiago del Estero,Femenino,70 a 74,10
+2005,86,Santiago del Estero,Femenino,75 a 79,18
+2005,86,Santiago del Estero,Femenino,80 y más,17
+2005,86,Santiago del Estero,Masculino,35 a 39,1
+2005,86,Santiago del Estero,Masculino,40 a 44,3
+2005,86,Santiago del Estero,Masculino,45 a 49,1
+2005,86,Santiago del Estero,Masculino,50 a 54,5
+2005,86,Santiago del Estero,Masculino,55 a 59,12
+2005,86,Santiago del Estero,Masculino,60 a 64,13
+2005,86,Santiago del Estero,Masculino,65 a 69,15
+2005,86,Santiago del Estero,Masculino,70 a 74,15
+2005,86,Santiago del Estero,Masculino,75 a 79,16
+2005,86,Santiago del Estero,Masculino,80 y más,11
+2005,90,Tucumán,Femenino,20 a 24,2
+2005,90,Tucumán,Femenino,25 a 29,1
+2005,90,Tucumán,Femenino,35 a 39,1
+2005,90,Tucumán,Femenino,45 a 49,2
+2005,90,Tucumán,Femenino,50 a 54,7
+2005,90,Tucumán,Femenino,55 a 59,12
+2005,90,Tucumán,Femenino,60 a 64,21
+2005,90,Tucumán,Femenino,65 a 69,27
+2005,90,Tucumán,Femenino,70 a 74,30
+2005,90,Tucumán,Femenino,75 a 79,34
+2005,90,Tucumán,Femenino,80 y más,44
+2005,90,Tucumán,Masculino,25 a 29,1
+2005,90,Tucumán,Masculino,30 a 34,2
+2005,90,Tucumán,Masculino,40 a 44,1
+2005,90,Tucumán,Masculino,45 a 49,3
+2005,90,Tucumán,Masculino,50 a 54,15
+2005,90,Tucumán,Masculino,55 a 59,19
+2005,90,Tucumán,Masculino,60 a 64,17
+2005,90,Tucumán,Masculino,65 a 69,24
+2005,90,Tucumán,Masculino,70 a 74,31
+2005,90,Tucumán,Masculino,75 a 79,29
+2005,90,Tucumán,Masculino,80 y más,24
+2005,94,Tierra del Fuego,Femenino,55 a 59,1
+2005,94,Tierra del Fuego,Femenino,70 a 74,3
+2005,94,Tierra del Fuego,Femenino,75 a 79,1
+2005,94,Tierra del Fuego,Femenino,80 y más,1
+2005,94,Tierra del Fuego,Masculino,50 a 54,1
+2005,94,Tierra del Fuego,Masculino,70 a 74,1
+2005,94,Tierra del Fuego,Masculino,75 a 79,2
+2006,02,CABA,Femenino,30 a 34,1
+2006,02,CABA,Femenino,45 a 49,1
+2006,02,CABA,Femenino,50 a 54,2
+2006,02,CABA,Femenino,55 a 59,3
+2006,02,CABA,Femenino,60 a 64,5
+2006,02,CABA,Femenino,65 a 69,8
+2006,02,CABA,Femenino,70 a 74,16
+2006,02,CABA,Femenino,75 a 79,23
+2006,02,CABA,Femenino,80 y más,56
+2006,02,CABA,Masculino,30 a 34,2
+2006,02,CABA,Masculino,35 a 39,1
+2006,02,CABA,Masculino,40 a 44,3
+2006,02,CABA,Masculino,50 a 54,4
+2006,02,CABA,Masculino,55 a 59,8
+2006,02,CABA,Masculino,60 a 64,8
+2006,02,CABA,Masculino,65 a 69,14
+2006,02,CABA,Masculino,70 a 74,18
+2006,02,CABA,Masculino,75 a 79,19
+2006,02,CABA,Masculino,80 y más,34
+2006,06,Buenos Aires,Femenino,20 a 24,4
+2006,06,Buenos Aires,Femenino,25 a 29,6
+2006,06,Buenos Aires,Femenino,30 a 34,3
+2006,06,Buenos Aires,Femenino,35 a 39,3
+2006,06,Buenos Aires,Femenino,40 a 44,16
+2006,06,Buenos Aires,Femenino,45 a 49,7
+2006,06,Buenos Aires,Femenino,50 a 54,31
+2006,06,Buenos Aires,Femenino,55 a 59,60
+2006,06,Buenos Aires,Femenino,60 a 64,98
+2006,06,Buenos Aires,Femenino,65 a 69,142
+2006,06,Buenos Aires,Femenino,70 a 74,198
+2006,06,Buenos Aires,Femenino,75 a 79,202
+2006,06,Buenos Aires,Femenino,80 y más,466
+2006,06,Buenos Aires,Masculino,15 a 19,1
+2006,06,Buenos Aires,Masculino,20 a 24,1
+2006,06,Buenos Aires,Masculino,25 a 29,6
+2006,06,Buenos Aires,Masculino,30 a 34,6
+2006,06,Buenos Aires,Masculino,35 a 39,5
+2006,06,Buenos Aires,Masculino,40 a 44,23
+2006,06,Buenos Aires,Masculino,45 a 49,22
+2006,06,Buenos Aires,Masculino,50 a 54,51
+2006,06,Buenos Aires,Masculino,55 a 59,80
+2006,06,Buenos Aires,Masculino,60 a 64,150
+2006,06,Buenos Aires,Masculino,65 a 69,193
+2006,06,Buenos Aires,Masculino,70 a 74,240
+2006,06,Buenos Aires,Masculino,75 a 79,236
+2006,06,Buenos Aires,Masculino,80 y más,299
+2006,10,Catamarca,Femenino,30 a 34,1
+2006,10,Catamarca,Femenino,45 a 49,1
+2006,10,Catamarca,Femenino,50 a 54,2
+2006,10,Catamarca,Femenino,55 a 59,4
+2006,10,Catamarca,Femenino,60 a 64,5
+2006,10,Catamarca,Femenino,65 a 69,1
+2006,10,Catamarca,Femenino,70 a 74,5
+2006,10,Catamarca,Femenino,75 a 79,7
+2006,10,Catamarca,Femenino,80 y más,16
+2006,10,Catamarca,Masculino,45 a 49,1
+2006,10,Catamarca,Masculino,50 a 54,1
+2006,10,Catamarca,Masculino,55 a 59,5
+2006,10,Catamarca,Masculino,60 a 64,3
+2006,10,Catamarca,Masculino,65 a 69,1
+2006,10,Catamarca,Masculino,70 a 74,12
+2006,10,Catamarca,Masculino,75 a 79,5
+2006,10,Catamarca,Masculino,80 y más,7
+2006,14,Córdoba,Femenino,20 a 24,1
+2006,14,Córdoba,Femenino,25 a 29,1
+2006,14,Córdoba,Femenino,35 a 39,3
+2006,14,Córdoba,Femenino,40 a 44,1
+2006,14,Córdoba,Femenino,45 a 49,7
+2006,14,Córdoba,Femenino,50 a 54,12
+2006,14,Córdoba,Femenino,55 a 59,19
+2006,14,Córdoba,Femenino,60 a 64,36
+2006,14,Córdoba,Femenino,65 a 69,73
+2006,14,Córdoba,Femenino,70 a 74,48
+2006,14,Córdoba,Femenino,75 a 79,76
+2006,14,Córdoba,Femenino,80 y más,142
+2006,14,Córdoba,Masculino,35 a 39,3
+2006,14,Córdoba,Masculino,40 a 44,3
+2006,14,Córdoba,Masculino,45 a 49,12
+2006,14,Córdoba,Masculino,50 a 54,21
+2006,14,Córdoba,Masculino,55 a 59,37
+2006,14,Córdoba,Masculino,60 a 64,65
+2006,14,Córdoba,Masculino,65 a 69,66
+2006,14,Córdoba,Masculino,70 a 74,71
+2006,14,Córdoba,Masculino,75 a 79,80
+2006,14,Córdoba,Masculino,80 y más,77
+2006,18,Corrientes,Femenino,35 a 39,1
+2006,18,Corrientes,Femenino,40 a 44,2
+2006,18,Corrientes,Femenino,50 a 54,2
+2006,18,Corrientes,Femenino,55 a 59,5
+2006,18,Corrientes,Femenino,60 a 64,9
+2006,18,Corrientes,Femenino,65 a 69,14
+2006,18,Corrientes,Femenino,70 a 74,16
+2006,18,Corrientes,Femenino,75 a 79,16
+2006,18,Corrientes,Femenino,80 y más,30
+2006,18,Corrientes,Masculino,40 a 44,1
+2006,18,Corrientes,Masculino,45 a 49,2
+2006,18,Corrientes,Masculino,50 a 54,6
+2006,18,Corrientes,Masculino,55 a 59,9
+2006,18,Corrientes,Masculino,60 a 64,16
+2006,18,Corrientes,Masculino,65 a 69,16
+2006,18,Corrientes,Masculino,70 a 74,16
+2006,18,Corrientes,Masculino,75 a 79,22
+2006,18,Corrientes,Masculino,80 y más,14
+2006,22,Chaco,Femenino,15 a 19,1
+2006,22,Chaco,Femenino,20 a 24,1
+2006,22,Chaco,Femenino,35 a 39,1
+2006,22,Chaco,Femenino,45 a 49,3
+2006,22,Chaco,Femenino,50 a 54,4
+2006,22,Chaco,Femenino,55 a 59,2
+2006,22,Chaco,Femenino,60 a 64,14
+2006,22,Chaco,Femenino,65 a 69,17
+2006,22,Chaco,Femenino,70 a 74,12
+2006,22,Chaco,Femenino,75 a 79,19
+2006,22,Chaco,Femenino,80 y más,29
+2006,22,Chaco,Masculino,40 a 44,2
+2006,22,Chaco,Masculino,50 a 54,9
+2006,22,Chaco,Masculino,55 a 59,11
+2006,22,Chaco,Masculino,60 a 64,11
+2006,22,Chaco,Masculino,65 a 69,13
+2006,22,Chaco,Masculino,70 a 74,23
+2006,22,Chaco,Masculino,75 a 79,14
+2006,22,Chaco,Masculino,80 y más,16
+2006,26,Chubut,Femenino,35 a 39,1
+2006,26,Chubut,Femenino,50 a 54,1
+2006,26,Chubut,Femenino,55 a 59,2
+2006,26,Chubut,Femenino,65 a 69,5
+2006,26,Chubut,Femenino,70 a 74,1
+2006,26,Chubut,Femenino,75 a 79,4
+2006,26,Chubut,Femenino,80 y más,12
+2006,26,Chubut,Masculino,50 a 54,5
+2006,26,Chubut,Masculino,55 a 59,4
+2006,26,Chubut,Masculino,60 a 64,3
+2006,26,Chubut,Masculino,65 a 69,6
+2006,26,Chubut,Masculino,70 a 74,8
+2006,26,Chubut,Masculino,75 a 79,8
+2006,26,Chubut,Masculino,80 y más,9
+2006,30,Entre Ríos,Femenino,30 a 34,1
+2006,30,Entre Ríos,Femenino,35 a 39,3
+2006,30,Entre Ríos,Femenino,40 a 44,2
+2006,30,Entre Ríos,Femenino,45 a 49,2
+2006,30,Entre Ríos,Femenino,50 a 54,3
+2006,30,Entre Ríos,Femenino,55 a 59,7
+2006,30,Entre Ríos,Femenino,60 a 64,10
+2006,30,Entre Ríos,Femenino,65 a 69,17
+2006,30,Entre Ríos,Femenino,70 a 74,18
+2006,30,Entre Ríos,Femenino,75 a 79,22
+2006,30,Entre Ríos,Femenino,80 y más,48
+2006,30,Entre Ríos,Masculino,15 a 19,1
+2006,30,Entre Ríos,Masculino,40 a 44,2
+2006,30,Entre Ríos,Masculino,45 a 49,6
+2006,30,Entre Ríos,Masculino,50 a 54,4
+2006,30,Entre Ríos,Masculino,55 a 59,11
+2006,30,Entre Ríos,Masculino,60 a 64,13
+2006,30,Entre Ríos,Masculino,65 a 69,29
+2006,30,Entre Ríos,Masculino,70 a 74,22
+2006,30,Entre Ríos,Masculino,75 a 79,22
+2006,30,Entre Ríos,Masculino,80 y más,33
+2006,34,Formosa,Femenino,15 a 19,1
+2006,34,Formosa,Femenino,25 a 29,1
+2006,34,Formosa,Femenino,30 a 34,1
+2006,34,Formosa,Femenino,45 a 49,2
+2006,34,Formosa,Femenino,50 a 54,3
+2006,34,Formosa,Femenino,55 a 59,3
+2006,34,Formosa,Femenino,60 a 64,5
+2006,34,Formosa,Femenino,65 a 69,7
+2006,34,Formosa,Femenino,70 a 74,10
+2006,34,Formosa,Femenino,75 a 79,11
+2006,34,Formosa,Femenino,80 y más,13
+2006,34,Formosa,Masculino,50 a 54,1
+2006,34,Formosa,Masculino,55 a 59,6
+2006,34,Formosa,Masculino,60 a 64,4
+2006,34,Formosa,Masculino,65 a 69,4
+2006,34,Formosa,Masculino,70 a 74,8
+2006,34,Formosa,Masculino,75 a 79,7
+2006,34,Formosa,Masculino,80 y más,6
+2006,38,Jujuy,Femenino,40 a 44,1
+2006,38,Jujuy,Femenino,50 a 54,1
+2006,38,Jujuy,Femenino,55 a 59,4
+2006,38,Jujuy,Femenino,60 a 64,8
+2006,38,Jujuy,Femenino,65 a 69,3
+2006,38,Jujuy,Femenino,70 a 74,9
+2006,38,Jujuy,Femenino,75 a 79,5
+2006,38,Jujuy,Femenino,80 y más,11
+2006,38,Jujuy,Masculino,40 a 44,2
+2006,38,Jujuy,Masculino,45 a 49,1
+2006,38,Jujuy,Masculino,50 a 54,3
+2006,38,Jujuy,Masculino,55 a 59,3
+2006,38,Jujuy,Masculino,60 a 64,11
+2006,38,Jujuy,Masculino,65 a 69,6
+2006,38,Jujuy,Masculino,70 a 74,6
+2006,38,Jujuy,Masculino,75 a 79,4
+2006,38,Jujuy,Masculino,80 y más,4
+2006,42,La Pampa,Femenino,25 a 29,1
+2006,42,La Pampa,Femenino,45 a 49,2
+2006,42,La Pampa,Femenino,55 a 59,3
+2006,42,La Pampa,Femenino,60 a 64,1
+2006,42,La Pampa,Femenino,65 a 69,1
+2006,42,La Pampa,Femenino,70 a 74,6
+2006,42,La Pampa,Femenino,75 a 79,1
+2006,42,La Pampa,Femenino,80 y más,12
+2006,42,La Pampa,Masculino,45 a 49,1
+2006,42,La Pampa,Masculino,50 a 54,1
+2006,42,La Pampa,Masculino,55 a 59,1
+2006,42,La Pampa,Masculino,60 a 64,2
+2006,42,La Pampa,Masculino,65 a 69,6
+2006,42,La Pampa,Masculino,70 a 74,4
+2006,42,La Pampa,Masculino,75 a 79,4
+2006,42,La Pampa,Masculino,80 y más,9
+2006,46,La Rioja,Femenino,30 a 34,1
+2006,46,La Rioja,Femenino,45 a 49,2
+2006,46,La Rioja,Femenino,55 a 59,2
+2006,46,La Rioja,Femenino,60 a 64,2
+2006,46,La Rioja,Femenino,65 a 69,1
+2006,46,La Rioja,Femenino,70 a 74,1
+2006,46,La Rioja,Femenino,75 a 79,3
+2006,46,La Rioja,Femenino,80 y más,8
+2006,46,La Rioja,Masculino,45 a 49,1
+2006,46,La Rioja,Masculino,55 a 59,4
+2006,46,La Rioja,Masculino,60 a 64,7
+2006,46,La Rioja,Masculino,65 a 69,5
+2006,46,La Rioja,Masculino,70 a 74,2
+2006,46,La Rioja,Masculino,75 a 79,3
+2006,46,La Rioja,Masculino,80 y más,4
+2006,50,Mendoza,Femenino,25 a 29,1
+2006,50,Mendoza,Femenino,40 a 44,1
+2006,50,Mendoza,Femenino,45 a 49,6
+2006,50,Mendoza,Femenino,50 a 54,12
+2006,50,Mendoza,Femenino,55 a 59,19
+2006,50,Mendoza,Femenino,60 a 64,34
+2006,50,Mendoza,Femenino,65 a 69,49
+2006,50,Mendoza,Femenino,70 a 74,64
+2006,50,Mendoza,Femenino,75 a 79,77
+2006,50,Mendoza,Femenino,80 y más,72
+2006,50,Mendoza,Masculino,25 a 29,1
+2006,50,Mendoza,Masculino,35 a 39,3
+2006,50,Mendoza,Masculino,40 a 44,2
+2006,50,Mendoza,Masculino,45 a 49,3
+2006,50,Mendoza,Masculino,50 a 54,18
+2006,50,Mendoza,Masculino,55 a 59,35
+2006,50,Mendoza,Masculino,60 a 64,40
+2006,50,Mendoza,Masculino,65 a 69,64
+2006,50,Mendoza,Masculino,70 a 74,71
+2006,50,Mendoza,Masculino,75 a 79,55
+2006,50,Mendoza,Masculino,80 y más,53
+2006,54,Misiones,Femenino,20 a 24,1
+2006,54,Misiones,Femenino,40 a 44,4
+2006,54,Misiones,Femenino,45 a 49,3
+2006,54,Misiones,Femenino,50 a 54,7
+2006,54,Misiones,Femenino,55 a 59,11
+2006,54,Misiones,Femenino,60 a 64,7
+2006,54,Misiones,Femenino,65 a 69,17
+2006,54,Misiones,Femenino,70 a 74,22
+2006,54,Misiones,Femenino,75 a 79,24
+2006,54,Misiones,Femenino,80 y más,29
+2006,54,Misiones,Masculino,30 a 34,1
+2006,54,Misiones,Masculino,45 a 49,1
+2006,54,Misiones,Masculino,50 a 54,7
+2006,54,Misiones,Masculino,55 a 59,10
+2006,54,Misiones,Masculino,60 a 64,9
+2006,54,Misiones,Masculino,65 a 69,12
+2006,54,Misiones,Masculino,70 a 74,18
+2006,54,Misiones,Masculino,75 a 79,12
+2006,54,Misiones,Masculino,80 y más,23
+2006,58,Neuquén,Femenino,30 a 34,1
+2006,58,Neuquén,Femenino,50 a 54,3
+2006,58,Neuquén,Femenino,55 a 59,5
+2006,58,Neuquén,Femenino,60 a 64,5
+2006,58,Neuquén,Femenino,65 a 69,12
+2006,58,Neuquén,Femenino,70 a 74,5
+2006,58,Neuquén,Femenino,75 a 79,16
+2006,58,Neuquén,Femenino,80 y más,26
+2006,58,Neuquén,Masculino,30 a 34,1
+2006,58,Neuquén,Masculino,45 a 49,1
+2006,58,Neuquén,Masculino,50 a 54,5
+2006,58,Neuquén,Masculino,55 a 59,10
+2006,58,Neuquén,Masculino,60 a 64,15
+2006,58,Neuquén,Masculino,65 a 69,11
+2006,58,Neuquén,Masculino,70 a 74,19
+2006,58,Neuquén,Masculino,75 a 79,19
+2006,58,Neuquén,Masculino,80 y más,14
+2006,62,Río Negro,Femenino,25 a 29,1
+2006,62,Río Negro,Femenino,35 a 39,1
+2006,62,Río Negro,Femenino,40 a 44,1
+2006,62,Río Negro,Femenino,50 a 54,1
+2006,62,Río Negro,Femenino,55 a 59,3
+2006,62,Río Negro,Femenino,60 a 64,7
+2006,62,Río Negro,Femenino,65 a 69,2
+2006,62,Río Negro,Femenino,70 a 74,11
+2006,62,Río Negro,Femenino,75 a 79,11
+2006,62,Río Negro,Femenino,80 y más,16
+2006,62,Río Negro,Masculino,55 a 59,4
+2006,62,Río Negro,Masculino,60 a 64,8
+2006,62,Río Negro,Masculino,65 a 69,8
+2006,62,Río Negro,Masculino,70 a 74,8
+2006,62,Río Negro,Masculino,75 a 79,9
+2006,62,Río Negro,Masculino,80 y más,7
+2006,66,Salta,Femenino,20 a 24,1
+2006,66,Salta,Femenino,25 a 29,1
+2006,66,Salta,Femenino,40 a 44,2
+2006,66,Salta,Femenino,55 a 59,7
+2006,66,Salta,Femenino,60 a 64,12
+2006,66,Salta,Femenino,65 a 69,10
+2006,66,Salta,Femenino,70 a 74,12
+2006,66,Salta,Femenino,75 a 79,6
+2006,66,Salta,Femenino,80 y más,27
+2006,66,Salta,Masculino,20 a 24,1
+2006,66,Salta,Masculino,30 a 34,1
+2006,66,Salta,Masculino,35 a 39,1
+2006,66,Salta,Masculino,40 a 44,3
+2006,66,Salta,Masculino,45 a 49,3
+2006,66,Salta,Masculino,50 a 54,6
+2006,66,Salta,Masculino,55 a 59,8
+2006,66,Salta,Masculino,60 a 64,4
+2006,66,Salta,Masculino,65 a 69,10
+2006,66,Salta,Masculino,70 a 74,13
+2006,66,Salta,Masculino,75 a 79,14
+2006,66,Salta,Masculino,80 y más,14
+2006,70,San Juan,Femenino,15 a 19,2
+2006,70,San Juan,Femenino,25 a 29,1
+2006,70,San Juan,Femenino,30 a 34,2
+2006,70,San Juan,Femenino,45 a 49,2
+2006,70,San Juan,Femenino,50 a 54,7
+2006,70,San Juan,Femenino,55 a 59,8
+2006,70,San Juan,Femenino,60 a 64,13
+2006,70,San Juan,Femenino,65 a 69,22
+2006,70,San Juan,Femenino,70 a 74,24
+2006,70,San Juan,Femenino,75 a 79,29
+2006,70,San Juan,Femenino,80 y más,41
+2006,70,San Juan,Masculino,20 a 24,1
+2006,70,San Juan,Masculino,25 a 29,1
+2006,70,San Juan,Masculino,30 a 34,1
+2006,70,San Juan,Masculino,35 a 39,1
+2006,70,San Juan,Masculino,45 a 49,3
+2006,70,San Juan,Masculino,50 a 54,6
+2006,70,San Juan,Masculino,55 a 59,12
+2006,70,San Juan,Masculino,60 a 64,17
+2006,70,San Juan,Masculino,65 a 69,21
+2006,70,San Juan,Masculino,70 a 74,27
+2006,70,San Juan,Masculino,75 a 79,26
+2006,70,San Juan,Masculino,80 y más,28
+2006,74,San Luis,Femenino,25 a 29,1
+2006,74,San Luis,Femenino,45 a 49,3
+2006,74,San Luis,Femenino,50 a 54,3
+2006,74,San Luis,Femenino,55 a 59,4
+2006,74,San Luis,Femenino,60 a 64,5
+2006,74,San Luis,Femenino,65 a 69,7
+2006,74,San Luis,Femenino,70 a 74,12
+2006,74,San Luis,Femenino,75 a 79,15
+2006,74,San Luis,Femenino,80 y más,18
+2006,74,San Luis,Masculino,30 a 34,1
+2006,74,San Luis,Masculino,35 a 39,3
+2006,74,San Luis,Masculino,40 a 44,1
+2006,74,San Luis,Masculino,45 a 49,3
+2006,74,San Luis,Masculino,50 a 54,5
+2006,74,San Luis,Masculino,55 a 59,14
+2006,74,San Luis,Masculino,60 a 64,10
+2006,74,San Luis,Masculino,65 a 69,13
+2006,74,San Luis,Masculino,70 a 74,10
+2006,74,San Luis,Masculino,75 a 79,17
+2006,74,San Luis,Masculino,80 y más,16
+2006,78,Santa Cruz,Femenino,20 a 24,1
+2006,78,Santa Cruz,Femenino,55 a 59,1
+2006,78,Santa Cruz,Femenino,60 a 64,3
+2006,78,Santa Cruz,Femenino,65 a 69,2
+2006,78,Santa Cruz,Femenino,70 a 74,5
+2006,78,Santa Cruz,Femenino,75 a 79,2
+2006,78,Santa Cruz,Femenino,80 y más,4
+2006,78,Santa Cruz,Masculino,50 a 54,1
+2006,78,Santa Cruz,Masculino,60 a 64,2
+2006,78,Santa Cruz,Masculino,65 a 69,4
+2006,78,Santa Cruz,Masculino,70 a 74,3
+2006,78,Santa Cruz,Masculino,75 a 79,2
+2006,78,Santa Cruz,Masculino,80 y más,7
+2006,82,Santa Fe,Femenino,20 a 24,1
+2006,82,Santa Fe,Femenino,35 a 39,3
+2006,82,Santa Fe,Femenino,40 a 44,2
+2006,82,Santa Fe,Femenino,45 a 49,12
+2006,82,Santa Fe,Femenino,50 a 54,9
+2006,82,Santa Fe,Femenino,55 a 59,23
+2006,82,Santa Fe,Femenino,60 a 64,37
+2006,82,Santa Fe,Femenino,65 a 69,63
+2006,82,Santa Fe,Femenino,70 a 74,76
+2006,82,Santa Fe,Femenino,75 a 79,95
+2006,82,Santa Fe,Femenino,80 y más,209
+2006,82,Santa Fe,Masculino,25 a 29,1
+2006,82,Santa Fe,Masculino,30 a 34,3
+2006,82,Santa Fe,Masculino,35 a 39,2
+2006,82,Santa Fe,Masculino,40 a 44,5
+2006,82,Santa Fe,Masculino,45 a 49,7
+2006,82,Santa Fe,Masculino,50 a 54,21
+2006,82,Santa Fe,Masculino,55 a 59,51
+2006,82,Santa Fe,Masculino,60 a 64,67
+2006,82,Santa Fe,Masculino,65 a 69,99
+2006,82,Santa Fe,Masculino,70 a 74,83
+2006,82,Santa Fe,Masculino,75 a 79,122
+2006,82,Santa Fe,Masculino,80 y más,165
+2006,86,Santiago del Estero,Femenino,20 a 24,1
+2006,86,Santiago del Estero,Femenino,45 a 49,2
+2006,86,Santiago del Estero,Femenino,50 a 54,1
+2006,86,Santiago del Estero,Femenino,55 a 59,5
+2006,86,Santiago del Estero,Femenino,60 a 64,12
+2006,86,Santiago del Estero,Femenino,65 a 69,9
+2006,86,Santiago del Estero,Femenino,70 a 74,12
+2006,86,Santiago del Estero,Femenino,75 a 79,12
+2006,86,Santiago del Estero,Femenino,80 y más,26
+2006,86,Santiago del Estero,Masculino,35 a 39,1
+2006,86,Santiago del Estero,Masculino,40 a 44,2
+2006,86,Santiago del Estero,Masculino,45 a 49,3
+2006,86,Santiago del Estero,Masculino,50 a 54,2
+2006,86,Santiago del Estero,Masculino,55 a 59,13
+2006,86,Santiago del Estero,Masculino,60 a 64,3
+2006,86,Santiago del Estero,Masculino,65 a 69,14
+2006,86,Santiago del Estero,Masculino,70 a 74,14
+2006,86,Santiago del Estero,Masculino,75 a 79,9
+2006,86,Santiago del Estero,Masculino,80 y más,16
+2006,90,Tucumán,Femenino,20 a 24,2
+2006,90,Tucumán,Femenino,25 a 29,1
+2006,90,Tucumán,Femenino,35 a 39,1
+2006,90,Tucumán,Femenino,40 a 44,2
+2006,90,Tucumán,Femenino,45 a 49,9
+2006,90,Tucumán,Femenino,50 a 54,5
+2006,90,Tucumán,Femenino,55 a 59,18
+2006,90,Tucumán,Femenino,60 a 64,21
+2006,90,Tucumán,Femenino,65 a 69,22
+2006,90,Tucumán,Femenino,70 a 74,33
+2006,90,Tucumán,Femenino,75 a 79,30
+2006,90,Tucumán,Femenino,80 y más,59
+2006,90,Tucumán,Masculino,20 a 24,1
+2006,90,Tucumán,Masculino,25 a 29,2
+2006,90,Tucumán,Masculino,35 a 39,1
+2006,90,Tucumán,Masculino,40 a 44,1
+2006,90,Tucumán,Masculino,45 a 49,3
+2006,90,Tucumán,Masculino,50 a 54,10
+2006,90,Tucumán,Masculino,55 a 59,17
+2006,90,Tucumán,Masculino,60 a 64,26
+2006,90,Tucumán,Masculino,65 a 69,41
+2006,90,Tucumán,Masculino,70 a 74,31
+2006,90,Tucumán,Masculino,75 a 79,38
+2006,90,Tucumán,Masculino,80 y más,38
+2006,94,Tierra del Fuego,Femenino,45 a 49,1
+2006,94,Tierra del Fuego,Femenino,55 a 59,1
+2006,94,Tierra del Fuego,Femenino,70 a 74,1
+2006,94,Tierra del Fuego,Femenino,75 a 79,1
+2006,94,Tierra del Fuego,Femenino,80 y más,3
+2006,94,Tierra del Fuego,Masculino,35 a 39,1
+2006,94,Tierra del Fuego,Masculino,55 a 59,1
+2006,94,Tierra del Fuego,Masculino,60 a 64,1
+2006,94,Tierra del Fuego,Masculino,65 a 69,1
+2006,94,Tierra del Fuego,Masculino,70 a 74,1
+2006,94,Tierra del Fuego,Masculino,75 a 79,2
+2006,94,Tierra del Fuego,Masculino,80 y más,1
+2008,02,CABA,Femenino,30 a 34,1
+2008,02,CABA,Femenino,40 a 44,1
+2008,02,CABA,Femenino,45 a 49,1
+2008,02,CABA,Femenino,50 a 54,3
+2008,02,CABA,Femenino,55 a 59,2
+2008,02,CABA,Femenino,60 a 64,6
+2008,02,CABA,Femenino,65 a 69,9
+2008,02,CABA,Femenino,70 a 74,13
+2008,02,CABA,Femenino,75 a 79,24
+2008,02,CABA,Femenino,80 y más,69
+2008,02,CABA,Masculino,25 a 29,1
+2008,02,CABA,Masculino,35 a 39,1
+2008,02,CABA,Masculino,40 a 44,3
+2008,02,CABA,Masculino,45 a 49,4
+2008,02,CABA,Masculino,50 a 54,4
+2008,02,CABA,Masculino,55 a 59,4
+2008,02,CABA,Masculino,60 a 64,11
+2008,02,CABA,Masculino,65 a 69,7
+2008,02,CABA,Masculino,70 a 74,24
+2008,02,CABA,Masculino,75 a 79,20
+2008,02,CABA,Masculino,80 y más,49
+2008,06,Buenos Aires,Femenino,15 a 19,1
+2008,06,Buenos Aires,Femenino,20 a 24,1
+2008,06,Buenos Aires,Femenino,25 a 29,2
+2008,06,Buenos Aires,Femenino,30 a 34,3
+2008,06,Buenos Aires,Femenino,35 a 39,10
+2008,06,Buenos Aires,Femenino,40 a 44,3
+2008,06,Buenos Aires,Femenino,45 a 49,16
+2008,06,Buenos Aires,Femenino,50 a 54,31
+2008,06,Buenos Aires,Femenino,55 a 59,64
+2008,06,Buenos Aires,Femenino,60 a 64,80
+2008,06,Buenos Aires,Femenino,65 a 69,129
+2008,06,Buenos Aires,Femenino,70 a 74,152
+2008,06,Buenos Aires,Femenino,75 a 79,187
+2008,06,Buenos Aires,Femenino,80 y más,475
+2008,06,Buenos Aires,Masculino,20 a 24,3
+2008,06,Buenos Aires,Masculino,25 a 29,6
+2008,06,Buenos Aires,Masculino,30 a 34,5
+2008,06,Buenos Aires,Masculino,35 a 39,5
+2008,06,Buenos Aires,Masculino,40 a 44,10
+2008,06,Buenos Aires,Masculino,45 a 49,24
+2008,06,Buenos Aires,Masculino,50 a 54,58
+2008,06,Buenos Aires,Masculino,55 a 59,85
+2008,06,Buenos Aires,Masculino,60 a 64,129
+2008,06,Buenos Aires,Masculino,65 a 69,168
+2008,06,Buenos Aires,Masculino,70 a 74,209
+2008,06,Buenos Aires,Masculino,75 a 79,223
+2008,06,Buenos Aires,Masculino,80 y más,278
+2008,10,Catamarca,Femenino,55 a 59,3
+2008,10,Catamarca,Femenino,60 a 64,2
+2008,10,Catamarca,Femenino,65 a 69,3
+2008,10,Catamarca,Femenino,70 a 74,5
+2008,10,Catamarca,Femenino,75 a 79,7
+2008,10,Catamarca,Femenino,80 y más,11
+2008,10,Catamarca,Masculino,45 a 49,2
+2008,10,Catamarca,Masculino,50 a 54,2
+2008,10,Catamarca,Masculino,55 a 59,3
+2008,10,Catamarca,Masculino,60 a 64,6
+2008,10,Catamarca,Masculino,65 a 69,7
+2008,10,Catamarca,Masculino,70 a 74,6
+2008,10,Catamarca,Masculino,75 a 79,5
+2008,10,Catamarca,Masculino,80 y más,7
+2008,14,Córdoba,Femenino,30 a 34,1
+2008,14,Córdoba,Femenino,35 a 39,4
+2008,14,Córdoba,Femenino,40 a 44,4
+2008,14,Córdoba,Femenino,45 a 49,4
+2008,14,Córdoba,Femenino,50 a 54,12
+2008,14,Córdoba,Femenino,55 a 59,27
+2008,14,Córdoba,Femenino,60 a 64,37
+2008,14,Córdoba,Femenino,65 a 69,39
+2008,14,Córdoba,Femenino,70 a 74,51
+2008,14,Córdoba,Femenino,75 a 79,66
+2008,14,Córdoba,Femenino,80 y más,116
+2008,14,Córdoba,Masculino,25 a 29,1
+2008,14,Córdoba,Masculino,35 a 39,2
+2008,14,Córdoba,Masculino,40 a 44,4
+2008,14,Córdoba,Masculino,45 a 49,4
+2008,14,Córdoba,Masculino,50 a 54,22
+2008,14,Córdoba,Masculino,55 a 59,40
+2008,14,Córdoba,Masculino,60 a 64,55
+2008,14,Córdoba,Masculino,65 a 69,45
+2008,14,Córdoba,Masculino,70 a 74,68
+2008,14,Córdoba,Masculino,75 a 79,56
+2008,14,Córdoba,Masculino,80 y más,79
+2008,18,Corrientes,Femenino,40 a 44,2
+2008,18,Corrientes,Femenino,50 a 54,2
+2008,18,Corrientes,Femenino,55 a 59,7
+2008,18,Corrientes,Femenino,60 a 64,7
+2008,18,Corrientes,Femenino,65 a 69,19
+2008,18,Corrientes,Femenino,70 a 74,19
+2008,18,Corrientes,Femenino,75 a 79,22
+2008,18,Corrientes,Femenino,80 y más,41
+2008,18,Corrientes,Masculino,35 a 39,1
+2008,18,Corrientes,Masculino,45 a 49,1
+2008,18,Corrientes,Masculino,50 a 54,4
+2008,18,Corrientes,Masculino,55 a 59,9
+2008,18,Corrientes,Masculino,60 a 64,10
+2008,18,Corrientes,Masculino,65 a 69,19
+2008,18,Corrientes,Masculino,70 a 74,7
+2008,18,Corrientes,Masculino,75 a 79,12
+2008,18,Corrientes,Masculino,80 y más,23
+2008,22,Chaco,Femenino,20 a 24,1
+2008,22,Chaco,Femenino,35 a 39,3
+2008,22,Chaco,Femenino,40 a 44,1
+2008,22,Chaco,Femenino,45 a 49,2
+2008,22,Chaco,Femenino,50 a 54,5
+2008,22,Chaco,Femenino,55 a 59,9
+2008,22,Chaco,Femenino,60 a 64,9
+2008,22,Chaco,Femenino,65 a 69,12
+2008,22,Chaco,Femenino,70 a 74,24
+2008,22,Chaco,Femenino,75 a 79,17
+2008,22,Chaco,Femenino,80 y más,32
+2008,22,Chaco,Masculino,45 a 49,1
+2008,22,Chaco,Masculino,50 a 54,4
+2008,22,Chaco,Masculino,55 a 59,11
+2008,22,Chaco,Masculino,60 a 64,13
+2008,22,Chaco,Masculino,65 a 69,17
+2008,22,Chaco,Masculino,70 a 74,19
+2008,22,Chaco,Masculino,75 a 79,24
+2008,22,Chaco,Masculino,80 y más,10
+2008,26,Chubut,Femenino,50 a 54,2
+2008,26,Chubut,Femenino,55 a 59,4
+2008,26,Chubut,Femenino,60 a 64,3
+2008,26,Chubut,Femenino,65 a 69,3
+2008,26,Chubut,Femenino,70 a 74,2
+2008,26,Chubut,Femenino,75 a 79,2
+2008,26,Chubut,Femenino,80 y más,9
+2008,26,Chubut,Masculino,40 a 44,2
+2008,26,Chubut,Masculino,50 a 54,1
+2008,26,Chubut,Masculino,60 a 64,3
+2008,26,Chubut,Masculino,65 a 69,4
+2008,26,Chubut,Masculino,70 a 74,7
+2008,26,Chubut,Masculino,75 a 79,13
+2008,26,Chubut,Masculino,80 y más,11
+2008,30,Entre Ríos,Femenino,25 a 29,1
+2008,30,Entre Ríos,Femenino,35 a 39,3
+2008,30,Entre Ríos,Femenino,40 a 44,1
+2008,30,Entre Ríos,Femenino,45 a 49,2
+2008,30,Entre Ríos,Femenino,50 a 54,7
+2008,30,Entre Ríos,Femenino,55 a 59,4
+2008,30,Entre Ríos,Femenino,60 a 64,6
+2008,30,Entre Ríos,Femenino,65 a 69,13
+2008,30,Entre Ríos,Femenino,70 a 74,20
+2008,30,Entre Ríos,Femenino,75 a 79,20
+2008,30,Entre Ríos,Femenino,80 y más,45
+2008,30,Entre Ríos,Masculino,30 a 34,1
+2008,30,Entre Ríos,Masculino,45 a 49,2
+2008,30,Entre Ríos,Masculino,50 a 54,6
+2008,30,Entre Ríos,Masculino,55 a 59,6
+2008,30,Entre Ríos,Masculino,60 a 64,22
+2008,30,Entre Ríos,Masculino,65 a 69,19
+2008,30,Entre Ríos,Masculino,70 a 74,18
+2008,30,Entre Ríos,Masculino,75 a 79,19
+2008,30,Entre Ríos,Masculino,80 y más,32
+2008,34,Formosa,Femenino,30 a 34,1
+2008,34,Formosa,Femenino,40 a 44,2
+2008,34,Formosa,Femenino,45 a 49,2
+2008,34,Formosa,Femenino,50 a 54,2
+2008,34,Formosa,Femenino,55 a 59,4
+2008,34,Formosa,Femenino,60 a 64,7
+2008,34,Formosa,Femenino,65 a 69,11
+2008,34,Formosa,Femenino,70 a 74,10
+2008,34,Formosa,Femenino,75 a 79,6
+2008,34,Formosa,Femenino,80 y más,22
+2008,34,Formosa,Masculino,40 a 44,1
+2008,34,Formosa,Masculino,50 a 54,2
+2008,34,Formosa,Masculino,55 a 59,3
+2008,34,Formosa,Masculino,60 a 64,11
+2008,34,Formosa,Masculino,65 a 69,11
+2008,34,Formosa,Masculino,70 a 74,12
+2008,34,Formosa,Masculino,75 a 79,4
+2008,34,Formosa,Masculino,80 y más,10
+2008,38,Jujuy,Femenino,45 a 49,1
+2008,38,Jujuy,Femenino,50 a 54,2
+2008,38,Jujuy,Femenino,55 a 59,3
+2008,38,Jujuy,Femenino,60 a 64,3
+2008,38,Jujuy,Femenino,65 a 69,5
+2008,38,Jujuy,Femenino,70 a 74,7
+2008,38,Jujuy,Femenino,75 a 79,6
+2008,38,Jujuy,Femenino,80 y más,4
+2008,38,Jujuy,Masculino,40 a 44,1
+2008,38,Jujuy,Masculino,45 a 49,1
+2008,38,Jujuy,Masculino,50 a 54,5
+2008,38,Jujuy,Masculino,55 a 59,6
+2008,38,Jujuy,Masculino,60 a 64,8
+2008,38,Jujuy,Masculino,65 a 69,9
+2008,38,Jujuy,Masculino,70 a 74,9
+2008,38,Jujuy,Masculino,75 a 79,6
+2008,38,Jujuy,Masculino,80 y más,8
+2008,42,La Pampa,Femenino,40 a 44,1
+2008,42,La Pampa,Femenino,50 a 54,2
+2008,42,La Pampa,Femenino,55 a 59,1
+2008,42,La Pampa,Femenino,60 a 64,2
+2008,42,La Pampa,Femenino,65 a 69,4
+2008,42,La Pampa,Femenino,75 a 79,5
+2008,42,La Pampa,Femenino,80 y más,6
+2008,42,La Pampa,Masculino,45 a 49,1
+2008,42,La Pampa,Masculino,50 a 54,3
+2008,42,La Pampa,Masculino,55 a 59,1
+2008,42,La Pampa,Masculino,60 a 64,3
+2008,42,La Pampa,Masculino,65 a 69,4
+2008,42,La Pampa,Masculino,70 a 74,5
+2008,42,La Pampa,Masculino,75 a 79,6
+2008,42,La Pampa,Masculino,80 y más,8
+2008,46,La Rioja,Femenino,20 a 24,1
+2008,46,La Rioja,Femenino,40 a 44,1
+2008,46,La Rioja,Femenino,55 a 59,4
+2008,46,La Rioja,Femenino,65 a 69,4
+2008,46,La Rioja,Femenino,70 a 74,5
+2008,46,La Rioja,Femenino,75 a 79,2
+2008,46,La Rioja,Femenino,80 y más,4
+2008,46,La Rioja,Masculino,35 a 39,3
+2008,46,La Rioja,Masculino,40 a 44,2
+2008,46,La Rioja,Masculino,45 a 49,3
+2008,46,La Rioja,Masculino,55 a 59,2
+2008,46,La Rioja,Masculino,60 a 64,6
+2008,46,La Rioja,Masculino,65 a 69,4
+2008,46,La Rioja,Masculino,70 a 74,8
+2008,46,La Rioja,Masculino,75 a 79,2
+2008,46,La Rioja,Masculino,80 y más,1
+2008,50,Mendoza,Femenino,20 a 24,1
+2008,50,Mendoza,Femenino,30 a 34,2
+2008,50,Mendoza,Femenino,40 a 44,2
+2008,50,Mendoza,Femenino,45 a 49,1
+2008,50,Mendoza,Femenino,50 a 54,6
+2008,50,Mendoza,Femenino,55 a 59,10
+2008,50,Mendoza,Femenino,60 a 64,29
+2008,50,Mendoza,Femenino,65 a 69,34
+2008,50,Mendoza,Femenino,70 a 74,55
+2008,50,Mendoza,Femenino,75 a 79,49
+2008,50,Mendoza,Femenino,80 y más,85
+2008,50,Mendoza,Masculino,25 a 29,1
+2008,50,Mendoza,Masculino,30 a 34,1
+2008,50,Mendoza,Masculino,35 a 39,1
+2008,50,Mendoza,Masculino,40 a 44,5
+2008,50,Mendoza,Masculino,45 a 49,8
+2008,50,Mendoza,Masculino,50 a 54,12
+2008,50,Mendoza,Masculino,55 a 59,30
+2008,50,Mendoza,Masculino,60 a 64,37
+2008,50,Mendoza,Masculino,65 a 69,61
+2008,50,Mendoza,Masculino,70 a 74,64
+2008,50,Mendoza,Masculino,75 a 79,63
+2008,50,Mendoza,Masculino,80 y más,60
+2008,54,Misiones,Femenino,40 a 44,2
+2008,54,Misiones,Femenino,45 a 49,4
+2008,54,Misiones,Femenino,50 a 54,7
+2008,54,Misiones,Femenino,55 a 59,7
+2008,54,Misiones,Femenino,60 a 64,8
+2008,54,Misiones,Femenino,65 a 69,11
+2008,54,Misiones,Femenino,70 a 74,23
+2008,54,Misiones,Femenino,75 a 79,22
+2008,54,Misiones,Femenino,80 y más,33
+2008,54,Misiones,Masculino,15 a 19,1
+2008,54,Misiones,Masculino,20 a 24,1
+2008,54,Misiones,Masculino,40 a 44,3
+2008,54,Misiones,Masculino,45 a 49,2
+2008,54,Misiones,Masculino,50 a 54,9
+2008,54,Misiones,Masculino,55 a 59,11
+2008,54,Misiones,Masculino,60 a 64,13
+2008,54,Misiones,Masculino,65 a 69,16
+2008,54,Misiones,Masculino,70 a 74,25
+2008,54,Misiones,Masculino,75 a 79,20
+2008,54,Misiones,Masculino,80 y más,18
+2008,58,Neuquén,Femenino,40 a 44,1
+2008,58,Neuquén,Femenino,45 a 49,2
+2008,58,Neuquén,Femenino,50 a 54,4
+2008,58,Neuquén,Femenino,55 a 59,2
+2008,58,Neuquén,Femenino,60 a 64,5
+2008,58,Neuquén,Femenino,65 a 69,10
+2008,58,Neuquén,Femenino,70 a 74,13
+2008,58,Neuquén,Femenino,75 a 79,13
+2008,58,Neuquén,Femenino,80 y más,27
+2008,58,Neuquén,Masculino,45 a 49,2
+2008,58,Neuquén,Masculino,50 a 54,3
+2008,58,Neuquén,Masculino,55 a 59,8
+2008,58,Neuquén,Masculino,60 a 64,6
+2008,58,Neuquén,Masculino,65 a 69,15
+2008,58,Neuquén,Masculino,70 a 74,17
+2008,58,Neuquén,Masculino,75 a 79,17
+2008,58,Neuquén,Masculino,80 y más,18
+2008,62,Río Negro,Femenino,40 a 44,1
+2008,62,Río Negro,Femenino,50 a 54,2
+2008,62,Río Negro,Femenino,55 a 59,1
+2008,62,Río Negro,Femenino,60 a 64,3
+2008,62,Río Negro,Femenino,65 a 69,9
+2008,62,Río Negro,Femenino,70 a 74,6
+2008,62,Río Negro,Femenino,75 a 79,6
+2008,62,Río Negro,Femenino,80 y más,15
+2008,62,Río Negro,Masculino,45 a 49,1
+2008,62,Río Negro,Masculino,50 a 54,1
+2008,62,Río Negro,Masculino,55 a 59,2
+2008,62,Río Negro,Masculino,60 a 64,7
+2008,62,Río Negro,Masculino,65 a 69,11
+2008,62,Río Negro,Masculino,70 a 74,8
+2008,62,Río Negro,Masculino,75 a 79,15
+2008,62,Río Negro,Masculino,80 y más,9
+2008,66,Salta,Femenino,30 a 34,1
+2008,66,Salta,Femenino,35 a 39,1
+2008,66,Salta,Femenino,40 a 44,1
+2008,66,Salta,Femenino,45 a 49,2
+2008,66,Salta,Femenino,50 a 54,3
+2008,66,Salta,Femenino,55 a 59,12
+2008,66,Salta,Femenino,60 a 64,8
+2008,66,Salta,Femenino,65 a 69,16
+2008,66,Salta,Femenino,70 a 74,11
+2008,66,Salta,Femenino,75 a 79,11
+2008,66,Salta,Femenino,80 y más,24
+2008,66,Salta,Masculino,40 a 44,1
+2008,66,Salta,Masculino,50 a 54,11
+2008,66,Salta,Masculino,55 a 59,6
+2008,66,Salta,Masculino,60 a 64,10
+2008,66,Salta,Masculino,65 a 69,19
+2008,66,Salta,Masculino,70 a 74,14
+2008,66,Salta,Masculino,75 a 79,10
+2008,66,Salta,Masculino,80 y más,11
+2008,70,San Juan,Femenino,30 a 34,1
+2008,70,San Juan,Femenino,40 a 44,1
+2008,70,San Juan,Femenino,45 a 49,4
+2008,70,San Juan,Femenino,50 a 54,3
+2008,70,San Juan,Femenino,55 a 59,12
+2008,70,San Juan,Femenino,60 a 64,13
+2008,70,San Juan,Femenino,65 a 69,20
+2008,70,San Juan,Femenino,70 a 74,30
+2008,70,San Juan,Femenino,75 a 79,30
+2008,70,San Juan,Femenino,80 y más,53
+2008,70,San Juan,Masculino,25 a 29,1
+2008,70,San Juan,Masculino,40 a 44,2
+2008,70,San Juan,Masculino,45 a 49,2
+2008,70,San Juan,Masculino,50 a 54,1
+2008,70,San Juan,Masculino,55 a 59,12
+2008,70,San Juan,Masculino,60 a 64,23
+2008,70,San Juan,Masculino,65 a 69,21
+2008,70,San Juan,Masculino,70 a 74,26
+2008,70,San Juan,Masculino,75 a 79,28
+2008,70,San Juan,Masculino,80 y más,24
+2008,74,San Luis,Femenino,25 a 29,1
+2008,74,San Luis,Femenino,45 a 49,1
+2008,74,San Luis,Femenino,50 a 54,2
+2008,74,San Luis,Femenino,55 a 59,2
+2008,74,San Luis,Femenino,60 a 64,5
+2008,74,San Luis,Femenino,65 a 69,6
+2008,74,San Luis,Femenino,70 a 74,14
+2008,74,San Luis,Femenino,75 a 79,16
+2008,74,San Luis,Femenino,80 y más,24
+2008,74,San Luis,Masculino,40 a 44,1
+2008,74,San Luis,Masculino,45 a 49,3
+2008,74,San Luis,Masculino,50 a 54,2
+2008,74,San Luis,Masculino,55 a 59,4
+2008,74,San Luis,Masculino,60 a 64,13
+2008,74,San Luis,Masculino,65 a 69,15
+2008,74,San Luis,Masculino,70 a 74,15
+2008,74,San Luis,Masculino,75 a 79,12
+2008,74,San Luis,Masculino,80 y más,25
+2008,78,Santa Cruz,Femenino,30 a 34,1
+2008,78,Santa Cruz,Femenino,55 a 59,1
+2008,78,Santa Cruz,Femenino,65 a 69,2
+2008,78,Santa Cruz,Femenino,70 a 74,2
+2008,78,Santa Cruz,Femenino,80 y más,5
+2008,78,Santa Cruz,Masculino,50 a 54,1
+2008,78,Santa Cruz,Masculino,55 a 59,4
+2008,78,Santa Cruz,Masculino,60 a 64,4
+2008,78,Santa Cruz,Masculino,65 a 69,5
+2008,78,Santa Cruz,Masculino,70 a 74,4
+2008,78,Santa Cruz,Masculino,75 a 79,2
+2008,78,Santa Cruz,Masculino,80 y más,5
+2008,82,Santa Fe,Femenino,20 a 24,1
+2008,82,Santa Fe,Femenino,30 a 34,2
+2008,82,Santa Fe,Femenino,35 a 39,4
+2008,82,Santa Fe,Femenino,40 a 44,4
+2008,82,Santa Fe,Femenino,45 a 49,8
+2008,82,Santa Fe,Femenino,50 a 54,15
+2008,82,Santa Fe,Femenino,55 a 59,18
+2008,82,Santa Fe,Femenino,60 a 64,35
+2008,82,Santa Fe,Femenino,65 a 69,44
+2008,82,Santa Fe,Femenino,70 a 74,69
+2008,82,Santa Fe,Femenino,75 a 79,81
+2008,82,Santa Fe,Femenino,80 y más,172
+2008,82,Santa Fe,Masculino,15 a 19,1
+2008,82,Santa Fe,Masculino,25 a 29,2
+2008,82,Santa Fe,Masculino,35 a 39,1
+2008,82,Santa Fe,Masculino,40 a 44,2
+2008,82,Santa Fe,Masculino,45 a 49,10
+2008,82,Santa Fe,Masculino,50 a 54,23
+2008,82,Santa Fe,Masculino,55 a 59,33
+2008,82,Santa Fe,Masculino,60 a 64,55
+2008,82,Santa Fe,Masculino,65 a 69,68
+2008,82,Santa Fe,Masculino,70 a 74,89
+2008,82,Santa Fe,Masculino,75 a 79,88
+2008,82,Santa Fe,Masculino,80 y más,134
+2008,86,Santiago del Estero,Femenino,20 a 24,1
+2008,86,Santiago del Estero,Femenino,35 a 39,1
+2008,86,Santiago del Estero,Femenino,40 a 44,1
+2008,86,Santiago del Estero,Femenino,45 a 49,1
+2008,86,Santiago del Estero,Femenino,50 a 54,3
+2008,86,Santiago del Estero,Femenino,55 a 59,5
+2008,86,Santiago del Estero,Femenino,60 a 64,6
+2008,86,Santiago del Estero,Femenino,65 a 69,5
+2008,86,Santiago del Estero,Femenino,70 a 74,4
+2008,86,Santiago del Estero,Femenino,75 a 79,12
+2008,86,Santiago del Estero,Femenino,80 y más,19
+2008,86,Santiago del Estero,Masculino,30 a 34,2
+2008,86,Santiago del Estero,Masculino,40 a 44,2
+2008,86,Santiago del Estero,Masculino,45 a 49,1
+2008,86,Santiago del Estero,Masculino,50 a 54,5
+2008,86,Santiago del Estero,Masculino,55 a 59,7
+2008,86,Santiago del Estero,Masculino,60 a 64,8
+2008,86,Santiago del Estero,Masculino,65 a 69,10
+2008,86,Santiago del Estero,Masculino,70 a 74,13
+2008,86,Santiago del Estero,Masculino,75 a 79,9
+2008,86,Santiago del Estero,Masculino,80 y más,11
+2008,90,Tucumán,Femenino,15 a 19,1
+2008,90,Tucumán,Femenino,20 a 24,2
+2008,90,Tucumán,Femenino,25 a 29,1
+2008,90,Tucumán,Femenino,30 a 34,1
+2008,90,Tucumán,Femenino,45 a 49,3
+2008,90,Tucumán,Femenino,50 a 54,11
+2008,90,Tucumán,Femenino,55 a 59,14
+2008,90,Tucumán,Femenino,60 a 64,11
+2008,90,Tucumán,Femenino,65 a 69,30
+2008,90,Tucumán,Femenino,70 a 74,20
+2008,90,Tucumán,Femenino,75 a 79,21
+2008,90,Tucumán,Femenino,80 y más,45
+2008,90,Tucumán,Masculino,20 a 24,1
+2008,90,Tucumán,Masculino,40 a 44,1
+2008,90,Tucumán,Masculino,45 a 49,3
+2008,90,Tucumán,Masculino,50 a 54,9
+2008,90,Tucumán,Masculino,55 a 59,19
+2008,90,Tucumán,Masculino,60 a 64,27
+2008,90,Tucumán,Masculino,65 a 69,37
+2008,90,Tucumán,Masculino,70 a 74,32
+2008,90,Tucumán,Masculino,75 a 79,34
+2008,90,Tucumán,Masculino,80 y más,35
+2008,94,Tierra del Fuego,Femenino,60 a 64,1
+2008,94,Tierra del Fuego,Femenino,70 a 74,1
+2008,94,Tierra del Fuego,Femenino,75 a 79,1
+2008,94,Tierra del Fuego,Femenino,80 y más,2
+2008,94,Tierra del Fuego,Masculino,55 a 59,2
+2008,94,Tierra del Fuego,Masculino,70 a 74,2
+2008,94,Tierra del Fuego,Masculino,80 y más,2
+2009,02,CABA,Femenino,35 a 39,4
+2009,02,CABA,Femenino,40 a 44,2
+2009,02,CABA,Femenino,45 a 49,2
+2009,02,CABA,Femenino,50 a 54,3
+2009,02,CABA,Femenino,55 a 59,6
+2009,02,CABA,Femenino,60 a 64,11
+2009,02,CABA,Femenino,65 a 69,14
+2009,02,CABA,Femenino,70 a 74,9
+2009,02,CABA,Femenino,75 a 79,26
+2009,02,CABA,Femenino,80 y más,77
+2009,02,CABA,Masculino,30 a 34,1
+2009,02,CABA,Masculino,35 a 39,2
+2009,02,CABA,Masculino,40 a 44,1
+2009,02,CABA,Masculino,50 a 54,5
+2009,02,CABA,Masculino,55 a 59,8
+2009,02,CABA,Masculino,60 a 64,10
+2009,02,CABA,Masculino,65 a 69,12
+2009,02,CABA,Masculino,70 a 74,28
+2009,02,CABA,Masculino,75 a 79,22
+2009,02,CABA,Masculino,80 y más,58
+2009,06,Buenos Aires,Femenino,15 a 19,4
+2009,06,Buenos Aires,Femenino,20 a 24,3
+2009,06,Buenos Aires,Femenino,25 a 29,4
+2009,06,Buenos Aires,Femenino,30 a 34,8
+2009,06,Buenos Aires,Femenino,35 a 39,6
+2009,06,Buenos Aires,Femenino,40 a 44,6
+2009,06,Buenos Aires,Femenino,45 a 49,27
+2009,06,Buenos Aires,Femenino,50 a 54,30
+2009,06,Buenos Aires,Femenino,55 a 59,62
+2009,06,Buenos Aires,Femenino,60 a 64,85
+2009,06,Buenos Aires,Femenino,65 a 69,102
+2009,06,Buenos Aires,Femenino,70 a 74,161
+2009,06,Buenos Aires,Femenino,75 a 79,185
+2009,06,Buenos Aires,Femenino,80 y más,434
+2009,06,Buenos Aires,Masculino,15 a 19,1
+2009,06,Buenos Aires,Masculino,20 a 24,4
+2009,06,Buenos Aires,Masculino,25 a 29,5
+2009,06,Buenos Aires,Masculino,30 a 34,9
+2009,06,Buenos Aires,Masculino,35 a 39,9
+2009,06,Buenos Aires,Masculino,40 a 44,14
+2009,06,Buenos Aires,Masculino,45 a 49,17
+2009,06,Buenos Aires,Masculino,50 a 54,60
+2009,06,Buenos Aires,Masculino,55 a 59,102
+2009,06,Buenos Aires,Masculino,60 a 64,116
+2009,06,Buenos Aires,Masculino,65 a 69,163
+2009,06,Buenos Aires,Masculino,70 a 74,188
+2009,06,Buenos Aires,Masculino,75 a 79,216
+2009,06,Buenos Aires,Masculino,80 y más,283
+2009,10,Catamarca,Femenino,30 a 34,1
+2009,10,Catamarca,Femenino,50 a 54,1
+2009,10,Catamarca,Femenino,55 a 59,4
+2009,10,Catamarca,Femenino,60 a 64,4
+2009,10,Catamarca,Femenino,65 a 69,3
+2009,10,Catamarca,Femenino,70 a 74,3
+2009,10,Catamarca,Femenino,75 a 79,9
+2009,10,Catamarca,Femenino,80 y más,7
+2009,10,Catamarca,Masculino,35 a 39,1
+2009,10,Catamarca,Masculino,40 a 44,1
+2009,10,Catamarca,Masculino,45 a 49,1
+2009,10,Catamarca,Masculino,50 a 54,1
+2009,10,Catamarca,Masculino,55 a 59,4
+2009,10,Catamarca,Masculino,60 a 64,6
+2009,10,Catamarca,Masculino,65 a 69,11
+2009,10,Catamarca,Masculino,70 a 74,9
+2009,10,Catamarca,Masculino,75 a 79,6
+2009,10,Catamarca,Masculino,80 y más,6
+2009,14,Córdoba,Femenino,20 a 24,1
+2009,14,Córdoba,Femenino,25 a 29,1
+2009,14,Córdoba,Femenino,35 a 39,2
+2009,14,Córdoba,Femenino,40 a 44,5
+2009,14,Córdoba,Femenino,45 a 49,6
+2009,14,Córdoba,Femenino,50 a 54,10
+2009,14,Córdoba,Femenino,55 a 59,22
+2009,14,Córdoba,Femenino,60 a 64,31
+2009,14,Córdoba,Femenino,65 a 69,48
+2009,14,Córdoba,Femenino,70 a 74,45
+2009,14,Córdoba,Femenino,75 a 79,54
+2009,14,Córdoba,Femenino,80 y más,113
+2009,14,Córdoba,Masculino,35 a 39,4
+2009,14,Córdoba,Masculino,40 a 44,3
+2009,14,Córdoba,Masculino,45 a 49,11
+2009,14,Córdoba,Masculino,50 a 54,19
+2009,14,Córdoba,Masculino,55 a 59,36
+2009,14,Córdoba,Masculino,60 a 64,64
+2009,14,Córdoba,Masculino,65 a 69,50
+2009,14,Córdoba,Masculino,70 a 74,64
+2009,14,Córdoba,Masculino,75 a 79,72
+2009,14,Córdoba,Masculino,80 y más,82
+2009,18,Corrientes,Femenino,20 a 24,1
+2009,18,Corrientes,Femenino,25 a 29,1
+2009,18,Corrientes,Femenino,40 a 44,1
+2009,18,Corrientes,Femenino,45 a 49,5
+2009,18,Corrientes,Femenino,50 a 54,2
+2009,18,Corrientes,Femenino,55 a 59,6
+2009,18,Corrientes,Femenino,60 a 64,7
+2009,18,Corrientes,Femenino,65 a 69,16
+2009,18,Corrientes,Femenino,70 a 74,16
+2009,18,Corrientes,Femenino,75 a 79,17
+2009,18,Corrientes,Femenino,80 y más,22
+2009,18,Corrientes,Masculino,25 a 29,1
+2009,18,Corrientes,Masculino,35 a 39,1
+2009,18,Corrientes,Masculino,45 a 49,3
+2009,18,Corrientes,Masculino,50 a 54,5
+2009,18,Corrientes,Masculino,55 a 59,7
+2009,18,Corrientes,Masculino,60 a 64,16
+2009,18,Corrientes,Masculino,65 a 69,9
+2009,18,Corrientes,Masculino,70 a 74,22
+2009,18,Corrientes,Masculino,75 a 79,11
+2009,18,Corrientes,Masculino,80 y más,14
+2009,22,Chaco,Femenino,20 a 24,1
+2009,22,Chaco,Femenino,35 a 39,1
+2009,22,Chaco,Femenino,40 a 44,2
+2009,22,Chaco,Femenino,50 a 54,2
+2009,22,Chaco,Femenino,55 a 59,10
+2009,22,Chaco,Femenino,60 a 64,10
+2009,22,Chaco,Femenino,65 a 69,10
+2009,22,Chaco,Femenino,70 a 74,15
+2009,22,Chaco,Femenino,75 a 79,18
+2009,22,Chaco,Femenino,80 y más,24
+2009,22,Chaco,Masculino,30 a 34,1
+2009,22,Chaco,Masculino,40 a 44,2
+2009,22,Chaco,Masculino,45 a 49,2
+2009,22,Chaco,Masculino,50 a 54,7
+2009,22,Chaco,Masculino,55 a 59,13
+2009,22,Chaco,Masculino,60 a 64,11
+2009,22,Chaco,Masculino,65 a 69,17
+2009,22,Chaco,Masculino,70 a 74,13
+2009,22,Chaco,Masculino,75 a 79,15
+2009,22,Chaco,Masculino,80 y más,11
+2009,26,Chubut,Femenino,35 a 39,1
+2009,26,Chubut,Femenino,40 a 44,1
+2009,26,Chubut,Femenino,55 a 59,2
+2009,26,Chubut,Femenino,60 a 64,2
+2009,26,Chubut,Femenino,65 a 69,4
+2009,26,Chubut,Femenino,70 a 74,5
+2009,26,Chubut,Femenino,75 a 79,9
+2009,26,Chubut,Femenino,80 y más,18
+2009,26,Chubut,Masculino,15 a 19,1
+2009,26,Chubut,Masculino,45 a 49,1
+2009,26,Chubut,Masculino,50 a 54,2
+2009,26,Chubut,Masculino,55 a 59,3
+2009,26,Chubut,Masculino,60 a 64,4
+2009,26,Chubut,Masculino,65 a 69,4
+2009,26,Chubut,Masculino,70 a 74,6
+2009,26,Chubut,Masculino,75 a 79,13
+2009,26,Chubut,Masculino,80 y más,6
+2009,30,Entre Ríos,Femenino,35 a 39,1
+2009,30,Entre Ríos,Femenino,40 a 44,1
+2009,30,Entre Ríos,Femenino,45 a 49,1
+2009,30,Entre Ríos,Femenino,50 a 54,1
+2009,30,Entre Ríos,Femenino,55 a 59,6
+2009,30,Entre Ríos,Femenino,60 a 64,11
+2009,30,Entre Ríos,Femenino,65 a 69,14
+2009,30,Entre Ríos,Femenino,70 a 74,20
+2009,30,Entre Ríos,Femenino,75 a 79,22
+2009,30,Entre Ríos,Femenino,80 y más,43
+2009,30,Entre Ríos,Masculino,40 a 44,1
+2009,30,Entre Ríos,Masculino,45 a 49,2
+2009,30,Entre Ríos,Masculino,50 a 54,1
+2009,30,Entre Ríos,Masculino,55 a 59,13
+2009,30,Entre Ríos,Masculino,60 a 64,15
+2009,30,Entre Ríos,Masculino,65 a 69,16
+2009,30,Entre Ríos,Masculino,70 a 74,17
+2009,30,Entre Ríos,Masculino,75 a 79,25
+2009,30,Entre Ríos,Masculino,80 y más,26
+2009,34,Formosa,Femenino,30 a 34,1
+2009,34,Formosa,Femenino,35 a 39,2
+2009,34,Formosa,Femenino,40 a 44,2
+2009,34,Formosa,Femenino,45 a 49,1
+2009,34,Formosa,Femenino,50 a 54,4
+2009,34,Formosa,Femenino,55 a 59,7
+2009,34,Formosa,Femenino,60 a 64,13
+2009,34,Formosa,Femenino,65 a 69,20
+2009,34,Formosa,Femenino,70 a 74,15
+2009,34,Formosa,Femenino,75 a 79,13
+2009,34,Formosa,Femenino,80 y más,25
+2009,34,Formosa,Masculino,40 a 44,2
+2009,34,Formosa,Masculino,45 a 49,3
+2009,34,Formosa,Masculino,50 a 54,7
+2009,34,Formosa,Masculino,55 a 59,6
+2009,34,Formosa,Masculino,60 a 64,9
+2009,34,Formosa,Masculino,65 a 69,13
+2009,34,Formosa,Masculino,70 a 74,11
+2009,34,Formosa,Masculino,75 a 79,13
+2009,34,Formosa,Masculino,80 y más,10
+2009,38,Jujuy,Femenino,50 a 54,1
+2009,38,Jujuy,Femenino,55 a 59,2
+2009,38,Jujuy,Femenino,60 a 64,3
+2009,38,Jujuy,Femenino,65 a 69,7
+2009,38,Jujuy,Femenino,70 a 74,10
+2009,38,Jujuy,Femenino,75 a 79,2
+2009,38,Jujuy,Femenino,80 y más,11
+2009,38,Jujuy,Masculino,15 a 19,1
+2009,38,Jujuy,Masculino,30 a 34,1
+2009,38,Jujuy,Masculino,35 a 39,1
+2009,38,Jujuy,Masculino,40 a 44,1
+2009,38,Jujuy,Masculino,50 a 54,4
+2009,38,Jujuy,Masculino,55 a 59,6
+2009,38,Jujuy,Masculino,60 a 64,10
+2009,38,Jujuy,Masculino,65 a 69,8
+2009,38,Jujuy,Masculino,70 a 74,7
+2009,38,Jujuy,Masculino,75 a 79,6
+2009,38,Jujuy,Masculino,80 y más,11
+2009,42,La Pampa,Femenino,55 a 59,2
+2009,42,La Pampa,Femenino,60 a 64,1
+2009,42,La Pampa,Femenino,65 a 69,3
+2009,42,La Pampa,Femenino,70 a 74,3
+2009,42,La Pampa,Femenino,75 a 79,4
+2009,42,La Pampa,Femenino,80 y más,8
+2009,42,La Pampa,Masculino,40 a 44,1
+2009,42,La Pampa,Masculino,50 a 54,1
+2009,42,La Pampa,Masculino,55 a 59,4
+2009,42,La Pampa,Masculino,65 a 69,1
+2009,42,La Pampa,Masculino,70 a 74,5
+2009,42,La Pampa,Masculino,75 a 79,6
+2009,42,La Pampa,Masculino,80 y más,4
+2009,46,La Rioja,Femenino,20 a 24,1
+2009,46,La Rioja,Femenino,50 a 54,1
+2009,46,La Rioja,Femenino,55 a 59,5
+2009,46,La Rioja,Femenino,60 a 64,8
+2009,46,La Rioja,Femenino,65 a 69,2
+2009,46,La Rioja,Femenino,70 a 74,4
+2009,46,La Rioja,Femenino,75 a 79,3
+2009,46,La Rioja,Femenino,80 y más,2
+2009,46,La Rioja,Masculino,40 a 44,1
+2009,46,La Rioja,Masculino,50 a 54,3
+2009,46,La Rioja,Masculino,55 a 59,5
+2009,46,La Rioja,Masculino,60 a 64,6
+2009,46,La Rioja,Masculino,65 a 69,6
+2009,46,La Rioja,Masculino,70 a 74,3
+2009,46,La Rioja,Masculino,75 a 79,1
+2009,46,La Rioja,Masculino,80 y más,4
+2009,50,Mendoza,Femenino,30 a 34,3
+2009,50,Mendoza,Femenino,35 a 39,1
+2009,50,Mendoza,Femenino,40 a 44,1
+2009,50,Mendoza,Femenino,45 a 49,7
+2009,50,Mendoza,Femenino,50 a 54,11
+2009,50,Mendoza,Femenino,55 a 59,17
+2009,50,Mendoza,Femenino,60 a 64,32
+2009,50,Mendoza,Femenino,65 a 69,33
+2009,50,Mendoza,Femenino,70 a 74,58
+2009,50,Mendoza,Femenino,75 a 79,64
+2009,50,Mendoza,Femenino,80 y más,122
+2009,50,Mendoza,Masculino,25 a 29,1
+2009,50,Mendoza,Masculino,35 a 39,2
+2009,50,Mendoza,Masculino,40 a 44,4
+2009,50,Mendoza,Masculino,45 a 49,3
+2009,50,Mendoza,Masculino,50 a 54,14
+2009,50,Mendoza,Masculino,55 a 59,35
+2009,50,Mendoza,Masculino,60 a 64,43
+2009,50,Mendoza,Masculino,65 a 69,74
+2009,50,Mendoza,Masculino,70 a 74,56
+2009,50,Mendoza,Masculino,75 a 79,63
+2009,50,Mendoza,Masculino,80 y más,56
+2009,54,Misiones,Femenino,25 a 29,1
+2009,54,Misiones,Femenino,40 a 44,1
+2009,54,Misiones,Femenino,45 a 49,1
+2009,54,Misiones,Femenino,50 a 54,6
+2009,54,Misiones,Femenino,55 a 59,6
+2009,54,Misiones,Femenino,60 a 64,11
+2009,54,Misiones,Femenino,65 a 69,20
+2009,54,Misiones,Femenino,70 a 74,21
+2009,54,Misiones,Femenino,75 a 79,17
+2009,54,Misiones,Femenino,80 y más,28
+2009,54,Misiones,Masculino,15 a 19,1
+2009,54,Misiones,Masculino,30 a 34,1
+2009,54,Misiones,Masculino,40 a 44,3
+2009,54,Misiones,Masculino,45 a 49,3
+2009,54,Misiones,Masculino,50 a 54,5
+2009,54,Misiones,Masculino,55 a 59,10
+2009,54,Misiones,Masculino,60 a 64,13
+2009,54,Misiones,Masculino,65 a 69,15
+2009,54,Misiones,Masculino,70 a 74,23
+2009,54,Misiones,Masculino,75 a 79,20
+2009,54,Misiones,Masculino,80 y más,23
+2009,58,Neuquén,Femenino,15 a 19,1
+2009,58,Neuquén,Femenino,50 a 54,3
+2009,58,Neuquén,Femenino,55 a 59,3
+2009,58,Neuquén,Femenino,60 a 64,6
+2009,58,Neuquén,Femenino,65 a 69,10
+2009,58,Neuquén,Femenino,70 a 74,12
+2009,58,Neuquén,Femenino,75 a 79,18
+2009,58,Neuquén,Femenino,80 y más,30
+2009,58,Neuquén,Masculino,45 a 49,4
+2009,58,Neuquén,Masculino,50 a 54,5
+2009,58,Neuquén,Masculino,55 a 59,11
+2009,58,Neuquén,Masculino,60 a 64,8
+2009,58,Neuquén,Masculino,65 a 69,20
+2009,58,Neuquén,Masculino,70 a 74,6
+2009,58,Neuquén,Masculino,75 a 79,14
+2009,58,Neuquén,Masculino,80 y más,14
+2009,62,Río Negro,Femenino,30 a 34,1
+2009,62,Río Negro,Femenino,45 a 49,1
+2009,62,Río Negro,Femenino,50 a 54,3
+2009,62,Río Negro,Femenino,55 a 59,4
+2009,62,Río Negro,Femenino,60 a 64,4
+2009,62,Río Negro,Femenino,65 a 69,7
+2009,62,Río Negro,Femenino,70 a 74,4
+2009,62,Río Negro,Femenino,75 a 79,11
+2009,62,Río Negro,Femenino,80 y más,16
+2009,62,Río Negro,Masculino,35 a 39,1
+2009,62,Río Negro,Masculino,40 a 44,1
+2009,62,Río Negro,Masculino,45 a 49,2
+2009,62,Río Negro,Masculino,50 a 54,3
+2009,62,Río Negro,Masculino,55 a 59,1
+2009,62,Río Negro,Masculino,60 a 64,2
+2009,62,Río Negro,Masculino,65 a 69,5
+2009,62,Río Negro,Masculino,70 a 74,12
+2009,62,Río Negro,Masculino,75 a 79,9
+2009,62,Río Negro,Masculino,80 y más,14
+2009,66,Salta,Femenino,35 a 39,1
+2009,66,Salta,Femenino,45 a 49,3
+2009,66,Salta,Femenino,55 a 59,8
+2009,66,Salta,Femenino,60 a 64,10
+2009,66,Salta,Femenino,65 a 69,10
+2009,66,Salta,Femenino,70 a 74,20
+2009,66,Salta,Femenino,75 a 79,25
+2009,66,Salta,Femenino,80 y más,40
+2009,66,Salta,Masculino,30 a 34,1
+2009,66,Salta,Masculino,35 a 39,1
+2009,66,Salta,Masculino,40 a 44,1
+2009,66,Salta,Masculino,45 a 49,5
+2009,66,Salta,Masculino,50 a 54,10
+2009,66,Salta,Masculino,55 a 59,10
+2009,66,Salta,Masculino,60 a 64,19
+2009,66,Salta,Masculino,65 a 69,17
+2009,66,Salta,Masculino,70 a 74,18
+2009,66,Salta,Masculino,75 a 79,11
+2009,66,Salta,Masculino,80 y más,16
+2009,70,San Juan,Femenino,20 a 24,1
+2009,70,San Juan,Femenino,30 a 34,1
+2009,70,San Juan,Femenino,45 a 49,4
+2009,70,San Juan,Femenino,50 a 54,6
+2009,70,San Juan,Femenino,55 a 59,9
+2009,70,San Juan,Femenino,60 a 64,28
+2009,70,San Juan,Femenino,65 a 69,24
+2009,70,San Juan,Femenino,70 a 74,23
+2009,70,San Juan,Femenino,75 a 79,25
+2009,70,San Juan,Femenino,80 y más,51
+2009,70,San Juan,Masculino,30 a 34,1
+2009,70,San Juan,Masculino,35 a 39,2
+2009,70,San Juan,Masculino,40 a 44,1
+2009,70,San Juan,Masculino,50 a 54,2
+2009,70,San Juan,Masculino,55 a 59,15
+2009,70,San Juan,Masculino,60 a 64,22
+2009,70,San Juan,Masculino,65 a 69,31
+2009,70,San Juan,Masculino,70 a 74,30
+2009,70,San Juan,Masculino,75 a 79,24
+2009,70,San Juan,Masculino,80 y más,26
+2009,74,San Luis,Femenino,35 a 39,1
+2009,74,San Luis,Femenino,50 a 54,1
+2009,74,San Luis,Femenino,55 a 59,4
+2009,74,San Luis,Femenino,60 a 64,5
+2009,74,San Luis,Femenino,65 a 69,5
+2009,74,San Luis,Femenino,70 a 74,11
+2009,74,San Luis,Femenino,75 a 79,8
+2009,74,San Luis,Femenino,80 y más,22
+2009,74,San Luis,Masculino,30 a 34,1
+2009,74,San Luis,Masculino,35 a 39,1
+2009,74,San Luis,Masculino,40 a 44,1
+2009,74,San Luis,Masculino,45 a 49,3
+2009,74,San Luis,Masculino,50 a 54,1
+2009,74,San Luis,Masculino,55 a 59,3
+2009,74,San Luis,Masculino,60 a 64,10
+2009,74,San Luis,Masculino,65 a 69,9
+2009,74,San Luis,Masculino,70 a 74,10
+2009,74,San Luis,Masculino,75 a 79,8
+2009,74,San Luis,Masculino,80 y más,10
+2009,78,Santa Cruz,Femenino,45 a 49,2
+2009,78,Santa Cruz,Femenino,50 a 54,2
+2009,78,Santa Cruz,Femenino,55 a 59,1
+2009,78,Santa Cruz,Femenino,60 a 64,3
+2009,78,Santa Cruz,Femenino,65 a 69,1
+2009,78,Santa Cruz,Femenino,70 a 74,2
+2009,78,Santa Cruz,Femenino,75 a 79,3
+2009,78,Santa Cruz,Femenino,80 y más,6
+2009,78,Santa Cruz,Masculino,40 a 44,1
+2009,78,Santa Cruz,Masculino,55 a 59,1
+2009,78,Santa Cruz,Masculino,60 a 64,4
+2009,78,Santa Cruz,Masculino,65 a 69,5
+2009,78,Santa Cruz,Masculino,70 a 74,6
+2009,78,Santa Cruz,Masculino,75 a 79,3
+2009,78,Santa Cruz,Masculino,80 y más,7
+2009,82,Santa Fe,Femenino,35 a 39,4
+2009,82,Santa Fe,Femenino,40 a 44,2
+2009,82,Santa Fe,Femenino,45 a 49,6
+2009,82,Santa Fe,Femenino,50 a 54,8
+2009,82,Santa Fe,Femenino,55 a 59,25
+2009,82,Santa Fe,Femenino,60 a 64,33
+2009,82,Santa Fe,Femenino,65 a 69,41
+2009,82,Santa Fe,Femenino,70 a 74,38
+2009,82,Santa Fe,Femenino,75 a 79,56
+2009,82,Santa Fe,Femenino,80 y más,143
+2009,82,Santa Fe,Masculino,35 a 39,1
+2009,82,Santa Fe,Masculino,40 a 44,7
+2009,82,Santa Fe,Masculino,45 a 49,8
+2009,82,Santa Fe,Masculino,50 a 54,16
+2009,82,Santa Fe,Masculino,55 a 59,28
+2009,82,Santa Fe,Masculino,60 a 64,37
+2009,82,Santa Fe,Masculino,65 a 69,59
+2009,82,Santa Fe,Masculino,70 a 74,70
+2009,82,Santa Fe,Masculino,75 a 79,62
+2009,82,Santa Fe,Masculino,80 y más,98
+2009,86,Santiago del Estero,Femenino,25 a 29,1
+2009,86,Santiago del Estero,Femenino,30 a 34,1
+2009,86,Santiago del Estero,Femenino,40 a 44,1
+2009,86,Santiago del Estero,Femenino,45 a 49,1
+2009,86,Santiago del Estero,Femenino,50 a 54,5
+2009,86,Santiago del Estero,Femenino,55 a 59,11
+2009,86,Santiago del Estero,Femenino,60 a 64,6
+2009,86,Santiago del Estero,Femenino,65 a 69,10
+2009,86,Santiago del Estero,Femenino,70 a 74,14
+2009,86,Santiago del Estero,Femenino,75 a 79,8
+2009,86,Santiago del Estero,Femenino,80 y más,9
+2009,86,Santiago del Estero,Masculino,40 a 44,2
+2009,86,Santiago del Estero,Masculino,45 a 49,2
+2009,86,Santiago del Estero,Masculino,50 a 54,3
+2009,86,Santiago del Estero,Masculino,55 a 59,7
+2009,86,Santiago del Estero,Masculino,60 a 64,12
+2009,86,Santiago del Estero,Masculino,65 a 69,12
+2009,86,Santiago del Estero,Masculino,70 a 74,9
+2009,86,Santiago del Estero,Masculino,75 a 79,11
+2009,86,Santiago del Estero,Masculino,80 y más,12
+2009,90,Tucumán,Femenino,20 a 24,1
+2009,90,Tucumán,Femenino,35 a 39,1
+2009,90,Tucumán,Femenino,40 a 44,2
+2009,90,Tucumán,Femenino,45 a 49,4
+2009,90,Tucumán,Femenino,50 a 54,6
+2009,90,Tucumán,Femenino,55 a 59,15
+2009,90,Tucumán,Femenino,60 a 64,14
+2009,90,Tucumán,Femenino,65 a 69,28
+2009,90,Tucumán,Femenino,70 a 74,29
+2009,90,Tucumán,Femenino,75 a 79,26
+2009,90,Tucumán,Femenino,80 y más,56
+2009,90,Tucumán,Masculino,40 a 44,2
+2009,90,Tucumán,Masculino,45 a 49,8
+2009,90,Tucumán,Masculino,50 a 54,6
+2009,90,Tucumán,Masculino,55 a 59,18
+2009,90,Tucumán,Masculino,60 a 64,26
+2009,90,Tucumán,Masculino,65 a 69,24
+2009,90,Tucumán,Masculino,70 a 74,24
+2009,90,Tucumán,Masculino,75 a 79,25
+2009,90,Tucumán,Masculino,80 y más,36
+2009,94,Tierra del Fuego,Femenino,20 a 24,1
+2009,94,Tierra del Fuego,Femenino,55 a 59,3
+2009,94,Tierra del Fuego,Femenino,65 a 69,1
+2009,94,Tierra del Fuego,Femenino,70 a 74,1
+2009,94,Tierra del Fuego,Femenino,75 a 79,1
+2009,94,Tierra del Fuego,Femenino,80 y más,3
+2009,94,Tierra del Fuego,Masculino,55 a 59,2
+2009,94,Tierra del Fuego,Masculino,65 a 69,2
+2009,94,Tierra del Fuego,Masculino,70 a 74,1
+2009,94,Tierra del Fuego,Masculino,75 a 79,3
+2009,94,Tierra del Fuego,Masculino,80 y más,1
+2010,02,CABA,Femenino,20 a 24,1
+2010,02,CABA,Femenino,25 a 29,1
+2010,02,CABA,Femenino,30 a 34,1
+2010,02,CABA,Femenino,35 a 39,1
+2010,02,CABA,Femenino,40 a 44,1
+2010,02,CABA,Femenino,50 a 54,1
+2010,02,CABA,Femenino,55 a 59,4
+2010,02,CABA,Femenino,60 a 64,12
+2010,02,CABA,Femenino,65 a 69,13
+2010,02,CABA,Femenino,70 a 74,19
+2010,02,CABA,Femenino,75 a 79,29
+2010,02,CABA,Femenino,80 y más,101
+2010,02,CABA,Masculino,25 a 29,1
+2010,02,CABA,Masculino,35 a 39,2
+2010,02,CABA,Masculino,45 a 49,2
+2010,02,CABA,Masculino,50 a 54,3
+2010,02,CABA,Masculino,55 a 59,10
+2010,02,CABA,Masculino,60 a 64,20
+2010,02,CABA,Masculino,65 a 69,18
+2010,02,CABA,Masculino,70 a 74,24
+2010,02,CABA,Masculino,75 a 79,21
+2010,02,CABA,Masculino,80 y más,56
+2010,06,Buenos Aires,Femenino,20 a 24,5
+2010,06,Buenos Aires,Femenino,25 a 29,5
+2010,06,Buenos Aires,Femenino,30 a 34,6
+2010,06,Buenos Aires,Femenino,35 a 39,12
+2010,06,Buenos Aires,Femenino,40 a 44,13
+2010,06,Buenos Aires,Femenino,45 a 49,21
+2010,06,Buenos Aires,Femenino,50 a 54,34
+2010,06,Buenos Aires,Femenino,55 a 59,64
+2010,06,Buenos Aires,Femenino,60 a 64,79
+2010,06,Buenos Aires,Femenino,65 a 69,113
+2010,06,Buenos Aires,Femenino,70 a 74,158
+2010,06,Buenos Aires,Femenino,75 a 79,202
+2010,06,Buenos Aires,Femenino,80 y más,504
+2010,06,Buenos Aires,Masculino,20 a 24,1
+2010,06,Buenos Aires,Masculino,25 a 29,2
+2010,06,Buenos Aires,Masculino,30 a 34,6
+2010,06,Buenos Aires,Masculino,35 a 39,15
+2010,06,Buenos Aires,Masculino,40 a 44,11
+2010,06,Buenos Aires,Masculino,45 a 49,20
+2010,06,Buenos Aires,Masculino,50 a 54,61
+2010,06,Buenos Aires,Masculino,55 a 59,101
+2010,06,Buenos Aires,Masculino,60 a 64,132
+2010,06,Buenos Aires,Masculino,65 a 69,159
+2010,06,Buenos Aires,Masculino,70 a 74,198
+2010,06,Buenos Aires,Masculino,75 a 79,195
+2010,06,Buenos Aires,Masculino,80 y más,300
+2010,10,Catamarca,Femenino,50 a 54,3
+2010,10,Catamarca,Femenino,55 a 59,1
+2010,10,Catamarca,Femenino,60 a 64,4
+2010,10,Catamarca,Femenino,65 a 69,4
+2010,10,Catamarca,Femenino,70 a 74,6
+2010,10,Catamarca,Femenino,75 a 79,4
+2010,10,Catamarca,Femenino,80 y más,8
+2010,10,Catamarca,Masculino,50 a 54,1
+2010,10,Catamarca,Masculino,55 a 59,5
+2010,10,Catamarca,Masculino,60 a 64,3
+2010,10,Catamarca,Masculino,65 a 69,5
+2010,10,Catamarca,Masculino,70 a 74,4
+2010,10,Catamarca,Masculino,75 a 79,4
+2010,10,Catamarca,Masculino,80 y más,5
+2010,14,Córdoba,Femenino,25 a 29,1
+2010,14,Córdoba,Femenino,30 a 34,1
+2010,14,Córdoba,Femenino,40 a 44,3
+2010,14,Córdoba,Femenino,45 a 49,3
+2010,14,Córdoba,Femenino,50 a 54,11
+2010,14,Córdoba,Femenino,55 a 59,25
+2010,14,Córdoba,Femenino,60 a 64,28
+2010,14,Córdoba,Femenino,65 a 69,48
+2010,14,Córdoba,Femenino,70 a 74,52
+2010,14,Córdoba,Femenino,75 a 79,65
+2010,14,Córdoba,Femenino,80 y más,144
+2010,14,Córdoba,Masculino,15 a 19,1
+2010,14,Córdoba,Masculino,25 a 29,1
+2010,14,Córdoba,Masculino,30 a 34,1
+2010,14,Córdoba,Masculino,35 a 39,2
+2010,14,Córdoba,Masculino,40 a 44,4
+2010,14,Córdoba,Masculino,45 a 49,8
+2010,14,Córdoba,Masculino,50 a 54,14
+2010,14,Córdoba,Masculino,55 a 59,27
+2010,14,Córdoba,Masculino,60 a 64,53
+2010,14,Córdoba,Masculino,65 a 69,66
+2010,14,Córdoba,Masculino,70 a 74,79
+2010,14,Córdoba,Masculino,75 a 79,64
+2010,14,Córdoba,Masculino,80 y más,99
+2010,18,Corrientes,Femenino,40 a 44,2
+2010,18,Corrientes,Femenino,45 a 49,5
+2010,18,Corrientes,Femenino,50 a 54,4
+2010,18,Corrientes,Femenino,55 a 59,3
+2010,18,Corrientes,Femenino,60 a 64,8
+2010,18,Corrientes,Femenino,65 a 69,17
+2010,18,Corrientes,Femenino,70 a 74,15
+2010,18,Corrientes,Femenino,75 a 79,17
+2010,18,Corrientes,Femenino,80 y más,46
+2010,18,Corrientes,Masculino,40 a 44,1
+2010,18,Corrientes,Masculino,45 a 49,6
+2010,18,Corrientes,Masculino,50 a 54,7
+2010,18,Corrientes,Masculino,55 a 59,8
+2010,18,Corrientes,Masculino,60 a 64,16
+2010,18,Corrientes,Masculino,65 a 69,10
+2010,18,Corrientes,Masculino,70 a 74,19
+2010,18,Corrientes,Masculino,75 a 79,15
+2010,18,Corrientes,Masculino,80 y más,14
+2010,22,Chaco,Femenino,30 a 34,1
+2010,22,Chaco,Femenino,35 a 39,1
+2010,22,Chaco,Femenino,40 a 44,1
+2010,22,Chaco,Femenino,45 a 49,4
+2010,22,Chaco,Femenino,50 a 54,11
+2010,22,Chaco,Femenino,55 a 59,10
+2010,22,Chaco,Femenino,60 a 64,10
+2010,22,Chaco,Femenino,65 a 69,13
+2010,22,Chaco,Femenino,70 a 74,15
+2010,22,Chaco,Femenino,75 a 79,29
+2010,22,Chaco,Femenino,80 y más,35
+2010,22,Chaco,Masculino,20 a 24,1
+2010,22,Chaco,Masculino,30 a 34,1
+2010,22,Chaco,Masculino,35 a 39,1
+2010,22,Chaco,Masculino,40 a 44,2
+2010,22,Chaco,Masculino,45 a 49,5
+2010,22,Chaco,Masculino,50 a 54,6
+2010,22,Chaco,Masculino,55 a 59,14
+2010,22,Chaco,Masculino,60 a 64,13
+2010,22,Chaco,Masculino,65 a 69,17
+2010,22,Chaco,Masculino,70 a 74,18
+2010,22,Chaco,Masculino,75 a 79,13
+2010,22,Chaco,Masculino,80 y más,8
+2010,26,Chubut,Femenino,40 a 44,1
+2010,26,Chubut,Femenino,45 a 49,1
+2010,26,Chubut,Femenino,50 a 54,1
+2010,26,Chubut,Femenino,60 a 64,3
+2010,26,Chubut,Femenino,65 a 69,3
+2010,26,Chubut,Femenino,70 a 74,8
+2010,26,Chubut,Femenino,75 a 79,5
+2010,26,Chubut,Femenino,80 y más,14
+2010,26,Chubut,Masculino,30 a 34,1
+2010,26,Chubut,Masculino,45 a 49,2
+2010,26,Chubut,Masculino,50 a 54,2
+2010,26,Chubut,Masculino,55 a 59,6
+2010,26,Chubut,Masculino,60 a 64,7
+2010,26,Chubut,Masculino,65 a 69,6
+2010,26,Chubut,Masculino,70 a 74,5
+2010,26,Chubut,Masculino,75 a 79,8
+2010,26,Chubut,Masculino,80 y más,9
+2010,30,Entre Ríos,Femenino,25 a 29,1
+2010,30,Entre Ríos,Femenino,30 a 34,1
+2010,30,Entre Ríos,Femenino,45 a 49,3
+2010,30,Entre Ríos,Femenino,50 a 54,2
+2010,30,Entre Ríos,Femenino,55 a 59,3
+2010,30,Entre Ríos,Femenino,60 a 64,10
+2010,30,Entre Ríos,Femenino,65 a 69,14
+2010,30,Entre Ríos,Femenino,70 a 74,23
+2010,30,Entre Ríos,Femenino,75 a 79,18
+2010,30,Entre Ríos,Femenino,80 y más,50
+2010,30,Entre Ríos,Masculino,40 a 44,1
+2010,30,Entre Ríos,Masculino,45 a 49,2
+2010,30,Entre Ríos,Masculino,50 a 54,3
+2010,30,Entre Ríos,Masculino,55 a 59,10
+2010,30,Entre Ríos,Masculino,60 a 64,12
+2010,30,Entre Ríos,Masculino,65 a 69,16
+2010,30,Entre Ríos,Masculino,70 a 74,19
+2010,30,Entre Ríos,Masculino,75 a 79,18
+2010,30,Entre Ríos,Masculino,80 y más,26
+2010,34,Formosa,Femenino,40 a 44,3
+2010,34,Formosa,Femenino,45 a 49,7
+2010,34,Formosa,Femenino,50 a 54,6
+2010,34,Formosa,Femenino,55 a 59,9
+2010,34,Formosa,Femenino,60 a 64,7
+2010,34,Formosa,Femenino,65 a 69,9
+2010,34,Formosa,Femenino,70 a 74,17
+2010,34,Formosa,Femenino,75 a 79,16
+2010,34,Formosa,Femenino,80 y más,31
+2010,34,Formosa,Masculino,20 a 24,1
+2010,34,Formosa,Masculino,35 a 39,1
+2010,34,Formosa,Masculino,40 a 44,3
+2010,34,Formosa,Masculino,45 a 49,2
+2010,34,Formosa,Masculino,50 a 54,2
+2010,34,Formosa,Masculino,55 a 59,6
+2010,34,Formosa,Masculino,60 a 64,14
+2010,34,Formosa,Masculino,65 a 69,14
+2010,34,Formosa,Masculino,70 a 74,7
+2010,34,Formosa,Masculino,75 a 79,20
+2010,34,Formosa,Masculino,80 y más,21
+2010,38,Jujuy,Femenino,40 a 44,1
+2010,38,Jujuy,Femenino,50 a 54,4
+2010,38,Jujuy,Femenino,55 a 59,7
+2010,38,Jujuy,Femenino,60 a 64,5
+2010,38,Jujuy,Femenino,65 a 69,11
+2010,38,Jujuy,Femenino,70 a 74,4
+2010,38,Jujuy,Femenino,75 a 79,8
+2010,38,Jujuy,Femenino,80 y más,17
+2010,38,Jujuy,Masculino,40 a 44,2
+2010,38,Jujuy,Masculino,45 a 49,2
+2010,38,Jujuy,Masculino,50 a 54,2
+2010,38,Jujuy,Masculino,55 a 59,7
+2010,38,Jujuy,Masculino,60 a 64,8
+2010,38,Jujuy,Masculino,65 a 69,12
+2010,38,Jujuy,Masculino,70 a 74,11
+2010,38,Jujuy,Masculino,75 a 79,12
+2010,38,Jujuy,Masculino,80 y más,3
+2010,42,La Pampa,Femenino,50 a 54,1
+2010,42,La Pampa,Femenino,65 a 69,2
+2010,42,La Pampa,Femenino,70 a 74,1
+2010,42,La Pampa,Femenino,75 a 79,2
+2010,42,La Pampa,Femenino,80 y más,11
+2010,42,La Pampa,Masculino,40 a 44,1
+2010,42,La Pampa,Masculino,50 a 54,2
+2010,42,La Pampa,Masculino,60 a 64,2
+2010,42,La Pampa,Masculino,65 a 69,4
+2010,42,La Pampa,Masculino,70 a 74,3
+2010,42,La Pampa,Masculino,75 a 79,2
+2010,42,La Pampa,Masculino,80 y más,4
+2010,46,La Rioja,Femenino,50 a 54,2
+2010,46,La Rioja,Femenino,55 a 59,2
+2010,46,La Rioja,Femenino,60 a 64,3
+2010,46,La Rioja,Femenino,65 a 69,5
+2010,46,La Rioja,Femenino,70 a 74,4
+2010,46,La Rioja,Femenino,75 a 79,4
+2010,46,La Rioja,Femenino,80 y más,8
+2010,46,La Rioja,Masculino,40 a 44,1
+2010,46,La Rioja,Masculino,45 a 49,2
+2010,46,La Rioja,Masculino,50 a 54,2
+2010,46,La Rioja,Masculino,55 a 59,1
+2010,46,La Rioja,Masculino,60 a 64,3
+2010,46,La Rioja,Masculino,65 a 69,9
+2010,46,La Rioja,Masculino,75 a 79,3
+2010,46,La Rioja,Masculino,80 y más,6
+2010,50,Mendoza,Femenino,20 a 24,1
+2010,50,Mendoza,Femenino,30 a 34,2
+2010,50,Mendoza,Femenino,35 a 39,1
+2010,50,Mendoza,Femenino,40 a 44,7
+2010,50,Mendoza,Femenino,45 a 49,2
+2010,50,Mendoza,Femenino,50 a 54,8
+2010,50,Mendoza,Femenino,55 a 59,26
+2010,50,Mendoza,Femenino,60 a 64,32
+2010,50,Mendoza,Femenino,65 a 69,53
+2010,50,Mendoza,Femenino,70 a 74,43
+2010,50,Mendoza,Femenino,75 a 79,56
+2010,50,Mendoza,Femenino,80 y más,116
+2010,50,Mendoza,Masculino,25 a 29,1
+2010,50,Mendoza,Masculino,30 a 34,2
+2010,50,Mendoza,Masculino,35 a 39,2
+2010,50,Mendoza,Masculino,40 a 44,3
+2010,50,Mendoza,Masculino,45 a 49,5
+2010,50,Mendoza,Masculino,50 a 54,12
+2010,50,Mendoza,Masculino,55 a 59,30
+2010,50,Mendoza,Masculino,60 a 64,41
+2010,50,Mendoza,Masculino,65 a 69,62
+2010,50,Mendoza,Masculino,70 a 74,74
+2010,50,Mendoza,Masculino,75 a 79,67
+2010,50,Mendoza,Masculino,80 y más,74
+2010,54,Misiones,Femenino,30 a 34,2
+2010,54,Misiones,Femenino,40 a 44,2
+2010,54,Misiones,Femenino,45 a 49,2
+2010,54,Misiones,Femenino,50 a 54,1
+2010,54,Misiones,Femenino,55 a 59,11
+2010,54,Misiones,Femenino,60 a 64,16
+2010,54,Misiones,Femenino,65 a 69,11
+2010,54,Misiones,Femenino,70 a 74,28
+2010,54,Misiones,Femenino,75 a 79,24
+2010,54,Misiones,Femenino,80 y más,42
+2010,54,Misiones,Masculino,20 a 24,1
+2010,54,Misiones,Masculino,30 a 34,3
+2010,54,Misiones,Masculino,35 a 39,2
+2010,54,Misiones,Masculino,40 a 44,2
+2010,54,Misiones,Masculino,45 a 49,2
+2010,54,Misiones,Masculino,50 a 54,3
+2010,54,Misiones,Masculino,55 a 59,11
+2010,54,Misiones,Masculino,60 a 64,13
+2010,54,Misiones,Masculino,65 a 69,22
+2010,54,Misiones,Masculino,70 a 74,23
+2010,54,Misiones,Masculino,75 a 79,15
+2010,54,Misiones,Masculino,80 y más,23
+2010,58,Neuquén,Femenino,25 a 29,1
+2010,58,Neuquén,Femenino,40 a 44,2
+2010,58,Neuquén,Femenino,45 a 49,4
+2010,58,Neuquén,Femenino,50 a 54,3
+2010,58,Neuquén,Femenino,55 a 59,7
+2010,58,Neuquén,Femenino,60 a 64,6
+2010,58,Neuquén,Femenino,65 a 69,5
+2010,58,Neuquén,Femenino,70 a 74,11
+2010,58,Neuquén,Femenino,75 a 79,7
+2010,58,Neuquén,Femenino,80 y más,34
+2010,58,Neuquén,Masculino,45 a 49,1
+2010,58,Neuquén,Masculino,50 a 54,2
+2010,58,Neuquén,Masculino,55 a 59,7
+2010,58,Neuquén,Masculino,60 a 64,15
+2010,58,Neuquén,Masculino,65 a 69,14
+2010,58,Neuquén,Masculino,70 a 74,13
+2010,58,Neuquén,Masculino,75 a 79,14
+2010,58,Neuquén,Masculino,80 y más,19
+2010,62,Río Negro,Femenino,35 a 39,1
+2010,62,Río Negro,Femenino,45 a 49,1
+2010,62,Río Negro,Femenino,50 a 54,1
+2010,62,Río Negro,Femenino,55 a 59,1
+2010,62,Río Negro,Femenino,60 a 64,4
+2010,62,Río Negro,Femenino,65 a 69,6
+2010,62,Río Negro,Femenino,70 a 74,12
+2010,62,Río Negro,Femenino,75 a 79,3
+2010,62,Río Negro,Femenino,80 y más,24
+2010,62,Río Negro,Masculino,45 a 49,2
+2010,62,Río Negro,Masculino,50 a 54,2
+2010,62,Río Negro,Masculino,55 a 59,5
+2010,62,Río Negro,Masculino,60 a 64,8
+2010,62,Río Negro,Masculino,65 a 69,7
+2010,62,Río Negro,Masculino,70 a 74,7
+2010,62,Río Negro,Masculino,75 a 79,11
+2010,62,Río Negro,Masculino,80 y más,20
+2010,66,Salta,Femenino,35 a 39,1
+2010,66,Salta,Femenino,40 a 44,1
+2010,66,Salta,Femenino,45 a 49,2
+2010,66,Salta,Femenino,50 a 54,5
+2010,66,Salta,Femenino,55 a 59,16
+2010,66,Salta,Femenino,60 a 64,11
+2010,66,Salta,Femenino,65 a 69,20
+2010,66,Salta,Femenino,70 a 74,20
+2010,66,Salta,Femenino,75 a 79,26
+2010,66,Salta,Femenino,80 y más,30
+2010,66,Salta,Masculino,30 a 34,1
+2010,66,Salta,Masculino,35 a 39,1
+2010,66,Salta,Masculino,45 a 49,3
+2010,66,Salta,Masculino,50 a 54,3
+2010,66,Salta,Masculino,55 a 59,10
+2010,66,Salta,Masculino,60 a 64,17
+2010,66,Salta,Masculino,65 a 69,24
+2010,66,Salta,Masculino,70 a 74,23
+2010,66,Salta,Masculino,75 a 79,20
+2010,66,Salta,Masculino,80 y más,23
+2010,70,San Juan,Femenino,30 a 34,1
+2010,70,San Juan,Femenino,35 a 39,1
+2010,70,San Juan,Femenino,45 a 49,1
+2010,70,San Juan,Femenino,50 a 54,1
+2010,70,San Juan,Femenino,55 a 59,6
+2010,70,San Juan,Femenino,60 a 64,21
+2010,70,San Juan,Femenino,65 a 69,25
+2010,70,San Juan,Femenino,70 a 74,16
+2010,70,San Juan,Femenino,75 a 79,26
+2010,70,San Juan,Femenino,80 y más,47
+2010,70,San Juan,Masculino,25 a 29,1
+2010,70,San Juan,Masculino,30 a 34,1
+2010,70,San Juan,Masculino,40 a 44,1
+2010,70,San Juan,Masculino,45 a 49,3
+2010,70,San Juan,Masculino,50 a 54,5
+2010,70,San Juan,Masculino,55 a 59,14
+2010,70,San Juan,Masculino,60 a 64,26
+2010,70,San Juan,Masculino,65 a 69,29
+2010,70,San Juan,Masculino,70 a 74,25
+2010,70,San Juan,Masculino,75 a 79,26
+2010,70,San Juan,Masculino,80 y más,33
+2010,74,San Luis,Femenino,45 a 49,1
+2010,74,San Luis,Femenino,50 a 54,1
+2010,74,San Luis,Femenino,55 a 59,1
+2010,74,San Luis,Femenino,60 a 64,6
+2010,74,San Luis,Femenino,65 a 69,10
+2010,74,San Luis,Femenino,70 a 74,10
+2010,74,San Luis,Femenino,75 a 79,11
+2010,74,San Luis,Femenino,80 y más,29
+2010,74,San Luis,Masculino,20 a 24,1
+2010,74,San Luis,Masculino,50 a 54,1
+2010,74,San Luis,Masculino,55 a 59,4
+2010,74,San Luis,Masculino,60 a 64,8
+2010,74,San Luis,Masculino,65 a 69,9
+2010,74,San Luis,Masculino,70 a 74,7
+2010,74,San Luis,Masculino,75 a 79,10
+2010,74,San Luis,Masculino,80 y más,19
+2010,78,Santa Cruz,Femenino,40 a 44,1
+2010,78,Santa Cruz,Femenino,55 a 59,1
+2010,78,Santa Cruz,Femenino,60 a 64,1
+2010,78,Santa Cruz,Femenino,70 a 74,2
+2010,78,Santa Cruz,Femenino,75 a 79,7
+2010,78,Santa Cruz,Femenino,80 y más,6
+2010,78,Santa Cruz,Masculino,50 a 54,1
+2010,78,Santa Cruz,Masculino,60 a 64,2
+2010,78,Santa Cruz,Masculino,65 a 69,6
+2010,78,Santa Cruz,Masculino,70 a 74,4
+2010,78,Santa Cruz,Masculino,75 a 79,5
+2010,78,Santa Cruz,Masculino,80 y más,4
+2010,82,Santa Fe,Femenino,25 a 29,2
+2010,82,Santa Fe,Femenino,30 a 34,1
+2010,82,Santa Fe,Femenino,35 a 39,2
+2010,82,Santa Fe,Femenino,40 a 44,2
+2010,82,Santa Fe,Femenino,45 a 49,5
+2010,82,Santa Fe,Femenino,50 a 54,13
+2010,82,Santa Fe,Femenino,55 a 59,23
+2010,82,Santa Fe,Femenino,60 a 64,28
+2010,82,Santa Fe,Femenino,65 a 69,32
+2010,82,Santa Fe,Femenino,70 a 74,56
+2010,82,Santa Fe,Femenino,75 a 79,85
+2010,82,Santa Fe,Femenino,80 y más,159
+2010,82,Santa Fe,Masculino,35 a 39,3
+2010,82,Santa Fe,Masculino,40 a 44,4
+2010,82,Santa Fe,Masculino,45 a 49,9
+2010,82,Santa Fe,Masculino,50 a 54,6
+2010,82,Santa Fe,Masculino,55 a 59,23
+2010,82,Santa Fe,Masculino,60 a 64,40
+2010,82,Santa Fe,Masculino,65 a 69,68
+2010,82,Santa Fe,Masculino,70 a 74,66
+2010,82,Santa Fe,Masculino,75 a 79,64
+2010,82,Santa Fe,Masculino,80 y más,90
+2010,86,Santiago del Estero,Femenino,15 a 19,2
+2010,86,Santiago del Estero,Femenino,25 a 29,1
+2010,86,Santiago del Estero,Femenino,40 a 44,1
+2010,86,Santiago del Estero,Femenino,45 a 49,1
+2010,86,Santiago del Estero,Femenino,50 a 54,3
+2010,86,Santiago del Estero,Femenino,55 a 59,4
+2010,86,Santiago del Estero,Femenino,60 a 64,4
+2010,86,Santiago del Estero,Femenino,65 a 69,7
+2010,86,Santiago del Estero,Femenino,70 a 74,8
+2010,86,Santiago del Estero,Femenino,75 a 79,6
+2010,86,Santiago del Estero,Femenino,80 y más,25
+2010,86,Santiago del Estero,Masculino,35 a 39,1
+2010,86,Santiago del Estero,Masculino,40 a 44,1
+2010,86,Santiago del Estero,Masculino,45 a 49,1
+2010,86,Santiago del Estero,Masculino,50 a 54,3
+2010,86,Santiago del Estero,Masculino,55 a 59,11
+2010,86,Santiago del Estero,Masculino,60 a 64,8
+2010,86,Santiago del Estero,Masculino,65 a 69,14
+2010,86,Santiago del Estero,Masculino,70 a 74,16
+2010,86,Santiago del Estero,Masculino,75 a 79,9
+2010,86,Santiago del Estero,Masculino,80 y más,6
+2010,90,Tucumán,Femenino,30 a 34,1
+2010,90,Tucumán,Femenino,35 a 39,1
+2010,90,Tucumán,Femenino,40 a 44,4
+2010,90,Tucumán,Femenino,50 a 54,6
+2010,90,Tucumán,Femenino,55 a 59,10
+2010,90,Tucumán,Femenino,60 a 64,24
+2010,90,Tucumán,Femenino,65 a 69,25
+2010,90,Tucumán,Femenino,70 a 74,19
+2010,90,Tucumán,Femenino,75 a 79,30
+2010,90,Tucumán,Femenino,80 y más,53
+2010,90,Tucumán,Masculino,20 a 24,1
+2010,90,Tucumán,Masculino,35 a 39,3
+2010,90,Tucumán,Masculino,40 a 44,1
+2010,90,Tucumán,Masculino,45 a 49,2
+2010,90,Tucumán,Masculino,50 a 54,11
+2010,90,Tucumán,Masculino,55 a 59,15
+2010,90,Tucumán,Masculino,60 a 64,22
+2010,90,Tucumán,Masculino,65 a 69,26
+2010,90,Tucumán,Masculino,70 a 74,21
+2010,90,Tucumán,Masculino,75 a 79,30
+2010,90,Tucumán,Masculino,80 y más,37
+2010,94,Tierra del Fuego,Femenino,80 y más,2
+2010,94,Tierra del Fuego,Masculino,60 a 64,3
+2010,94,Tierra del Fuego,Masculino,70 a 74,2
+2010,94,Tierra del Fuego,Masculino,75 a 79,1
+2010,94,Tierra del Fuego,Masculino,80 y más,2
+2012,02,CABA,Femenino,20 a 24,1
+2012,02,CABA,Femenino,25 a 29,1
+2012,02,CABA,Femenino,30 a 34,1
+2012,02,CABA,Femenino,40 a 44,1
+2012,02,CABA,Femenino,45 a 49,2
+2012,02,CABA,Femenino,50 a 54,3
+2012,02,CABA,Femenino,55 a 59,1
+2012,02,CABA,Femenino,60 a 64,5
+2012,02,CABA,Femenino,65 a 69,14
+2012,02,CABA,Femenino,70 a 74,19
+2012,02,CABA,Femenino,75 a 79,26
+2012,02,CABA,Femenino,80 y más,85
+2012,02,CABA,Masculino,25 a 29,1
+2012,02,CABA,Masculino,30 a 34,2
+2012,02,CABA,Masculino,40 a 44,1
+2012,02,CABA,Masculino,45 a 49,3
+2012,02,CABA,Masculino,50 a 54,6
+2012,02,CABA,Masculino,55 a 59,12
+2012,02,CABA,Masculino,60 a 64,16
+2012,02,CABA,Masculino,65 a 69,25
+2012,02,CABA,Masculino,70 a 74,18
+2012,02,CABA,Masculino,75 a 79,32
+2012,02,CABA,Masculino,80 y más,67
+2012,06,Buenos Aires,Femenino,15 a 19,3
+2012,06,Buenos Aires,Femenino,20 a 24,1
+2012,06,Buenos Aires,Femenino,25 a 29,4
+2012,06,Buenos Aires,Femenino,30 a 34,7
+2012,06,Buenos Aires,Femenino,35 a 39,5
+2012,06,Buenos Aires,Femenino,40 a 44,16
+2012,06,Buenos Aires,Femenino,45 a 49,28
+2012,06,Buenos Aires,Femenino,50 a 54,32
+2012,06,Buenos Aires,Femenino,55 a 59,64
+2012,06,Buenos Aires,Femenino,60 a 64,84
+2012,06,Buenos Aires,Femenino,65 a 69,125
+2012,06,Buenos Aires,Femenino,70 a 74,160
+2012,06,Buenos Aires,Femenino,75 a 79,146
+2012,06,Buenos Aires,Femenino,80 y más,490
+2012,06,Buenos Aires,Masculino,15 a 19,1
+2012,06,Buenos Aires,Masculino,20 a 24,2
+2012,06,Buenos Aires,Masculino,25 a 29,2
+2012,06,Buenos Aires,Masculino,30 a 34,8
+2012,06,Buenos Aires,Masculino,35 a 39,8
+2012,06,Buenos Aires,Masculino,40 a 44,17
+2012,06,Buenos Aires,Masculino,45 a 49,29
+2012,06,Buenos Aires,Masculino,50 a 54,56
+2012,06,Buenos Aires,Masculino,55 a 59,94
+2012,06,Buenos Aires,Masculino,60 a 64,159
+2012,06,Buenos Aires,Masculino,65 a 69,157
+2012,06,Buenos Aires,Masculino,70 a 74,176
+2012,06,Buenos Aires,Masculino,75 a 79,196
+2012,06,Buenos Aires,Masculino,80 y más,334
+2012,10,Catamarca,Femenino,25 a 29,2
+2012,10,Catamarca,Femenino,40 a 44,2
+2012,10,Catamarca,Femenino,50 a 54,1
+2012,10,Catamarca,Femenino,60 a 64,2
+2012,10,Catamarca,Femenino,65 a 69,3
+2012,10,Catamarca,Femenino,70 a 74,6
+2012,10,Catamarca,Femenino,75 a 79,2
+2012,10,Catamarca,Femenino,80 y más,8
+2012,10,Catamarca,Masculino,15 a 19,1
+2012,10,Catamarca,Masculino,25 a 29,1
+2012,10,Catamarca,Masculino,40 a 44,1
+2012,10,Catamarca,Masculino,50 a 54,2
+2012,10,Catamarca,Masculino,55 a 59,4
+2012,10,Catamarca,Masculino,60 a 64,4
+2012,10,Catamarca,Masculino,65 a 69,3
+2012,10,Catamarca,Masculino,70 a 74,7
+2012,10,Catamarca,Masculino,75 a 79,2
+2012,10,Catamarca,Masculino,80 y más,4
+2012,14,Córdoba,Femenino,15 a 19,1
+2012,14,Córdoba,Femenino,30 a 34,1
+2012,14,Córdoba,Femenino,35 a 39,1
+2012,14,Córdoba,Femenino,45 a 49,4
+2012,14,Córdoba,Femenino,50 a 54,7
+2012,14,Córdoba,Femenino,55 a 59,13
+2012,14,Córdoba,Femenino,60 a 64,19
+2012,14,Córdoba,Femenino,65 a 69,39
+2012,14,Córdoba,Femenino,70 a 74,43
+2012,14,Córdoba,Femenino,75 a 79,46
+2012,14,Córdoba,Femenino,80 y más,116
+2012,14,Córdoba,Masculino,20 a 24,2
+2012,14,Córdoba,Masculino,25 a 29,1
+2012,14,Córdoba,Masculino,40 a 44,1
+2012,14,Córdoba,Masculino,45 a 49,5
+2012,14,Córdoba,Masculino,50 a 54,12
+2012,14,Córdoba,Masculino,55 a 59,32
+2012,14,Córdoba,Masculino,60 a 64,34
+2012,14,Córdoba,Masculino,65 a 69,61
+2012,14,Córdoba,Masculino,70 a 74,52
+2012,14,Córdoba,Masculino,75 a 79,60
+2012,14,Córdoba,Masculino,80 y más,86
+2012,18,Corrientes,Femenino,25 a 29,1
+2012,18,Corrientes,Femenino,30 a 34,1
+2012,18,Corrientes,Femenino,35 a 39,2
+2012,18,Corrientes,Femenino,40 a 44,1
+2012,18,Corrientes,Femenino,45 a 49,3
+2012,18,Corrientes,Femenino,50 a 54,2
+2012,18,Corrientes,Femenino,55 a 59,8
+2012,18,Corrientes,Femenino,60 a 64,18
+2012,18,Corrientes,Femenino,65 a 69,12
+2012,18,Corrientes,Femenino,70 a 74,12
+2012,18,Corrientes,Femenino,75 a 79,20
+2012,18,Corrientes,Femenino,80 y más,25
+2012,18,Corrientes,Masculino,40 a 44,2
+2012,18,Corrientes,Masculino,45 a 49,4
+2012,18,Corrientes,Masculino,50 a 54,7
+2012,18,Corrientes,Masculino,55 a 59,16
+2012,18,Corrientes,Masculino,60 a 64,12
+2012,18,Corrientes,Masculino,65 a 69,16
+2012,18,Corrientes,Masculino,70 a 74,17
+2012,18,Corrientes,Masculino,75 a 79,16
+2012,18,Corrientes,Masculino,80 y más,16
+2012,22,Chaco,Femenino,15 a 19,1
+2012,22,Chaco,Femenino,40 a 44,3
+2012,22,Chaco,Femenino,45 a 49,3
+2012,22,Chaco,Femenino,50 a 54,5
+2012,22,Chaco,Femenino,55 a 59,10
+2012,22,Chaco,Femenino,60 a 64,11
+2012,22,Chaco,Femenino,65 a 69,8
+2012,22,Chaco,Femenino,70 a 74,16
+2012,22,Chaco,Femenino,75 a 79,13
+2012,22,Chaco,Femenino,80 y más,33
+2012,22,Chaco,Masculino,20 a 24,1
+2012,22,Chaco,Masculino,40 a 44,2
+2012,22,Chaco,Masculino,45 a 49,3
+2012,22,Chaco,Masculino,50 a 54,11
+2012,22,Chaco,Masculino,55 a 59,12
+2012,22,Chaco,Masculino,60 a 64,23
+2012,22,Chaco,Masculino,65 a 69,19
+2012,22,Chaco,Masculino,70 a 74,20
+2012,22,Chaco,Masculino,75 a 79,11
+2012,22,Chaco,Masculino,80 y más,17
+2012,26,Chubut,Femenino,35 a 39,1
+2012,26,Chubut,Femenino,50 a 54,2
+2012,26,Chubut,Femenino,55 a 59,3
+2012,26,Chubut,Femenino,60 a 64,4
+2012,26,Chubut,Femenino,65 a 69,7
+2012,26,Chubut,Femenino,70 a 74,9
+2012,26,Chubut,Femenino,75 a 79,7
+2012,26,Chubut,Femenino,80 y más,18
+2012,26,Chubut,Masculino,40 a 44,1
+2012,26,Chubut,Masculino,45 a 49,2
+2012,26,Chubut,Masculino,50 a 54,4
+2012,26,Chubut,Masculino,55 a 59,6
+2012,26,Chubut,Masculino,60 a 64,8
+2012,26,Chubut,Masculino,65 a 69,1
+2012,26,Chubut,Masculino,70 a 74,6
+2012,26,Chubut,Masculino,75 a 79,11
+2012,26,Chubut,Masculino,80 y más,14
+2012,30,Entre Ríos,Femenino,20 a 24,2
+2012,30,Entre Ríos,Femenino,25 a 29,1
+2012,30,Entre Ríos,Femenino,30 a 34,1
+2012,30,Entre Ríos,Femenino,35 a 39,1
+2012,30,Entre Ríos,Femenino,40 a 44,2
+2012,30,Entre Ríos,Femenino,45 a 49,1
+2012,30,Entre Ríos,Femenino,50 a 54,3
+2012,30,Entre Ríos,Femenino,55 a 59,10
+2012,30,Entre Ríos,Femenino,60 a 64,7
+2012,30,Entre Ríos,Femenino,65 a 69,9
+2012,30,Entre Ríos,Femenino,70 a 74,16
+2012,30,Entre Ríos,Femenino,75 a 79,17
+2012,30,Entre Ríos,Femenino,80 y más,45
+2012,30,Entre Ríos,Masculino,15 a 19,1
+2012,30,Entre Ríos,Masculino,25 a 29,1
+2012,30,Entre Ríos,Masculino,30 a 34,1
+2012,30,Entre Ríos,Masculino,45 a 49,2
+2012,30,Entre Ríos,Masculino,50 a 54,4
+2012,30,Entre Ríos,Masculino,55 a 59,7
+2012,30,Entre Ríos,Masculino,60 a 64,5
+2012,30,Entre Ríos,Masculino,65 a 69,15
+2012,30,Entre Ríos,Masculino,70 a 74,26
+2012,30,Entre Ríos,Masculino,75 a 79,8
+2012,30,Entre Ríos,Masculino,80 y más,27
+2012,34,Formosa,Femenino,20 a 24,1
+2012,34,Formosa,Femenino,40 a 44,1
+2012,34,Formosa,Femenino,45 a 49,5
+2012,34,Formosa,Femenino,50 a 54,10
+2012,34,Formosa,Femenino,55 a 59,9
+2012,34,Formosa,Femenino,60 a 64,24
+2012,34,Formosa,Femenino,65 a 69,17
+2012,34,Formosa,Femenino,70 a 74,24
+2012,34,Formosa,Femenino,75 a 79,23
+2012,34,Formosa,Femenino,80 y más,35
+2012,34,Formosa,Masculino,20 a 24,2
+2012,34,Formosa,Masculino,40 a 44,1
+2012,34,Formosa,Masculino,45 a 49,3
+2012,34,Formosa,Masculino,50 a 54,6
+2012,34,Formosa,Masculino,55 a 59,15
+2012,34,Formosa,Masculino,60 a 64,23
+2012,34,Formosa,Masculino,65 a 69,19
+2012,34,Formosa,Masculino,70 a 74,18
+2012,34,Formosa,Masculino,75 a 79,15
+2012,34,Formosa,Masculino,80 y más,20
+2012,38,Jujuy,Femenino,35 a 39,1
+2012,38,Jujuy,Femenino,45 a 49,3
+2012,38,Jujuy,Femenino,50 a 54,1
+2012,38,Jujuy,Femenino,55 a 59,7
+2012,38,Jujuy,Femenino,60 a 64,7
+2012,38,Jujuy,Femenino,65 a 69,4
+2012,38,Jujuy,Femenino,70 a 74,6
+2012,38,Jujuy,Femenino,75 a 79,9
+2012,38,Jujuy,Femenino,80 y más,12
+2012,38,Jujuy,Masculino,45 a 49,1
+2012,38,Jujuy,Masculino,50 a 54,5
+2012,38,Jujuy,Masculino,55 a 59,4
+2012,38,Jujuy,Masculino,60 a 64,7
+2012,38,Jujuy,Masculino,65 a 69,6
+2012,38,Jujuy,Masculino,70 a 74,4
+2012,38,Jujuy,Masculino,75 a 79,13
+2012,38,Jujuy,Masculino,80 y más,15
+2012,42,La Pampa,Femenino,30 a 34,1
+2012,42,La Pampa,Femenino,35 a 39,2
+2012,42,La Pampa,Femenino,40 a 44,1
+2012,42,La Pampa,Femenino,45 a 49,1
+2012,42,La Pampa,Femenino,50 a 54,1
+2012,42,La Pampa,Femenino,55 a 59,1
+2012,42,La Pampa,Femenino,65 a 69,4
+2012,42,La Pampa,Femenino,70 a 74,2
+2012,42,La Pampa,Femenino,75 a 79,4
+2012,42,La Pampa,Femenino,80 y más,8
+2012,42,La Pampa,Masculino,50 a 54,1
+2012,42,La Pampa,Masculino,55 a 59,3
+2012,42,La Pampa,Masculino,60 a 64,1
+2012,42,La Pampa,Masculino,65 a 69,5
+2012,42,La Pampa,Masculino,70 a 74,3
+2012,42,La Pampa,Masculino,75 a 79,2
+2012,42,La Pampa,Masculino,80 y más,12
+2012,46,La Rioja,Femenino,50 a 54,2
+2012,46,La Rioja,Femenino,55 a 59,2
+2012,46,La Rioja,Femenino,60 a 64,3
+2012,46,La Rioja,Femenino,65 a 69,3
+2012,46,La Rioja,Femenino,70 a 74,4
+2012,46,La Rioja,Femenino,75 a 79,3
+2012,46,La Rioja,Femenino,80 y más,9
+2012,46,La Rioja,Masculino,45 a 49,4
+2012,46,La Rioja,Masculino,50 a 54,1
+2012,46,La Rioja,Masculino,55 a 59,2
+2012,46,La Rioja,Masculino,60 a 64,5
+2012,46,La Rioja,Masculino,65 a 69,6
+2012,46,La Rioja,Masculino,70 a 74,8
+2012,46,La Rioja,Masculino,75 a 79,4
+2012,46,La Rioja,Masculino,80 y más,5
+2012,50,Mendoza,Femenino,15 a 19,1
+2012,50,Mendoza,Femenino,20 a 24,1
+2012,50,Mendoza,Femenino,35 a 39,4
+2012,50,Mendoza,Femenino,40 a 44,5
+2012,50,Mendoza,Femenino,45 a 49,3
+2012,50,Mendoza,Femenino,50 a 54,8
+2012,50,Mendoza,Femenino,55 a 59,18
+2012,50,Mendoza,Femenino,60 a 64,39
+2012,50,Mendoza,Femenino,65 a 69,46
+2012,50,Mendoza,Femenino,70 a 74,59
+2012,50,Mendoza,Femenino,75 a 79,55
+2012,50,Mendoza,Femenino,80 y más,114
+2012,50,Mendoza,Masculino,20 a 24,1
+2012,50,Mendoza,Masculino,35 a 39,4
+2012,50,Mendoza,Masculino,40 a 44,5
+2012,50,Mendoza,Masculino,45 a 49,5
+2012,50,Mendoza,Masculino,50 a 54,19
+2012,50,Mendoza,Masculino,55 a 59,27
+2012,50,Mendoza,Masculino,60 a 64,45
+2012,50,Mendoza,Masculino,65 a 69,71
+2012,50,Mendoza,Masculino,70 a 74,63
+2012,50,Mendoza,Masculino,75 a 79,64
+2012,50,Mendoza,Masculino,80 y más,84
+2012,54,Misiones,Femenino,25 a 29,1
+2012,54,Misiones,Femenino,30 a 34,2
+2012,54,Misiones,Femenino,40 a 44,1
+2012,54,Misiones,Femenino,45 a 49,3
+2012,54,Misiones,Femenino,50 a 54,2
+2012,54,Misiones,Femenino,55 a 59,4
+2012,54,Misiones,Femenino,60 a 64,7
+2012,54,Misiones,Femenino,65 a 69,15
+2012,54,Misiones,Femenino,70 a 74,21
+2012,54,Misiones,Femenino,75 a 79,34
+2012,54,Misiones,Femenino,80 y más,40
+2012,54,Misiones,Masculino,25 a 29,1
+2012,54,Misiones,Masculino,40 a 44,2
+2012,54,Misiones,Masculino,45 a 49,5
+2012,54,Misiones,Masculino,50 a 54,6
+2012,54,Misiones,Masculino,55 a 59,8
+2012,54,Misiones,Masculino,60 a 64,12
+2012,54,Misiones,Masculino,65 a 69,13
+2012,54,Misiones,Masculino,70 a 74,19
+2012,54,Misiones,Masculino,75 a 79,22
+2012,54,Misiones,Masculino,80 y más,24
+2012,58,Neuquén,Femenino,15 a 19,1
+2012,58,Neuquén,Femenino,40 a 44,1
+2012,58,Neuquén,Femenino,50 a 54,2
+2012,58,Neuquén,Femenino,55 a 59,5
+2012,58,Neuquén,Femenino,60 a 64,7
+2012,58,Neuquén,Femenino,65 a 69,9
+2012,58,Neuquén,Femenino,70 a 74,9
+2012,58,Neuquén,Femenino,75 a 79,16
+2012,58,Neuquén,Femenino,80 y más,38
+2012,58,Neuquén,Masculino,25 a 29,1
+2012,58,Neuquén,Masculino,45 a 49,6
+2012,58,Neuquén,Masculino,50 a 54,7
+2012,58,Neuquén,Masculino,55 a 59,8
+2012,58,Neuquén,Masculino,60 a 64,15
+2012,58,Neuquén,Masculino,65 a 69,21
+2012,58,Neuquén,Masculino,70 a 74,17
+2012,58,Neuquén,Masculino,75 a 79,21
+2012,58,Neuquén,Masculino,80 y más,26
+2012,62,Río Negro,Femenino,30 a 34,1
+2012,62,Río Negro,Femenino,40 a 44,1
+2012,62,Río Negro,Femenino,50 a 54,2
+2012,62,Río Negro,Femenino,55 a 59,2
+2012,62,Río Negro,Femenino,60 a 64,3
+2012,62,Río Negro,Femenino,65 a 69,7
+2012,62,Río Negro,Femenino,70 a 74,4
+2012,62,Río Negro,Femenino,75 a 79,7
+2012,62,Río Negro,Femenino,80 y más,22
+2012,62,Río Negro,Masculino,40 a 44,2
+2012,62,Río Negro,Masculino,50 a 54,2
+2012,62,Río Negro,Masculino,55 a 59,7
+2012,62,Río Negro,Masculino,60 a 64,5
+2012,62,Río Negro,Masculino,65 a 69,10
+2012,62,Río Negro,Masculino,70 a 74,10
+2012,62,Río Negro,Masculino,75 a 79,11
+2012,62,Río Negro,Masculino,80 y más,21
+2012,66,Salta,Femenino,25 a 29,1
+2012,66,Salta,Femenino,30 a 34,2
+2012,66,Salta,Femenino,35 a 39,2
+2012,66,Salta,Femenino,40 a 44,2
+2012,66,Salta,Femenino,45 a 49,3
+2012,66,Salta,Femenino,50 a 54,5
+2012,66,Salta,Femenino,55 a 59,6
+2012,66,Salta,Femenino,60 a 64,17
+2012,66,Salta,Femenino,65 a 69,25
+2012,66,Salta,Femenino,70 a 74,26
+2012,66,Salta,Femenino,75 a 79,17
+2012,66,Salta,Femenino,80 y más,39
+2012,66,Salta,Masculino,25 a 29,1
+2012,66,Salta,Masculino,30 a 34,1
+2012,66,Salta,Masculino,35 a 39,2
+2012,66,Salta,Masculino,45 a 49,9
+2012,66,Salta,Masculino,50 a 54,11
+2012,66,Salta,Masculino,55 a 59,19
+2012,66,Salta,Masculino,60 a 64,12
+2012,66,Salta,Masculino,65 a 69,22
+2012,66,Salta,Masculino,70 a 74,20
+2012,66,Salta,Masculino,75 a 79,30
+2012,66,Salta,Masculino,80 y más,30
+2012,70,San Juan,Femenino,20 a 24,1
+2012,70,San Juan,Femenino,25 a 29,1
+2012,70,San Juan,Femenino,30 a 34,1
+2012,70,San Juan,Femenino,35 a 39,1
+2012,70,San Juan,Femenino,40 a 44,1
+2012,70,San Juan,Femenino,45 a 49,2
+2012,70,San Juan,Femenino,50 a 54,4
+2012,70,San Juan,Femenino,55 a 59,6
+2012,70,San Juan,Femenino,60 a 64,15
+2012,70,San Juan,Femenino,65 a 69,17
+2012,70,San Juan,Femenino,70 a 74,11
+2012,70,San Juan,Femenino,75 a 79,27
+2012,70,San Juan,Femenino,80 y más,37
+2012,70,San Juan,Masculino,20 a 24,1
+2012,70,San Juan,Masculino,40 a 44,2
+2012,70,San Juan,Masculino,45 a 49,3
+2012,70,San Juan,Masculino,50 a 54,4
+2012,70,San Juan,Masculino,55 a 59,12
+2012,70,San Juan,Masculino,60 a 64,12
+2012,70,San Juan,Masculino,65 a 69,30
+2012,70,San Juan,Masculino,70 a 74,32
+2012,70,San Juan,Masculino,75 a 79,22
+2012,70,San Juan,Masculino,80 y más,29
+2012,74,San Luis,Femenino,30 a 34,1
+2012,74,San Luis,Femenino,35 a 39,1
+2012,74,San Luis,Femenino,45 a 49,2
+2012,74,San Luis,Femenino,50 a 54,1
+2012,74,San Luis,Femenino,55 a 59,4
+2012,74,San Luis,Femenino,60 a 64,5
+2012,74,San Luis,Femenino,65 a 69,6
+2012,74,San Luis,Femenino,70 a 74,10
+2012,74,San Luis,Femenino,75 a 79,11
+2012,74,San Luis,Femenino,80 y más,17
+2012,74,San Luis,Masculino,50 a 54,6
+2012,74,San Luis,Masculino,55 a 59,3
+2012,74,San Luis,Masculino,60 a 64,9
+2012,74,San Luis,Masculino,65 a 69,7
+2012,74,San Luis,Masculino,70 a 74,13
+2012,74,San Luis,Masculino,75 a 79,8
+2012,74,San Luis,Masculino,80 y más,14
+2012,78,Santa Cruz,Femenino,45 a 49,2
+2012,78,Santa Cruz,Femenino,50 a 54,1
+2012,78,Santa Cruz,Femenino,60 a 64,3
+2012,78,Santa Cruz,Femenino,65 a 69,5
+2012,78,Santa Cruz,Femenino,70 a 74,6
+2012,78,Santa Cruz,Femenino,75 a 79,2
+2012,78,Santa Cruz,Femenino,80 y más,6
+2012,78,Santa Cruz,Masculino,45 a 49,1
+2012,78,Santa Cruz,Masculino,50 a 54,1
+2012,78,Santa Cruz,Masculino,55 a 59,3
+2012,78,Santa Cruz,Masculino,60 a 64,2
+2012,78,Santa Cruz,Masculino,65 a 69,4
+2012,78,Santa Cruz,Masculino,70 a 74,5
+2012,78,Santa Cruz,Masculino,75 a 79,4
+2012,78,Santa Cruz,Masculino,80 y más,9
+2012,82,Santa Fe,Femenino,20 a 24,1
+2012,82,Santa Fe,Femenino,25 a 29,1
+2012,82,Santa Fe,Femenino,30 a 34,1
+2012,82,Santa Fe,Femenino,35 a 39,3
+2012,82,Santa Fe,Femenino,40 a 44,1
+2012,82,Santa Fe,Femenino,45 a 49,1
+2012,82,Santa Fe,Femenino,50 a 54,5
+2012,82,Santa Fe,Femenino,55 a 59,20
+2012,82,Santa Fe,Femenino,60 a 64,28
+2012,82,Santa Fe,Femenino,65 a 69,35
+2012,82,Santa Fe,Femenino,70 a 74,34
+2012,82,Santa Fe,Femenino,75 a 79,47
+2012,82,Santa Fe,Femenino,80 y más,124
+2012,82,Santa Fe,Masculino,25 a 29,1
+2012,82,Santa Fe,Masculino,30 a 34,3
+2012,82,Santa Fe,Masculino,40 a 44,3
+2012,82,Santa Fe,Masculino,45 a 49,6
+2012,82,Santa Fe,Masculino,50 a 54,12
+2012,82,Santa Fe,Masculino,55 a 59,22
+2012,82,Santa Fe,Masculino,60 a 64,33
+2012,82,Santa Fe,Masculino,65 a 69,59
+2012,82,Santa Fe,Masculino,70 a 74,54
+2012,82,Santa Fe,Masculino,75 a 79,67
+2012,82,Santa Fe,Masculino,80 y más,89
+2012,86,Santiago del Estero,Femenino,20 a 24,2
+2012,86,Santiago del Estero,Femenino,35 a 39,1
+2012,86,Santiago del Estero,Femenino,40 a 44,1
+2012,86,Santiago del Estero,Femenino,45 a 49,1
+2012,86,Santiago del Estero,Femenino,50 a 54,1
+2012,86,Santiago del Estero,Femenino,55 a 59,2
+2012,86,Santiago del Estero,Femenino,60 a 64,10
+2012,86,Santiago del Estero,Femenino,65 a 69,7
+2012,86,Santiago del Estero,Femenino,70 a 74,15
+2012,86,Santiago del Estero,Femenino,75 a 79,5
+2012,86,Santiago del Estero,Femenino,80 y más,14
+2012,86,Santiago del Estero,Masculino,30 a 34,1
+2012,86,Santiago del Estero,Masculino,40 a 44,1
+2012,86,Santiago del Estero,Masculino,50 a 54,4
+2012,86,Santiago del Estero,Masculino,55 a 59,2
+2012,86,Santiago del Estero,Masculino,60 a 64,13
+2012,86,Santiago del Estero,Masculino,65 a 69,5
+2012,86,Santiago del Estero,Masculino,70 a 74,10
+2012,86,Santiago del Estero,Masculino,75 a 79,6
+2012,86,Santiago del Estero,Masculino,80 y más,11
+2012,90,Tucumán,Femenino,30 a 34,1
+2012,90,Tucumán,Femenino,35 a 39,2
+2012,90,Tucumán,Femenino,45 a 49,5
+2012,90,Tucumán,Femenino,50 a 54,8
+2012,90,Tucumán,Femenino,55 a 59,12
+2012,90,Tucumán,Femenino,60 a 64,25
+2012,90,Tucumán,Femenino,65 a 69,23
+2012,90,Tucumán,Femenino,70 a 74,33
+2012,90,Tucumán,Femenino,75 a 79,28
+2012,90,Tucumán,Femenino,80 y más,84
+2012,90,Tucumán,Masculino,25 a 29,1
+2012,90,Tucumán,Masculino,35 a 39,3
+2012,90,Tucumán,Masculino,40 a 44,2
+2012,90,Tucumán,Masculino,45 a 49,5
+2012,90,Tucumán,Masculino,50 a 54,12
+2012,90,Tucumán,Masculino,55 a 59,29
+2012,90,Tucumán,Masculino,60 a 64,25
+2012,90,Tucumán,Masculino,65 a 69,33
+2012,90,Tucumán,Masculino,70 a 74,40
+2012,90,Tucumán,Masculino,75 a 79,27
+2012,90,Tucumán,Masculino,80 y más,46
+2012,94,Tierra del Fuego,Femenino,55 a 59,1
+2012,94,Tierra del Fuego,Femenino,75 a 79,2
+2012,94,Tierra del Fuego,Femenino,80 y más,2
+2012,94,Tierra del Fuego,Masculino,55 a 59,1
+2012,94,Tierra del Fuego,Masculino,60 a 64,1
+2012,94,Tierra del Fuego,Masculino,65 a 69,2
+2012,94,Tierra del Fuego,Masculino,80 y más,1
+2013,02,CABA,Femenino,30 a 34,2
+2013,02,CABA,Femenino,35 a 39,1
+2013,02,CABA,Femenino,45 a 49,2
+2013,02,CABA,Femenino,50 a 54,3
+2013,02,CABA,Femenino,55 a 59,12
+2013,02,CABA,Femenino,60 a 64,7
+2013,02,CABA,Femenino,65 a 69,8
+2013,02,CABA,Femenino,70 a 74,17
+2013,02,CABA,Femenino,75 a 79,21
+2013,02,CABA,Femenino,80 y más,128
+2013,02,CABA,Masculino,40 a 44,5
+2013,02,CABA,Masculino,45 a 49,10
+2013,02,CABA,Masculino,50 a 54,5
+2013,02,CABA,Masculino,55 a 59,12
+2013,02,CABA,Masculino,60 a 64,19
+2013,02,CABA,Masculino,65 a 69,28
+2013,02,CABA,Masculino,70 a 74,27
+2013,02,CABA,Masculino,75 a 79,29
+2013,02,CABA,Masculino,80 y más,91
+2013,06,Buenos Aires,Femenino,20 a 24,3
+2013,06,Buenos Aires,Femenino,25 a 29,2
+2013,06,Buenos Aires,Femenino,30 a 34,3
+2013,06,Buenos Aires,Femenino,35 a 39,6
+2013,06,Buenos Aires,Femenino,40 a 44,11
+2013,06,Buenos Aires,Femenino,45 a 49,10
+2013,06,Buenos Aires,Femenino,50 a 54,31
+2013,06,Buenos Aires,Femenino,55 a 59,50
+2013,06,Buenos Aires,Femenino,60 a 64,111
+2013,06,Buenos Aires,Femenino,65 a 69,134
+2013,06,Buenos Aires,Femenino,70 a 74,154
+2013,06,Buenos Aires,Femenino,75 a 79,163
+2013,06,Buenos Aires,Femenino,80 y más,449
+2013,06,Buenos Aires,Masculino,15 a 19,1
+2013,06,Buenos Aires,Masculino,20 a 24,2
+2013,06,Buenos Aires,Masculino,25 a 29,3
+2013,06,Buenos Aires,Masculino,30 a 34,9
+2013,06,Buenos Aires,Masculino,35 a 39,14
+2013,06,Buenos Aires,Masculino,40 a 44,17
+2013,06,Buenos Aires,Masculino,45 a 49,40
+2013,06,Buenos Aires,Masculino,50 a 54,46
+2013,06,Buenos Aires,Masculino,55 a 59,77
+2013,06,Buenos Aires,Masculino,60 a 64,128
+2013,06,Buenos Aires,Masculino,65 a 69,178
+2013,06,Buenos Aires,Masculino,70 a 74,170
+2013,06,Buenos Aires,Masculino,75 a 79,202
+2013,06,Buenos Aires,Masculino,80 y más,337
+2013,10,Catamarca,Femenino,45 a 49,1
+2013,10,Catamarca,Femenino,50 a 54,1
+2013,10,Catamarca,Femenino,55 a 59,2
+2013,10,Catamarca,Femenino,60 a 64,3
+2013,10,Catamarca,Femenino,65 a 69,4
+2013,10,Catamarca,Femenino,70 a 74,2
+2013,10,Catamarca,Femenino,75 a 79,2
+2013,10,Catamarca,Femenino,80 y más,7
+2013,10,Catamarca,Masculino,40 a 44,2
+2013,10,Catamarca,Masculino,45 a 49,2
+2013,10,Catamarca,Masculino,50 a 54,3
+2013,10,Catamarca,Masculino,55 a 59,3
+2013,10,Catamarca,Masculino,60 a 64,5
+2013,10,Catamarca,Masculino,65 a 69,8
+2013,10,Catamarca,Masculino,70 a 74,8
+2013,10,Catamarca,Masculino,75 a 79,4
+2013,10,Catamarca,Masculino,80 y más,6
+2013,14,Córdoba,Femenino,20 a 24,2
+2013,14,Córdoba,Femenino,25 a 29,1
+2013,14,Córdoba,Femenino,40 a 44,1
+2013,14,Córdoba,Femenino,45 a 49,5
+2013,14,Córdoba,Femenino,50 a 54,10
+2013,14,Córdoba,Femenino,55 a 59,22
+2013,14,Córdoba,Femenino,60 a 64,34
+2013,14,Córdoba,Femenino,65 a 69,35
+2013,14,Córdoba,Femenino,70 a 74,43
+2013,14,Córdoba,Femenino,75 a 79,41
+2013,14,Córdoba,Femenino,80 y más,111
+2013,14,Córdoba,Masculino,25 a 29,1
+2013,14,Córdoba,Masculino,35 a 39,4
+2013,14,Córdoba,Masculino,40 a 44,6
+2013,14,Córdoba,Masculino,45 a 49,9
+2013,14,Córdoba,Masculino,50 a 54,19
+2013,14,Córdoba,Masculino,55 a 59,26
+2013,14,Córdoba,Masculino,60 a 64,57
+2013,14,Córdoba,Masculino,65 a 69,63
+2013,14,Córdoba,Masculino,70 a 74,44
+2013,14,Córdoba,Masculino,75 a 79,59
+2013,14,Córdoba,Masculino,80 y más,83
+2013,18,Corrientes,Femenino,15 a 19,1
+2013,18,Corrientes,Femenino,45 a 49,1
+2013,18,Corrientes,Femenino,50 a 54,1
+2013,18,Corrientes,Femenino,55 a 59,2
+2013,18,Corrientes,Femenino,60 a 64,13
+2013,18,Corrientes,Femenino,65 a 69,15
+2013,18,Corrientes,Femenino,70 a 74,17
+2013,18,Corrientes,Femenino,75 a 79,18
+2013,18,Corrientes,Femenino,80 y más,32
+2013,18,Corrientes,Masculino,35 a 39,1
+2013,18,Corrientes,Masculino,40 a 44,2
+2013,18,Corrientes,Masculino,45 a 49,5
+2013,18,Corrientes,Masculino,50 a 54,6
+2013,18,Corrientes,Masculino,55 a 59,8
+2013,18,Corrientes,Masculino,60 a 64,18
+2013,18,Corrientes,Masculino,65 a 69,20
+2013,18,Corrientes,Masculino,70 a 74,18
+2013,18,Corrientes,Masculino,75 a 79,16
+2013,18,Corrientes,Masculino,80 y más,20
+2013,22,Chaco,Femenino,35 a 39,1
+2013,22,Chaco,Femenino,40 a 44,1
+2013,22,Chaco,Femenino,45 a 49,2
+2013,22,Chaco,Femenino,50 a 54,7
+2013,22,Chaco,Femenino,55 a 59,9
+2013,22,Chaco,Femenino,60 a 64,10
+2013,22,Chaco,Femenino,65 a 69,10
+2013,22,Chaco,Femenino,70 a 74,11
+2013,22,Chaco,Femenino,75 a 79,23
+2013,22,Chaco,Femenino,80 y más,26
+2013,22,Chaco,Masculino,30 a 34,1
+2013,22,Chaco,Masculino,40 a 44,6
+2013,22,Chaco,Masculino,45 a 49,5
+2013,22,Chaco,Masculino,50 a 54,8
+2013,22,Chaco,Masculino,55 a 59,7
+2013,22,Chaco,Masculino,60 a 64,13
+2013,22,Chaco,Masculino,65 a 69,13
+2013,22,Chaco,Masculino,70 a 74,22
+2013,22,Chaco,Masculino,75 a 79,17
+2013,22,Chaco,Masculino,80 y más,23
+2013,26,Chubut,Femenino,40 a 44,1
+2013,26,Chubut,Femenino,45 a 49,1
+2013,26,Chubut,Femenino,55 a 59,4
+2013,26,Chubut,Femenino,60 a 64,7
+2013,26,Chubut,Femenino,65 a 69,1
+2013,26,Chubut,Femenino,70 a 74,9
+2013,26,Chubut,Femenino,75 a 79,12
+2013,26,Chubut,Femenino,80 y más,17
+2013,26,Chubut,Masculino,35 a 39,1
+2013,26,Chubut,Masculino,45 a 49,3
+2013,26,Chubut,Masculino,50 a 54,4
+2013,26,Chubut,Masculino,55 a 59,2
+2013,26,Chubut,Masculino,60 a 64,5
+2013,26,Chubut,Masculino,65 a 69,9
+2013,26,Chubut,Masculino,70 a 74,11
+2013,26,Chubut,Masculino,75 a 79,7
+2013,26,Chubut,Masculino,80 y más,13
+2013,30,Entre Ríos,Femenino,15 a 19,1
+2013,30,Entre Ríos,Femenino,30 a 34,1
+2013,30,Entre Ríos,Femenino,40 a 44,1
+2013,30,Entre Ríos,Femenino,45 a 49,1
+2013,30,Entre Ríos,Femenino,50 a 54,7
+2013,30,Entre Ríos,Femenino,55 a 59,8
+2013,30,Entre Ríos,Femenino,60 a 64,13
+2013,30,Entre Ríos,Femenino,65 a 69,15
+2013,30,Entre Ríos,Femenino,70 a 74,16
+2013,30,Entre Ríos,Femenino,75 a 79,13
+2013,30,Entre Ríos,Femenino,80 y más,39
+2013,30,Entre Ríos,Masculino,35 a 39,1
+2013,30,Entre Ríos,Masculino,45 a 49,3
+2013,30,Entre Ríos,Masculino,50 a 54,5
+2013,30,Entre Ríos,Masculino,55 a 59,14
+2013,30,Entre Ríos,Masculino,60 a 64,13
+2013,30,Entre Ríos,Masculino,65 a 69,25
+2013,30,Entre Ríos,Masculino,70 a 74,19
+2013,30,Entre Ríos,Masculino,75 a 79,18
+2013,30,Entre Ríos,Masculino,80 y más,17
+2013,34,Formosa,Femenino,30 a 34,1
+2013,34,Formosa,Femenino,40 a 44,6
+2013,34,Formosa,Femenino,45 a 49,3
+2013,34,Formosa,Femenino,50 a 54,9
+2013,34,Formosa,Femenino,55 a 59,11
+2013,34,Formosa,Femenino,60 a 64,28
+2013,34,Formosa,Femenino,65 a 69,18
+2013,34,Formosa,Femenino,70 a 74,21
+2013,34,Formosa,Femenino,75 a 79,24
+2013,34,Formosa,Femenino,80 y más,29
+2013,34,Formosa,Masculino,25 a 29,1
+2013,34,Formosa,Masculino,30 a 34,1
+2013,34,Formosa,Masculino,35 a 39,4
+2013,34,Formosa,Masculino,40 a 44,3
+2013,34,Formosa,Masculino,45 a 49,5
+2013,34,Formosa,Masculino,50 a 54,9
+2013,34,Formosa,Masculino,55 a 59,17
+2013,34,Formosa,Masculino,60 a 64,28
+2013,34,Formosa,Masculino,65 a 69,16
+2013,34,Formosa,Masculino,70 a 74,27
+2013,34,Formosa,Masculino,75 a 79,20
+2013,34,Formosa,Masculino,80 y más,24
+2013,38,Jujuy,Femenino,20 a 24,1
+2013,38,Jujuy,Femenino,40 a 44,1
+2013,38,Jujuy,Femenino,45 a 49,1
+2013,38,Jujuy,Femenino,50 a 54,1
+2013,38,Jujuy,Femenino,55 a 59,6
+2013,38,Jujuy,Femenino,60 a 64,7
+2013,38,Jujuy,Femenino,65 a 69,15
+2013,38,Jujuy,Femenino,70 a 74,8
+2013,38,Jujuy,Femenino,75 a 79,6
+2013,38,Jujuy,Femenino,80 y más,14
+2013,38,Jujuy,Masculino,35 a 39,2
+2013,38,Jujuy,Masculino,40 a 44,1
+2013,38,Jujuy,Masculino,45 a 49,2
+2013,38,Jujuy,Masculino,50 a 54,6
+2013,38,Jujuy,Masculino,55 a 59,8
+2013,38,Jujuy,Masculino,60 a 64,11
+2013,38,Jujuy,Masculino,65 a 69,6
+2013,38,Jujuy,Masculino,70 a 74,8
+2013,38,Jujuy,Masculino,75 a 79,12
+2013,38,Jujuy,Masculino,80 y más,15
+2013,42,La Pampa,Femenino,30 a 34,1
+2013,42,La Pampa,Femenino,50 a 54,1
+2013,42,La Pampa,Femenino,60 a 64,2
+2013,42,La Pampa,Femenino,65 a 69,2
+2013,42,La Pampa,Femenino,70 a 74,4
+2013,42,La Pampa,Femenino,75 a 79,6
+2013,42,La Pampa,Femenino,80 y más,9
+2013,42,La Pampa,Masculino,40 a 44,1
+2013,42,La Pampa,Masculino,45 a 49,1
+2013,42,La Pampa,Masculino,55 a 59,1
+2013,42,La Pampa,Masculino,60 a 64,1
+2013,42,La Pampa,Masculino,65 a 69,3
+2013,42,La Pampa,Masculino,70 a 74,5
+2013,42,La Pampa,Masculino,75 a 79,6
+2013,42,La Pampa,Masculino,80 y más,7
+2013,46,La Rioja,Femenino,25 a 29,2
+2013,46,La Rioja,Femenino,50 a 54,2
+2013,46,La Rioja,Femenino,55 a 59,2
+2013,46,La Rioja,Femenino,60 a 64,4
+2013,46,La Rioja,Femenino,65 a 69,6
+2013,46,La Rioja,Femenino,70 a 74,5
+2013,46,La Rioja,Femenino,75 a 79,6
+2013,46,La Rioja,Femenino,80 y más,7
+2013,46,La Rioja,Masculino,40 a 44,2
+2013,46,La Rioja,Masculino,45 a 49,2
+2013,46,La Rioja,Masculino,50 a 54,1
+2013,46,La Rioja,Masculino,55 a 59,4
+2013,46,La Rioja,Masculino,60 a 64,6
+2013,46,La Rioja,Masculino,65 a 69,3
+2013,46,La Rioja,Masculino,70 a 74,6
+2013,46,La Rioja,Masculino,75 a 79,1
+2013,46,La Rioja,Masculino,80 y más,1
+2013,50,Mendoza,Femenino,25 a 29,2
+2013,50,Mendoza,Femenino,35 a 39,2
+2013,50,Mendoza,Femenino,40 a 44,3
+2013,50,Mendoza,Femenino,45 a 49,7
+2013,50,Mendoza,Femenino,50 a 54,9
+2013,50,Mendoza,Femenino,55 a 59,16
+2013,50,Mendoza,Femenino,60 a 64,33
+2013,50,Mendoza,Femenino,65 a 69,41
+2013,50,Mendoza,Femenino,70 a 74,41
+2013,50,Mendoza,Femenino,75 a 79,47
+2013,50,Mendoza,Femenino,80 y más,112
+2013,50,Mendoza,Masculino,30 a 34,1
+2013,50,Mendoza,Masculino,35 a 39,4
+2013,50,Mendoza,Masculino,40 a 44,1
+2013,50,Mendoza,Masculino,45 a 49,4
+2013,50,Mendoza,Masculino,50 a 54,14
+2013,50,Mendoza,Masculino,55 a 59,19
+2013,50,Mendoza,Masculino,60 a 64,39
+2013,50,Mendoza,Masculino,65 a 69,57
+2013,50,Mendoza,Masculino,70 a 74,49
+2013,50,Mendoza,Masculino,75 a 79,55
+2013,50,Mendoza,Masculino,80 y más,78
+2013,54,Misiones,Femenino,20 a 24,1
+2013,54,Misiones,Femenino,25 a 29,1
+2013,54,Misiones,Femenino,40 a 44,3
+2013,54,Misiones,Femenino,45 a 49,2
+2013,54,Misiones,Femenino,50 a 54,5
+2013,54,Misiones,Femenino,55 a 59,13
+2013,54,Misiones,Femenino,60 a 64,17
+2013,54,Misiones,Femenino,65 a 69,19
+2013,54,Misiones,Femenino,70 a 74,18
+2013,54,Misiones,Femenino,75 a 79,23
+2013,54,Misiones,Femenino,80 y más,56
+2013,54,Misiones,Masculino,15 a 19,2
+2013,54,Misiones,Masculino,25 a 29,1
+2013,54,Misiones,Masculino,30 a 34,1
+2013,54,Misiones,Masculino,35 a 39,1
+2013,54,Misiones,Masculino,40 a 44,1
+2013,54,Misiones,Masculino,45 a 49,3
+2013,54,Misiones,Masculino,50 a 54,11
+2013,54,Misiones,Masculino,55 a 59,18
+2013,54,Misiones,Masculino,60 a 64,22
+2013,54,Misiones,Masculino,65 a 69,19
+2013,54,Misiones,Masculino,70 a 74,23
+2013,54,Misiones,Masculino,75 a 79,16
+2013,54,Misiones,Masculino,80 y más,30
+2013,58,Neuquén,Femenino,40 a 44,1
+2013,58,Neuquén,Femenino,45 a 49,2
+2013,58,Neuquén,Femenino,50 a 54,1
+2013,58,Neuquén,Femenino,55 a 59,6
+2013,58,Neuquén,Femenino,60 a 64,8
+2013,58,Neuquén,Femenino,65 a 69,10
+2013,58,Neuquén,Femenino,70 a 74,10
+2013,58,Neuquén,Femenino,75 a 79,18
+2013,58,Neuquén,Femenino,80 y más,38
+2013,58,Neuquén,Masculino,20 a 24,1
+2013,58,Neuquén,Masculino,35 a 39,1
+2013,58,Neuquén,Masculino,40 a 44,1
+2013,58,Neuquén,Masculino,45 a 49,5
+2013,58,Neuquén,Masculino,50 a 54,2
+2013,58,Neuquén,Masculino,55 a 59,5
+2013,58,Neuquén,Masculino,60 a 64,8
+2013,58,Neuquén,Masculino,65 a 69,14
+2013,58,Neuquén,Masculino,70 a 74,14
+2013,58,Neuquén,Masculino,75 a 79,20
+2013,58,Neuquén,Masculino,80 y más,30
+2013,62,Río Negro,Femenino,40 a 44,1
+2013,62,Río Negro,Femenino,45 a 49,1
+2013,62,Río Negro,Femenino,50 a 54,1
+2013,62,Río Negro,Femenino,60 a 64,6
+2013,62,Río Negro,Femenino,65 a 69,4
+2013,62,Río Negro,Femenino,70 a 74,10
+2013,62,Río Negro,Femenino,75 a 79,5
+2013,62,Río Negro,Femenino,80 y más,15
+2013,62,Río Negro,Masculino,40 a 44,1
+2013,62,Río Negro,Masculino,45 a 49,1
+2013,62,Río Negro,Masculino,50 a 54,3
+2013,62,Río Negro,Masculino,55 a 59,6
+2013,62,Río Negro,Masculino,60 a 64,6
+2013,62,Río Negro,Masculino,65 a 69,5
+2013,62,Río Negro,Masculino,70 a 74,6
+2013,62,Río Negro,Masculino,75 a 79,9
+2013,62,Río Negro,Masculino,80 y más,13
+2013,66,Salta,Femenino,15 a 19,1
+2013,66,Salta,Femenino,25 a 29,1
+2013,66,Salta,Femenino,40 a 44,1
+2013,66,Salta,Femenino,45 a 49,5
+2013,66,Salta,Femenino,50 a 54,1
+2013,66,Salta,Femenino,55 a 59,10
+2013,66,Salta,Femenino,60 a 64,9
+2013,66,Salta,Femenino,65 a 69,12
+2013,66,Salta,Femenino,70 a 74,15
+2013,66,Salta,Femenino,75 a 79,9
+2013,66,Salta,Femenino,80 y más,26
+2013,66,Salta,Masculino,35 a 39,1
+2013,66,Salta,Masculino,40 a 44,2
+2013,66,Salta,Masculino,45 a 49,2
+2013,66,Salta,Masculino,50 a 54,3
+2013,66,Salta,Masculino,55 a 59,14
+2013,66,Salta,Masculino,60 a 64,10
+2013,66,Salta,Masculino,65 a 69,13
+2013,66,Salta,Masculino,70 a 74,15
+2013,66,Salta,Masculino,75 a 79,15
+2013,66,Salta,Masculino,80 y más,19
+2013,70,San Juan,Femenino,20 a 24,1
+2013,70,San Juan,Femenino,25 a 29,1
+2013,70,San Juan,Femenino,35 a 39,1
+2013,70,San Juan,Femenino,45 a 49,1
+2013,70,San Juan,Femenino,50 a 54,4
+2013,70,San Juan,Femenino,55 a 59,10
+2013,70,San Juan,Femenino,60 a 64,17
+2013,70,San Juan,Femenino,65 a 69,13
+2013,70,San Juan,Femenino,70 a 74,22
+2013,70,San Juan,Femenino,75 a 79,19
+2013,70,San Juan,Femenino,80 y más,38
+2013,70,San Juan,Masculino,40 a 44,4
+2013,70,San Juan,Masculino,45 a 49,4
+2013,70,San Juan,Masculino,50 a 54,8
+2013,70,San Juan,Masculino,55 a 59,17
+2013,70,San Juan,Masculino,60 a 64,14
+2013,70,San Juan,Masculino,65 a 69,24
+2013,70,San Juan,Masculino,70 a 74,16
+2013,70,San Juan,Masculino,75 a 79,22
+2013,70,San Juan,Masculino,80 y más,23
+2013,74,San Luis,Femenino,40 a 44,1
+2013,74,San Luis,Femenino,55 a 59,2
+2013,74,San Luis,Femenino,60 a 64,7
+2013,74,San Luis,Femenino,65 a 69,10
+2013,74,San Luis,Femenino,70 a 74,6
+2013,74,San Luis,Femenino,75 a 79,5
+2013,74,San Luis,Femenino,80 y más,14
+2013,74,San Luis,Masculino,45 a 49,2
+2013,74,San Luis,Masculino,50 a 54,2
+2013,74,San Luis,Masculino,55 a 59,4
+2013,74,San Luis,Masculino,60 a 64,9
+2013,74,San Luis,Masculino,65 a 69,6
+2013,74,San Luis,Masculino,70 a 74,11
+2013,74,San Luis,Masculino,75 a 79,10
+2013,74,San Luis,Masculino,80 y más,15
+2013,78,Santa Cruz,Femenino,45 a 49,2
+2013,78,Santa Cruz,Femenino,55 a 59,1
+2013,78,Santa Cruz,Femenino,60 a 64,4
+2013,78,Santa Cruz,Femenino,65 a 69,3
+2013,78,Santa Cruz,Femenino,70 a 74,5
+2013,78,Santa Cruz,Femenino,75 a 79,2
+2013,78,Santa Cruz,Femenino,80 y más,7
+2013,78,Santa Cruz,Masculino,30 a 34,1
+2013,78,Santa Cruz,Masculino,50 a 54,1
+2013,78,Santa Cruz,Masculino,55 a 59,4
+2013,78,Santa Cruz,Masculino,60 a 64,3
+2013,78,Santa Cruz,Masculino,65 a 69,3
+2013,78,Santa Cruz,Masculino,70 a 74,4
+2013,78,Santa Cruz,Masculino,75 a 79,4
+2013,78,Santa Cruz,Masculino,80 y más,7
+2013,82,Santa Fe,Femenino,25 a 29,1
+2013,82,Santa Fe,Femenino,35 a 39,4
+2013,82,Santa Fe,Femenino,40 a 44,2
+2013,82,Santa Fe,Femenino,45 a 49,3
+2013,82,Santa Fe,Femenino,50 a 54,6
+2013,82,Santa Fe,Femenino,55 a 59,12
+2013,82,Santa Fe,Femenino,60 a 64,34
+2013,82,Santa Fe,Femenino,65 a 69,48
+2013,82,Santa Fe,Femenino,70 a 74,60
+2013,82,Santa Fe,Femenino,75 a 79,69
+2013,82,Santa Fe,Femenino,80 y más,158
+2013,82,Santa Fe,Masculino,25 a 29,1
+2013,82,Santa Fe,Masculino,35 a 39,1
+2013,82,Santa Fe,Masculino,40 a 44,9
+2013,82,Santa Fe,Masculino,45 a 49,6
+2013,82,Santa Fe,Masculino,50 a 54,21
+2013,82,Santa Fe,Masculino,55 a 59,23
+2013,82,Santa Fe,Masculino,60 a 64,54
+2013,82,Santa Fe,Masculino,65 a 69,66
+2013,82,Santa Fe,Masculino,70 a 74,69
+2013,82,Santa Fe,Masculino,75 a 79,64
+2013,82,Santa Fe,Masculino,80 y más,101
+2013,86,Santiago del Estero,Femenino,25 a 29,1
+2013,86,Santiago del Estero,Femenino,40 a 44,1
+2013,86,Santiago del Estero,Femenino,45 a 49,1
+2013,86,Santiago del Estero,Femenino,50 a 54,4
+2013,86,Santiago del Estero,Femenino,55 a 59,4
+2013,86,Santiago del Estero,Femenino,60 a 64,5
+2013,86,Santiago del Estero,Femenino,65 a 69,4
+2013,86,Santiago del Estero,Femenino,70 a 74,8
+2013,86,Santiago del Estero,Femenino,75 a 79,6
+2013,86,Santiago del Estero,Femenino,80 y más,9
+2013,86,Santiago del Estero,Masculino,25 a 29,1
+2013,86,Santiago del Estero,Masculino,30 a 34,2
+2013,86,Santiago del Estero,Masculino,40 a 44,1
+2013,86,Santiago del Estero,Masculino,45 a 49,4
+2013,86,Santiago del Estero,Masculino,50 a 54,3
+2013,86,Santiago del Estero,Masculino,55 a 59,11
+2013,86,Santiago del Estero,Masculino,60 a 64,10
+2013,86,Santiago del Estero,Masculino,65 a 69,5
+2013,86,Santiago del Estero,Masculino,70 a 74,6
+2013,86,Santiago del Estero,Masculino,75 a 79,8
+2013,86,Santiago del Estero,Masculino,80 y más,4
+2013,90,Tucumán,Femenino,20 a 24,2
+2013,90,Tucumán,Femenino,25 a 29,1
+2013,90,Tucumán,Femenino,30 a 34,2
+2013,90,Tucumán,Femenino,40 a 44,2
+2013,90,Tucumán,Femenino,45 a 49,3
+2013,90,Tucumán,Femenino,50 a 54,8
+2013,90,Tucumán,Femenino,55 a 59,17
+2013,90,Tucumán,Femenino,60 a 64,20
+2013,90,Tucumán,Femenino,65 a 69,24
+2013,90,Tucumán,Femenino,70 a 74,29
+2013,90,Tucumán,Femenino,75 a 79,27
+2013,90,Tucumán,Femenino,80 y más,67
+2013,90,Tucumán,Masculino,20 a 24,2
+2013,90,Tucumán,Masculino,35 a 39,2
+2013,90,Tucumán,Masculino,40 a 44,2
+2013,90,Tucumán,Masculino,45 a 49,7
+2013,90,Tucumán,Masculino,50 a 54,5
+2013,90,Tucumán,Masculino,55 a 59,23
+2013,90,Tucumán,Masculino,60 a 64,27
+2013,90,Tucumán,Masculino,65 a 69,31
+2013,90,Tucumán,Masculino,70 a 74,43
+2013,90,Tucumán,Masculino,75 a 79,29
+2013,90,Tucumán,Masculino,80 y más,44
+2013,94,Tierra del Fuego,Femenino,50 a 54,1
+2013,94,Tierra del Fuego,Femenino,60 a 64,1
+2013,94,Tierra del Fuego,Femenino,70 a 74,2
+2013,94,Tierra del Fuego,Femenino,80 y más,2
+2013,94,Tierra del Fuego,Masculino,55 a 59,1
+2013,94,Tierra del Fuego,Masculino,60 a 64,1
+2013,94,Tierra del Fuego,Masculino,65 a 69,3
+2013,94,Tierra del Fuego,Masculino,70 a 74,1
+2013,94,Tierra del Fuego,Masculino,75 a 79,1
+2014,02,CABA,Femenino,30 a 34,2
+2014,02,CABA,Femenino,45 a 49,1
+2014,02,CABA,Femenino,50 a 54,5
+2014,02,CABA,Femenino,55 a 59,5
+2014,02,CABA,Femenino,60 a 64,1
+2014,02,CABA,Femenino,65 a 69,18
+2014,02,CABA,Femenino,70 a 74,11
+2014,02,CABA,Femenino,75 a 79,26
+2014,02,CABA,Femenino,80 y más,120
+2014,02,CABA,Masculino,25 a 29,1
+2014,02,CABA,Masculino,35 a 39,1
+2014,02,CABA,Masculino,40 a 44,1
+2014,02,CABA,Masculino,45 a 49,6
+2014,02,CABA,Masculino,50 a 54,8
+2014,02,CABA,Masculino,55 a 59,15
+2014,02,CABA,Masculino,60 a 64,20
+2014,02,CABA,Masculino,65 a 69,15
+2014,02,CABA,Masculino,70 a 74,20
+2014,02,CABA,Masculino,75 a 79,30
+2014,02,CABA,Masculino,80 y más,70
+2014,06,Buenos Aires,Femenino,20 a 24,1
+2014,06,Buenos Aires,Femenino,25 a 29,5
+2014,06,Buenos Aires,Femenino,30 a 34,6
+2014,06,Buenos Aires,Femenino,35 a 39,11
+2014,06,Buenos Aires,Femenino,40 a 44,17
+2014,06,Buenos Aires,Femenino,45 a 49,14
+2014,06,Buenos Aires,Femenino,50 a 54,35
+2014,06,Buenos Aires,Femenino,55 a 59,62
+2014,06,Buenos Aires,Femenino,60 a 64,124
+2014,06,Buenos Aires,Femenino,65 a 69,131
+2014,06,Buenos Aires,Femenino,70 a 74,173
+2014,06,Buenos Aires,Femenino,75 a 79,188
+2014,06,Buenos Aires,Femenino,80 y más,550
+2014,06,Buenos Aires,Masculino,20 a 24,7
+2014,06,Buenos Aires,Masculino,25 a 29,3
+2014,06,Buenos Aires,Masculino,30 a 34,2
+2014,06,Buenos Aires,Masculino,35 a 39,10
+2014,06,Buenos Aires,Masculino,40 a 44,16
+2014,06,Buenos Aires,Masculino,45 a 49,27
+2014,06,Buenos Aires,Masculino,50 a 54,59
+2014,06,Buenos Aires,Masculino,55 a 59,101
+2014,06,Buenos Aires,Masculino,60 a 64,132
+2014,06,Buenos Aires,Masculino,65 a 69,227
+2014,06,Buenos Aires,Masculino,70 a 74,203
+2014,06,Buenos Aires,Masculino,75 a 79,199
+2014,06,Buenos Aires,Masculino,80 y más,333
+2014,10,Catamarca,Femenino,25 a 29,1
+2014,10,Catamarca,Femenino,45 a 49,1
+2014,10,Catamarca,Femenino,50 a 54,3
+2014,10,Catamarca,Femenino,55 a 59,6
+2014,10,Catamarca,Femenino,60 a 64,4
+2014,10,Catamarca,Femenino,65 a 69,2
+2014,10,Catamarca,Femenino,70 a 74,7
+2014,10,Catamarca,Femenino,75 a 79,6
+2014,10,Catamarca,Femenino,80 y más,15
+2014,10,Catamarca,Masculino,15 a 19,1
+2014,10,Catamarca,Masculino,40 a 44,1
+2014,10,Catamarca,Masculino,45 a 49,3
+2014,10,Catamarca,Masculino,55 a 59,2
+2014,10,Catamarca,Masculino,60 a 64,11
+2014,10,Catamarca,Masculino,65 a 69,4
+2014,10,Catamarca,Masculino,70 a 74,6
+2014,10,Catamarca,Masculino,75 a 79,10
+2014,10,Catamarca,Masculino,80 y más,2
+2014,14,Córdoba,Femenino,25 a 29,1
+2014,14,Córdoba,Femenino,30 a 34,4
+2014,14,Córdoba,Femenino,40 a 44,2
+2014,14,Córdoba,Femenino,45 a 49,5
+2014,14,Córdoba,Femenino,50 a 54,8
+2014,14,Córdoba,Femenino,55 a 59,21
+2014,14,Córdoba,Femenino,60 a 64,19
+2014,14,Córdoba,Femenino,65 a 69,40
+2014,14,Córdoba,Femenino,70 a 74,47
+2014,14,Córdoba,Femenino,75 a 79,51
+2014,14,Córdoba,Femenino,80 y más,113
+2014,14,Córdoba,Masculino,35 a 39,3
+2014,14,Córdoba,Masculino,40 a 44,4
+2014,14,Córdoba,Masculino,45 a 49,11
+2014,14,Córdoba,Masculino,50 a 54,22
+2014,14,Córdoba,Masculino,55 a 59,36
+2014,14,Córdoba,Masculino,60 a 64,44
+2014,14,Córdoba,Masculino,65 a 69,68
+2014,14,Córdoba,Masculino,70 a 74,54
+2014,14,Córdoba,Masculino,75 a 79,61
+2014,14,Córdoba,Masculino,80 y más,63
+2014,18,Corrientes,Femenino,25 a 29,1
+2014,18,Corrientes,Femenino,35 a 39,1
+2014,18,Corrientes,Femenino,40 a 44,3
+2014,18,Corrientes,Femenino,45 a 49,3
+2014,18,Corrientes,Femenino,50 a 54,3
+2014,18,Corrientes,Femenino,55 a 59,9
+2014,18,Corrientes,Femenino,60 a 64,10
+2014,18,Corrientes,Femenino,65 a 69,14
+2014,18,Corrientes,Femenino,70 a 74,17
+2014,18,Corrientes,Femenino,75 a 79,15
+2014,18,Corrientes,Femenino,80 y más,37
+2014,18,Corrientes,Masculino,20 a 24,1
+2014,18,Corrientes,Masculino,35 a 39,2
+2014,18,Corrientes,Masculino,40 a 44,1
+2014,18,Corrientes,Masculino,45 a 49,3
+2014,18,Corrientes,Masculino,50 a 54,7
+2014,18,Corrientes,Masculino,55 a 59,8
+2014,18,Corrientes,Masculino,60 a 64,9
+2014,18,Corrientes,Masculino,65 a 69,19
+2014,18,Corrientes,Masculino,70 a 74,10
+2014,18,Corrientes,Masculino,75 a 79,16
+2014,18,Corrientes,Masculino,80 y más,17
+2014,22,Chaco,Femenino,30 a 34,1
+2014,22,Chaco,Femenino,35 a 39,1
+2014,22,Chaco,Femenino,40 a 44,2
+2014,22,Chaco,Femenino,45 a 49,2
+2014,22,Chaco,Femenino,50 a 54,5
+2014,22,Chaco,Femenino,55 a 59,7
+2014,22,Chaco,Femenino,60 a 64,14
+2014,22,Chaco,Femenino,65 a 69,17
+2014,22,Chaco,Femenino,70 a 74,16
+2014,22,Chaco,Femenino,75 a 79,12
+2014,22,Chaco,Femenino,80 y más,25
+2014,22,Chaco,Masculino,20 a 24,1
+2014,22,Chaco,Masculino,40 a 44,2
+2014,22,Chaco,Masculino,45 a 49,7
+2014,22,Chaco,Masculino,50 a 54,7
+2014,22,Chaco,Masculino,55 a 59,10
+2014,22,Chaco,Masculino,60 a 64,17
+2014,22,Chaco,Masculino,65 a 69,20
+2014,22,Chaco,Masculino,70 a 74,13
+2014,22,Chaco,Masculino,75 a 79,14
+2014,22,Chaco,Masculino,80 y más,22
+2014,26,Chubut,Femenino,50 a 54,1
+2014,26,Chubut,Femenino,55 a 59,2
+2014,26,Chubut,Femenino,60 a 64,3
+2014,26,Chubut,Femenino,65 a 69,5
+2014,26,Chubut,Femenino,70 a 74,1
+2014,26,Chubut,Femenino,75 a 79,7
+2014,26,Chubut,Femenino,80 y más,23
+2014,26,Chubut,Masculino,25 a 29,1
+2014,26,Chubut,Masculino,30 a 34,1
+2014,26,Chubut,Masculino,35 a 39,1
+2014,26,Chubut,Masculino,40 a 44,1
+2014,26,Chubut,Masculino,50 a 54,6
+2014,26,Chubut,Masculino,55 a 59,5
+2014,26,Chubut,Masculino,60 a 64,12
+2014,26,Chubut,Masculino,65 a 69,4
+2014,26,Chubut,Masculino,70 a 74,11
+2014,26,Chubut,Masculino,75 a 79,6
+2014,26,Chubut,Masculino,80 y más,10
+2014,30,Entre Ríos,Femenino,45 a 49,1
+2014,30,Entre Ríos,Femenino,50 a 54,3
+2014,30,Entre Ríos,Femenino,55 a 59,4
+2014,30,Entre Ríos,Femenino,60 a 64,8
+2014,30,Entre Ríos,Femenino,65 a 69,11
+2014,30,Entre Ríos,Femenino,70 a 74,14
+2014,30,Entre Ríos,Femenino,75 a 79,12
+2014,30,Entre Ríos,Femenino,80 y más,43
+2014,30,Entre Ríos,Masculino,30 a 34,1
+2014,30,Entre Ríos,Masculino,40 a 44,1
+2014,30,Entre Ríos,Masculino,45 a 49,2
+2014,30,Entre Ríos,Masculino,50 a 54,5
+2014,30,Entre Ríos,Masculino,55 a 59,13
+2014,30,Entre Ríos,Masculino,60 a 64,14
+2014,30,Entre Ríos,Masculino,65 a 69,18
+2014,30,Entre Ríos,Masculino,70 a 74,19
+2014,30,Entre Ríos,Masculino,75 a 79,25
+2014,30,Entre Ríos,Masculino,80 y más,18
+2014,34,Formosa,Femenino,20 a 24,1
+2014,34,Formosa,Femenino,25 a 29,1
+2014,34,Formosa,Femenino,35 a 39,2
+2014,34,Formosa,Femenino,45 a 49,6
+2014,34,Formosa,Femenino,50 a 54,5
+2014,34,Formosa,Femenino,55 a 59,15
+2014,34,Formosa,Femenino,60 a 64,13
+2014,34,Formosa,Femenino,65 a 69,15
+2014,34,Formosa,Femenino,70 a 74,22
+2014,34,Formosa,Femenino,75 a 79,24
+2014,34,Formosa,Femenino,80 y más,34
+2014,34,Formosa,Masculino,15 a 19,1
+2014,34,Formosa,Masculino,30 a 34,1
+2014,34,Formosa,Masculino,40 a 44,2
+2014,34,Formosa,Masculino,45 a 49,2
+2014,34,Formosa,Masculino,50 a 54,6
+2014,34,Formosa,Masculino,55 a 59,10
+2014,34,Formosa,Masculino,60 a 64,14
+2014,34,Formosa,Masculino,65 a 69,21
+2014,34,Formosa,Masculino,70 a 74,24
+2014,34,Formosa,Masculino,75 a 79,18
+2014,34,Formosa,Masculino,80 y más,24
+2014,38,Jujuy,Femenino,25 a 29,1
+2014,38,Jujuy,Femenino,35 a 39,1
+2014,38,Jujuy,Femenino,40 a 44,1
+2014,38,Jujuy,Femenino,50 a 54,3
+2014,38,Jujuy,Femenino,55 a 59,2
+2014,38,Jujuy,Femenino,60 a 64,3
+2014,38,Jujuy,Femenino,65 a 69,6
+2014,38,Jujuy,Femenino,70 a 74,5
+2014,38,Jujuy,Femenino,75 a 79,9
+2014,38,Jujuy,Femenino,80 y más,13
+2014,38,Jujuy,Masculino,45 a 49,1
+2014,38,Jujuy,Masculino,50 a 54,1
+2014,38,Jujuy,Masculino,55 a 59,7
+2014,38,Jujuy,Masculino,60 a 64,3
+2014,38,Jujuy,Masculino,65 a 69,9
+2014,38,Jujuy,Masculino,70 a 74,4
+2014,38,Jujuy,Masculino,75 a 79,4
+2014,38,Jujuy,Masculino,80 y más,5
+2014,42,La Pampa,Femenino,35 a 39,1
+2014,42,La Pampa,Femenino,50 a 54,1
+2014,42,La Pampa,Femenino,60 a 64,2
+2014,42,La Pampa,Femenino,65 a 69,2
+2014,42,La Pampa,Femenino,70 a 74,4
+2014,42,La Pampa,Femenino,75 a 79,3
+2014,42,La Pampa,Femenino,80 y más,12
+2014,42,La Pampa,Masculino,55 a 59,2
+2014,42,La Pampa,Masculino,60 a 64,1
+2014,42,La Pampa,Masculino,65 a 69,3
+2014,42,La Pampa,Masculino,70 a 74,5
+2014,42,La Pampa,Masculino,75 a 79,11
+2014,42,La Pampa,Masculino,80 y más,7
+2014,46,La Rioja,Femenino,45 a 49,1
+2014,46,La Rioja,Femenino,50 a 54,1
+2014,46,La Rioja,Femenino,55 a 59,3
+2014,46,La Rioja,Femenino,60 a 64,6
+2014,46,La Rioja,Femenino,65 a 69,4
+2014,46,La Rioja,Femenino,70 a 74,8
+2014,46,La Rioja,Femenino,75 a 79,8
+2014,46,La Rioja,Femenino,80 y más,6
+2014,46,La Rioja,Masculino,40 a 44,1
+2014,46,La Rioja,Masculino,45 a 49,1
+2014,46,La Rioja,Masculino,50 a 54,1
+2014,46,La Rioja,Masculino,55 a 59,4
+2014,46,La Rioja,Masculino,60 a 64,6
+2014,46,La Rioja,Masculino,65 a 69,6
+2014,46,La Rioja,Masculino,70 a 74,7
+2014,46,La Rioja,Masculino,75 a 79,2
+2014,46,La Rioja,Masculino,80 y más,1
+2014,50,Mendoza,Femenino,20 a 24,3
+2014,50,Mendoza,Femenino,25 a 29,1
+2014,50,Mendoza,Femenino,30 a 34,2
+2014,50,Mendoza,Femenino,35 a 39,1
+2014,50,Mendoza,Femenino,40 a 44,2
+2014,50,Mendoza,Femenino,45 a 49,2
+2014,50,Mendoza,Femenino,50 a 54,2
+2014,50,Mendoza,Femenino,55 a 59,19
+2014,50,Mendoza,Femenino,60 a 64,34
+2014,50,Mendoza,Femenino,65 a 69,34
+2014,50,Mendoza,Femenino,70 a 74,41
+2014,50,Mendoza,Femenino,75 a 79,38
+2014,50,Mendoza,Femenino,80 y más,114
+2014,50,Mendoza,Masculino,20 a 24,1
+2014,50,Mendoza,Masculino,40 a 44,3
+2014,50,Mendoza,Masculino,45 a 49,1
+2014,50,Mendoza,Masculino,50 a 54,9
+2014,50,Mendoza,Masculino,55 a 59,27
+2014,50,Mendoza,Masculino,60 a 64,37
+2014,50,Mendoza,Masculino,65 a 69,52
+2014,50,Mendoza,Masculino,70 a 74,52
+2014,50,Mendoza,Masculino,75 a 79,35
+2014,50,Mendoza,Masculino,80 y más,79
+2014,54,Misiones,Femenino,15 a 19,2
+2014,54,Misiones,Femenino,35 a 39,3
+2014,54,Misiones,Femenino,40 a 44,1
+2014,54,Misiones,Femenino,45 a 49,6
+2014,54,Misiones,Femenino,50 a 54,11
+2014,54,Misiones,Femenino,55 a 59,7
+2014,54,Misiones,Femenino,60 a 64,14
+2014,54,Misiones,Femenino,65 a 69,16
+2014,54,Misiones,Femenino,70 a 74,22
+2014,54,Misiones,Femenino,75 a 79,28
+2014,54,Misiones,Femenino,80 y más,40
+2014,54,Misiones,Masculino,20 a 24,1
+2014,54,Misiones,Masculino,25 a 29,1
+2014,54,Misiones,Masculino,35 a 39,1
+2014,54,Misiones,Masculino,40 a 44,2
+2014,54,Misiones,Masculino,45 a 49,2
+2014,54,Misiones,Masculino,50 a 54,2
+2014,54,Misiones,Masculino,55 a 59,12
+2014,54,Misiones,Masculino,60 a 64,24
+2014,54,Misiones,Masculino,65 a 69,22
+2014,54,Misiones,Masculino,70 a 74,24
+2014,54,Misiones,Masculino,75 a 79,25
+2014,54,Misiones,Masculino,80 y más,40
+2014,58,Neuquén,Femenino,40 a 44,1
+2014,58,Neuquén,Femenino,45 a 49,3
+2014,58,Neuquén,Femenino,50 a 54,3
+2014,58,Neuquén,Femenino,55 a 59,4
+2014,58,Neuquén,Femenino,60 a 64,7
+2014,58,Neuquén,Femenino,65 a 69,9
+2014,58,Neuquén,Femenino,70 a 74,11
+2014,58,Neuquén,Femenino,75 a 79,12
+2014,58,Neuquén,Femenino,80 y más,32
+2014,58,Neuquén,Masculino,40 a 44,2
+2014,58,Neuquén,Masculino,45 a 49,1
+2014,58,Neuquén,Masculino,50 a 54,7
+2014,58,Neuquén,Masculino,55 a 59,12
+2014,58,Neuquén,Masculino,60 a 64,17
+2014,58,Neuquén,Masculino,65 a 69,13
+2014,58,Neuquén,Masculino,70 a 74,16
+2014,58,Neuquén,Masculino,75 a 79,17
+2014,58,Neuquén,Masculino,80 y más,28
+2014,62,Río Negro,Femenino,40 a 44,1
+2014,62,Río Negro,Femenino,45 a 49,1
+2014,62,Río Negro,Femenino,50 a 54,2
+2014,62,Río Negro,Femenino,55 a 59,2
+2014,62,Río Negro,Femenino,60 a 64,2
+2014,62,Río Negro,Femenino,65 a 69,4
+2014,62,Río Negro,Femenino,70 a 74,7
+2014,62,Río Negro,Femenino,75 a 79,5
+2014,62,Río Negro,Femenino,80 y más,12
+2014,62,Río Negro,Masculino,25 a 29,1
+2014,62,Río Negro,Masculino,40 a 44,1
+2014,62,Río Negro,Masculino,45 a 49,1
+2014,62,Río Negro,Masculino,50 a 54,2
+2014,62,Río Negro,Masculino,55 a 59,4
+2014,62,Río Negro,Masculino,60 a 64,5
+2014,62,Río Negro,Masculino,65 a 69,10
+2014,62,Río Negro,Masculino,70 a 74,9
+2014,62,Río Negro,Masculino,75 a 79,15
+2014,62,Río Negro,Masculino,80 y más,19
+2014,66,Salta,Femenino,20 a 24,1
+2014,66,Salta,Femenino,30 a 34,2
+2014,66,Salta,Femenino,45 a 49,2
+2014,66,Salta,Femenino,50 a 54,5
+2014,66,Salta,Femenino,55 a 59,7
+2014,66,Salta,Femenino,60 a 64,16
+2014,66,Salta,Femenino,65 a 69,8
+2014,66,Salta,Femenino,70 a 74,14
+2014,66,Salta,Femenino,75 a 79,24
+2014,66,Salta,Femenino,80 y más,22
+2014,66,Salta,Masculino,20 a 24,1
+2014,66,Salta,Masculino,25 a 29,1
+2014,66,Salta,Masculino,30 a 34,1
+2014,66,Salta,Masculino,40 a 44,2
+2014,66,Salta,Masculino,45 a 49,5
+2014,66,Salta,Masculino,50 a 54,9
+2014,66,Salta,Masculino,55 a 59,10
+2014,66,Salta,Masculino,60 a 64,18
+2014,66,Salta,Masculino,65 a 69,17
+2014,66,Salta,Masculino,70 a 74,19
+2014,66,Salta,Masculino,75 a 79,21
+2014,66,Salta,Masculino,80 y más,35
+2014,70,San Juan,Femenino,25 a 29,1
+2014,70,San Juan,Femenino,40 a 44,2
+2014,70,San Juan,Femenino,45 a 49,1
+2014,70,San Juan,Femenino,55 a 59,7
+2014,70,San Juan,Femenino,60 a 64,12
+2014,70,San Juan,Femenino,65 a 69,15
+2014,70,San Juan,Femenino,70 a 74,25
+2014,70,San Juan,Femenino,75 a 79,17
+2014,70,San Juan,Femenino,80 y más,42
+2014,70,San Juan,Masculino,20 a 24,1
+2014,70,San Juan,Masculino,25 a 29,1
+2014,70,San Juan,Masculino,30 a 34,1
+2014,70,San Juan,Masculino,35 a 39,2
+2014,70,San Juan,Masculino,40 a 44,2
+2014,70,San Juan,Masculino,45 a 49,2
+2014,70,San Juan,Masculino,50 a 54,6
+2014,70,San Juan,Masculino,55 a 59,7
+2014,70,San Juan,Masculino,60 a 64,17
+2014,70,San Juan,Masculino,65 a 69,24
+2014,70,San Juan,Masculino,70 a 74,26
+2014,70,San Juan,Masculino,75 a 79,29
+2014,70,San Juan,Masculino,80 y más,33
+2014,74,San Luis,Femenino,30 a 34,1
+2014,74,San Luis,Femenino,40 a 44,2
+2014,74,San Luis,Femenino,45 a 49,1
+2014,74,San Luis,Femenino,50 a 54,3
+2014,74,San Luis,Femenino,55 a 59,3
+2014,74,San Luis,Femenino,60 a 64,4
+2014,74,San Luis,Femenino,65 a 69,7
+2014,74,San Luis,Femenino,70 a 74,10
+2014,74,San Luis,Femenino,75 a 79,9
+2014,74,San Luis,Femenino,80 y más,27
+2014,74,San Luis,Masculino,15 a 19,1
+2014,74,San Luis,Masculino,45 a 49,3
+2014,74,San Luis,Masculino,50 a 54,6
+2014,74,San Luis,Masculino,55 a 59,1
+2014,74,San Luis,Masculino,60 a 64,10
+2014,74,San Luis,Masculino,65 a 69,8
+2014,74,San Luis,Masculino,70 a 74,9
+2014,74,San Luis,Masculino,75 a 79,5
+2014,74,San Luis,Masculino,80 y más,12
+2014,78,Santa Cruz,Femenino,20 a 24,1
+2014,78,Santa Cruz,Femenino,35 a 39,1
+2014,78,Santa Cruz,Femenino,55 a 59,1
+2014,78,Santa Cruz,Femenino,60 a 64,3
+2014,78,Santa Cruz,Femenino,65 a 69,3
+2014,78,Santa Cruz,Femenino,70 a 74,3
+2014,78,Santa Cruz,Femenino,75 a 79,7
+2014,78,Santa Cruz,Femenino,80 y más,9
+2014,78,Santa Cruz,Masculino,25 a 29,1
+2014,78,Santa Cruz,Masculino,30 a 34,1
+2014,78,Santa Cruz,Masculino,45 a 49,1
+2014,78,Santa Cruz,Masculino,50 a 54,3
+2014,78,Santa Cruz,Masculino,55 a 59,1
+2014,78,Santa Cruz,Masculino,60 a 64,2
+2014,78,Santa Cruz,Masculino,65 a 69,3
+2014,78,Santa Cruz,Masculino,70 a 74,9
+2014,78,Santa Cruz,Masculino,75 a 79,2
+2014,78,Santa Cruz,Masculino,80 y más,7
+2014,82,Santa Fe,Femenino,15 a 19,1
+2014,82,Santa Fe,Femenino,20 a 24,1
+2014,82,Santa Fe,Femenino,25 a 29,2
+2014,82,Santa Fe,Femenino,30 a 34,2
+2014,82,Santa Fe,Femenino,40 a 44,3
+2014,82,Santa Fe,Femenino,45 a 49,5
+2014,82,Santa Fe,Femenino,50 a 54,10
+2014,82,Santa Fe,Femenino,55 a 59,11
+2014,82,Santa Fe,Femenino,60 a 64,34
+2014,82,Santa Fe,Femenino,65 a 69,37
+2014,82,Santa Fe,Femenino,70 a 74,37
+2014,82,Santa Fe,Femenino,75 a 79,64
+2014,82,Santa Fe,Femenino,80 y más,173
+2014,82,Santa Fe,Masculino,15 a 19,1
+2014,82,Santa Fe,Masculino,35 a 39,5
+2014,82,Santa Fe,Masculino,40 a 44,2
+2014,82,Santa Fe,Masculino,45 a 49,8
+2014,82,Santa Fe,Masculino,50 a 54,21
+2014,82,Santa Fe,Masculino,55 a 59,25
+2014,82,Santa Fe,Masculino,60 a 64,38
+2014,82,Santa Fe,Masculino,65 a 69,62
+2014,82,Santa Fe,Masculino,70 a 74,73
+2014,82,Santa Fe,Masculino,75 a 79,74
+2014,82,Santa Fe,Masculino,80 y más,120
+2014,86,Santiago del Estero,Femenino,40 a 44,1
+2014,86,Santiago del Estero,Femenino,45 a 49,1
+2014,86,Santiago del Estero,Femenino,50 a 54,1
+2014,86,Santiago del Estero,Femenino,55 a 59,3
+2014,86,Santiago del Estero,Femenino,60 a 64,4
+2014,86,Santiago del Estero,Femenino,65 a 69,9
+2014,86,Santiago del Estero,Femenino,70 a 74,10
+2014,86,Santiago del Estero,Femenino,75 a 79,10
+2014,86,Santiago del Estero,Femenino,80 y más,14
+2014,86,Santiago del Estero,Masculino,45 a 49,4
+2014,86,Santiago del Estero,Masculino,50 a 54,7
+2014,86,Santiago del Estero,Masculino,55 a 59,3
+2014,86,Santiago del Estero,Masculino,60 a 64,6
+2014,86,Santiago del Estero,Masculino,65 a 69,6
+2014,86,Santiago del Estero,Masculino,70 a 74,6
+2014,86,Santiago del Estero,Masculino,75 a 79,9
+2014,86,Santiago del Estero,Masculino,80 y más,9
+2014,90,Tucumán,Femenino,30 a 34,1
+2014,90,Tucumán,Femenino,35 a 39,2
+2014,90,Tucumán,Femenino,40 a 44,1
+2014,90,Tucumán,Femenino,45 a 49,2
+2014,90,Tucumán,Femenino,50 a 54,6
+2014,90,Tucumán,Femenino,55 a 59,11
+2014,90,Tucumán,Femenino,60 a 64,22
+2014,90,Tucumán,Femenino,65 a 69,34
+2014,90,Tucumán,Femenino,70 a 74,30
+2014,90,Tucumán,Femenino,75 a 79,28
+2014,90,Tucumán,Femenino,80 y más,76
+2014,90,Tucumán,Masculino,25 a 29,1
+2014,90,Tucumán,Masculino,35 a 39,2
+2014,90,Tucumán,Masculino,40 a 44,1
+2014,90,Tucumán,Masculino,45 a 49,3
+2014,90,Tucumán,Masculino,50 a 54,6
+2014,90,Tucumán,Masculino,55 a 59,13
+2014,90,Tucumán,Masculino,60 a 64,29
+2014,90,Tucumán,Masculino,65 a 69,30
+2014,90,Tucumán,Masculino,70 a 74,29
+2014,90,Tucumán,Masculino,75 a 79,20
+2014,90,Tucumán,Masculino,80 y más,41
+2014,94,Tierra del Fuego,Femenino,65 a 69,1
+2014,94,Tierra del Fuego,Femenino,70 a 74,1
+2014,94,Tierra del Fuego,Femenino,75 a 79,1
+2014,94,Tierra del Fuego,Femenino,80 y más,2
+2014,94,Tierra del Fuego,Masculino,60 a 64,2
+2014,94,Tierra del Fuego,Masculino,70 a 74,1
+2014,94,Tierra del Fuego,Masculino,80 y más,2
+2017,02,CABA,Femenino,30 a 34,1
+2017,02,CABA,Femenino,35 a 39,1
+2017,02,CABA,Femenino,40 a 44,2
+2017,02,CABA,Femenino,45 a 49,3
+2017,02,CABA,Femenino,50 a 54,4
+2017,02,CABA,Femenino,55 a 59,6
+2017,02,CABA,Femenino,60 a 64,7
+2017,02,CABA,Femenino,65 a 69,14
+2017,02,CABA,Femenino,70 a 74,18
+2017,02,CABA,Femenino,75 a 79,20
+2017,02,CABA,Femenino,80 y más,94
+2017,02,CABA,Masculino,30 a 34,1
+2017,02,CABA,Masculino,35 a 39,2
+2017,02,CABA,Masculino,40 a 44,2
+2017,02,CABA,Masculino,45 a 49,4
+2017,02,CABA,Masculino,50 a 54,6
+2017,02,CABA,Masculino,55 a 59,12
+2017,02,CABA,Masculino,60 a 64,19
+2017,02,CABA,Masculino,65 a 69,14
+2017,02,CABA,Masculino,70 a 74,22
+2017,02,CABA,Masculino,75 a 79,26
+2017,02,CABA,Masculino,80 y más,57
+2017,06,Buenos Aires,Femenino,15 a 19,4
+2017,06,Buenos Aires,Femenino,20 a 24,3
+2017,06,Buenos Aires,Femenino,25 a 29,7
+2017,06,Buenos Aires,Femenino,30 a 34,5
+2017,06,Buenos Aires,Femenino,35 a 39,13
+2017,06,Buenos Aires,Femenino,40 a 44,8
+2017,06,Buenos Aires,Femenino,45 a 49,30
+2017,06,Buenos Aires,Femenino,50 a 54,32
+2017,06,Buenos Aires,Femenino,55 a 59,70
+2017,06,Buenos Aires,Femenino,60 a 64,101
+2017,06,Buenos Aires,Femenino,65 a 69,115
+2017,06,Buenos Aires,Femenino,70 a 74,163
+2017,06,Buenos Aires,Femenino,75 a 79,185
+2017,06,Buenos Aires,Femenino,80 y más,573
+2017,06,Buenos Aires,Masculino,15 a 19,1
+2017,06,Buenos Aires,Masculino,20 a 24,5
+2017,06,Buenos Aires,Masculino,25 a 29,5
+2017,06,Buenos Aires,Masculino,30 a 34,5
+2017,06,Buenos Aires,Masculino,35 a 39,4
+2017,06,Buenos Aires,Masculino,40 a 44,13
+2017,06,Buenos Aires,Masculino,45 a 49,36
+2017,06,Buenos Aires,Masculino,50 a 54,73
+2017,06,Buenos Aires,Masculino,55 a 59,99
+2017,06,Buenos Aires,Masculino,60 a 64,179
+2017,06,Buenos Aires,Masculino,65 a 69,231
+2017,06,Buenos Aires,Masculino,70 a 74,240
+2017,06,Buenos Aires,Masculino,75 a 79,242
+2017,06,Buenos Aires,Masculino,80 y más,383
+2017,10,Catamarca,Femenino,25 a 29,1
+2017,10,Catamarca,Femenino,50 a 54,1
+2017,10,Catamarca,Femenino,55 a 59,4
+2017,10,Catamarca,Femenino,60 a 64,6
+2017,10,Catamarca,Femenino,65 a 69,4
+2017,10,Catamarca,Femenino,70 a 74,7
+2017,10,Catamarca,Femenino,75 a 79,11
+2017,10,Catamarca,Femenino,80 y más,19
+2017,10,Catamarca,Masculino,20 a 24,1
+2017,10,Catamarca,Masculino,40 a 44,2
+2017,10,Catamarca,Masculino,45 a 49,1
+2017,10,Catamarca,Masculino,50 a 54,2
+2017,10,Catamarca,Masculino,55 a 59,6
+2017,10,Catamarca,Masculino,60 a 64,5
+2017,10,Catamarca,Masculino,65 a 69,10
+2017,10,Catamarca,Masculino,70 a 74,6
+2017,10,Catamarca,Masculino,75 a 79,6
+2017,10,Catamarca,Masculino,80 y más,10
+2017,14,Córdoba,Femenino,25 a 29,2
+2017,14,Córdoba,Femenino,30 a 34,1
+2017,14,Córdoba,Femenino,35 a 39,2
+2017,14,Córdoba,Femenino,40 a 44,4
+2017,14,Córdoba,Femenino,45 a 49,14
+2017,14,Córdoba,Femenino,50 a 54,18
+2017,14,Córdoba,Femenino,55 a 59,17
+2017,14,Córdoba,Femenino,60 a 64,33
+2017,14,Córdoba,Femenino,65 a 69,56
+2017,14,Córdoba,Femenino,70 a 74,49
+2017,14,Córdoba,Femenino,75 a 79,67
+2017,14,Córdoba,Femenino,80 y más,205
+2017,14,Córdoba,Masculino,20 a 24,1
+2017,14,Córdoba,Masculino,25 a 29,3
+2017,14,Córdoba,Masculino,30 a 34,3
+2017,14,Córdoba,Masculino,35 a 39,5
+2017,14,Córdoba,Masculino,40 a 44,5
+2017,14,Córdoba,Masculino,45 a 49,18
+2017,14,Córdoba,Masculino,50 a 54,19
+2017,14,Córdoba,Masculino,55 a 59,34
+2017,14,Córdoba,Masculino,60 a 64,51
+2017,14,Córdoba,Masculino,65 a 69,76
+2017,14,Córdoba,Masculino,70 a 74,73
+2017,14,Córdoba,Masculino,75 a 79,87
+2017,14,Córdoba,Masculino,80 y más,135
+2017,18,Corrientes,Femenino,25 a 29,1
+2017,18,Corrientes,Femenino,30 a 34,1
+2017,18,Corrientes,Femenino,40 a 44,3
+2017,18,Corrientes,Femenino,45 a 49,5
+2017,18,Corrientes,Femenino,50 a 54,7
+2017,18,Corrientes,Femenino,55 a 59,8
+2017,18,Corrientes,Femenino,60 a 64,11
+2017,18,Corrientes,Femenino,65 a 69,16
+2017,18,Corrientes,Femenino,70 a 74,15
+2017,18,Corrientes,Femenino,75 a 79,26
+2017,18,Corrientes,Femenino,80 y más,53
+2017,18,Corrientes,Masculino,15 a 19,1
+2017,18,Corrientes,Masculino,35 a 39,1
+2017,18,Corrientes,Masculino,45 a 49,2
+2017,18,Corrientes,Masculino,50 a 54,9
+2017,18,Corrientes,Masculino,55 a 59,12
+2017,18,Corrientes,Masculino,60 a 64,18
+2017,18,Corrientes,Masculino,65 a 69,39
+2017,18,Corrientes,Masculino,70 a 74,27
+2017,18,Corrientes,Masculino,75 a 79,23
+2017,18,Corrientes,Masculino,80 y más,18
+2017,22,Chaco,Femenino,35 a 39,2
+2017,22,Chaco,Femenino,45 a 49,3
+2017,22,Chaco,Femenino,50 a 54,5
+2017,22,Chaco,Femenino,55 a 59,17
+2017,22,Chaco,Femenino,60 a 64,9
+2017,22,Chaco,Femenino,65 a 69,20
+2017,22,Chaco,Femenino,70 a 74,15
+2017,22,Chaco,Femenino,75 a 79,12
+2017,22,Chaco,Femenino,80 y más,28
+2017,22,Chaco,Masculino,30 a 34,1
+2017,22,Chaco,Masculino,35 a 39,3
+2017,22,Chaco,Masculino,40 a 44,3
+2017,22,Chaco,Masculino,45 a 49,4
+2017,22,Chaco,Masculino,50 a 54,8
+2017,22,Chaco,Masculino,55 a 59,17
+2017,22,Chaco,Masculino,60 a 64,22
+2017,22,Chaco,Masculino,65 a 69,17
+2017,22,Chaco,Masculino,70 a 74,21
+2017,22,Chaco,Masculino,75 a 79,20
+2017,22,Chaco,Masculino,80 y más,22
+2017,26,Chubut,Femenino,40 a 44,1
+2017,26,Chubut,Femenino,50 a 54,2
+2017,26,Chubut,Femenino,60 a 64,3
+2017,26,Chubut,Femenino,65 a 69,4
+2017,26,Chubut,Femenino,70 a 74,5
+2017,26,Chubut,Femenino,75 a 79,12
+2017,26,Chubut,Femenino,80 y más,15
+2017,26,Chubut,Masculino,30 a 34,1
+2017,26,Chubut,Masculino,35 a 39,1
+2017,26,Chubut,Masculino,45 a 49,4
+2017,26,Chubut,Masculino,50 a 54,2
+2017,26,Chubut,Masculino,55 a 59,6
+2017,26,Chubut,Masculino,60 a 64,5
+2017,26,Chubut,Masculino,65 a 69,10
+2017,26,Chubut,Masculino,70 a 74,5
+2017,26,Chubut,Masculino,75 a 79,8
+2017,26,Chubut,Masculino,80 y más,15
+2017,30,Entre Ríos,Femenino,25 a 29,1
+2017,30,Entre Ríos,Femenino,40 a 44,4
+2017,30,Entre Ríos,Femenino,45 a 49,3
+2017,30,Entre Ríos,Femenino,50 a 54,4
+2017,30,Entre Ríos,Femenino,55 a 59,6
+2017,30,Entre Ríos,Femenino,60 a 64,15
+2017,30,Entre Ríos,Femenino,65 a 69,20
+2017,30,Entre Ríos,Femenino,70 a 74,14
+2017,30,Entre Ríos,Femenino,75 a 79,20
+2017,30,Entre Ríos,Femenino,80 y más,54
+2017,30,Entre Ríos,Masculino,15 a 19,1
+2017,30,Entre Ríos,Masculino,25 a 29,1
+2017,30,Entre Ríos,Masculino,35 a 39,1
+2017,30,Entre Ríos,Masculino,40 a 44,2
+2017,30,Entre Ríos,Masculino,45 a 49,5
+2017,30,Entre Ríos,Masculino,50 a 54,10
+2017,30,Entre Ríos,Masculino,55 a 59,8
+2017,30,Entre Ríos,Masculino,60 a 64,19
+2017,30,Entre Ríos,Masculino,65 a 69,23
+2017,30,Entre Ríos,Masculino,70 a 74,20
+2017,30,Entre Ríos,Masculino,75 a 79,26
+2017,30,Entre Ríos,Masculino,80 y más,27
+2017,34,Formosa,Femenino,20 a 24,1
+2017,34,Formosa,Femenino,25 a 29,1
+2017,34,Formosa,Femenino,35 a 39,1
+2017,34,Formosa,Femenino,40 a 44,2
+2017,34,Formosa,Femenino,45 a 49,3
+2017,34,Formosa,Femenino,50 a 54,3
+2017,34,Formosa,Femenino,55 a 59,8
+2017,34,Formosa,Femenino,60 a 64,27
+2017,34,Formosa,Femenino,65 a 69,14
+2017,34,Formosa,Femenino,70 a 74,22
+2017,34,Formosa,Femenino,75 a 79,13
+2017,34,Formosa,Femenino,80 y más,34
+2017,34,Formosa,Masculino,30 a 34,3
+2017,34,Formosa,Masculino,35 a 39,4
+2017,34,Formosa,Masculino,40 a 44,4
+2017,34,Formosa,Masculino,45 a 49,8
+2017,34,Formosa,Masculino,50 a 54,9
+2017,34,Formosa,Masculino,55 a 59,12
+2017,34,Formosa,Masculino,60 a 64,25
+2017,34,Formosa,Masculino,65 a 69,20
+2017,34,Formosa,Masculino,70 a 74,23
+2017,34,Formosa,Masculino,75 a 79,16
+2017,34,Formosa,Masculino,80 y más,18
+2017,38,Jujuy,Femenino,35 a 39,1
+2017,38,Jujuy,Femenino,40 a 44,1
+2017,38,Jujuy,Femenino,50 a 54,1
+2017,38,Jujuy,Femenino,55 a 59,4
+2017,38,Jujuy,Femenino,60 a 64,7
+2017,38,Jujuy,Femenino,65 a 69,3
+2017,38,Jujuy,Femenino,70 a 74,11
+2017,38,Jujuy,Femenino,75 a 79,1
+2017,38,Jujuy,Femenino,80 y más,13
+2017,38,Jujuy,Masculino,30 a 34,1
+2017,38,Jujuy,Masculino,40 a 44,3
+2017,38,Jujuy,Masculino,50 a 54,5
+2017,38,Jujuy,Masculino,55 a 59,5
+2017,38,Jujuy,Masculino,60 a 64,4
+2017,38,Jujuy,Masculino,65 a 69,12
+2017,38,Jujuy,Masculino,70 a 74,8
+2017,38,Jujuy,Masculino,75 a 79,12
+2017,38,Jujuy,Masculino,80 y más,6
+2017,42,La Pampa,Femenino,45 a 49,1
+2017,42,La Pampa,Femenino,50 a 54,1
+2017,42,La Pampa,Femenino,65 a 69,3
+2017,42,La Pampa,Femenino,70 a 74,3
+2017,42,La Pampa,Femenino,75 a 79,7
+2017,42,La Pampa,Femenino,80 y más,18
+2017,42,La Pampa,Masculino,45 a 49,1
+2017,42,La Pampa,Masculino,50 a 54,3
+2017,42,La Pampa,Masculino,55 a 59,3
+2017,42,La Pampa,Masculino,60 a 64,2
+2017,42,La Pampa,Masculino,65 a 69,6
+2017,42,La Pampa,Masculino,70 a 74,7
+2017,42,La Pampa,Masculino,75 a 79,6
+2017,42,La Pampa,Masculino,80 y más,11
+2017,46,La Rioja,Femenino,15 a 19,1
+2017,46,La Rioja,Femenino,30 a 34,1
+2017,46,La Rioja,Femenino,35 a 39,1
+2017,46,La Rioja,Femenino,50 a 54,2
+2017,46,La Rioja,Femenino,55 a 59,4
+2017,46,La Rioja,Femenino,60 a 64,1
+2017,46,La Rioja,Femenino,65 a 69,4
+2017,46,La Rioja,Femenino,70 a 74,6
+2017,46,La Rioja,Femenino,75 a 79,3
+2017,46,La Rioja,Femenino,80 y más,13
+2017,46,La Rioja,Masculino,45 a 49,1
+2017,46,La Rioja,Masculino,50 a 54,6
+2017,46,La Rioja,Masculino,55 a 59,7
+2017,46,La Rioja,Masculino,60 a 64,11
+2017,46,La Rioja,Masculino,65 a 69,12
+2017,46,La Rioja,Masculino,70 a 74,12
+2017,46,La Rioja,Masculino,75 a 79,6
+2017,46,La Rioja,Masculino,80 y más,6
+2017,50,Mendoza,Femenino,25 a 29,2
+2017,50,Mendoza,Femenino,30 a 34,2
+2017,50,Mendoza,Femenino,40 a 44,1
+2017,50,Mendoza,Femenino,45 a 49,5
+2017,50,Mendoza,Femenino,50 a 54,8
+2017,50,Mendoza,Femenino,55 a 59,12
+2017,50,Mendoza,Femenino,60 a 64,25
+2017,50,Mendoza,Femenino,65 a 69,32
+2017,50,Mendoza,Femenino,70 a 74,42
+2017,50,Mendoza,Femenino,75 a 79,45
+2017,50,Mendoza,Femenino,80 y más,129
+2017,50,Mendoza,Masculino,30 a 34,1
+2017,50,Mendoza,Masculino,35 a 39,3
+2017,50,Mendoza,Masculino,40 a 44,5
+2017,50,Mendoza,Masculino,45 a 49,6
+2017,50,Mendoza,Masculino,50 a 54,2
+2017,50,Mendoza,Masculino,55 a 59,14
+2017,50,Mendoza,Masculino,60 a 64,35
+2017,50,Mendoza,Masculino,65 a 69,45
+2017,50,Mendoza,Masculino,70 a 74,44
+2017,50,Mendoza,Masculino,75 a 79,55
+2017,50,Mendoza,Masculino,80 y más,97
+2017,54,Misiones,Femenino,25 a 29,2
+2017,54,Misiones,Femenino,30 a 34,2
+2017,54,Misiones,Femenino,35 a 39,1
+2017,54,Misiones,Femenino,40 a 44,2
+2017,54,Misiones,Femenino,45 a 49,1
+2017,54,Misiones,Femenino,50 a 54,8
+2017,54,Misiones,Femenino,55 a 59,9
+2017,54,Misiones,Femenino,60 a 64,18
+2017,54,Misiones,Femenino,65 a 69,20
+2017,54,Misiones,Femenino,70 a 74,21
+2017,54,Misiones,Femenino,75 a 79,29
+2017,54,Misiones,Femenino,80 y más,51
+2017,54,Misiones,Masculino,25 a 29,1
+2017,54,Misiones,Masculino,35 a 39,2
+2017,54,Misiones,Masculino,40 a 44,1
+2017,54,Misiones,Masculino,45 a 49,8
+2017,54,Misiones,Masculino,50 a 54,15
+2017,54,Misiones,Masculino,55 a 59,15
+2017,54,Misiones,Masculino,60 a 64,20
+2017,54,Misiones,Masculino,65 a 69,27
+2017,54,Misiones,Masculino,70 a 74,18
+2017,54,Misiones,Masculino,75 a 79,23
+2017,54,Misiones,Masculino,80 y más,34
+2017,58,Neuquén,Femenino,20 a 24,1
+2017,58,Neuquén,Femenino,40 a 44,2
+2017,58,Neuquén,Femenino,45 a 49,1
+2017,58,Neuquén,Femenino,50 a 54,2
+2017,58,Neuquén,Femenino,55 a 59,8
+2017,58,Neuquén,Femenino,60 a 64,13
+2017,58,Neuquén,Femenino,65 a 69,14
+2017,58,Neuquén,Femenino,70 a 74,22
+2017,58,Neuquén,Femenino,75 a 79,19
+2017,58,Neuquén,Femenino,80 y más,40
+2017,58,Neuquén,Masculino,30 a 34,1
+2017,58,Neuquén,Masculino,35 a 39,1
+2017,58,Neuquén,Masculino,40 a 44,1
+2017,58,Neuquén,Masculino,45 a 49,4
+2017,58,Neuquén,Masculino,50 a 54,7
+2017,58,Neuquén,Masculino,55 a 59,8
+2017,58,Neuquén,Masculino,60 a 64,19
+2017,58,Neuquén,Masculino,65 a 69,14
+2017,58,Neuquén,Masculino,70 a 74,23
+2017,58,Neuquén,Masculino,75 a 79,24
+2017,58,Neuquén,Masculino,80 y más,49
+2017,62,Río Negro,Femenino,40 a 44,1
+2017,62,Río Negro,Femenino,45 a 49,2
+2017,62,Río Negro,Femenino,50 a 54,1
+2017,62,Río Negro,Femenino,55 a 59,1
+2017,62,Río Negro,Femenino,60 a 64,4
+2017,62,Río Negro,Femenino,65 a 69,5
+2017,62,Río Negro,Femenino,70 a 74,5
+2017,62,Río Negro,Femenino,75 a 79,12
+2017,62,Río Negro,Femenino,80 y más,27
+2017,62,Río Negro,Masculino,35 a 39,1
+2017,62,Río Negro,Masculino,40 a 44,1
+2017,62,Río Negro,Masculino,45 a 49,1
+2017,62,Río Negro,Masculino,50 a 54,2
+2017,62,Río Negro,Masculino,55 a 59,6
+2017,62,Río Negro,Masculino,60 a 64,8
+2017,62,Río Negro,Masculino,65 a 69,9
+2017,62,Río Negro,Masculino,70 a 74,13
+2017,62,Río Negro,Masculino,75 a 79,16
+2017,62,Río Negro,Masculino,80 y más,4
+2017,66,Salta,Femenino,20 a 24,1
+2017,66,Salta,Femenino,25 a 29,1
+2017,66,Salta,Femenino,40 a 44,2
+2017,66,Salta,Femenino,50 a 54,8
+2017,66,Salta,Femenino,55 a 59,11
+2017,66,Salta,Femenino,60 a 64,14
+2017,66,Salta,Femenino,65 a 69,18
+2017,66,Salta,Femenino,70 a 74,12
+2017,66,Salta,Femenino,75 a 79,12
+2017,66,Salta,Femenino,80 y más,32
+2017,66,Salta,Masculino,25 a 29,1
+2017,66,Salta,Masculino,35 a 39,1
+2017,66,Salta,Masculino,40 a 44,3
+2017,66,Salta,Masculino,45 a 49,2
+2017,66,Salta,Masculino,50 a 54,9
+2017,66,Salta,Masculino,55 a 59,10
+2017,66,Salta,Masculino,60 a 64,22
+2017,66,Salta,Masculino,65 a 69,15
+2017,66,Salta,Masculino,70 a 74,25
+2017,66,Salta,Masculino,75 a 79,17
+2017,66,Salta,Masculino,80 y más,23
+2017,70,San Juan,Femenino,30 a 34,1
+2017,70,San Juan,Femenino,35 a 39,1
+2017,70,San Juan,Femenino,45 a 49,2
+2017,70,San Juan,Femenino,50 a 54,2
+2017,70,San Juan,Femenino,55 a 59,3
+2017,70,San Juan,Femenino,60 a 64,10
+2017,70,San Juan,Femenino,65 a 69,17
+2017,70,San Juan,Femenino,70 a 74,29
+2017,70,San Juan,Femenino,75 a 79,36
+2017,70,San Juan,Femenino,80 y más,66
+2017,70,San Juan,Masculino,25 a 29,1
+2017,70,San Juan,Masculino,35 a 39,1
+2017,70,San Juan,Masculino,40 a 44,2
+2017,70,San Juan,Masculino,45 a 49,2
+2017,70,San Juan,Masculino,50 a 54,5
+2017,70,San Juan,Masculino,55 a 59,7
+2017,70,San Juan,Masculino,60 a 64,8
+2017,70,San Juan,Masculino,65 a 69,26
+2017,70,San Juan,Masculino,70 a 74,25
+2017,70,San Juan,Masculino,75 a 79,27
+2017,70,San Juan,Masculino,80 y más,38
+2017,74,San Luis,Femenino,20 a 24,1
+2017,74,San Luis,Femenino,50 a 54,4
+2017,74,San Luis,Femenino,55 a 59,1
+2017,74,San Luis,Femenino,60 a 64,2
+2017,74,San Luis,Femenino,65 a 69,6
+2017,74,San Luis,Femenino,70 a 74,3
+2017,74,San Luis,Femenino,75 a 79,11
+2017,74,San Luis,Femenino,80 y más,16
+2017,74,San Luis,Masculino,45 a 49,3
+2017,74,San Luis,Masculino,55 a 59,6
+2017,74,San Luis,Masculino,60 a 64,3
+2017,74,San Luis,Masculino,65 a 69,12
+2017,74,San Luis,Masculino,70 a 74,8
+2017,74,San Luis,Masculino,75 a 79,10
+2017,74,San Luis,Masculino,80 y más,13
+2017,78,Santa Cruz,Femenino,40 a 44,2
+2017,78,Santa Cruz,Femenino,45 a 49,3
+2017,78,Santa Cruz,Femenino,50 a 54,1
+2017,78,Santa Cruz,Femenino,55 a 59,2
+2017,78,Santa Cruz,Femenino,60 a 64,2
+2017,78,Santa Cruz,Femenino,70 a 74,5
+2017,78,Santa Cruz,Femenino,75 a 79,7
+2017,78,Santa Cruz,Femenino,80 y más,16
+2017,78,Santa Cruz,Masculino,40 a 44,2
+2017,78,Santa Cruz,Masculino,45 a 49,4
+2017,78,Santa Cruz,Masculino,50 a 54,2
+2017,78,Santa Cruz,Masculino,55 a 59,4
+2017,78,Santa Cruz,Masculino,60 a 64,5
+2017,78,Santa Cruz,Masculino,65 a 69,7
+2017,78,Santa Cruz,Masculino,70 a 74,9
+2017,78,Santa Cruz,Masculino,75 a 79,2
+2017,78,Santa Cruz,Masculino,80 y más,13
+2017,82,Santa Fe,Femenino,15 a 19,1
+2017,82,Santa Fe,Femenino,25 a 29,1
+2017,82,Santa Fe,Femenino,30 a 34,2
+2017,82,Santa Fe,Femenino,35 a 39,2
+2017,82,Santa Fe,Femenino,40 a 44,6
+2017,82,Santa Fe,Femenino,45 a 49,5
+2017,82,Santa Fe,Femenino,50 a 54,6
+2017,82,Santa Fe,Femenino,55 a 59,8
+2017,82,Santa Fe,Femenino,60 a 64,28
+2017,82,Santa Fe,Femenino,65 a 69,32
+2017,82,Santa Fe,Femenino,70 a 74,43
+2017,82,Santa Fe,Femenino,75 a 79,51
+2017,82,Santa Fe,Femenino,80 y más,106
+2017,82,Santa Fe,Masculino,30 a 34,2
+2017,82,Santa Fe,Masculino,35 a 39,2
+2017,82,Santa Fe,Masculino,40 a 44,2
+2017,82,Santa Fe,Masculino,45 a 49,4
+2017,82,Santa Fe,Masculino,50 a 54,6
+2017,82,Santa Fe,Masculino,55 a 59,28
+2017,82,Santa Fe,Masculino,60 a 64,34
+2017,82,Santa Fe,Masculino,65 a 69,49
+2017,82,Santa Fe,Masculino,70 a 74,37
+2017,82,Santa Fe,Masculino,75 a 79,46
+2017,82,Santa Fe,Masculino,80 y más,76
+2017,86,Santiago del Estero,Femenino,20 a 24,1
+2017,86,Santiago del Estero,Femenino,30 a 34,1
+2017,86,Santiago del Estero,Femenino,35 a 39,1
+2017,86,Santiago del Estero,Femenino,50 a 54,2
+2017,86,Santiago del Estero,Femenino,55 a 59,3
+2017,86,Santiago del Estero,Femenino,60 a 64,7
+2017,86,Santiago del Estero,Femenino,65 a 69,4
+2017,86,Santiago del Estero,Femenino,70 a 74,11
+2017,86,Santiago del Estero,Femenino,75 a 79,6
+2017,86,Santiago del Estero,Femenino,80 y más,12
+2017,86,Santiago del Estero,Masculino,25 a 29,1
+2017,86,Santiago del Estero,Masculino,40 a 44,3
+2017,86,Santiago del Estero,Masculino,45 a 49,1
+2017,86,Santiago del Estero,Masculino,50 a 54,4
+2017,86,Santiago del Estero,Masculino,55 a 59,4
+2017,86,Santiago del Estero,Masculino,60 a 64,6
+2017,86,Santiago del Estero,Masculino,65 a 69,7
+2017,86,Santiago del Estero,Masculino,70 a 74,18
+2017,86,Santiago del Estero,Masculino,75 a 79,13
+2017,86,Santiago del Estero,Masculino,80 y más,9
+2017,90,Tucumán,Femenino,40 a 44,7
+2017,90,Tucumán,Femenino,45 a 49,4
+2017,90,Tucumán,Femenino,50 a 54,6
+2017,90,Tucumán,Femenino,55 a 59,9
+2017,90,Tucumán,Femenino,60 a 64,17
+2017,90,Tucumán,Femenino,65 a 69,26
+2017,90,Tucumán,Femenino,70 a 74,19
+2017,90,Tucumán,Femenino,75 a 79,20
+2017,90,Tucumán,Femenino,80 y más,45
+2017,90,Tucumán,Masculino,20 a 24,1
+2017,90,Tucumán,Masculino,25 a 29,2
+2017,90,Tucumán,Masculino,35 a 39,2
+2017,90,Tucumán,Masculino,40 a 44,3
+2017,90,Tucumán,Masculino,45 a 49,4
+2017,90,Tucumán,Masculino,50 a 54,9
+2017,90,Tucumán,Masculino,55 a 59,6
+2017,90,Tucumán,Masculino,60 a 64,16
+2017,90,Tucumán,Masculino,65 a 69,25
+2017,90,Tucumán,Masculino,70 a 74,39
+2017,90,Tucumán,Masculino,75 a 79,26
+2017,90,Tucumán,Masculino,80 y más,38
+2017,94,Tierra del Fuego,Femenino,60 a 64,1
+2017,94,Tierra del Fuego,Femenino,70 a 74,1
+2017,94,Tierra del Fuego,Femenino,75 a 79,3
+2017,94,Tierra del Fuego,Femenino,80 y más,1
+2017,94,Tierra del Fuego,Masculino,50 a 54,1
+2017,94,Tierra del Fuego,Masculino,55 a 59,1
+2017,94,Tierra del Fuego,Masculino,60 a 64,3
+2017,94,Tierra del Fuego,Masculino,65 a 69,3
+2017,94,Tierra del Fuego,Masculino,70 a 74,2
+2017,94,Tierra del Fuego,Masculino,75 a 79,3
+2017,94,Tierra del Fuego,Masculino,80 y más,5
+2018,02,CABA,Femenino,25 a 29,1
+2018,02,CABA,Femenino,40 a 44,1
+2018,02,CABA,Femenino,45 a 49,2
+2018,02,CABA,Femenino,50 a 54,1
+2018,02,CABA,Femenino,55 a 59,7
+2018,02,CABA,Femenino,60 a 64,6
+2018,02,CABA,Femenino,65 a 69,4
+2018,02,CABA,Femenino,70 a 74,18
+2018,02,CABA,Femenino,75 a 79,10
+2018,02,CABA,Femenino,80 y más,75
+2018,02,CABA,Masculino,25 a 29,3
+2018,02,CABA,Masculino,35 a 39,2
+2018,02,CABA,Masculino,40 a 44,1
+2018,02,CABA,Masculino,45 a 49,1
+2018,02,CABA,Masculino,50 a 54,3
+2018,02,CABA,Masculino,55 a 59,12
+2018,02,CABA,Masculino,60 a 64,18
+2018,02,CABA,Masculino,65 a 69,26
+2018,02,CABA,Masculino,70 a 74,27
+2018,02,CABA,Masculino,75 a 79,24
+2018,02,CABA,Masculino,80 y más,59
+2018,06,Buenos Aires,Femenino,20 a 24,4
+2018,06,Buenos Aires,Femenino,25 a 29,7
+2018,06,Buenos Aires,Femenino,30 a 34,2
+2018,06,Buenos Aires,Femenino,35 a 39,9
+2018,06,Buenos Aires,Femenino,40 a 44,13
+2018,06,Buenos Aires,Femenino,45 a 49,27
+2018,06,Buenos Aires,Femenino,50 a 54,31
+2018,06,Buenos Aires,Femenino,55 a 59,61
+2018,06,Buenos Aires,Femenino,60 a 64,88
+2018,06,Buenos Aires,Femenino,65 a 69,125
+2018,06,Buenos Aires,Femenino,70 a 74,179
+2018,06,Buenos Aires,Femenino,75 a 79,188
+2018,06,Buenos Aires,Femenino,80 y más,466
+2018,06,Buenos Aires,Masculino,20 a 24,4
+2018,06,Buenos Aires,Masculino,25 a 29,2
+2018,06,Buenos Aires,Masculino,30 a 34,14
+2018,06,Buenos Aires,Masculino,35 a 39,14
+2018,06,Buenos Aires,Masculino,40 a 44,22
+2018,06,Buenos Aires,Masculino,45 a 49,31
+2018,06,Buenos Aires,Masculino,50 a 54,67
+2018,06,Buenos Aires,Masculino,55 a 59,109
+2018,06,Buenos Aires,Masculino,60 a 64,174
+2018,06,Buenos Aires,Masculino,65 a 69,219
+2018,06,Buenos Aires,Masculino,70 a 74,245
+2018,06,Buenos Aires,Masculino,75 a 79,208
+2018,06,Buenos Aires,Masculino,80 y más,379
+2018,10,Catamarca,Femenino,30 a 34,1
+2018,10,Catamarca,Femenino,35 a 39,1
+2018,10,Catamarca,Femenino,45 a 49,3
+2018,10,Catamarca,Femenino,50 a 54,1
+2018,10,Catamarca,Femenino,55 a 59,2
+2018,10,Catamarca,Femenino,60 a 64,2
+2018,10,Catamarca,Femenino,65 a 69,4
+2018,10,Catamarca,Femenino,70 a 74,6
+2018,10,Catamarca,Femenino,75 a 79,5
+2018,10,Catamarca,Femenino,80 y más,4
+2018,10,Catamarca,Masculino,25 a 29,1
+2018,10,Catamarca,Masculino,40 a 44,1
+2018,10,Catamarca,Masculino,45 a 49,3
+2018,10,Catamarca,Masculino,50 a 54,4
+2018,10,Catamarca,Masculino,55 a 59,10
+2018,10,Catamarca,Masculino,60 a 64,10
+2018,10,Catamarca,Masculino,65 a 69,9
+2018,10,Catamarca,Masculino,70 a 74,10
+2018,10,Catamarca,Masculino,75 a 79,6
+2018,10,Catamarca,Masculino,80 y más,9
+2018,14,Córdoba,Femenino,15 a 19,1
+2018,14,Córdoba,Femenino,25 a 29,3
+2018,14,Córdoba,Femenino,30 a 34,1
+2018,14,Córdoba,Femenino,40 a 44,7
+2018,14,Córdoba,Femenino,45 a 49,10
+2018,14,Córdoba,Femenino,50 a 54,9
+2018,14,Córdoba,Femenino,55 a 59,18
+2018,14,Córdoba,Femenino,60 a 64,24
+2018,14,Córdoba,Femenino,65 a 69,38
+2018,14,Córdoba,Femenino,70 a 74,71
+2018,14,Córdoba,Femenino,75 a 79,59
+2018,14,Córdoba,Femenino,80 y más,195
+2018,14,Córdoba,Masculino,25 a 29,1
+2018,14,Córdoba,Masculino,30 a 34,4
+2018,14,Córdoba,Masculino,35 a 39,6
+2018,14,Córdoba,Masculino,40 a 44,9
+2018,14,Córdoba,Masculino,45 a 49,12
+2018,14,Córdoba,Masculino,50 a 54,22
+2018,14,Córdoba,Masculino,55 a 59,45
+2018,14,Córdoba,Masculino,60 a 64,59
+2018,14,Córdoba,Masculino,65 a 69,76
+2018,14,Córdoba,Masculino,70 a 74,103
+2018,14,Córdoba,Masculino,75 a 79,105
+2018,14,Córdoba,Masculino,80 y más,119
+2018,18,Corrientes,Femenino,15 a 19,1
+2018,18,Corrientes,Femenino,30 a 34,1
+2018,18,Corrientes,Femenino,35 a 39,1
+2018,18,Corrientes,Femenino,40 a 44,2
+2018,18,Corrientes,Femenino,45 a 49,2
+2018,18,Corrientes,Femenino,50 a 54,6
+2018,18,Corrientes,Femenino,55 a 59,13
+2018,18,Corrientes,Femenino,60 a 64,25
+2018,18,Corrientes,Femenino,65 a 69,14
+2018,18,Corrientes,Femenino,70 a 74,31
+2018,18,Corrientes,Femenino,75 a 79,22
+2018,18,Corrientes,Femenino,80 y más,44
+2018,18,Corrientes,Masculino,15 a 19,1
+2018,18,Corrientes,Masculino,30 a 34,1
+2018,18,Corrientes,Masculino,40 a 44,3
+2018,18,Corrientes,Masculino,45 a 49,5
+2018,18,Corrientes,Masculino,50 a 54,6
+2018,18,Corrientes,Masculino,55 a 59,11
+2018,18,Corrientes,Masculino,60 a 64,16
+2018,18,Corrientes,Masculino,65 a 69,36
+2018,18,Corrientes,Masculino,70 a 74,27
+2018,18,Corrientes,Masculino,75 a 79,25
+2018,18,Corrientes,Masculino,80 y más,24
+2018,22,Chaco,Femenino,15 a 19,1
+2018,22,Chaco,Femenino,20 a 24,2
+2018,22,Chaco,Femenino,30 a 34,4
+2018,22,Chaco,Femenino,35 a 39,4
+2018,22,Chaco,Femenino,40 a 44,3
+2018,22,Chaco,Femenino,45 a 49,3
+2018,22,Chaco,Femenino,50 a 54,7
+2018,22,Chaco,Femenino,55 a 59,14
+2018,22,Chaco,Femenino,60 a 64,18
+2018,22,Chaco,Femenino,65 a 69,22
+2018,22,Chaco,Femenino,70 a 74,20
+2018,22,Chaco,Femenino,75 a 79,17
+2018,22,Chaco,Femenino,80 y más,33
+2018,22,Chaco,Masculino,20 a 24,2
+2018,22,Chaco,Masculino,25 a 29,1
+2018,22,Chaco,Masculino,30 a 34,3
+2018,22,Chaco,Masculino,35 a 39,4
+2018,22,Chaco,Masculino,40 a 44,5
+2018,22,Chaco,Masculino,45 a 49,6
+2018,22,Chaco,Masculino,50 a 54,8
+2018,22,Chaco,Masculino,55 a 59,15
+2018,22,Chaco,Masculino,60 a 64,31
+2018,22,Chaco,Masculino,65 a 69,29
+2018,22,Chaco,Masculino,70 a 74,23
+2018,22,Chaco,Masculino,75 a 79,18
+2018,22,Chaco,Masculino,80 y más,28
+2018,26,Chubut,Femenino,40 a 44,1
+2018,26,Chubut,Femenino,45 a 49,1
+2018,26,Chubut,Femenino,55 a 59,2
+2018,26,Chubut,Femenino,60 a 64,2
+2018,26,Chubut,Femenino,65 a 69,6
+2018,26,Chubut,Femenino,70 a 74,9
+2018,26,Chubut,Femenino,75 a 79,4
+2018,26,Chubut,Femenino,80 y más,15
+2018,26,Chubut,Masculino,20 a 24,1
+2018,26,Chubut,Masculino,30 a 34,1
+2018,26,Chubut,Masculino,40 a 44,1
+2018,26,Chubut,Masculino,45 a 49,3
+2018,26,Chubut,Masculino,50 a 54,3
+2018,26,Chubut,Masculino,55 a 59,5
+2018,26,Chubut,Masculino,60 a 64,6
+2018,26,Chubut,Masculino,65 a 69,10
+2018,26,Chubut,Masculino,70 a 74,5
+2018,26,Chubut,Masculino,75 a 79,7
+2018,26,Chubut,Masculino,80 y más,14
+2018,30,Entre Ríos,Femenino,25 a 29,1
+2018,30,Entre Ríos,Femenino,30 a 34,1
+2018,30,Entre Ríos,Femenino,35 a 39,1
+2018,30,Entre Ríos,Femenino,40 a 44,5
+2018,30,Entre Ríos,Femenino,45 a 49,1
+2018,30,Entre Ríos,Femenino,50 a 54,5
+2018,30,Entre Ríos,Femenino,55 a 59,8
+2018,30,Entre Ríos,Femenino,60 a 64,15
+2018,30,Entre Ríos,Femenino,65 a 69,11
+2018,30,Entre Ríos,Femenino,70 a 74,29
+2018,30,Entre Ríos,Femenino,75 a 79,25
+2018,30,Entre Ríos,Femenino,80 y más,60
+2018,30,Entre Ríos,Masculino,45 a 49,2
+2018,30,Entre Ríos,Masculino,50 a 54,2
+2018,30,Entre Ríos,Masculino,55 a 59,6
+2018,30,Entre Ríos,Masculino,60 a 64,20
+2018,30,Entre Ríos,Masculino,65 a 69,37
+2018,30,Entre Ríos,Masculino,70 a 74,37
+2018,30,Entre Ríos,Masculino,75 a 79,35
+2018,30,Entre Ríos,Masculino,80 y más,30
+2018,34,Formosa,Femenino,15 a 19,1
+2018,34,Formosa,Femenino,25 a 29,1
+2018,34,Formosa,Femenino,30 a 34,1
+2018,34,Formosa,Femenino,35 a 39,1
+2018,34,Formosa,Femenino,40 a 44,3
+2018,34,Formosa,Femenino,45 a 49,3
+2018,34,Formosa,Femenino,50 a 54,10
+2018,34,Formosa,Femenino,55 a 59,5
+2018,34,Formosa,Femenino,60 a 64,18
+2018,34,Formosa,Femenino,65 a 69,21
+2018,34,Formosa,Femenino,70 a 74,22
+2018,34,Formosa,Femenino,75 a 79,20
+2018,34,Formosa,Femenino,80 y más,26
+2018,34,Formosa,Masculino,30 a 34,1
+2018,34,Formosa,Masculino,35 a 39,1
+2018,34,Formosa,Masculino,40 a 44,2
+2018,34,Formosa,Masculino,45 a 49,7
+2018,34,Formosa,Masculino,50 a 54,15
+2018,34,Formosa,Masculino,55 a 59,12
+2018,34,Formosa,Masculino,60 a 64,22
+2018,34,Formosa,Masculino,65 a 69,22
+2018,34,Formosa,Masculino,70 a 74,21
+2018,34,Formosa,Masculino,75 a 79,21
+2018,34,Formosa,Masculino,80 y más,23
+2018,38,Jujuy,Femenino,55 a 59,4
+2018,38,Jujuy,Femenino,60 a 64,6
+2018,38,Jujuy,Femenino,65 a 69,5
+2018,38,Jujuy,Femenino,70 a 74,5
+2018,38,Jujuy,Femenino,75 a 79,9
+2018,38,Jujuy,Femenino,80 y más,15
+2018,38,Jujuy,Masculino,30 a 34,1
+2018,38,Jujuy,Masculino,45 a 49,3
+2018,38,Jujuy,Masculino,50 a 54,7
+2018,38,Jujuy,Masculino,55 a 59,4
+2018,38,Jujuy,Masculino,60 a 64,6
+2018,38,Jujuy,Masculino,65 a 69,9
+2018,38,Jujuy,Masculino,70 a 74,5
+2018,38,Jujuy,Masculino,75 a 79,5
+2018,38,Jujuy,Masculino,80 y más,10
+2018,42,La Pampa,Femenino,40 a 44,1
+2018,42,La Pampa,Femenino,45 a 49,1
+2018,42,La Pampa,Femenino,50 a 54,1
+2018,42,La Pampa,Femenino,55 a 59,1
+2018,42,La Pampa,Femenino,60 a 64,5
+2018,42,La Pampa,Femenino,65 a 69,1
+2018,42,La Pampa,Femenino,70 a 74,4
+2018,42,La Pampa,Femenino,75 a 79,4
+2018,42,La Pampa,Femenino,80 y más,12
+2018,42,La Pampa,Masculino,30 a 34,1
+2018,42,La Pampa,Masculino,45 a 49,1
+2018,42,La Pampa,Masculino,55 a 59,2
+2018,42,La Pampa,Masculino,60 a 64,4
+2018,42,La Pampa,Masculino,70 a 74,9
+2018,42,La Pampa,Masculino,75 a 79,6
+2018,42,La Pampa,Masculino,80 y más,11
+2018,46,La Rioja,Femenino,25 a 29,1
+2018,46,La Rioja,Femenino,30 a 34,1
+2018,46,La Rioja,Femenino,40 a 44,1
+2018,46,La Rioja,Femenino,50 a 54,3
+2018,46,La Rioja,Femenino,55 a 59,9
+2018,46,La Rioja,Femenino,60 a 64,4
+2018,46,La Rioja,Femenino,65 a 69,4
+2018,46,La Rioja,Femenino,70 a 74,13
+2018,46,La Rioja,Femenino,75 a 79,11
+2018,46,La Rioja,Femenino,80 y más,27
+2018,46,La Rioja,Masculino,35 a 39,1
+2018,46,La Rioja,Masculino,40 a 44,5
+2018,46,La Rioja,Masculino,45 a 49,4
+2018,46,La Rioja,Masculino,50 a 54,8
+2018,46,La Rioja,Masculino,55 a 59,10
+2018,46,La Rioja,Masculino,60 a 64,10
+2018,46,La Rioja,Masculino,65 a 69,12
+2018,46,La Rioja,Masculino,70 a 74,15
+2018,46,La Rioja,Masculino,75 a 79,7
+2018,46,La Rioja,Masculino,80 y más,17
+2018,50,Mendoza,Femenino,25 a 29,1
+2018,50,Mendoza,Femenino,30 a 34,1
+2018,50,Mendoza,Femenino,35 a 39,2
+2018,50,Mendoza,Femenino,40 a 44,3
+2018,50,Mendoza,Femenino,45 a 49,2
+2018,50,Mendoza,Femenino,50 a 54,4
+2018,50,Mendoza,Femenino,55 a 59,9
+2018,50,Mendoza,Femenino,60 a 64,24
+2018,50,Mendoza,Femenino,65 a 69,33
+2018,50,Mendoza,Femenino,70 a 74,38
+2018,50,Mendoza,Femenino,75 a 79,38
+2018,50,Mendoza,Femenino,80 y más,115
+2018,50,Mendoza,Masculino,25 a 29,1
+2018,50,Mendoza,Masculino,30 a 34,2
+2018,50,Mendoza,Masculino,35 a 39,3
+2018,50,Mendoza,Masculino,40 a 44,5
+2018,50,Mendoza,Masculino,45 a 49,5
+2018,50,Mendoza,Masculino,50 a 54,8
+2018,50,Mendoza,Masculino,55 a 59,14
+2018,50,Mendoza,Masculino,60 a 64,30
+2018,50,Mendoza,Masculino,65 a 69,39
+2018,50,Mendoza,Masculino,70 a 74,43
+2018,50,Mendoza,Masculino,75 a 79,43
+2018,50,Mendoza,Masculino,80 y más,77
+2018,54,Misiones,Femenino,20 a 24,1
+2018,54,Misiones,Femenino,30 a 34,1
+2018,54,Misiones,Femenino,35 a 39,2
+2018,54,Misiones,Femenino,40 a 44,2
+2018,54,Misiones,Femenino,45 a 49,5
+2018,54,Misiones,Femenino,50 a 54,8
+2018,54,Misiones,Femenino,55 a 59,8
+2018,54,Misiones,Femenino,60 a 64,26
+2018,54,Misiones,Femenino,65 a 69,13
+2018,54,Misiones,Femenino,70 a 74,20
+2018,54,Misiones,Femenino,75 a 79,28
+2018,54,Misiones,Femenino,80 y más,51
+2018,54,Misiones,Masculino,35 a 39,1
+2018,54,Misiones,Masculino,40 a 44,4
+2018,54,Misiones,Masculino,45 a 49,6
+2018,54,Misiones,Masculino,50 a 54,8
+2018,54,Misiones,Masculino,55 a 59,19
+2018,54,Misiones,Masculino,60 a 64,38
+2018,54,Misiones,Masculino,65 a 69,31
+2018,54,Misiones,Masculino,70 a 74,18
+2018,54,Misiones,Masculino,75 a 79,21
+2018,54,Misiones,Masculino,80 y más,31
+2018,58,Neuquén,Femenino,45 a 49,4
+2018,58,Neuquén,Femenino,50 a 54,2
+2018,58,Neuquén,Femenino,55 a 59,8
+2018,58,Neuquén,Femenino,60 a 64,14
+2018,58,Neuquén,Femenino,65 a 69,11
+2018,58,Neuquén,Femenino,70 a 74,24
+2018,58,Neuquén,Femenino,75 a 79,19
+2018,58,Neuquén,Femenino,80 y más,50
+2018,58,Neuquén,Masculino,20 a 24,1
+2018,58,Neuquén,Masculino,35 a 39,1
+2018,58,Neuquén,Masculino,45 a 49,4
+2018,58,Neuquén,Masculino,50 a 54,3
+2018,58,Neuquén,Masculino,55 a 59,11
+2018,58,Neuquén,Masculino,60 a 64,17
+2018,58,Neuquén,Masculino,65 a 69,23
+2018,58,Neuquén,Masculino,70 a 74,31
+2018,58,Neuquén,Masculino,75 a 79,19
+2018,58,Neuquén,Masculino,80 y más,45
+2018,62,Río Negro,Femenino,45 a 49,2
+2018,62,Río Negro,Femenino,50 a 54,1
+2018,62,Río Negro,Femenino,55 a 59,2
+2018,62,Río Negro,Femenino,60 a 64,9
+2018,62,Río Negro,Femenino,65 a 69,6
+2018,62,Río Negro,Femenino,70 a 74,10
+2018,62,Río Negro,Femenino,75 a 79,4
+2018,62,Río Negro,Femenino,80 y más,24
+2018,62,Río Negro,Masculino,30 a 34,2
+2018,62,Río Negro,Masculino,50 a 54,6
+2018,62,Río Negro,Masculino,55 a 59,5
+2018,62,Río Negro,Masculino,60 a 64,6
+2018,62,Río Negro,Masculino,65 a 69,7
+2018,62,Río Negro,Masculino,70 a 74,7
+2018,62,Río Negro,Masculino,75 a 79,20
+2018,62,Río Negro,Masculino,80 y más,16
+2018,66,Salta,Femenino,15 a 19,1
+2018,66,Salta,Femenino,25 a 29,1
+2018,66,Salta,Femenino,35 a 39,1
+2018,66,Salta,Femenino,40 a 44,3
+2018,66,Salta,Femenino,45 a 49,5
+2018,66,Salta,Femenino,50 a 54,15
+2018,66,Salta,Femenino,55 a 59,14
+2018,66,Salta,Femenino,60 a 64,17
+2018,66,Salta,Femenino,65 a 69,32
+2018,66,Salta,Femenino,70 a 74,18
+2018,66,Salta,Femenino,75 a 79,23
+2018,66,Salta,Femenino,80 y más,43
+2018,66,Salta,Masculino,25 a 29,3
+2018,66,Salta,Masculino,30 a 34,1
+2018,66,Salta,Masculino,35 a 39,2
+2018,66,Salta,Masculino,40 a 44,3
+2018,66,Salta,Masculino,45 a 49,7
+2018,66,Salta,Masculino,50 a 54,11
+2018,66,Salta,Masculino,55 a 59,18
+2018,66,Salta,Masculino,60 a 64,25
+2018,66,Salta,Masculino,65 a 69,37
+2018,66,Salta,Masculino,70 a 74,31
+2018,66,Salta,Masculino,75 a 79,22
+2018,66,Salta,Masculino,80 y más,34
+2018,70,San Juan,Femenino,25 a 29,1
+2018,70,San Juan,Femenino,40 a 44,1
+2018,70,San Juan,Femenino,45 a 49,1
+2018,70,San Juan,Femenino,50 a 54,7
+2018,70,San Juan,Femenino,55 a 59,8
+2018,70,San Juan,Femenino,60 a 64,12
+2018,70,San Juan,Femenino,65 a 69,18
+2018,70,San Juan,Femenino,70 a 74,26
+2018,70,San Juan,Femenino,75 a 79,23
+2018,70,San Juan,Femenino,80 y más,51
+2018,70,San Juan,Masculino,30 a 34,2
+2018,70,San Juan,Masculino,35 a 39,1
+2018,70,San Juan,Masculino,40 a 44,2
+2018,70,San Juan,Masculino,45 a 49,3
+2018,70,San Juan,Masculino,50 a 54,4
+2018,70,San Juan,Masculino,55 a 59,10
+2018,70,San Juan,Masculino,60 a 64,10
+2018,70,San Juan,Masculino,65 a 69,26
+2018,70,San Juan,Masculino,70 a 74,37
+2018,70,San Juan,Masculino,75 a 79,27
+2018,70,San Juan,Masculino,80 y más,34
+2018,74,San Luis,Femenino,45 a 49,1
+2018,74,San Luis,Femenino,60 a 64,4
+2018,74,San Luis,Femenino,65 a 69,10
+2018,74,San Luis,Femenino,70 a 74,4
+2018,74,San Luis,Femenino,75 a 79,7
+2018,74,San Luis,Femenino,80 y más,19
+2018,74,San Luis,Masculino,15 a 19,1
+2018,74,San Luis,Masculino,40 a 44,1
+2018,74,San Luis,Masculino,50 a 54,2
+2018,74,San Luis,Masculino,55 a 59,3
+2018,74,San Luis,Masculino,60 a 64,10
+2018,74,San Luis,Masculino,65 a 69,5
+2018,74,San Luis,Masculino,70 a 74,12
+2018,74,San Luis,Masculino,75 a 79,14
+2018,74,San Luis,Masculino,80 y más,17
+2018,78,Santa Cruz,Femenino,40 a 44,1
+2018,78,Santa Cruz,Femenino,45 a 49,1
+2018,78,Santa Cruz,Femenino,50 a 54,1
+2018,78,Santa Cruz,Femenino,55 a 59,4
+2018,78,Santa Cruz,Femenino,60 a 64,4
+2018,78,Santa Cruz,Femenino,65 a 69,9
+2018,78,Santa Cruz,Femenino,70 a 74,9
+2018,78,Santa Cruz,Femenino,75 a 79,7
+2018,78,Santa Cruz,Femenino,80 y más,20
+2018,78,Santa Cruz,Masculino,45 a 49,1
+2018,78,Santa Cruz,Masculino,50 a 54,5
+2018,78,Santa Cruz,Masculino,55 a 59,3
+2018,78,Santa Cruz,Masculino,60 a 64,3
+2018,78,Santa Cruz,Masculino,65 a 69,5
+2018,78,Santa Cruz,Masculino,70 a 74,12
+2018,78,Santa Cruz,Masculino,75 a 79,11
+2018,78,Santa Cruz,Masculino,80 y más,11
+2018,82,Santa Fe,Femenino,30 a 34,2
+2018,82,Santa Fe,Femenino,35 a 39,1
+2018,82,Santa Fe,Femenino,45 a 49,5
+2018,82,Santa Fe,Femenino,50 a 54,7
+2018,82,Santa Fe,Femenino,55 a 59,17
+2018,82,Santa Fe,Femenino,60 a 64,26
+2018,82,Santa Fe,Femenino,65 a 69,25
+2018,82,Santa Fe,Femenino,70 a 74,29
+2018,82,Santa Fe,Femenino,75 a 79,50
+2018,82,Santa Fe,Femenino,80 y más,110
+2018,82,Santa Fe,Masculino,25 a 29,1
+2018,82,Santa Fe,Masculino,35 a 39,1
+2018,82,Santa Fe,Masculino,40 a 44,3
+2018,82,Santa Fe,Masculino,45 a 49,9
+2018,82,Santa Fe,Masculino,50 a 54,10
+2018,82,Santa Fe,Masculino,55 a 59,29
+2018,82,Santa Fe,Masculino,60 a 64,25
+2018,82,Santa Fe,Masculino,65 a 69,44
+2018,82,Santa Fe,Masculino,70 a 74,46
+2018,82,Santa Fe,Masculino,75 a 79,49
+2018,82,Santa Fe,Masculino,80 y más,90
+2018,86,Santiago del Estero,Femenino,30 a 34,1
+2018,86,Santiago del Estero,Femenino,35 a 39,1
+2018,86,Santiago del Estero,Femenino,45 a 49,2
+2018,86,Santiago del Estero,Femenino,50 a 54,5
+2018,86,Santiago del Estero,Femenino,55 a 59,7
+2018,86,Santiago del Estero,Femenino,60 a 64,9
+2018,86,Santiago del Estero,Femenino,65 a 69,17
+2018,86,Santiago del Estero,Femenino,70 a 74,12
+2018,86,Santiago del Estero,Femenino,75 a 79,6
+2018,86,Santiago del Estero,Femenino,80 y más,18
+2018,86,Santiago del Estero,Masculino,35 a 39,1
+2018,86,Santiago del Estero,Masculino,40 a 44,2
+2018,86,Santiago del Estero,Masculino,45 a 49,4
+2018,86,Santiago del Estero,Masculino,55 a 59,13
+2018,86,Santiago del Estero,Masculino,60 a 64,19
+2018,86,Santiago del Estero,Masculino,65 a 69,9
+2018,86,Santiago del Estero,Masculino,70 a 74,12
+2018,86,Santiago del Estero,Masculino,75 a 79,6
+2018,86,Santiago del Estero,Masculino,80 y más,9
+2018,90,Tucumán,Femenino,25 a 29,1
+2018,90,Tucumán,Femenino,30 a 34,2
+2018,90,Tucumán,Femenino,35 a 39,1
+2018,90,Tucumán,Femenino,45 a 49,3
+2018,90,Tucumán,Femenino,50 a 54,4
+2018,90,Tucumán,Femenino,55 a 59,9
+2018,90,Tucumán,Femenino,60 a 64,18
+2018,90,Tucumán,Femenino,65 a 69,27
+2018,90,Tucumán,Femenino,70 a 74,27
+2018,90,Tucumán,Femenino,75 a 79,30
+2018,90,Tucumán,Femenino,80 y más,42
+2018,90,Tucumán,Masculino,30 a 34,1
+2018,90,Tucumán,Masculino,35 a 39,3
+2018,90,Tucumán,Masculino,40 a 44,4
+2018,90,Tucumán,Masculino,45 a 49,1
+2018,90,Tucumán,Masculino,50 a 54,10
+2018,90,Tucumán,Masculino,55 a 59,13
+2018,90,Tucumán,Masculino,60 a 64,25
+2018,90,Tucumán,Masculino,65 a 69,34
+2018,90,Tucumán,Masculino,70 a 74,25
+2018,90,Tucumán,Masculino,75 a 79,32
+2018,90,Tucumán,Masculino,80 y más,35
+2018,94,Tierra del Fuego,Femenino,55 a 59,1
+2018,94,Tierra del Fuego,Femenino,65 a 69,6
+2018,94,Tierra del Fuego,Femenino,70 a 74,1
+2018,94,Tierra del Fuego,Femenino,75 a 79,2
+2018,94,Tierra del Fuego,Femenino,80 y más,1
+2018,94,Tierra del Fuego,Masculino,40 a 44,1
+2018,94,Tierra del Fuego,Masculino,55 a 59,2
+2018,94,Tierra del Fuego,Masculino,60 a 64,5
+2018,94,Tierra del Fuego,Masculino,65 a 69,5
+2018,94,Tierra del Fuego,Masculino,75 a 79,3
+2018,94,Tierra del Fuego,Masculino,80 y más,1
+2019,02,CABA,Femenino,20 a 24,2
+2019,02,CABA,Femenino,35 a 39,1
+2019,02,CABA,Femenino,40 a 44,3
+2019,02,CABA,Femenino,45 a 49,1
+2019,02,CABA,Femenino,55 a 59,3
+2019,02,CABA,Femenino,60 a 64,4
+2019,02,CABA,Femenino,65 a 69,8
+2019,02,CABA,Femenino,70 a 74,11
+2019,02,CABA,Femenino,75 a 79,16
+2019,02,CABA,Femenino,80 y más,76
+2019,02,CABA,Masculino,25 a 29,1
+2019,02,CABA,Masculino,35 a 39,1
+2019,02,CABA,Masculino,40 a 44,1
+2019,02,CABA,Masculino,45 a 49,3
+2019,02,CABA,Masculino,50 a 54,7
+2019,02,CABA,Masculino,55 a 59,11
+2019,02,CABA,Masculino,60 a 64,19
+2019,02,CABA,Masculino,65 a 69,18
+2019,02,CABA,Masculino,70 a 74,29
+2019,02,CABA,Masculino,75 a 79,13
+2019,02,CABA,Masculino,80 y más,49
+2019,06,Buenos Aires,Femenino,20 a 24,2
+2019,06,Buenos Aires,Femenino,25 a 29,3
+2019,06,Buenos Aires,Femenino,30 a 34,7
+2019,06,Buenos Aires,Femenino,35 a 39,10
+2019,06,Buenos Aires,Femenino,40 a 44,17
+2019,06,Buenos Aires,Femenino,45 a 49,26
+2019,06,Buenos Aires,Femenino,50 a 54,41
+2019,06,Buenos Aires,Femenino,55 a 59,71
+2019,06,Buenos Aires,Femenino,60 a 64,100
+2019,06,Buenos Aires,Femenino,65 a 69,129
+2019,06,Buenos Aires,Femenino,70 a 74,157
+2019,06,Buenos Aires,Femenino,75 a 79,186
+2019,06,Buenos Aires,Femenino,80 y más,471
+2019,06,Buenos Aires,Masculino,15 a 19,1
+2019,06,Buenos Aires,Masculino,20 a 24,3
+2019,06,Buenos Aires,Masculino,25 a 29,2
+2019,06,Buenos Aires,Masculino,30 a 34,7
+2019,06,Buenos Aires,Masculino,35 a 39,7
+2019,06,Buenos Aires,Masculino,40 a 44,22
+2019,06,Buenos Aires,Masculino,45 a 49,23
+2019,06,Buenos Aires,Masculino,50 a 54,52
+2019,06,Buenos Aires,Masculino,55 a 59,117
+2019,06,Buenos Aires,Masculino,60 a 64,156
+2019,06,Buenos Aires,Masculino,65 a 69,220
+2019,06,Buenos Aires,Masculino,70 a 74,267
+2019,06,Buenos Aires,Masculino,75 a 79,229
+2019,06,Buenos Aires,Masculino,80 y más,341
+2019,10,Catamarca,Femenino,30 a 34,1
+2019,10,Catamarca,Femenino,40 a 44,1
+2019,10,Catamarca,Femenino,45 a 49,1
+2019,10,Catamarca,Femenino,50 a 54,2
+2019,10,Catamarca,Femenino,55 a 59,2
+2019,10,Catamarca,Femenino,60 a 64,6
+2019,10,Catamarca,Femenino,65 a 69,3
+2019,10,Catamarca,Femenino,70 a 74,10
+2019,10,Catamarca,Femenino,75 a 79,7
+2019,10,Catamarca,Femenino,80 y más,12
+2019,10,Catamarca,Masculino,35 a 39,1
+2019,10,Catamarca,Masculino,40 a 44,1
+2019,10,Catamarca,Masculino,45 a 49,4
+2019,10,Catamarca,Masculino,50 a 54,3
+2019,10,Catamarca,Masculino,55 a 59,5
+2019,10,Catamarca,Masculino,60 a 64,13
+2019,10,Catamarca,Masculino,65 a 69,13
+2019,10,Catamarca,Masculino,70 a 74,13
+2019,10,Catamarca,Masculino,75 a 79,7
+2019,10,Catamarca,Masculino,80 y más,8
+2019,14,Córdoba,Femenino,20 a 24,1
+2019,14,Córdoba,Femenino,30 a 34,3
+2019,14,Córdoba,Femenino,35 a 39,1
+2019,14,Córdoba,Femenino,40 a 44,6
+2019,14,Córdoba,Femenino,45 a 49,7
+2019,14,Córdoba,Femenino,50 a 54,15
+2019,14,Córdoba,Femenino,55 a 59,17
+2019,14,Córdoba,Femenino,60 a 64,25
+2019,14,Córdoba,Femenino,65 a 69,46
+2019,14,Córdoba,Femenino,70 a 74,51
+2019,14,Córdoba,Femenino,75 a 79,71
+2019,14,Córdoba,Femenino,80 y más,209
+2019,14,Córdoba,Masculino,15 a 19,1
+2019,14,Córdoba,Masculino,20 a 24,1
+2019,14,Córdoba,Masculino,25 a 29,1
+2019,14,Córdoba,Masculino,30 a 34,3
+2019,14,Córdoba,Masculino,35 a 39,6
+2019,14,Córdoba,Masculino,40 a 44,8
+2019,14,Córdoba,Masculino,45 a 49,10
+2019,14,Córdoba,Masculino,50 a 54,14
+2019,14,Córdoba,Masculino,55 a 59,37
+2019,14,Córdoba,Masculino,60 a 64,53
+2019,14,Córdoba,Masculino,65 a 69,74
+2019,14,Córdoba,Masculino,70 a 74,98
+2019,14,Córdoba,Masculino,75 a 79,97
+2019,14,Córdoba,Masculino,80 y más,144
+2019,18,Corrientes,Femenino,25 a 29,1
+2019,18,Corrientes,Femenino,40 a 44,1
+2019,18,Corrientes,Femenino,45 a 49,4
+2019,18,Corrientes,Femenino,50 a 54,6
+2019,18,Corrientes,Femenino,55 a 59,6
+2019,18,Corrientes,Femenino,60 a 64,20
+2019,18,Corrientes,Femenino,65 a 69,17
+2019,18,Corrientes,Femenino,70 a 74,25
+2019,18,Corrientes,Femenino,75 a 79,24
+2019,18,Corrientes,Femenino,80 y más,58
+2019,18,Corrientes,Masculino,35 a 39,1
+2019,18,Corrientes,Masculino,40 a 44,2
+2019,18,Corrientes,Masculino,45 a 49,3
+2019,18,Corrientes,Masculino,50 a 54,10
+2019,18,Corrientes,Masculino,55 a 59,13
+2019,18,Corrientes,Masculino,60 a 64,16
+2019,18,Corrientes,Masculino,65 a 69,27
+2019,18,Corrientes,Masculino,70 a 74,22
+2019,18,Corrientes,Masculino,75 a 79,24
+2019,18,Corrientes,Masculino,80 y más,26
+2019,22,Chaco,Femenino,30 a 34,2
+2019,22,Chaco,Femenino,35 a 39,2
+2019,22,Chaco,Femenino,40 a 44,3
+2019,22,Chaco,Femenino,45 a 49,5
+2019,22,Chaco,Femenino,50 a 54,13
+2019,22,Chaco,Femenino,55 a 59,15
+2019,22,Chaco,Femenino,60 a 64,12
+2019,22,Chaco,Femenino,65 a 69,17
+2019,22,Chaco,Femenino,70 a 74,18
+2019,22,Chaco,Femenino,75 a 79,27
+2019,22,Chaco,Femenino,80 y más,37
+2019,22,Chaco,Masculino,35 a 39,2
+2019,22,Chaco,Masculino,40 a 44,4
+2019,22,Chaco,Masculino,45 a 49,4
+2019,22,Chaco,Masculino,50 a 54,15
+2019,22,Chaco,Masculino,55 a 59,20
+2019,22,Chaco,Masculino,60 a 64,24
+2019,22,Chaco,Masculino,65 a 69,37
+2019,22,Chaco,Masculino,70 a 74,25
+2019,22,Chaco,Masculino,75 a 79,23
+2019,22,Chaco,Masculino,80 y más,14
+2019,26,Chubut,Femenino,40 a 44,1
+2019,26,Chubut,Femenino,45 a 49,2
+2019,26,Chubut,Femenino,50 a 54,2
+2019,26,Chubut,Femenino,60 a 64,1
+2019,26,Chubut,Femenino,65 a 69,4
+2019,26,Chubut,Femenino,70 a 74,6
+2019,26,Chubut,Femenino,75 a 79,7
+2019,26,Chubut,Femenino,80 y más,24
+2019,26,Chubut,Masculino,25 a 29,1
+2019,26,Chubut,Masculino,45 a 49,1
+2019,26,Chubut,Masculino,50 a 54,5
+2019,26,Chubut,Masculino,55 a 59,4
+2019,26,Chubut,Masculino,60 a 64,3
+2019,26,Chubut,Masculino,65 a 69,8
+2019,26,Chubut,Masculino,70 a 74,4
+2019,26,Chubut,Masculino,75 a 79,14
+2019,26,Chubut,Masculino,80 y más,17
+2019,30,Entre Ríos,Femenino,25 a 29,1
+2019,30,Entre Ríos,Femenino,40 a 44,2
+2019,30,Entre Ríos,Femenino,45 a 49,2
+2019,30,Entre Ríos,Femenino,50 a 54,4
+2019,30,Entre Ríos,Femenino,55 a 59,7
+2019,30,Entre Ríos,Femenino,60 a 64,7
+2019,30,Entre Ríos,Femenino,65 a 69,23
+2019,30,Entre Ríos,Femenino,70 a 74,16
+2019,30,Entre Ríos,Femenino,75 a 79,22
+2019,30,Entre Ríos,Femenino,80 y más,50
+2019,30,Entre Ríos,Masculino,40 a 44,2
+2019,30,Entre Ríos,Masculino,45 a 49,4
+2019,30,Entre Ríos,Masculino,50 a 54,5
+2019,30,Entre Ríos,Masculino,55 a 59,6
+2019,30,Entre Ríos,Masculino,60 a 64,29
+2019,30,Entre Ríos,Masculino,65 a 69,37
+2019,30,Entre Ríos,Masculino,70 a 74,26
+2019,30,Entre Ríos,Masculino,75 a 79,29
+2019,30,Entre Ríos,Masculino,80 y más,39
+2019,34,Formosa,Femenino,25 a 29,3
+2019,34,Formosa,Femenino,30 a 34,1
+2019,34,Formosa,Femenino,40 a 44,3
+2019,34,Formosa,Femenino,45 a 49,5
+2019,34,Formosa,Femenino,50 a 54,8
+2019,34,Formosa,Femenino,55 a 59,8
+2019,34,Formosa,Femenino,60 a 64,10
+2019,34,Formosa,Femenino,65 a 69,19
+2019,34,Formosa,Femenino,70 a 74,16
+2019,34,Formosa,Femenino,75 a 79,14
+2019,34,Formosa,Femenino,80 y más,30
+2019,34,Formosa,Masculino,30 a 34,2
+2019,34,Formosa,Masculino,40 a 44,2
+2019,34,Formosa,Masculino,45 a 49,8
+2019,34,Formosa,Masculino,50 a 54,8
+2019,34,Formosa,Masculino,55 a 59,13
+2019,34,Formosa,Masculino,60 a 64,21
+2019,34,Formosa,Masculino,65 a 69,21
+2019,34,Formosa,Masculino,70 a 74,18
+2019,34,Formosa,Masculino,75 a 79,17
+2019,34,Formosa,Masculino,80 y más,19
+2019,38,Jujuy,Femenino,25 a 29,1
+2019,38,Jujuy,Femenino,45 a 49,1
+2019,38,Jujuy,Femenino,50 a 54,3
+2019,38,Jujuy,Femenino,55 a 59,2
+2019,38,Jujuy,Femenino,60 a 64,6
+2019,38,Jujuy,Femenino,65 a 69,9
+2019,38,Jujuy,Femenino,70 a 74,14
+2019,38,Jujuy,Femenino,75 a 79,12
+2019,38,Jujuy,Femenino,80 y más,20
+2019,38,Jujuy,Masculino,30 a 34,1
+2019,38,Jujuy,Masculino,40 a 44,1
+2019,38,Jujuy,Masculino,45 a 49,3
+2019,38,Jujuy,Masculino,50 a 54,2
+2019,38,Jujuy,Masculino,55 a 59,8
+2019,38,Jujuy,Masculino,60 a 64,9
+2019,38,Jujuy,Masculino,65 a 69,10
+2019,38,Jujuy,Masculino,70 a 74,8
+2019,38,Jujuy,Masculino,75 a 79,8
+2019,38,Jujuy,Masculino,80 y más,11
+2019,42,La Pampa,Femenino,45 a 49,1
+2019,42,La Pampa,Femenino,55 a 59,1
+2019,42,La Pampa,Femenino,65 a 69,3
+2019,42,La Pampa,Femenino,75 a 79,9
+2019,42,La Pampa,Femenino,80 y más,10
+2019,42,La Pampa,Masculino,30 a 34,1
+2019,42,La Pampa,Masculino,55 a 59,1
+2019,42,La Pampa,Masculino,60 a 64,2
+2019,42,La Pampa,Masculino,65 a 69,5
+2019,42,La Pampa,Masculino,70 a 74,4
+2019,42,La Pampa,Masculino,75 a 79,3
+2019,42,La Pampa,Masculino,80 y más,10
+2019,46,La Rioja,Femenino,45 a 49,3
+2019,46,La Rioja,Femenino,50 a 54,1
+2019,46,La Rioja,Femenino,55 a 59,2
+2019,46,La Rioja,Femenino,60 a 64,3
+2019,46,La Rioja,Femenino,65 a 69,9
+2019,46,La Rioja,Femenino,70 a 74,4
+2019,46,La Rioja,Femenino,75 a 79,7
+2019,46,La Rioja,Femenino,80 y más,10
+2019,46,La Rioja,Masculino,35 a 39,1
+2019,46,La Rioja,Masculino,40 a 44,1
+2019,46,La Rioja,Masculino,45 a 49,1
+2019,46,La Rioja,Masculino,50 a 54,5
+2019,46,La Rioja,Masculino,55 a 59,4
+2019,46,La Rioja,Masculino,60 a 64,7
+2019,46,La Rioja,Masculino,65 a 69,11
+2019,46,La Rioja,Masculino,70 a 74,7
+2019,46,La Rioja,Masculino,75 a 79,8
+2019,46,La Rioja,Masculino,80 y más,9
+2019,50,Mendoza,Femenino,20 a 24,1
+2019,50,Mendoza,Femenino,25 a 29,1
+2019,50,Mendoza,Femenino,35 a 39,1
+2019,50,Mendoza,Femenino,45 a 49,2
+2019,50,Mendoza,Femenino,50 a 54,6
+2019,50,Mendoza,Femenino,55 a 59,12
+2019,50,Mendoza,Femenino,60 a 64,19
+2019,50,Mendoza,Femenino,65 a 69,29
+2019,50,Mendoza,Femenino,70 a 74,42
+2019,50,Mendoza,Femenino,75 a 79,40
+2019,50,Mendoza,Femenino,80 y más,118
+2019,50,Mendoza,Masculino,25 a 29,1
+2019,50,Mendoza,Masculino,35 a 39,1
+2019,50,Mendoza,Masculino,40 a 44,5
+2019,50,Mendoza,Masculino,45 a 49,7
+2019,50,Mendoza,Masculino,50 a 54,10
+2019,50,Mendoza,Masculino,55 a 59,19
+2019,50,Mendoza,Masculino,60 a 64,18
+2019,50,Mendoza,Masculino,65 a 69,47
+2019,50,Mendoza,Masculino,70 a 74,49
+2019,50,Mendoza,Masculino,75 a 79,53
+2019,50,Mendoza,Masculino,80 y más,83
+2019,54,Misiones,Femenino,20 a 24,1
+2019,54,Misiones,Femenino,25 a 29,1
+2019,54,Misiones,Femenino,35 a 39,1
+2019,54,Misiones,Femenino,45 a 49,4
+2019,54,Misiones,Femenino,50 a 54,10
+2019,54,Misiones,Femenino,55 a 59,14
+2019,54,Misiones,Femenino,60 a 64,26
+2019,54,Misiones,Femenino,65 a 69,29
+2019,54,Misiones,Femenino,70 a 74,24
+2019,54,Misiones,Femenino,75 a 79,30
+2019,54,Misiones,Femenino,80 y más,46
+2019,54,Misiones,Masculino,25 a 29,2
+2019,54,Misiones,Masculino,30 a 34,1
+2019,54,Misiones,Masculino,35 a 39,1
+2019,54,Misiones,Masculino,40 a 44,4
+2019,54,Misiones,Masculino,45 a 49,3
+2019,54,Misiones,Masculino,50 a 54,11
+2019,54,Misiones,Masculino,55 a 59,24
+2019,54,Misiones,Masculino,60 a 64,24
+2019,54,Misiones,Masculino,65 a 69,38
+2019,54,Misiones,Masculino,70 a 74,33
+2019,54,Misiones,Masculino,75 a 79,30
+2019,54,Misiones,Masculino,80 y más,36
+2019,58,Neuquén,Femenino,20 a 24,1
+2019,58,Neuquén,Femenino,35 a 39,1
+2019,58,Neuquén,Femenino,40 a 44,1
+2019,58,Neuquén,Femenino,45 a 49,3
+2019,58,Neuquén,Femenino,50 a 54,3
+2019,58,Neuquén,Femenino,55 a 59,10
+2019,58,Neuquén,Femenino,60 a 64,7
+2019,58,Neuquén,Femenino,65 a 69,16
+2019,58,Neuquén,Femenino,70 a 74,12
+2019,58,Neuquén,Femenino,75 a 79,15
+2019,58,Neuquén,Femenino,80 y más,55
+2019,58,Neuquén,Masculino,40 a 44,2
+2019,58,Neuquén,Masculino,45 a 49,4
+2019,58,Neuquén,Masculino,50 a 54,4
+2019,58,Neuquén,Masculino,55 a 59,9
+2019,58,Neuquén,Masculino,60 a 64,11
+2019,58,Neuquén,Masculino,65 a 69,23
+2019,58,Neuquén,Masculino,70 a 74,28
+2019,58,Neuquén,Masculino,75 a 79,29
+2019,58,Neuquén,Masculino,80 y más,37
+2019,62,Río Negro,Femenino,50 a 54,1
+2019,62,Río Negro,Femenino,55 a 59,1
+2019,62,Río Negro,Femenino,60 a 64,4
+2019,62,Río Negro,Femenino,65 a 69,6
+2019,62,Río Negro,Femenino,70 a 74,7
+2019,62,Río Negro,Femenino,75 a 79,9
+2019,62,Río Negro,Femenino,80 y más,29
+2019,62,Río Negro,Masculino,40 a 44,1
+2019,62,Río Negro,Masculino,45 a 49,2
+2019,62,Río Negro,Masculino,50 a 54,7
+2019,62,Río Negro,Masculino,55 a 59,8
+2019,62,Río Negro,Masculino,60 a 64,9
+2019,62,Río Negro,Masculino,65 a 69,11
+2019,62,Río Negro,Masculino,70 a 74,10
+2019,62,Río Negro,Masculino,75 a 79,15
+2019,62,Río Negro,Masculino,80 y más,27
+2019,66,Salta,Femenino,20 a 24,2
+2019,66,Salta,Femenino,35 a 39,2
+2019,66,Salta,Femenino,40 a 44,2
+2019,66,Salta,Femenino,45 a 49,4
+2019,66,Salta,Femenino,50 a 54,6
+2019,66,Salta,Femenino,55 a 59,9
+2019,66,Salta,Femenino,60 a 64,14
+2019,66,Salta,Femenino,65 a 69,23
+2019,66,Salta,Femenino,70 a 74,19
+2019,66,Salta,Femenino,75 a 79,27
+2019,66,Salta,Femenino,80 y más,49
+2019,66,Salta,Masculino,20 a 24,1
+2019,66,Salta,Masculino,25 a 29,1
+2019,66,Salta,Masculino,35 a 39,2
+2019,66,Salta,Masculino,40 a 44,4
+2019,66,Salta,Masculino,45 a 49,1
+2019,66,Salta,Masculino,50 a 54,7
+2019,66,Salta,Masculino,55 a 59,17
+2019,66,Salta,Masculino,60 a 64,20
+2019,66,Salta,Masculino,65 a 69,39
+2019,66,Salta,Masculino,70 a 74,29
+2019,66,Salta,Masculino,75 a 79,24
+2019,66,Salta,Masculino,80 y más,30
+2019,70,San Juan,Femenino,40 a 44,1
+2019,70,San Juan,Femenino,45 a 49,2
+2019,70,San Juan,Femenino,50 a 54,5
+2019,70,San Juan,Femenino,55 a 59,5
+2019,70,San Juan,Femenino,60 a 64,4
+2019,70,San Juan,Femenino,65 a 69,13
+2019,70,San Juan,Femenino,70 a 74,20
+2019,70,San Juan,Femenino,75 a 79,23
+2019,70,San Juan,Femenino,80 y más,44
+2019,70,San Juan,Masculino,25 a 29,1
+2019,70,San Juan,Masculino,30 a 34,2
+2019,70,San Juan,Masculino,50 a 54,4
+2019,70,San Juan,Masculino,55 a 59,6
+2019,70,San Juan,Masculino,60 a 64,12
+2019,70,San Juan,Masculino,65 a 69,20
+2019,70,San Juan,Masculino,70 a 74,17
+2019,70,San Juan,Masculino,75 a 79,19
+2019,70,San Juan,Masculino,80 y más,30
+2019,74,San Luis,Femenino,45 a 49,2
+2019,74,San Luis,Femenino,50 a 54,1
+2019,74,San Luis,Femenino,55 a 59,4
+2019,74,San Luis,Femenino,60 a 64,1
+2019,74,San Luis,Femenino,65 a 69,6
+2019,74,San Luis,Femenino,70 a 74,8
+2019,74,San Luis,Femenino,75 a 79,7
+2019,74,San Luis,Femenino,80 y más,28
+2019,74,San Luis,Masculino,30 a 34,1
+2019,74,San Luis,Masculino,40 a 44,2
+2019,74,San Luis,Masculino,45 a 49,2
+2019,74,San Luis,Masculino,50 a 54,1
+2019,74,San Luis,Masculino,55 a 59,3
+2019,74,San Luis,Masculino,60 a 64,5
+2019,74,San Luis,Masculino,65 a 69,5
+2019,74,San Luis,Masculino,70 a 74,19
+2019,74,San Luis,Masculino,75 a 79,13
+2019,74,San Luis,Masculino,80 y más,24
+2019,78,Santa Cruz,Femenino,25 a 29,1
+2019,78,Santa Cruz,Femenino,45 a 49,2
+2019,78,Santa Cruz,Femenino,55 a 59,5
+2019,78,Santa Cruz,Femenino,60 a 64,4
+2019,78,Santa Cruz,Femenino,65 a 69,2
+2019,78,Santa Cruz,Femenino,70 a 74,4
+2019,78,Santa Cruz,Femenino,75 a 79,9
+2019,78,Santa Cruz,Femenino,80 y más,13
+2019,78,Santa Cruz,Masculino,50 a 54,7
+2019,78,Santa Cruz,Masculino,55 a 59,5
+2019,78,Santa Cruz,Masculino,60 a 64,8
+2019,78,Santa Cruz,Masculino,65 a 69,7
+2019,78,Santa Cruz,Masculino,70 a 74,3
+2019,78,Santa Cruz,Masculino,75 a 79,7
+2019,78,Santa Cruz,Masculino,80 y más,7
+2019,82,Santa Fe,Femenino,20 a 24,1
+2019,82,Santa Fe,Femenino,30 a 34,1
+2019,82,Santa Fe,Femenino,35 a 39,1
+2019,82,Santa Fe,Femenino,40 a 44,2
+2019,82,Santa Fe,Femenino,45 a 49,4
+2019,82,Santa Fe,Femenino,50 a 54,9
+2019,82,Santa Fe,Femenino,55 a 59,15
+2019,82,Santa Fe,Femenino,60 a 64,18
+2019,82,Santa Fe,Femenino,65 a 69,35
+2019,82,Santa Fe,Femenino,70 a 74,34
+2019,82,Santa Fe,Femenino,75 a 79,54
+2019,82,Santa Fe,Femenino,80 y más,152
+2019,82,Santa Fe,Masculino,25 a 29,1
+2019,82,Santa Fe,Masculino,35 a 39,3
+2019,82,Santa Fe,Masculino,40 a 44,4
+2019,82,Santa Fe,Masculino,45 a 49,3
+2019,82,Santa Fe,Masculino,50 a 54,17
+2019,82,Santa Fe,Masculino,55 a 59,26
+2019,82,Santa Fe,Masculino,60 a 64,38
+2019,82,Santa Fe,Masculino,65 a 69,64
+2019,82,Santa Fe,Masculino,70 a 74,75
+2019,82,Santa Fe,Masculino,75 a 79,68
+2019,82,Santa Fe,Masculino,80 y más,109
+2019,86,Santiago del Estero,Femenino,15 a 19,2
+2019,86,Santiago del Estero,Femenino,20 a 24,1
+2019,86,Santiago del Estero,Femenino,30 a 34,1
+2019,86,Santiago del Estero,Femenino,35 a 39,2
+2019,86,Santiago del Estero,Femenino,40 a 44,2
+2019,86,Santiago del Estero,Femenino,45 a 49,3
+2019,86,Santiago del Estero,Femenino,50 a 54,6
+2019,86,Santiago del Estero,Femenino,55 a 59,4
+2019,86,Santiago del Estero,Femenino,60 a 64,11
+2019,86,Santiago del Estero,Femenino,65 a 69,4
+2019,86,Santiago del Estero,Femenino,70 a 74,21
+2019,86,Santiago del Estero,Femenino,75 a 79,18
+2019,86,Santiago del Estero,Femenino,80 y más,14
+2019,86,Santiago del Estero,Masculino,35 a 39,2
+2019,86,Santiago del Estero,Masculino,40 a 44,1
+2019,86,Santiago del Estero,Masculino,45 a 49,4
+2019,86,Santiago del Estero,Masculino,50 a 54,6
+2019,86,Santiago del Estero,Masculino,55 a 59,13
+2019,86,Santiago del Estero,Masculino,60 a 64,13
+2019,86,Santiago del Estero,Masculino,65 a 69,16
+2019,86,Santiago del Estero,Masculino,70 a 74,13
+2019,86,Santiago del Estero,Masculino,75 a 79,6
+2019,86,Santiago del Estero,Masculino,80 y más,21
+2019,90,Tucumán,Femenino,20 a 24,2
+2019,90,Tucumán,Femenino,25 a 29,2
+2019,90,Tucumán,Femenino,35 a 39,3
+2019,90,Tucumán,Femenino,40 a 44,3
+2019,90,Tucumán,Femenino,45 a 49,3
+2019,90,Tucumán,Femenino,50 a 54,7
+2019,90,Tucumán,Femenino,55 a 59,12
+2019,90,Tucumán,Femenino,60 a 64,22
+2019,90,Tucumán,Femenino,65 a 69,30
+2019,90,Tucumán,Femenino,70 a 74,20
+2019,90,Tucumán,Femenino,75 a 79,32
+2019,90,Tucumán,Femenino,80 y más,64
+2019,90,Tucumán,Masculino,15 a 19,1
+2019,90,Tucumán,Masculino,20 a 24,1
+2019,90,Tucumán,Masculino,35 a 39,5
+2019,90,Tucumán,Masculino,40 a 44,4
+2019,90,Tucumán,Masculino,45 a 49,8
+2019,90,Tucumán,Masculino,50 a 54,13
+2019,90,Tucumán,Masculino,55 a 59,19
+2019,90,Tucumán,Masculino,60 a 64,24
+2019,90,Tucumán,Masculino,65 a 69,44
+2019,90,Tucumán,Masculino,70 a 74,32
+2019,90,Tucumán,Masculino,75 a 79,29
+2019,90,Tucumán,Masculino,80 y más,47
+2019,94,Tierra del Fuego,Femenino,15 a 19,1
+2019,94,Tierra del Fuego,Femenino,50 a 54,1
+2019,94,Tierra del Fuego,Femenino,60 a 64,1
+2019,94,Tierra del Fuego,Femenino,65 a 69,1
+2019,94,Tierra del Fuego,Femenino,70 a 74,1
+2019,94,Tierra del Fuego,Femenino,75 a 79,2
+2019,94,Tierra del Fuego,Femenino,80 y más,4
+2019,94,Tierra del Fuego,Masculino,55 a 59,4
+2019,94,Tierra del Fuego,Masculino,60 a 64,5
+2019,94,Tierra del Fuego,Masculino,65 a 69,4
+2019,94,Tierra del Fuego,Masculino,70 a 74,3
+2019,94,Tierra del Fuego,Masculino,75 a 79,1
+2019,94,Tierra del Fuego,Masculino,80 y más,3
