@@ -7,12 +7,11 @@
 ### Autora: Micaela Gauto 
 ### Colaboradora: Tamara Ricardo 
 ### Fecha de modificación:
-# Fri May  9 09:43:42 2025 ------------------------------
+# Fri May  9 10:44:21 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
 library(janitor)
-library(writexl)
 library(tidyverse)
 
 # Cargar datos crudos -----------------------------------------------------
@@ -96,7 +95,7 @@ datos <- datos_raw |>
   mutate(grupo_edad = str_sub(grupo_edad, start = 4)) |> 
   
   # Filtrar grupos de edad
-  filter(!grepl("Menor|1 a 9|Sin", grupo_edad)) |>
+  filter(!grepl("Menor|1 a 9|10 a 14|Sin", grupo_edad)) |>
 
   # Filtrar causas de muerte por DM
   filter(causa %in% paste0("E", 10:14)) |>
@@ -134,10 +133,9 @@ serie_def <- datos |>
         name = "defun_dm")
 
 
-# Guarda base limpia ------------------------------------------------------
-write_csv(serie_def, file = "Bases de datos/clean/defunciones_dm.csv")    # .csv
 
-write_xlsx(serie_def, path = "Bases de datos/clean/defunciones_dm.xlsx")  # Excel
+# Guardar datos limpios ---------------------------------------------------
+write_csv(serie_def, file = "Bases de datos/clean/serie_def_dm.csv") 
 
 # Carga de datos
 # def05 <- read_csv("Bases de datos/Defunciones/defweb05.csv", 

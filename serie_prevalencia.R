@@ -3,7 +3,7 @@
 ### Autora: Micaela Gauto
 ### Colaboradora: Tamara Ricardo
 ### Fecha modificación:
-# Thu May  8 13:35:20 2025 ------------------------------
+# Fri May  9 13:47:20 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -12,55 +12,113 @@ library(epikit)
 library(srvyr)
 library(tidyverse)
 
-# Cargar datos crudos -----------------------------------------------------
-datos_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.txt") |> 
+
+# Cargar/limpiar datos ----------------------------------------------------
+## ENFR 2005
+datos_05 <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.txt") |> 
+  # Seleccionar columnas relevantes
   select(prov_res = PROV,
          sexo = CHCH04,
          edad = CHCH05,
          dm_auto = CIDI01,
          ponderacion = PONDERACION) |> 
+  
+  # Crear columna para año encuesta
   mutate(anio = 2005) |> 
   
-  # Añade datos 2009
-  bind_rows(
-    read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.txt") |> 
-      select(prov_res = PRVNC,
-             sexo = BHCH04,
-             edad = BHCH05,
-             dm_auto = BIDI01,
-             ponderacion = PONDERACION) |> 
-      mutate(anio = 2009)
-  ) |> 
+  # Crear grupo etario
+  mutate(grupo_edad = age_categories(
+    edad,
+    lower = 15,
+    upper = 80,
+    by = 5,
+    separator = " a ",
+    above.char = " y más"), .after = edad)
+
+
+## ENFR 2009
+datos_09 <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.txt") |> 
+  # Seleccionar columnas relevantes
+  select(prov_res = PRVNC,
+         sexo = BHCH04,
+         edad = BHCH05,
+         dm_auto = BIDI01,
+         ponderacion = PONDERACION) |> 
   
-# Añade datos 2013
-  bind_rows(
-    read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.txt") |> 
-      select(prov_res = COD_PROVINCIA,
-             sexo = BHCH04,
-             edad = BHCH05,
-             dm_auto = BIDI01,
-             ponderacion = PONDERACION) |> 
-      mutate(anio = 2013)
-  ) |> 
+  # Crear columna para año encuesta
+  mutate(anio = 2009) |> 
   
-# Añade datos 2018
-  bind_rows(
-    read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.txt") |> 
-      select(prov_res = cod_provincia,
-             sexo = bhch03,
-             edad = bhch04,
-             dm_auto = bidi01,
-             ponderacion = wf1p) |> 
-      mutate(anio = 2018)
-  )
+  # Crear grupo etario
+  mutate(grupo_edad = age_categories(
+    edad,
+    lower = 15,
+    upper = 80,
+    by = 5,
+    separator = " a ",
+    above.char = " y más"), .after = edad)
 
-### Explorar datos
-tabyl(datos_raw$prov_res)
 
-tabyl(datos_raw$sexo)
+## ENFR 2013
+datos_13 <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.txt") |> 
+  
+  # Seleccionar columnas relevantes
+  select(prov_res = COD_PROVINCIA,
+         sexo = BHCH04,
+         edad = BHCH05,
+         dm_auto = BIDI01,
+         ponderacion = PONDERACION) |> 
+  
+  # Crear columna para año encuesta
+  mutate(anio = 2013) |> 
+  
+  # Crear grupo etario
+  mutate(grupo_edad = age_categories(
+    edad,
+    lower = 15,
+    upper = 80,
+    by = 5,
+    separator = " a ",
+    above.char = " y más"), .after = edad)
 
-# Limpieza de datos -------------------------------------------------------
-datos <- datos_raw |> 
+
+## ENFR 2018
+datos_18 <- read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.txt") |> 
+  # Seleccionar columnas relevantes
+  select(prov_res = cod_provincia,
+         sexo = bhch03,
+         edad = bhch04,
+         dm_auto = bidi01,
+         ponderacion = wf1p) |> 
+  
+  # Crear columna para año encuesta
+  mutate(anio = 2018) |> 
+  
+  # Crear grupo etario
+  mutate(grupo_edad = age_categories(
+    edad,
+    lower = 15,
+    upper = 80,
+    by = 5,
+    separator = " a ",
+    above.char = " y más"), .after = edad)
+  
+
+# Prevalencia DM ----------------------------------------------------------
+## ENFR 2005
+prev_05 <- datos_05 |> 
+  as_survey(weights = ponderacion) |> 
+  group_by(anio, prov_res, grupo_edad, sexo, dm_auto) |> 
+  summarise(survey_prop(na.rm = TRUE))
+
+## ENFR 2009
+
+## ENFR 2013
+
+## ENFR 2018
+
+
+# Unir datos --------------------------------------------------------------
+datos_join <- datos_raw |> 
   
   # Modifica etiquetas provincia
   mutate(prov_res_cat = factor(prov_res,
@@ -101,17 +159,30 @@ datos <- datos_raw |>
     TRUE ~ NA
   )) |> 
   
-  # Crea grupo etario
-    mutate(grupo_edad = age_categories(
-      edad,
-      lower = 15,
-      upper = 80,
-      by = 5,
-      # breakers = c(18, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80),
-      separator = " a ",
-      above.char = " y más"), .after = edad)
+  # Descartar columnas innecesarias
+  select(anio, prov_res, prov_res_cat, grupo_edad, sexo, dm_auto, ponderacion) |> 
+  
+  # Ordenar datos
+  arrange(anio, prov_res, grupo_edad, sexo)
 
+  
+# ## Prevalencia de DM por año, jurisdicción y grupo de edad ----
+# 
+# # Primero agrupo por año, provincia, sexo, grupo de edad y condición de DM,
+# # luego calculo prevalencia de DM en cada grupo
+# 
+# prev_DM <- DM_serie %>% 
+#   group_by(AÑO, PROV_DESC, SEXO_DESC, GRUPEDAD, DM_auto) %>% 
+#   summarise(recuento = sum(PONDERACION)) %>% 
+#   pivot_wider(names_from = DM_auto, values_from = recuento, values_fill = 0) %>% 
+#   mutate(prop_DM = round(SI/(SI+NO+`NS/NC`)*100, digits = 2),
+#                    total_DM = SI+NO+`NS/NC`) %>%
+#   select(AÑO, PROV_DESC, SEXO_DESC, GRUPEDAD, SI, total_DM, prop_DM)
+# 
+# # Grupos teóricos = 2688; 
+# # Obtengo base de prevalencia de DM con 2688 filas, todos los grupos posibles con dato
+# 
 
-# Guardar datos -----------------------------------------------------------
+# Guardar datos limpios ---------------------------------------------------
 write_csv(datos, file = "Bases de datos/clean/ENFR_dm.csv")
 
