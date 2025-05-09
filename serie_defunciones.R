@@ -1,26 +1,22 @@
-# Cálculo de las  defunciones a partir de las bases de datos de mortalidad
-# publicadas por la Dirección de Estadísticas e Información de Salud (DEIS),
-# considerando como causa básica de muerte los códigos E10 a E14 de la Décima
-# Revisión de la Clasificación Estadística Internacional de Enfermedades y
-# Problemas Relacionados con la Salud (CIE-10). Para cada año de interés, se
-# tomar el promedio de defunciones del trienio correspondiente, es decir,
-# 2004-2006 para 2005, 2008-2010 para 2009, 2012-2014 para 2013 y 2017-2019 para
-# 2018. 
-## Autora: Micaela Gauto 
-## Colaboradora: Tamara Ricardo 
-## Fecha de modificación
-# Thu May  8 10:37:17 2025 ------------------------------
+### Cálculo de las  defunciones a partir de las bases de datos de mortalidad
+### publicadas por la Dirección de Estadísticas e Información de Salud (DEIS),
+### considerando como causa básica de muerte los códigos E10 a E14 de la Décima
+### Revisión de la Clasificación Estadística Internacional de Enfermedades y
+### Problemas Relacionados con la Salud (CIE-10). Para cada año de interés, se
+### tomar el promedio de defunciones del trienio correspondiente
+### Autora: Micaela Gauto 
+### Colaboradora: Tamara Ricardo 
+### Fecha de modificación:
+# Fri May  9 09:43:42 2025 ------------------------------
 
 
-# Carga de paquetes -------------------------------------------------------
-library(tidyverse)
+# Cargar paquetes ---------------------------------------------------------
 library(janitor)
 library(writexl)
-# library(readxl) # no hace falta, no se cargó ningún excel
-# library(readr) # no es necesario cargarla, es parte del núcleo de tidyverse
+library(tidyverse)
 
-
-# Carga de datos crudos ---------------------------------------------------
+# Cargar datos crudos -----------------------------------------------------
+# Unir series separadas
 datos_raw <- 
   # Listar los csv para cada año de interés
   list.files(path = "Bases de datos/Defunciones/",
@@ -28,12 +24,11 @@ datos_raw <-
                     full.names = TRUE) |> 
   
   # Crear columna para el año
-  set_names(nm = c("2005", "2006", "2008", "2009", "2010",
-                   "2012", "2013", "2014", "2017", "2018", "2019")) |> 
+  set_names(nm = c(2005:2006, 2008:2010, 2012:2014, 2017:2019)) |> 
   
   # Unir archivos
-  map_dfr(~ read_csv(.x, locale = locale(encoding = "WINDOWS-1252")),
-      .id = "anio")
+  map(~ read_csv(.x, locale = locale(encoding = "WINDOWS-1252"))) |> 
+  list_rbind(names_to = "anio")
   
   
 # Explorar datos crudos ---------------------------------------------------
@@ -49,7 +44,6 @@ tabyl(datos_raw$MAT)
 
 tabyl(datos_raw$GRUPEDAD)
 
-
 # Limpieza de datos -------------------------------------------------------
 datos <- datos_raw |> 
   # Estandarizar nombres columnas (quitar mayúsculas, espacios y acentos)
@@ -57,64 +51,93 @@ datos <- datos_raw |>
   rename(prov_res = provres,
          grupo_edad = grupedad) |> 
   
-  # Quitar columna muertes maternas
-  select(-mat) |> 
+  # Filtrar NAs provincia
+  filter(!between(prov_res, "98", "99")) |> 
   
-  # Filtrar provincias (elimina "98 = otro país"/"99 = no especificado")
-  filter(!prov_res %in% c(98, 99)) |> 
+  # Filtrar NAs sexo
+  filter(between(sexo, 1, 2)) |> 
   
-  # Filtrar datos ausentes sexo
-  filter(sexo != 9) |> 
-  
-  # Filtrar grupos de edad
-  filter(str_detect(grupo_edad, "^((0[4-9])|(1[0-7]))_")) |> 
-  
-  # Filtrar causas de muerte por DM
-  filter(causa %in% paste0("E", 10:14)) |> 
-  
-  # Etiquetas sexo
-  mutate(sexo = if_else(sexo == 1, "Masculino", "Femenino")) |> 
-  
-  # Etiquetas provincia
-  mutate(prov_res_cat = case_when(
-    prov_res == "02"	~ "CABA",
-    prov_res == "06"	~ "Buenos Aires",
-    prov_res == "10"	~ "Catamarca",
-    prov_res == "14"	~ "Córdoba",
-    prov_res == "18"	~ "Corrientes",
-    prov_res == "22"	~ "Chaco",
-    prov_res == "26"	~ "Chubut",
-    prov_res == "30"	~ "Entre Ríos",
-    prov_res == "34"	~ "Formosa",
-    prov_res == "38"	~ "Jujuy",
-    prov_res == "42"	~ "La Pampa",
-    prov_res == "46"	~ "La Rioja",
-    prov_res == "50"	~ "Mendoza", 
-    prov_res == "54"	~ "Misiones",
-    prov_res == "58"	~ "Neuquén",
-    prov_res == "62"	~ "Río Negro",
-    prov_res == "66"	~ "Salta", 
-    prov_res == "70"	~ "San Juan",
-    prov_res == "74"	~ "San Luis",
-    prov_res == "78"	~ "Santa Cruz",
-    prov_res == "82"	~ "Santa Fe",
-    prov_res == "86"	~ "Santiago del Estero",
-    prov_res == "90"	~ "Tucumán",
-    prov_res == "94"	~ "Tierra del Fuego"
+  # Modificar etiquetas sexo
+  mutate(sexo = factor(sexo,
+                       labels = c("Masculino",
+                                  "Femenino")
   )) |> 
   
-  # Etiquetas grupo etario
-  mutate(grupo_edad = str_sub(grupo_edad, start = 4))
+  # Modificar etiquetas provincia
+  mutate(prov_res_cat = factor(
+    prov_res,
+    labels = c("CABA", 
+               "Buenos Aires", 
+               "Catamarca",
+               "Córdoba",
+               "Corrientes",
+               "Chaco",
+               "Chubut",
+               "Entre Ríos",
+               "Formosa",
+               "Jujuy",
+               "La Pampa",
+               "La Rioja",
+               "Mendoza",
+               "Misiones",
+               "Neuquén",
+               "Río Negro",
+               "Salta",
+               "San Juan",
+               "San Luis",
+               "Santa Cruz",
+               "Santa Fe",
+               "Santiago del Estero",
+               "Tucumán",
+               "Tierra del Fuego")
+  ), .after = prov_res) |> 
+  
+  # Modificar etiquetas grupo etario
+  mutate(grupo_edad = str_sub(grupo_edad, start = 4)) |> 
+  
+  # Filtrar grupos de edad
+  filter(!grepl("Menor|1 a 9|Sin", grupo_edad)) |>
+
+  # Filtrar causas de muerte por DM
+  filter(causa %in% paste0("E", 10:14)) |>
+
+  # Descartar columnas innecesarias
+  select(-causa, -mat)
+
+
+### Explorar datos limpios
+nlevels(datos$anio |>  factor()) *        # Cantidad de niveles año
+
+nlevels(datos$prov_res |>  factor()) *    # Cantidad de niveles provincia
+
+nlevels(datos$grupo_edad |>  factor()) *  # Cantidad de niveles grupo etario
+
+nlevels(datos$sexo |>  factor())          # Cantidad de niveles sexo
+
+tabyl(datos$sexo)
+
+tabyl(datos$prov_res_cat)
+
+tabyl(datos$grupo_edad)
+
 
 # Agrupamiento del recuento de muertes ------------------------------------
 serie_def <- datos |> 
-  count(anio, prov_res, prov_res_cat, sexo, grupo_edad, wt = cuenta)
+  
+  # Completar filas categorías faltantes (sin muertes)
+  complete(anio, nesting(prov_res, prov_res_cat), sexo, grupo_edad,
+           fill = list(cuenta = 0)) |> 
+  
+  # Conteo de muertes
+  count(anio, prov_res, prov_res_cat, sexo, grupo_edad, 
+        wt = cuenta, 
+        name = "defun_dm")
 
 
 # Guarda base limpia ------------------------------------------------------
-write_csv(serie_def, file = "Bases de datos/defunciones.csv")    # .csv
+write_csv(serie_def, file = "Bases de datos/clean/defunciones_dm.csv")    # .csv
 
-write_xlsx(serie_def, path = "Bases de datos/defunciones.xlsx")  # Excel
+write_xlsx(serie_def, path = "Bases de datos/clean/defunciones_dm.xlsx")  # Excel
 
 # Carga de datos
 # def05 <- read_csv("Bases de datos/Defunciones/defweb05.csv", 
