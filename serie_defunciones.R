@@ -7,7 +7,7 @@
 ### Autora: Micaela Gauto 
 ### Colaboradora: Tamara Ricardo 
 ### Fecha de modificación:
-# Mon May 12 11:33:28 2025 ------------------------------
+# Mon May 12 11:48:02 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -16,7 +16,7 @@ library(tidyverse)
 
 
 # Cargar datos crudos -----------------------------------------------------
-## Unir series defunciones
+## Series defunciones
 def_raw <- 
   # Listar los csv para cada año de interés
   list.files(path = "Bases de datos/DEIS/", # Acá están las bases de los años que usamos
@@ -120,19 +120,19 @@ esp_vida <- esp_vida_raw |>
   
 
 ### Explorar datos limpios
-nlevels(datos$anio |>  factor()) *        # Cantidad de niveles año
+nlevels(def_clean$anio |>  factor()) *        # Cantidad de niveles año
 
-nlevels(datos$prov_res |>  factor()) *    # Cantidad de niveles provincia
+nlevels(def_clean$prov_res |>  factor()) *    # Cantidad de niveles provincia
 
-nlevels(datos$grupo_edad |>  factor()) *  # Cantidad de niveles grupo etario
+nlevels(def_clean$grupo_edad |>  factor()) *  # Cantidad de niveles grupo etario
 
-nlevels(datos$sexo |>  factor())          # Cantidad de niveles sexo
+nlevels(def_clean$sexo |>  factor())          # Cantidad de niveles sexo
 
-tabyl(datos$sexo)
+tabyl(def_clean$sexo)
 
-tabyl(datos$prov_res_cat)
+tabyl(def_clean$prov_res_cat)
 
-tabyl(datos$grupo_edad)
+tabyl(def_clean$grupo_edad)
 
 
 # Serie de defunciones para período de estudio ----------------------------
