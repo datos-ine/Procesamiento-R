@@ -3,7 +3,7 @@
 ### Autora: Micaela Gauto
 ### Colaboradora: Tamara Ricardo
 ### Fecha modificación:
-# Mon May 12 11:49:22 2025 ------------------------------
+# Mon May 12 12:48:13 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -13,47 +13,63 @@ library(srvyr)
 library(tidyverse)
 
 
-# Cargar datos crudos -----------------------------------------------------
+# Cargar/limpiar datos ----------------------------------------------------
 ## ENFR 2005
-datos_05 <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.txt") |> 
-  # Seleccionar columnas relevantes
-  select(id = IDENTIFI,
-         prov_res = PROV,
-         sexo = CHCH04,
-         edad = CHCH05,
-         dm_auto = CIDI01,
-         ponderacion = PONDERACION)
+datos_05 <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.txt",
+                       col_select = c(id = IDENTIFI, 
+                                      prov_res = PROV, 
+                                      sexo = CHCH04, 
+                                      edad = CHCH05, 
+                                      edad_cat = RANGEDAD, 
+                                      dm_auto = CIDI01, 
+                                      ponderacion = PONDERACION)) |> 
+  
+  # Crear grupo etario (15-80 años cada 5 años)
+  mutate(grupo_edad = age_categories(
+    edad,
+    lower = 15,
+    upper = 80,
+    by = 5,
+    separator = " a ",
+    above.char = " y más"), .after = edad)
+
 
 ## ENFR 2009
-datos_09 <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.txt") |> 
-  # Seleccionar columnas relevantes
-  select(id = IDENTIFI, 
-         prov_res = PRVNC,
-         sexo = BHCH04,
-         edad = BHCH05,
-         dm_auto = BIDI01,
-         ponderacion = PONDERACION)
+datos_09 <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.txt",
+                       col_select = c(id = IDENTIFI, 
+                                      prov_res = PRVNC,
+                                      sexo = BHCH04,
+                                      edad = BHCH05,
+                                      dm_auto = BIDI01,
+                                      ponderacion = PONDERACION)) |> 
+  
+  # Crear grupo etario (15-80 años cada 5 años)
+  mutate(grupo_edad = age_categories(
+    edad,
+    lower = 15,
+    upper = 80,
+    by = 5,
+    separator = " a ",
+    above.char = " y más"), .after = edad)
 
 
 ## ENFR 2013
-datos_13 <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.txt") |> 
-  # Seleccionar columnas relevantes
-  select(id = ID,
-         prov_res = COD_PROVINCIA,
-         sexo = BHCH04,
-         edad = BHCH05,
-         dm_auto = BIDI01,
-         ponderacion = PONDERACION)
+datos_13 <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.txt",
+                       col_select = c(id = ID,
+                                      prov_res = COD_PROVINCIA,
+                                      sexo = BHCH04,
+                                      edad = BHCH05,
+                                      dm_auto = BIDI01,
+                                      ponderacion = PONDERACION))
 
 ## ENFR 2018
-datos_18 <- read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.txt") |> 
-  # Seleccionar columnas relevantes
-  select(id,
-         prov_res = cod_provincia,
-         sexo = bhch03,
-         edad = bhch04,
-         dm_auto = bidi01,
-         wf1p) 
+datos_18 <- read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.txt",
+                       col_select = c(id,
+                                      prov_res = cod_provincia,
+                                      sexo = bhch03,
+                                      edad = bhch04,
+                                      dm_auto = bidi01,
+                                      wf1p))
 
 ## Réplicas ENFR 2018
 replicas_18 <- read_delim("Bases de datos/ENFR_bases/ENFR2018_base_replicas_filtrada.csv") |> 
@@ -61,7 +77,7 @@ replicas_18 <- read_delim("Bases de datos/ENFR_bases/ENFR2018_base_replicas_filt
   select(id, starts_with("wf1p"))
 
 
-# Procesamiento de datos -------------------------------------------------- #
+# Procesamiento de datos --------------------------------------------------
 # Para la creación de los grupos etarios revisar y justificar conceptualmente, ya
 # que por las características de la enfermedad no hay prácticamente casos en los
 # grupos más jóvenes y el algoritmo no converge, pero tampoco es apropiado
@@ -69,23 +85,47 @@ replicas_18 <- read_delim("Bases de datos/ENFR_bases/ENFR2018_base_replicas_filt
 
 ## Cálculo de prevalencia ENFR2005-----
 prev_05 <- datos_05 |> 
-  # Crear grupo etario (20-80 años cada 5 años)
-  filter(edad >= 20) |> 
-  mutate(grupo_edad = age_categories(
-    edad,
-    lower = 20,
-    upper = 80,
-    by = 5,
-    separator = " a ",
-    above.char = " y más"), .after = edad) |> 
+  
+  # Modifica etiquetas provincia
+  mutate(prov_res_cat = factor(prov_res,
+                               labels = c("CABA", 
+                                          "Buenos Aires", 
+                                          "Catamarca",
+                                          "Córdoba",
+                                          "Corrientes",
+                                          "Chaco",
+                                          "Chubut",
+                                          "Entre Ríos",
+                                          "Formosa",
+                                          "Jujuy",
+                                          "La Pampa",
+                                          "La Rioja",
+                                          "Mendoza",
+                                          "Misiones",
+                                          "Neuquén",
+                                          "Río Negro",
+                                          "Salta",
+                                          "San Juan",
+                                          "San Luis",
+                                          "Santa Cruz",
+                                          "Santa Fe",
+                                          "Santiago del Estero",
+                                          "Tucumán",
+                                          "Tierra del Fuego")),
+         .after = prov_res) |> 
+  
+  # Modifica etiquetas sexo
+  mutate(sexo = if_else(sexo == 1, "Masculino", "Femenino")) |> 
   
   # Crear objeto de diseño
-  as_survey_design(weights = ponderacion) |> 
-  
+  as_survey_design(weights = ponderacion) 
+
+# Prevalencia por provincia y edad
+prev_05 |> 
   # Calcular prevalencia
-  group_by(prov_res, sexo, grupo_edad, dm_auto) |> 
+  group_by(prov_res_cat, edad_cat, dm_auto) |> 
   
-  summarise(prev_dm_auto = survey_prop(vartype = "cv", na.rm = TRUE)) |> 
+  summarise(prev_dm_auto = survey_prop(na.rm = TRUE)) |> 
   
   ungroup() |> 
   
@@ -94,23 +134,16 @@ prev_05 <- datos_05 |>
 
 ## Cálculo de prevalencia ENFR2009-----
 prev_09 <- datos_09 |> 
-  # Crear grupo etario (20-80 años cada 5 años)
-  filter(edad >= 20) |> 
-  mutate(grupo_edad = age_categories(
-    edad,
-    lower = 20,
-    upper = 80,
-    by = 5,
-    separator = " a ",
-    above.char = " y más"), .after = edad) |> 
-  
   # Crear objeto de diseño
-  as_survey_design(weights = ponderacion) |> 
+  as_survey_design(weights = ponderacion)
   
+
+# Prevalencia por sexo
+prev_09 |> 
   # Calcular prevalencia
-  group_by(prov_res, sexo, grupo_edad, dm_auto) |> 
+  group_by(sexo, dm_auto) |> 
   
-  summarise(prev_dm_auto = survey_prop(vartype = "cv", na.rm = TRUE)) |>
+  summarise(prev_dm_auto = survey_prop(vartype = "cv", na.rm = TRUE)) |> 
   
   ungroup() |> 
   
