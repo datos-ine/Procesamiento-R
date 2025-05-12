@@ -86,8 +86,8 @@ def_clean <- def_raw |>
                "Tierra del Fuego")
   ), .after = prov_res) |> 
   
-  # Filtrar grupos de edad por >20 años
-  filter(!grepl("Menor|1 a 9|10 a 14|15 a 19|Sin", grupo_edad)) |>
+  # Filtrar grupos de edad
+  filter(!grepl("Menor|1 a 9|10 a 14|Sin", grupo_edad)) |>
   
   # Modificar etiquetas grupo etario
   mutate(grupo_edad = str_sub(grupo_edad, start = 4) |> factor()) |> 
@@ -111,8 +111,8 @@ esp_vida <- esp_vida_raw |>
                names_to = "sexo",
                values_to = "esp_vida") |> 
   
-  # Filtrar menores de 20 años y mayores de 85
-  filter(!grupo_edad %in% c("15-19  years", "85+ years")) |> 
+  # Filtrar mayores de 85
+  filter(!grupo_edad %in% c("85+ years")) |> 
   
   # Etiquetas grupos etarios
   mutate(grupo_edad = factor(grupo_edad,
