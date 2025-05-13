@@ -7,7 +7,7 @@
 ### Autora: Micaela Gauto 
 ### Colaboradora: Tamara Ricardo 
 ### Fecha de modificación:
-# Tue May 13 11:00:50 2025 ------------------------------
+# Tue May 13 15:57:36 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -16,19 +16,33 @@ library(tidyverse)
 
 
 # Cargar datos crudos -----------------------------------------------------
-## Series defunciones
+## Defunciones 2004
+def04 <- read_delim("Bases de datos/DEIS/DE_2004.csv", 
+                    col_select = c(prov_nombre = Jurisdicción,
+                                   sexo = Sexo,
+                                   grupo_edad_quin = `Grupo de edad`,
+                                   causa = `Causa de muerte (CIE-10)`,
+                                   total = Total))
+
+## Defunciones 2005, 2006, 2008-10, 2012-14 y 2017-19
 def_raw <- 
   # Listar los csv para cada año de interés
-  list.files(path = "Bases de datos/DEIS/", # Acá están las bases de los años que usamos
-             pattern = "*.csv",
+  list.files(path = "Bases de datos/DEIS/",
+             pattern = "^defweb.*\\.csv$",
              full.names = TRUE) |> 
   
   # Crear columna para el año
   set_names(nm = c(2005:2006, 2008:2010, 
-                   2012:2014, 2017:2019)) |> # Modificar cuando tengamos 2004
+                   2012:2014, 2017:2019)) |> 
   
   # Unir archivos
-  map(~ read_csv(.x, locale = locale(encoding = "WINDOWS-1252"))) |> 
+  map(~ read_csv(.x, 
+                 locale = locale(encoding = "WINDOWS-1252"),
+                 col_select = c(prov_res = PROVRES,
+                                sexo = SEXO,
+                                causa = CAUSA,
+                                grupo_edad_quin = GRUPEDAD,
+                                total = CUENTA))) |> 
   list_rbind(names_to = "anio")
 
 
@@ -42,17 +56,52 @@ prov <- read_csv("Bases de datos/cod_pcias_arg.csv")
 
 
 # Limpieza datos ----------------------------------------------------------
+## Defunciones 2004
+def04_clean <- def04 |> 
+  # Añadir columna para el año
+  mutate(anio = "2004") |> 
+  
+  # Categorías no relevantes a NA
+  mutate(across(.cols = c(prov_nombre, sexo, grupo_edad_quin),
+                .fns = ~if_else(.x %in% c("Lugar no especificado",
+                                         "Otro país",
+                                         "Desconocido",
+                                         "Indeterminado",
+                                         "01.0 a 6 días",
+                                         "02.7 a 27 días",
+                                         "03.28 días a 11 meses",
+                                         "04.1 año",
+                                         "05.2 años",
+                                         "06.3 años",
+                                         "07.4 años",
+                                         "08.5 a 9",
+                                         "09.10 a 14",
+                                         "25.Sín especificar",
+                                         "ERROR"),
+                               NA, .x))) |> 
+  
+  # Eliminar filas con NA's
+  drop_na() |> 
+  
+  # Cambiar etiqueta CABA
+  mutate(prov_nombre = fct_recode(prov_nombre,
+                               "CABA" = "Ciudad Aut. de Buenos Aires")) |> 
+  
+  # Unir grupos edad
+  mutate(grupo_edad_quin = fct_collapse(grupo_edad_quin,
+                                        "23.80 y más" = c("23.80 a 84", "24.85 y más"))) |> 
+  
+  # Añadir identificador numérico provincia
+  left_join(prov)
+  
+
 ## Serie defunciones
 def_clean <- def_raw |> 
-  # Estandarizar nombres columnas (quitar mayúsculas, espacios y acentos)
-  clean_names() |> 
-  rename(prov_res = provres,
-         grupo_edad_quin = grupedad) |> 
-  
   # Filtrar NA's provincia
   filter(!between(prov_res, "98", "99")) |> 
   
   # Añadir etiquetas provincia
+  mutate(prov_res = as.numeric(prov_res)) |> 
   left_join(prov) |> 
   
   # Filtrar NA's sexo
@@ -60,12 +109,15 @@ def_clean <- def_raw |>
   
   # Modificar etiquetas sexo
   mutate(sexo = factor(sexo,
-                       labels = c("Masculino",
-                                  "Femenino")
+                       labels = c("Varón",
+                                  "Mujer")
   )) |> 
   
   # Filtrar grupos de edad
   filter(!grepl("Menor|1 a 9|10 a 14|Sin", grupo_edad_quin)) |>
+  
+  # Unir con datos 2004
+  bind_rows(def04_clean) |> 
   
   # Modificar etiquetas grupo etario
   mutate(grupo_edad_quin = str_sub(grupo_edad_quin, start = 4) |> 
@@ -85,7 +137,7 @@ def_clean <- def_raw |>
   filter(causa %in% paste0("E", 10:14)) |>
   
   # Descartar columnas innecesarias
-  select(-causa, -mat) 
+  select(-causa) 
 
 
 ## Esperanza de vida----
@@ -117,7 +169,7 @@ esp_vida <- esp_vida_raw |>
   
   # Etiquetas para sexo
   mutate(sexo = factor(sexo, 
-                       labels = c("Femenino", "Masculino"))
+                       labels = c("Mujer", "Varón"))
   ) |>
   
   # Volver a formato ancho según tipo de indicador
@@ -131,16 +183,16 @@ AVP_quin <- def_clean |>
   
   # Completar filas categorías faltantes (sin muertes)
   complete(anio, nesting(prov_res, prov_nombre), sexo, grupo_edad_quin,
-           fill = list(cuenta = 0)) |> 
+           fill = list(total = 0)) |> 
   
   # Crear serie defunciones
   count(anio, prov_res, prov_nombre, sexo, grupo_edad_quin, 
-        wt = cuenta, 
+        wt = total, 
         name = "defun_dm") |> 
   
   # Añadir año ENFR
   mutate(anio_enfr = case_when(
-    anio %in% c(2005:2006) ~ 2005,
+    anio %in% c(2004:2006) ~ 2005,
     anio %in% c(2008:2010) ~ 2009,
     anio %in% c(2012:2014) ~ 2013,
     TRUE ~ 2018), 
@@ -170,11 +222,11 @@ AVP_enfr <- def_clean |>
   
   # Completar filas categorías faltantes (sin muertes)
   complete(anio, nesting(prov_res, prov_nombre), sexo, grupo_edad_enfr,
-           fill = list(cuenta = 0)) |> 
+           fill = list(total = 0)) |> 
   
   # Crear serie defunciones
   count(anio, prov_res, prov_nombre, sexo, grupo_edad_enfr, 
-        wt = cuenta, 
+        wt = total, 
         name = "defun_dm") |> 
   
   # Añadir año ENFR
