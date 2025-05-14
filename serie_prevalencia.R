@@ -406,7 +406,7 @@ comb_quin |>
 
 # Unir bases prevalencia --------------------------------------------------
 ## Grupos edad ENFR (faltan 20 combinaciones de provincia, edad y sexo)
-prev_join_enf <- prev05_enfr |> # revisar
+prev_join_enfr <- prev05_enfr |> # revisar
   bind_rows(prev09_enfr,
             prev13_enfr, 
             prev18_enfr, 
@@ -432,3 +432,7 @@ prev_join_enf <- prev05_enfr |> # revisar
 # Tucumán: falta prev. hombres 18-24 años para 2009 y 2013 y 25-34 años para 2009
 # Provincias restantes: datos completos para todas las combinaciones
  
+
+# Guardar datos limpios ---------------------------------------------------
+write_csv(prev_join_enfr, "Bases de datos/clean/prev_dm_enfr.csv")
+

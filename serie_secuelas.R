@@ -5,7 +5,7 @@
 ## Autora: Micaela Gauto 
 ## Colaboradora: Tamara Ricardo 
 ## Fecha modificación: 
-# Fri May  9 10:37:11 2025 ------------------------------
+# Wed May 14 10:41:47 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -15,11 +15,11 @@ library(tidyverse)
 
 # Cargar datos crudos -----------------------------------------------------
 DW_raw <- import("Bases de datos/Complicaciones y DW.xlsx",
-                 sheet = "DW_DM") 
+                 sheet = "DW_DM")
 
 
 # Limpieza de datos -------------------------------------------------------
-DW <- DW_raw |> 
+DW_clean <- DW_raw |> 
   
   # Estandarizar nombres de columnas
   clean_names() |> 
@@ -33,8 +33,9 @@ DW <- DW_raw |>
 
 
 # Secuelas por grupo etario -----------------------------------------------
-dw_edad <- tibble(
-  grupo_edad = c("15 a 19",
+# Grupo etario quinquenal
+dw_edad_quin <- tibble(
+  grupo_edad_quin = c("15 a 19",
                  "20 a 24",
                  "25 a 29",
                  "30 a 34",
@@ -51,15 +52,36 @@ dw_edad <- tibble(
     rep(4)) |> 
   
   # Ordenar por grupo edad
-  arrange(grupo_edad) |> 
+  arrange(grupo_edad_quin) |> 
   
   # Agregar secuelas
-  mutate(secuela = rep(levels(DW$secuela), 14)) |> 
+  mutate(secuela = rep(levels(DW_clean$secuela), 14)) |> 
   
   # Agregar pesos y frecuencias
-  left_join(DW)
+  left_join(DW_clean)
+
+
+# Grupo etario ENFR
+dw_edad_enfr <- tibble(
+  grupo_edad_enfr = c("18 a 24",
+                      "25 a 34",
+                      "35 a 49",
+                      "50 a 64",
+                      "65+") |> 
+    rep(4)) |> 
+  
+  # Ordenar por grupo edad
+  arrange(grupo_edad_enfr) |> 
+  
+  # Agregar secuelas
+  mutate(secuela = rep(levels(DW_clean$secuela), 5)) |> 
+  
+  # Agregar pesos y frecuencias
+  left_join(DW_clean)
 
 
 # Guardar datos limpios ---------------------------------------------------
-write_csv(dw_edad, file = "Bases de datos/clean/dw_edad.csv")
+write_csv(dw_edad_quin, file = "Bases de datos/clean/dw_edad_quin.csv")
+
+write_csv(dw_edad_enfr, file = "Bases de datos/clean/dw_edad_enfr.csv")
 
