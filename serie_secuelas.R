@@ -15,11 +15,11 @@ library(tidyverse)
 
 # Cargar datos crudos -----------------------------------------------------
 DW_raw <- import("Bases de datos/Complicaciones y DW.xlsx",
-                 sheet = "DW_DM") 
+                 sheet = "DW_DM")
 
 
 # Limpieza de datos -------------------------------------------------------
-DW <- DW_raw |> 
+DW_clean <- DW_raw |> 
   
   # Estandarizar nombres de columnas
   clean_names() |> 
