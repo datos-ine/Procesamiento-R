@@ -7,7 +7,7 @@
 ### Autora: Micaela Gauto 
 ### Colaboradora: Tamara Ricardo 
 ### Fecha de modificación:
-# Wed May 14 09:42:39 2025 ------------------------------
+# Wed May 14 11:12:24 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -35,8 +35,8 @@ def_raw <- # Listar los csv para cada año de interés
              full.names = TRUE) |> 
   
   # Crear columna para el año
-  set_names(nm = c(2005:2006, 2008:2010, 
-                   2012:2014, 2017:2019)) |> 
+  set_names(nm = c("2005", "2006", "2008":"2010", 
+                   "2012":"2014", "2017":"2019")) |> 
   
   # Leer archivos csv y unir
   map(~ read_csv(.x, 
@@ -99,12 +99,19 @@ def_clean <- def04 |>
   # Filtrar causas de muerte por DM
   filter(causa %in% paste0("E", 10:14)) |>
   
+  # Crear etiqueta año ENFR
+  mutate(anio_enfr = fct_collapse(anio,
+                                  "2005" = c("2004":"2006"),
+                                  "2009" = c("2008":"2010"),
+                                  "2013" = c("2012":"2014"),
+                                  "2018" = c("2017":"2019"))) |> 
+  
   # Modificar etiquetas grupo edad quinquenal
   mutate(grupo_edad_quin = fct_relabel(grupo_edad_quin, ~ str_sub(.x, start = 4)) |> 
            fct_collapse("80 y más" = c("80 a 84", "85 y más"))
          ) |> 
   
-  # Crear grupo edad ENFR
+  # Crear variable para grupo edad ENFR
   mutate(grupo_edad_enfr = fct_collapse(grupo_edad_quin,
                                         "18 a 24" = c("15 a 19", "20 a 24"),
                                         "25 a 34" = c("25 a 29", "30 a 34"),
@@ -112,18 +119,7 @@ def_clean <- def04 |>
                                         "50 a 64" = c("50 a 54", "55 a 59", "60 a 64"),
                                         "65+" = c("65 a 69", "70 a 74", 
                                                   "75 a 79", "80 y más")),
-         .after = grupo_edad_quin) |> 
-  
-  # Crear etiqueta año ENFR
-  mutate(anio_enfr = case_when(
-    anio %in% c(2004:2006) ~ 2005,
-    anio %in% c(2008:2010) ~ 2009,
-    anio %in% c(2012:2014) ~ 2013,
-    TRUE ~ 2018), 
-    .after = anio ) |> 
-
-  # Descartar columnas innecesarias
-  select(-causa) 
+         .after = grupo_edad_quin)
   
 
 ### Explorar serie defunciones
@@ -241,7 +237,7 @@ AVP_enfr <- def_clean |>
   mutate(AVP = mean_def_tri * esp_vida)
 
 # Guardar datos limpios ---------------------------------------------------
-write_csv(AVP_quin, file = "Bases de datos/clean/AVP_serie_quinquenal.csv")
+write_csv(AVP_quin, file = "Bases de datos/clean/AVP_serie_quin.csv")
 
 write_csv(AVP_enfr, file = "Bases de datos/clean/AVP_serie_enfr.csv")
 

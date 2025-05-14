@@ -5,7 +5,7 @@
 ## Autora: Micaela Gauto 
 ## Colaboradora: Tamara Ricardo 
 ## Fecha modificación: 
-# Wed May 14 10:41:47 2025 ------------------------------
+# Wed May 14 11:39:28 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -13,9 +13,14 @@ library(rio)
 library(janitor)
 library(tidyverse)
 
+
 # Cargar datos crudos -----------------------------------------------------
+## Secuelas DM
 DW_raw <- import("Bases de datos/Complicaciones y DW.xlsx",
                  sheet = "DW_DM")
+
+## Prevalencia DM Argentina por grupos edad ENFR
+prev_dm <- read_csv("Bases de datos/clean/prev_dm_enfr.csv")
 
 
 # Limpieza de datos -------------------------------------------------------
@@ -32,56 +37,28 @@ DW_clean <- DW_raw |>
                 .fns = ~ factor(.x)))
 
 
-# Secuelas por grupo etario -----------------------------------------------
-# Grupo etario quinquenal
-dw_edad_quin <- tibble(
-  grupo_edad_quin = c("15 a 19",
-                 "20 a 24",
-                 "25 a 29",
-                 "30 a 34",
-                 "35 a 39",
-                 "40 a 44",
-                 "45 a 49",
-                 "50 a 54",
-                 "55 a 59",
-                 "60 a 64",
-                 "65 a 69",
-                 "70 a 74",
-                 "75 a 79",
-                 "80 y más") |> 
-    rep(4)) |> 
+# Calcular AVD ------------------------------------------------------------
+# Asumiendo mismas frecuencias de secuelas por provincia, sexo y grupo edad ENFR
+prev_dm_dw <- prev_dm |>
+  # Completar filas sin prevalencia DM
+  complete(anio_enfr, prov_nombre, sexo, grupo_edad_enfr,
+           fill = list(prev = 0)) |> 
   
-  # Ordenar por grupo edad
-  arrange(grupo_edad_quin) |> 
+ # Añadir pesos discapacidad
+  cross_join(DW_clean |> 
+               select(-sequela)) |> 
   
-  # Agregar secuelas
-  mutate(secuela = rep(levels(DW_clean$secuela), 14)) |> 
+  # Calcular AVD por secuela
+  mutate(AVD_indiv = (freq_dm * frecuencia_wandurranga) / (100 * disability_weight)) |> 
   
-  # Agregar pesos y frecuencias
-  left_join(DW_clean)
-
-
-# Grupo etario ENFR
-dw_edad_enfr <- tibble(
-  grupo_edad_enfr = c("18 a 24",
-                      "25 a 34",
-                      "35 a 49",
-                      "50 a 64",
-                      "65+") |> 
-    rep(4)) |> 
-  
-  # Ordenar por grupo edad
-  arrange(grupo_edad_enfr) |> 
-  
-  # Agregar secuelas
-  mutate(secuela = rep(levels(DW_clean$secuela), 5)) |> 
-  
-  # Agregar pesos y frecuencias
-  left_join(DW_clean)
+  # Calcular AVD por secuela agrupados
+  group_by(anio_enfr, prov_nombre, grupo_edad_enfr, sexo, freq_dm, prev_dm) |> 
+  summarise(AVD_total = sum(AVD_indiv, na.rm = T),
+            .groups = "drop")
 
 
 # Guardar datos limpios ---------------------------------------------------
-write_csv(dw_edad_quin, file = "Bases de datos/clean/dw_edad_quin.csv")
+write_csv(prev_dm_dw, file = "Bases de datos/clean/prev_dm_avd.csv") # Revisar
 
-write_csv(dw_edad_enfr, file = "Bases de datos/clean/dw_edad_enfr.csv")
-
+# Limpiar environment
+rm(list = ls())

@@ -3,7 +3,7 @@
 ### Autora: Micaela Gauto
 ### Colaboradora: Tamara Ricardo
 ### Fecha modificación:
-# Tue May 13 14:29:06 2025 ------------------------------
+# Wed May 14 11:39:21 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -55,8 +55,8 @@ datos_05 <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.txt",
   
   # Cambiar etiquetas sexo
   mutate(sexo = factor(sexo,
-                       labels = c("Masculino",
-                                  "Femenino"))) |> 
+                       labels = c("Varón",
+                                  "Mujer"))) |> 
   
   # Cambiar etiquetas diabetes por autorreporte
   mutate(dm_auto = factor(dm_auto,
@@ -103,8 +103,8 @@ datos_09 <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.txt",
   
   # Cambiar etiquetas sexo
   mutate(sexo = factor(sexo,
-                       labels = c("Masculino",
-                                  "Femenino"))) |> 
+                       labels = c("Varón",
+                                  "Mujer"))) |> 
   
   # Cambiar etiquetas diabetes por autorreporte
   mutate(dm_auto = factor(dm_auto,
@@ -151,8 +151,8 @@ datos_13 <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.txt",
   
   # Cambiar etiquetas sexo
   mutate(sexo = factor(sexo,
-                       labels = c("Masculino",
-                                  "Femenino"))) |> 
+                       labels = c("Varón",
+                                  "Mujer"))) |> 
   
   # Cambiar etiquetas diabetes por autorreporte
   mutate(dm_auto = factor(dm_auto,
@@ -199,8 +199,8 @@ datos_18 <- read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.txt",
   
   # Cambiar etiquetas sexo
   mutate(sexo = factor(sexo,
-                       labels = c("Masculino",
-                                  "Femenino"))) |> 
+                       labels = c("Varón",
+                                  "Mujer"))) |> 
   
   # Cambiar etiquetas diabetes por autorreporte
   mutate(dm_auto = factor(dm_auto,
@@ -241,182 +241,185 @@ prev18 <- datos_18 |>
                 mse = T) 
 
 
-# Obtener combinaciones posibles de variables -----------------------------
-# prov_nombre, grupo_edad_enfr, sexo y dm_auto == "Si"
+
+# Explorar combinaciones faltantes ----------------------------------------
+## Crear combinaciones posibles prov_nombre, grupo_edad_enfr y sexo
 comb_enfr <- expand_grid(
   prov_nombre = levels(datos_05$prov_nombre),
   grupo_edad_enfr = levels(datos_05$grupo_edad_enfr),
   sexo = levels(datos_05$sexo),
   dm_auto = levels(datos_05$dm_auto)
   )|> 
-  
   filter(dm_auto == "Si")
 
-# prov_nombre, grupo_edad_quinquenal, sexo y dm_auto
+## Crear combinaciones posibles prov_nombre, grupo_edad_quin y sexo
 comb_quin <- expand_grid(
   prov_nombre = levels(datos_05$prov_nombre),
   grupo_edad_quin = levels(datos_05$grupo_edad_quin),
   sexo = levels(datos_05$sexo),
   dm_auto = levels(datos_05$dm_auto)
   ) |> 
-  
   filter(dm_auto == "Si")
+
+## Combinaciones faltantes ENFR 2005
+# grupos edad ENFR
+comb_enfr |> 
+  anti_join(datos_05)
+
+# Grupos edad quinquenales
+comb_quin |> 
+  anti_join(datos_05)
+
+## Combinaciones faltantes ENFR 2009
+# grupos edad ENFR
+comb_enfr |> 
+  anti_join(datos_09)
+
+# Grupos edad quinquenales
+comb_quin |> 
+  anti_join(datos_09)
+
+## Combinaciones faltantes ENFR 2013
+# grupos edad ENFR
+comb_enfr |> 
+  anti_join(datos_13)
+
+# Grupos edad quinquenales
+comb_quin |> 
+  anti_join(datos_13)
+
+## Combinaciones faltantes ENFR 2018
+# grupos edad ENFR
+comb_enfr |> 
+  anti_join(datos_18)
+
+# Grupos edad quinquenales
+comb_quin |> 
+  anti_join(datos_18)
 
 
 # Calcular prevalencias ---------------------------------------------------
 ### ENFR 2005-----
-## Provincia, grupo edad y sexo (Error de convergencia)
+## Grupo de edad ENFR (Error de convergencia)
 prev05_enfr <- prev05 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
   
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
 
-# Explorar combinaciones faltantes para presencia DM
-comb_enfr |> 
-  anti_join(datos_05 |> 
-              select(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-              distinct())
-
-
-## Provincia, grupo edad quinquenal y sexo (Error de convergencia)
+## Grupo edad quinquenal (Error de convergencia)
 prev05_quin <- prev05 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
   
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
-
-# Explorar combinaciones faltantes para presencia DM
-comb_quin |> 
-  anti_join(datos_05 |> 
-              select(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-              distinct())
 
 
 ### ENFR 2009-----
-## Provincia, grupo edad y sexo (Funciona)
+## Grupo de edad ENFR (Funciona bien)
 prev09_enfr <- prev09 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
   
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
 
-## Explorar combinaciones faltantes para presencia DM
-comb_enfr |> 
-  anti_join(datos_09 |> 
-              select(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-              distinct())
-
-
-## Provincia, grupo edad quinquenal y sexo (Funciona)
+## Grupo edad quinquenal (Funciona bien)
 prev09_quin <- prev09 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
   
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
-
-# Explorar combinaciones faltantes para presencia DM
-comb_quin |> 
-  anti_join(datos_09 |> 
-              select(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-              distinct())
 
 
 ### ENFR 2013-----
-## Provincia, grupo edad y sexo (Funciona)
+## Grupo de edad ENFR (Funciona bien)
 prev13_enfr <- prev13 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
   
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
 
-## Explorar combinaciones faltantes para presencia DM
-comb_enfr |> 
-  anti_join(datos_13 |> 
-              select(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-              distinct())
-
-
-## Provincia, grupo edad quinquenal y sexo (Error de convergencia)
+## Grupo edad quinquenal (Error de convergencia)
 prev13_quin <- prev13 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
   
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
-
-## Explorar combinaciones faltantes para presencia DM
-comb_quin |> 
-  anti_join(datos_13 |> 
-              select(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-              distinct())
-# No hay encuestados/as con DM para 53 combinaciones de provincia, edad y sexo
 
 
 ### ENFR 2018-----
-## Provincia, grupo edad y sexo (Funciona)
+## Grupo de edad ENFR (Funciona bien)
 prev18_enfr <- prev18 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
+  
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
 
-## Explorar combinaciones faltantes para presencia DM
-comb_enfr |> 
-  anti_join(datos_18 |> 
-              select(prov_nombre, grupo_edad_enfr, sexo, dm_auto) |> 
-              distinct())
-
-
-## Provincia, grupo edad quinquenal y sexo (Error en glm.fit)
+## Grupo edad quinquenal (Error de glm.fit)
 prev18_quin <- prev18 |> 
+  # Calcular prevalencia
   group_by(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-  
-  summarise(prev = survey_prop(vartype = "ci",
-                               na.rm = TRUE),
+  summarise(freq_dm = survey_total(na.rm = TRUE),
+            prev_dm = survey_prop(na.rm = TRUE),
             .groups = "drop") |> 
   
+  # Seleccionar DM = Si
   filter(dm_auto == "Si")
-
-## Explorar combinaciones faltantes para presencia DM
-comb_quin |> 
-  anti_join(datos_18 |> 
-              select(prov_nombre, grupo_edad_quin, sexo, dm_auto) |> 
-              distinct())
 
 
 # Unir bases prevalencia --------------------------------------------------
+## Grupos edad quinquenales (la mayoría de las prevalencias falla, revisar)
+# prev_join_quin <- prev05_quin |> # revisar x error de convergencia
+#   bind_rows(prev09_quin,
+#             prev13_quin, 
+#             prev18_quin, 
+#             .id = "anio_enfr") |> 
+#   
+#   # Reemplaza etiquetas año
+#   mutate(anio_enfr = fct_relabel(anio_enfr, ~ c("2005", "2009", "2013", "2018")))
+
+
 ## Grupos edad ENFR (faltan 20 combinaciones de provincia, edad y sexo)
-prev_join_enfr <- prev05_enfr |> # revisar
+prev_join_enfr <- prev05_enfr |> # revisar x error de convergencia
   bind_rows(prev09_enfr,
             prev13_enfr, 
             prev18_enfr, 
             .id = "anio_enfr") |> 
   
   # Reemplaza etiquetas año
-  mutate(anio_enfr = factor(anio_enfr,
-                            labels = c("2005", "2009", "2013", "2018"))) |> 
+  mutate(anio_enfr = fct_relabel(anio_enfr, ~ c("2005", "2009", "2013", "2018"))
+         ) |> 
   
-  arrange(prov_nombre, anio_enfr, sexo)
+  # Descartar columnas innecesarias
+  select(-dm_auto)
 
 # CABA: falta prev. hombres y mujeres 18-24 años para 2013
 # Catamarca: falta prev. hombres 18-24 años para 2009
@@ -434,5 +437,9 @@ prev_join_enfr <- prev05_enfr |> # revisar
  
 
 # Guardar datos limpios ---------------------------------------------------
+# write_csv(prev_join_quin, "Bases de datos/clean/prev_dm_quin.csv")
+
 write_csv(prev_join_enfr, "Bases de datos/clean/prev_dm_enfr.csv")
 
+# Limpiar environment
+rm(list = ls())
