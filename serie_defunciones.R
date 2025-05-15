@@ -7,7 +7,7 @@
 ### Autora: Micaela Gauto 
 ### Colaboradora: Tamara Ricardo 
 ### Fecha de modificación:
-# Wed May 14 11:12:24 2025 ------------------------------
+# Thu May 15 13:49:08 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -17,13 +17,18 @@ library(tidyverse)
 
 # Cargar datos crudos -----------------------------------------------------
 ## Etiquetas provincias INDEC
-prov <- read_csv("Bases de datos/cod_pcias_arg.csv")
+prov <- read_csv("Bases de datos/cod_pcias_arg.csv") |> 
+  mutate(prov_nombre = factor(prov_nombre))
+
+## Etiquetas grupos de edad
+grupos_edad <- read_csv("Bases de datos/grupos_edad.csv") |> 
+  mutate_all(.funs = ~ factor(.x))
 
 ## Defunciones 2004
 def04 <- read_csv("Bases de datos/DEIS/DE_2004.csv", 
                     col_select = c(prov_nombre = Jurisdicción,
                                    sexo = Sexo,
-                                   grupo_edad_quin = `Grupo de edad`,
+                                   grupo_edad = `Grupo de edad`,
                                    causa = `Causa de muerte (CIE-10)`,
                                    total = Total))
 
@@ -44,7 +49,7 @@ def_raw <- # Listar los csv para cada año de interés
                  col_select = c(prov_res = PROVRES,
                                 sexo = SEXO,
                                 causa = CAUSA,
-                                grupo_edad_quin = GRUPEDAD,
+                                grupo_edad = GRUPEDAD,
                                 total = CUENTA))) |> 
   list_rbind(names_to = "anio")
 
@@ -65,8 +70,9 @@ def_clean <- def04 |>
   # Filtrar datos faltantes sexo
   filter(sexo %in% c("Varón", "Mujer")) |> 
   
-  # Filtrar grupos de edad fuera del rango de interés
-  filter(!str_detect(grupo_edad_quin, "01|02|03|04|05|06|07|08|09|25|ERROR")) |> 
+  # Filtrar grupos de edad fuera del rango de interés(20-80+)
+  filter(!str_detect(grupo_edad, 
+                     "01|02|03|04|05|06|07|08|09|10|25|ERROR")) |> 
   
   # Modificar etiqueta provincia para CABA
   mutate(prov_nombre = fct_recode(prov_nombre,
@@ -85,7 +91,7 @@ def_clean <- def04 |>
       filter(between(sexo, 1, 2)) |> 
       
       # Filtrar grupos de edad fuera del rango de interés
-      filter(!str_detect(grupo_edad_quin, "01|02|03|99")) |> 
+      filter(!str_detect(grupo_edad, "01|02|03|04|99")) |> 
       
       # Añadir etiquetas provincia
       mutate(prov_res = as.numeric(prov_res)) |> 
@@ -107,36 +113,32 @@ def_clean <- def04 |>
                                   "2018" = c("2017":"2019"))) |> 
   
   # Modificar etiquetas grupo edad quinquenal
-  mutate(grupo_edad_quin = fct_relabel(grupo_edad_quin, ~ str_sub(.x, start = 4)) |> 
+  mutate(grupo_edad_5 = fct_relabel(grupo_edad, ~ str_sub(.x, start = 4)) |> 
            fct_collapse("80 y más" = c("80 a 84", "85 y más"))
-         ) |> 
+         )|> 
   
-  # Crear variable para grupo edad ENFR
-  mutate(grupo_edad_enfr = fct_collapse(grupo_edad_quin,
-                                        "18 a 24" = c("15 a 19", "20 a 24"),
-                                        "25 a 34" = c("25 a 29", "30 a 34"),
-                                        "35 a 49" = c("35 a 39", "40 a 44", "45 a 49"),
-                                        "50 a 64" = c("50 a 54", "55 a 59", "60 a 64"),
-                                        "65+" = c("65 a 69", "70 a 74", 
-                                                  "75 a 79", "80 y más")),
-         .after = grupo_edad_quin)
-  
+  # Crear variable para grupo edad cada 10 años
+  left_join(grupos_edad)
+
 
 ### Explorar serie defunciones
 tabyl(def_clean$prov_nombre)
 
 tabyl(def_clean$sexo)
 
-tabyl(def_clean$grupo_edad_quin)
+tabyl(def_clean$grupo_edad_5)
 
-tabyl(def_clean$grupo_edad_enfr)
+tabyl(def_clean$grupo_edad_10)
 
 
 # Limpiar tabla esperanza de vida -----------------------------------------
 esp_vida_clean <- esp_vida_raw |> 
   # Estandarizar nombres de columna
   clean_names() |> 
-  rename(grupo_edad_quin = age_group) |> 
+  rename(grupo_edad = age_group) |> 
+  
+  # Filtrar grupo 15-19 años
+  filter(grupo_edad != "15-19  years") |> 
   
   # Extraer primeras dos letras del estimador
   mutate(indicator = str_sub(indicator, start = 1, end = 2)) |>
@@ -154,34 +156,35 @@ esp_vida_clean <- esp_vida_raw |>
                        labels = c("Varón",
                                   "Mujer"))) |> 
   
-  # Modificar niveles grupo edad quinquenal
-  mutate(grupo_edad_quin = fct_collapse(grupo_edad_quin,
-                                        "80 y más" = c("80-84 years", "85+ years")) |> 
-           fct_relabel(~ levels(def_clean$grupo_edad_quin))
-           ) |> 
+  # Modificar niveles grupo edad
+  mutate(grupo_edad = fct_collapse(grupo_edad,
+                                   "80 y más" = c("80-84 years", "85+ years"))
+         ) |> 
   
-  # Añadir grupo edad ENFR
-  left_join(def_clean |> 
-              select(grupo_edad_quin, grupo_edad_enfr) |> 
-              distinct())
+  # Modificar etiquetas grupo edad
+  mutate(grupo_edad_5 = fct_relabel(grupo_edad,
+                                    ~ levels(grupos_edad$grupo_edad_5))) |> 
   
+  # Crear variable para grupo edad cada 10 años
+  left_join(grupos_edad)
   
+
 # Calcular AVP ------------------------------------------------------------
 # AVP por grupo edad quinquenal
-AVP_quin <- def_clean |> 
+AVP_g5 <- def_clean |> 
   
   # Completar filas categorías faltantes (sin muertes)
   complete(nesting(anio, anio_enfr), nesting(prov_res, prov_nombre), 
-           sexo, grupo_edad_quin,
+           sexo, grupo_edad_5,
            fill = list(total = 0)) |> 
   
   # Crear serie defunciones
-  count(anio, anio_enfr, prov_nombre, sexo, grupo_edad_quin, 
+  count(anio, anio_enfr, prov_nombre, sexo, grupo_edad_5, 
         wt = total, 
         name = "def_dm") |> 
   
   # Calcular total y promedio defunciones por año ENFR, provincia, sexo y edad
-  group_by(anio_enfr, prov_nombre, grupo_edad_quin, sexo) |> 
+  group_by(anio_enfr, prov_nombre, grupo_edad_5, sexo) |> 
   summarise(
     # Conteo defunciones para el trienio
     def_tri = sum(def_dm, na.rm = TRUE),
@@ -193,7 +196,7 @@ AVP_quin <- def_clean |>
   # Añadir esperanza de vida
   left_join(esp_vida_clean |> 
               # Calcular esperanza de vida por grupo de edad quinquenal
-              group_by(grupo_edad_quin, sexo) |> 
+              group_by(grupo_edad_5, sexo) |> 
               summarise(esp_vida = sum(Tx, na.rm = TRUE) / sum(lx, na.rm = TRUE),
                         .groups = "drop") 
               ) |> 
@@ -202,21 +205,21 @@ AVP_quin <- def_clean |>
   mutate(AVP = mean_def_tri * esp_vida)
   
 
-# AVP por grupo edad ENFR
-AVP_enfr <- def_clean |> 
+# AVP por grupo edad cada 10 años
+AVP_g10 <- def_clean |> 
   
   # Completar filas categorías faltantes (sin muertes)
   complete(nesting(anio, anio_enfr), nesting(prov_res, prov_nombre),
-           sexo, grupo_edad_enfr,
+           sexo, grupo_edad_10,
            fill = list(total = 0)) |> 
   
   # Crear serie defunciones
-  count(anio, anio_enfr, prov_nombre, sexo, grupo_edad_enfr, 
+  count(anio, anio_enfr, prov_nombre, sexo, grupo_edad_10, 
         wt = total, 
         name = "def_dm") |> 
   
   # Calcular total y promedio defunciones por año ENFR, provincia, sexo y edad
-  group_by(anio_enfr, prov_nombre, grupo_edad_enfr, sexo) |> 
+  group_by(anio_enfr, prov_nombre, grupo_edad_10, sexo) |> 
   summarise(
     # Conteo defunciones para el trienio
     def_tri = sum(def_dm, na.rm = TRUE),
@@ -228,7 +231,7 @@ AVP_enfr <- def_clean |>
   # Añadir esperanza de vida
   left_join(esp_vida_clean |> 
               # Calcular esperanza de vida por grupo de edad quinquenal
-              group_by(grupo_edad_enfr, sexo) |> 
+              group_by(grupo_edad_10, sexo) |> 
               summarise(esp_vida = sum(Tx, na.rm = TRUE) / sum(lx, na.rm = TRUE),
                         .groups = "drop") 
   ) |> 
@@ -236,10 +239,11 @@ AVP_enfr <- def_clean |>
   # Calcular AVP
   mutate(AVP = mean_def_tri * esp_vida)
 
-# Guardar datos limpios ---------------------------------------------------
-write_csv(AVP_quin, file = "Bases de datos/clean/AVP_serie_quin.csv")
 
-write_csv(AVP_enfr, file = "Bases de datos/clean/AVP_serie_enfr.csv")
+# Guardar datos limpios ---------------------------------------------------
+write_csv(AVP_g5, file = "Bases de datos/clean/AVP_serie_5.csv")
+
+write_csv(AVP_g10, file = "Bases de datos/clean/AVP_serie_10.csv")
 
 # Limpiar environment
 rm(list = ls())
