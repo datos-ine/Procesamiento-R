@@ -7,7 +7,7 @@
 ### Autora: Micaela Gauto 
 ### Colaboradora: Tamara Ricardo 
 ### Fecha de modificación:
-# Mon May 19 08:59:08 2025 ------------------------------
+# Tue May 20 11:15:38 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -144,7 +144,7 @@ tabyl(def_join$grupo_edad)
 tabyl(def_join$grupo_edad_10)
 
 ### Limpiar objetos intermedios
-rm(def04, def)
+rm(def04_raw, def04, def_raw, def)
 
 
 # Limpiar tabla esperanza de vida -----------------------------------------
@@ -198,8 +198,8 @@ AVP_g5 <- def_join |>
   
   # Calcular defunciones totales y promedio por trienio ENFR
   group_by(anio_enfr, prov_nombre, grupo_edad, sexo) |> 
-  summarise(defun_trienio = sum(defun_dm, na.rm = TRUE),
-            defun_mean_trienio = mean(defun_dm, na.rm = TRUE) |>  round(2),
+  summarise(defun_tri = sum(defun_dm, na.rm = TRUE),
+            defun_mean_tri = mean(defun_dm, na.rm = TRUE) |>  round(2),
             .groups = "drop") |> 
   
   # Añadir datos esperanza de vida
@@ -211,7 +211,7 @@ AVP_g5 <- def_join |>
   ) |> 
   
   # Calcular AVP
-  mutate(AVP = defun_mean_trienio * esp_vida)
+  mutate(AVP = defun_mean_tri * esp_vida)
   
 
 ## AVP por grupo edad cada 10 años
@@ -228,8 +228,8 @@ AVP_g10 <- def_join |>
   
   # Calcular defunciones totales y promedio por trienio ENFR
   group_by(anio_enfr, prov_nombre, grupo_edad_10, sexo) |> 
-  summarise(defun_trienio = sum(defun_dm, na.rm = TRUE),
-            defun_mean_trienio = mean(defun_dm, na.rm = TRUE) |>  round(2),
+  summarise(defun_tri = sum(defun_dm, na.rm = TRUE),
+            defun_mean_tri = mean(defun_dm, na.rm = TRUE) |>  round(2),
             .groups = "drop") |> 
   
   # Añadir datos esperanza de vida
@@ -241,7 +241,33 @@ AVP_g10 <- def_join |>
   ) |> 
   
   # Calcular AVP
-  mutate(AVP = defun_mean_trienio * esp_vida)
+  mutate(AVP = defun_mean_tri * esp_vida)
+
+
+# Explorar datos limpios --------------------------------------------------
+## Diferencias en la mortalidad por DM según sexo
+# Grupos quinquenales
+mod1 <- lm(defun_mean_tri ~ sexo, data = AVP_g5) 
+
+summary(mod1) # p = 0.521
+
+# Grupos cada 10 años
+mod2 <- lm(defun_mean_tri ~ sexo, data = AVP_g10) 
+
+summary(mod2) # p = 0.585 
+
+
+## Diferencias en la mortalidad por DM según sexo y grupo etario
+# Grupos quinquenales
+mod3 <- lm(defun_mean_tri ~ sexo * grupo_edad, data = AVP_g5) 
+
+summary(mod3) # Solo hay diferencias significativas para el grupo 80+ (p = 0.001)
+
+
+# Grupos cada 10 años
+mod4 <- lm(defun_mean_tri ~ sexo * grupo_edad_10, data = AVP_g10) 
+
+summary(mod4) # Solo hay diferencias significativas para el grupo 80+ (p = 0.044)
 
 
 # Guardar datos limpios ---------------------------------------------------
