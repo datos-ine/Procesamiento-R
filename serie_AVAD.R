@@ -2,7 +2,7 @@
 ### Autora: Micaela Gauto
 ### Colaboradora: Tamara Ricardo
 ### Fecha modificación:
-# Wed May 14 11:59:05 2025 ------------------------------
+# Wed May 21 11:23:14 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -12,6 +12,13 @@ library(tidyverse)
 
 
 # Cargar datos ------------------------------------------------------------
+## Defunciones periodo ENFR
+defun_dm <- read_csv("Bases de datos/clean/arg_defun_dm_clean.csv")
+
+## Esperanza de vida 2019
+esp_vida <- read_delim("Bases de datos/clean/arg_esp_vida_2019_clean.csv")
+
+
 ## AVP por grupo edad ENFR
 serie_AVP_enfr <- read_csv("Bases de datos/clean/AVP_serie_enfr.csv")
 
