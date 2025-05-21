@@ -19,9 +19,13 @@ defun_dm <- read_csv("Bases de datos/clean/arg_defun_dm_clean.csv")
 ## Tabla de vida GHO-WHO 2010
 esp_vida <- read_csv("Bases de datos/clean/arg_esp_vida_2019_clean.csv")
 
-## Prevalencia DM2 según ENFR
+## Prevalencia DM2 según ENFR por grupos quinquenales de edad
+prev_dm5 <- read_csv("Bases de datos/clean/prev_dm_g5.csv")
 
-## Secuelas DM2
+## Prevalencia DM2 según ENFR por grupos decenales de edad
+prev_dm5 <- read_csv("Bases de datos/clean/prev_dm_g10.csv")
+
+## Secuelas DM2 (datos temporales)
 
 ## Proyecciones INDEC 2005
 pob_05 <- import("Bases de datos/Proyecciones INDEC/proyec_2005.xlsx")
