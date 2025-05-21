@@ -1,0 +1,1873 @@
+anio,prov_id,prov_nombre,sexo,grupo_edad,proyeccion
+2010,2,CABA,Mujer,20 a 24,101710
+2010,2,CABA,Mujer,25 a 29,116572
+2010,2,CABA,Mujer,30 a 34,122615
+2010,2,CABA,Mujer,35 a 39,123148
+2010,2,CABA,Mujer,40 a 44,112931
+2010,2,CABA,Mujer,45 a 49,95002
+2010,2,CABA,Mujer,50 a 54,90855
+2010,2,CABA,Mujer,55 a 59,92557
+2010,2,CABA,Mujer,60 a 64,88716
+2010,2,CABA,Mujer,65 a 69,84016
+2010,2,CABA,Mujer,70 a 74,75282
+2010,2,CABA,Mujer,75 a 79,65286
+2010,2,CABA,Mujer,80+,56642
+2010,2,CABA,Varón,20 a 24,43137
+2010,2,CABA,Varón,25 a 29,111726
+2010,2,CABA,Varón,30 a 34,116490
+2010,2,CABA,Varón,35 a 39,117011
+2010,2,CABA,Varón,40 a 44,105455
+2010,2,CABA,Varón,45 a 49,85885
+2010,2,CABA,Varón,50 a 54,78726
+2010,2,CABA,Varón,55 a 59,76659
+2010,2,CABA,Varón,60 a 64,70233
+2010,2,CABA,Varón,65 a 69,63364
+2010,2,CABA,Varón,70 a 74,53532
+2010,2,CABA,Varón,75 a 79,42547
+2010,2,CABA,Varón,80+,32679
+2010,6,Buenos Aires,Mujer,20 a 24,273339
+2010,6,Buenos Aires,Mujer,25 a 29,637039
+2010,6,Buenos Aires,Mujer,30 a 34,604955
+2010,6,Buenos Aires,Mujer,35 a 39,607257
+2010,6,Buenos Aires,Mujer,40 a 44,541631
+2010,6,Buenos Aires,Mujer,45 a 49,477017
+2010,6,Buenos Aires,Mujer,50 a 54,450322
+2010,6,Buenos Aires,Mujer,55 a 59,421117
+2010,6,Buenos Aires,Mujer,60 a 64,390329
+2010,6,Buenos Aires,Mujer,65 a 69,349449
+2010,6,Buenos Aires,Mujer,70 a 74,286506
+2010,6,Buenos Aires,Mujer,75 a 79,236637
+2010,6,Buenos Aires,Mujer,80+,199627
+2010,6,Buenos Aires,Varón,20 a 24,131209
+2010,6,Buenos Aires,Varón,25 a 29,643442
+2010,6,Buenos Aires,Varón,30 a 34,604625
+2010,6,Buenos Aires,Varón,35 a 39,598679
+2010,6,Buenos Aires,Varón,40 a 44,528202
+2010,6,Buenos Aires,Varón,45 a 49,459666
+2010,6,Buenos Aires,Varón,50 a 54,427517
+2010,6,Buenos Aires,Varón,55 a 59,394748
+2010,6,Buenos Aires,Varón,60 a 64,354844
+2010,6,Buenos Aires,Varón,65 a 69,308412
+2010,6,Buenos Aires,Varón,70 a 74,238875
+2010,6,Buenos Aires,Varón,75 a 79,178795
+2010,6,Buenos Aires,Varón,80+,132750
+2010,10,Catamarca,Mujer,20 a 24,4389
+2010,10,Catamarca,Mujer,25 a 29,15210
+2010,10,Catamarca,Mujer,30 a 34,14318
+2010,10,Catamarca,Mujer,35 a 39,14626
+2010,10,Catamarca,Mujer,40 a 44,12433
+2010,10,Catamarca,Mujer,45 a 49,10434
+2010,10,Catamarca,Mujer,50 a 54,9405
+2010,10,Catamarca,Mujer,55 a 59,8752
+2010,10,Catamarca,Mujer,60 a 64,7896
+2010,10,Catamarca,Mujer,65 a 69,6511
+2010,10,Catamarca,Mujer,70 a 74,5165
+2010,10,Catamarca,Mujer,75 a 79,4029
+2010,10,Catamarca,Mujer,80+,3361
+2010,10,Catamarca,Varón,20 a 24,2409
+2010,10,Catamarca,Varón,25 a 29,15603
+2010,10,Catamarca,Varón,30 a 34,14479
+2010,10,Catamarca,Varón,35 a 39,14522
+2010,10,Catamarca,Varón,40 a 44,12457
+2010,10,Catamarca,Varón,45 a 49,10481
+2010,10,Catamarca,Varón,50 a 54,9436
+2010,10,Catamarca,Varón,55 a 59,8823
+2010,10,Catamarca,Varón,60 a 64,7911
+2010,10,Catamarca,Varón,65 a 69,6323
+2010,10,Catamarca,Varón,70 a 74,4671
+2010,10,Catamarca,Varón,75 a 79,3322
+2010,10,Catamarca,Varón,80+,2371
+2010,14,Córdoba,Mujer,20 a 24,60672
+2010,14,Córdoba,Mujer,25 a 29,139053
+2010,14,Córdoba,Mujer,30 a 34,133465
+2010,14,Córdoba,Mujer,35 a 39,129784
+2010,14,Córdoba,Mujer,40 a 44,112102
+2010,14,Córdoba,Mujer,45 a 49,98908
+2010,14,Córdoba,Mujer,50 a 54,95658
+2010,14,Córdoba,Mujer,55 a 59,89379
+2010,14,Córdoba,Mujer,60 a 64,84417
+2010,14,Córdoba,Mujer,65 a 69,77783
+2010,14,Córdoba,Mujer,70 a 74,64960
+2010,14,Córdoba,Mujer,75 a 79,53543
+2010,14,Córdoba,Mujer,80+,44385
+2010,14,Córdoba,Varón,20 a 24,29155
+2010,14,Córdoba,Varón,25 a 29,139319
+2010,14,Córdoba,Varón,30 a 34,133052
+2010,14,Córdoba,Varón,35 a 39,128954
+2010,14,Córdoba,Varón,40 a 44,109432
+2010,14,Córdoba,Varón,45 a 49,94385
+2010,14,Córdoba,Varón,50 a 54,90751
+2010,14,Córdoba,Varón,55 a 59,83303
+2010,14,Córdoba,Varón,60 a 64,76474
+2010,14,Córdoba,Varón,65 a 69,67874
+2010,14,Córdoba,Varón,70 a 74,53668
+2010,14,Córdoba,Varón,75 a 79,40548
+2010,14,Córdoba,Varón,80+,29613
+2010,18,Corrientes,Mujer,20 a 24,10929
+2010,18,Corrientes,Mujer,25 a 29,44791
+2010,18,Corrientes,Mujer,30 a 34,38908
+2010,18,Corrientes,Mujer,35 a 39,36594
+2010,18,Corrientes,Mujer,40 a 44,31806
+2010,18,Corrientes,Mujer,45 a 49,28521
+2010,18,Corrientes,Mujer,50 a 54,27398
+2010,18,Corrientes,Mujer,55 a 59,25011
+2010,18,Corrientes,Mujer,60 a 64,21860
+2010,18,Corrientes,Mujer,65 a 69,17803
+2010,18,Corrientes,Mujer,70 a 74,14259
+2010,18,Corrientes,Mujer,75 a 79,11572
+2010,18,Corrientes,Mujer,80+,8936
+2010,18,Corrientes,Varón,20 a 24,6201
+2010,18,Corrientes,Varón,25 a 29,43377
+2010,18,Corrientes,Varón,30 a 34,37356
+2010,18,Corrientes,Varón,35 a 39,34492
+2010,18,Corrientes,Varón,40 a 44,29613
+2010,18,Corrientes,Varón,45 a 49,26812
+2010,18,Corrientes,Varón,50 a 54,26148
+2010,18,Corrientes,Varón,55 a 59,24118
+2010,18,Corrientes,Varón,60 a 64,21690
+2010,18,Corrientes,Varón,65 a 69,17316
+2010,18,Corrientes,Varón,70 a 74,12833
+2010,18,Corrientes,Varón,75 a 79,9174
+2010,18,Corrientes,Varón,80+,6299
+2010,22,Chaco,Mujer,20 a 24,9522
+2010,22,Chaco,Mujer,25 a 29,47229
+2010,22,Chaco,Mujer,30 a 34,42573
+2010,22,Chaco,Mujer,35 a 39,39599
+2010,22,Chaco,Mujer,40 a 44,33260
+2010,22,Chaco,Mujer,45 a 49,29298
+2010,22,Chaco,Mujer,50 a 54,27726
+2010,22,Chaco,Mujer,55 a 59,25393
+2010,22,Chaco,Mujer,60 a 64,21502
+2010,22,Chaco,Mujer,65 a 69,16768
+2010,22,Chaco,Mujer,70 a 74,13429
+2010,22,Chaco,Mujer,75 a 79,11069
+2010,22,Chaco,Mujer,80+,8279
+2010,22,Chaco,Varón,20 a 24,5387
+2010,22,Chaco,Varón,25 a 29,46125
+2010,22,Chaco,Varón,30 a 34,40685
+2010,22,Chaco,Varón,35 a 39,37852
+2010,22,Chaco,Varón,40 a 44,31520
+2010,22,Chaco,Varón,45 a 49,27830
+2010,22,Chaco,Varón,50 a 54,26755
+2010,22,Chaco,Varón,55 a 59,24995
+2010,22,Chaco,Varón,60 a 64,21398
+2010,22,Chaco,Varón,65 a 69,16294
+2010,22,Chaco,Varón,70 a 74,12069
+2010,22,Chaco,Varón,75 a 79,8837
+2010,22,Chaco,Varón,80+,6064
+2010,26,Chubut,Mujer,20 a 24,5019
+2010,26,Chubut,Mujer,25 a 29,21062
+2010,26,Chubut,Mujer,30 a 34,21327
+2010,26,Chubut,Mujer,35 a 39,21540
+2010,26,Chubut,Mujer,40 a 44,18300
+2010,26,Chubut,Mujer,45 a 49,15462
+2010,26,Chubut,Mujer,50 a 54,14310
+2010,26,Chubut,Mujer,55 a 59,12834
+2010,26,Chubut,Mujer,60 a 64,11048
+2010,26,Chubut,Mujer,65 a 69,8891
+2010,26,Chubut,Mujer,70 a 74,6935
+2010,26,Chubut,Mujer,75 a 79,5367
+2010,26,Chubut,Mujer,80+,4083
+2010,26,Chubut,Varón,20 a 24,2895
+2010,26,Chubut,Varón,25 a 29,21591
+2010,26,Chubut,Varón,30 a 34,22019
+2010,26,Chubut,Varón,35 a 39,21926
+2010,26,Chubut,Varón,40 a 44,18341
+2010,26,Chubut,Varón,45 a 49,15345
+2010,26,Chubut,Varón,50 a 54,14327
+2010,26,Chubut,Varón,55 a 59,12815
+2010,26,Chubut,Varón,60 a 64,10849
+2010,26,Chubut,Varón,65 a 69,8557
+2010,26,Chubut,Varón,70 a 74,6261
+2010,26,Chubut,Varón,75 a 79,4396
+2010,26,Chubut,Varón,80+,2975
+2010,30,Entre Ríos,Mujer,20 a 24,20414
+2010,30,Entre Ríos,Mujer,25 a 29,49772
+2010,30,Entre Ríos,Mujer,30 a 34,47137
+2010,30,Entre Ríos,Mujer,35 a 39,46511
+2010,30,Entre Ríos,Mujer,40 a 44,41003
+2010,30,Entre Ríos,Mujer,45 a 49,36228
+2010,30,Entre Ríos,Mujer,50 a 54,35263
+2010,30,Entre Ríos,Mujer,55 a 59,32974
+2010,30,Entre Ríos,Mujer,60 a 64,30073
+2010,30,Entre Ríos,Mujer,65 a 69,26636
+2010,30,Entre Ríos,Mujer,70 a 74,22404
+2010,30,Entre Ríos,Mujer,75 a 79,18668
+2010,30,Entre Ríos,Mujer,80+,15372
+2010,30,Entre Ríos,Varón,20 a 24,9110
+2010,30,Entre Ríos,Varón,25 a 29,50176
+2010,30,Entre Ríos,Varón,30 a 34,46806
+2010,30,Entre Ríos,Varón,35 a 39,45663
+2010,30,Entre Ríos,Varón,40 a 44,40292
+2010,30,Entre Ríos,Varón,45 a 49,35416
+2010,30,Entre Ríos,Varón,50 a 54,33736
+2010,30,Entre Ríos,Varón,55 a 59,31042
+2010,30,Entre Ríos,Varón,60 a 64,28519
+2010,30,Entre Ríos,Varón,65 a 69,24227
+2010,30,Entre Ríos,Varón,70 a 74,19065
+2010,30,Entre Ríos,Varón,75 a 79,14002
+2010,30,Entre Ríos,Varón,80+,9656
+2010,34,Formosa,Mujer,20 a 24,4395
+2010,34,Formosa,Mujer,25 a 29,22662
+2010,34,Formosa,Mujer,30 a 34,19825
+2010,34,Formosa,Mujer,35 a 39,19240
+2010,34,Formosa,Mujer,40 a 44,16890
+2010,34,Formosa,Mujer,45 a 49,15281
+2010,34,Formosa,Mujer,50 a 54,14004
+2010,34,Formosa,Mujer,55 a 59,12937
+2010,34,Formosa,Mujer,60 a 64,10887
+2010,34,Formosa,Mujer,65 a 69,8503
+2010,34,Formosa,Mujer,70 a 74,6726
+2010,34,Formosa,Mujer,75 a 79,5272
+2010,34,Formosa,Mujer,80+,3832
+2010,34,Formosa,Varón,20 a 24,3182
+2010,34,Formosa,Varón,25 a 29,22066
+2010,34,Formosa,Varón,30 a 34,18677
+2010,34,Formosa,Varón,35 a 39,18044
+2010,34,Formosa,Varón,40 a 44,15819
+2010,34,Formosa,Varón,45 a 49,14641
+2010,34,Formosa,Varón,50 a 54,14093
+2010,34,Formosa,Varón,55 a 59,12769
+2010,34,Formosa,Varón,60 a 64,10984
+2010,34,Formosa,Varón,65 a 69,8488
+2010,34,Formosa,Varón,70 a 74,6517
+2010,34,Formosa,Varón,75 a 79,4933
+2010,34,Formosa,Varón,80+,3344
+2010,38,Jujuy,Mujer,20 a 24,5755
+2010,38,Jujuy,Mujer,25 a 29,28580
+2010,38,Jujuy,Mujer,30 a 34,27218
+2010,38,Jujuy,Mujer,35 a 39,27103
+2010,38,Jujuy,Mujer,40 a 44,23173
+2010,38,Jujuy,Mujer,45 a 49,19220
+2010,38,Jujuy,Mujer,50 a 54,17442
+2010,38,Jujuy,Mujer,55 a 59,16061
+2010,38,Jujuy,Mujer,60 a 64,14244
+2010,38,Jujuy,Mujer,65 a 69,11770
+2010,38,Jujuy,Mujer,70 a 74,9134
+2010,38,Jujuy,Mujer,75 a 79,6983
+2010,38,Jujuy,Mujer,80+,5166
+2010,38,Jujuy,Varón,20 a 24,3646
+2010,38,Jujuy,Varón,25 a 29,28189
+2010,38,Jujuy,Varón,30 a 34,26443
+2010,38,Jujuy,Varón,35 a 39,26298
+2010,38,Jujuy,Varón,40 a 44,22146
+2010,38,Jujuy,Varón,45 a 49,17942
+2010,38,Jujuy,Varón,50 a 54,16015
+2010,38,Jujuy,Varón,55 a 59,14511
+2010,38,Jujuy,Varón,60 a 64,13061
+2010,38,Jujuy,Varón,65 a 69,10601
+2010,38,Jujuy,Varón,70 a 74,8100
+2010,38,Jujuy,Varón,75 a 79,6011
+2010,38,Jujuy,Varón,80+,4154
+2010,42,La Pampa,Mujer,20 a 24,5636
+2010,42,La Pampa,Mujer,25 a 29,12275
+2010,42,La Pampa,Mujer,30 a 34,11835
+2010,42,La Pampa,Mujer,35 a 39,11899
+2010,42,La Pampa,Mujer,40 a 44,10860
+2010,42,La Pampa,Mujer,45 a 49,9892
+2010,42,La Pampa,Mujer,50 a 54,9530
+2010,42,La Pampa,Mujer,55 a 59,8666
+2010,42,La Pampa,Mujer,60 a 64,7928
+2010,42,La Pampa,Mujer,65 a 69,7223
+2010,42,La Pampa,Mujer,70 a 74,6110
+2010,42,La Pampa,Mujer,75 a 79,5012
+2010,42,La Pampa,Mujer,80+,3988
+2010,42,La Pampa,Varón,20 a 24,2983
+2010,42,La Pampa,Varón,25 a 29,12709
+2010,42,La Pampa,Varón,30 a 34,12017
+2010,42,La Pampa,Varón,35 a 39,11985
+2010,42,La Pampa,Varón,40 a 44,10705
+2010,42,La Pampa,Varón,45 a 49,9719
+2010,42,La Pampa,Varón,50 a 54,9499
+2010,42,La Pampa,Varón,55 a 59,8724
+2010,42,La Pampa,Varón,60 a 64,7997
+2010,42,La Pampa,Varón,65 a 69,7001
+2010,42,La Pampa,Varón,70 a 74,5708
+2010,42,La Pampa,Varón,75 a 79,4202
+2010,42,La Pampa,Varón,80+,3017
+2010,46,La Rioja,Mujer,20 a 24,3380
+2010,46,La Rioja,Mujer,25 a 29,15396
+2010,46,La Rioja,Mujer,30 a 34,13927
+2010,46,La Rioja,Mujer,35 a 39,13778
+2010,46,La Rioja,Mujer,40 a 44,11438
+2010,46,La Rioja,Mujer,45 a 49,9565
+2010,46,La Rioja,Mujer,50 a 54,8845
+2010,46,La Rioja,Mujer,55 a 59,7848
+2010,46,La Rioja,Mujer,60 a 64,6940
+2010,46,La Rioja,Mujer,65 a 69,5602
+2010,46,La Rioja,Mujer,70 a 74,4296
+2010,46,La Rioja,Mujer,75 a 79,3428
+2010,46,La Rioja,Mujer,80+,2666
+2010,46,La Rioja,Varón,20 a 24,1961
+2010,46,La Rioja,Varón,25 a 29,15233
+2010,46,La Rioja,Varón,30 a 34,13844
+2010,46,La Rioja,Varón,35 a 39,13535
+2010,46,La Rioja,Varón,40 a 44,11235
+2010,46,La Rioja,Varón,45 a 49,9507
+2010,46,La Rioja,Varón,50 a 54,8858
+2010,46,La Rioja,Varón,55 a 59,7973
+2010,46,La Rioja,Varón,60 a 64,7019
+2010,46,La Rioja,Varón,65 a 69,5531
+2010,46,La Rioja,Varón,70 a 74,4058
+2010,46,La Rioja,Varón,75 a 79,2793
+2010,46,La Rioja,Varón,80+,1988
+2010,50,Mendoza,Mujer,20 a 24,26795
+2010,50,Mendoza,Mujer,25 a 29,74634
+2010,50,Mendoza,Mujer,30 a 34,68614
+2010,50,Mendoza,Mujer,35 a 39,66688
+2010,50,Mendoza,Mujer,40 a 44,58722
+2010,50,Mendoza,Mujer,45 a 49,50641
+2010,50,Mendoza,Mujer,50 a 54,47710
+2010,50,Mendoza,Mujer,55 a 59,45616
+2010,50,Mendoza,Mujer,60 a 64,43908
+2010,50,Mendoza,Mujer,65 a 69,39318
+2010,50,Mendoza,Mujer,70 a 74,32053
+2010,50,Mendoza,Mujer,75 a 79,25403
+2010,50,Mendoza,Mujer,80+,20597
+2010,50,Mendoza,Varón,20 a 24,14861
+2010,50,Mendoza,Varón,25 a 29,75959
+2010,50,Mendoza,Varón,30 a 34,69161
+2010,50,Mendoza,Varón,35 a 39,65347
+2010,50,Mendoza,Varón,40 a 44,56270
+2010,50,Mendoza,Varón,45 a 49,47655
+2010,50,Mendoza,Varón,50 a 54,44110
+2010,50,Mendoza,Varón,55 a 59,41781
+2010,50,Mendoza,Varón,60 a 64,39383
+2010,50,Mendoza,Varón,65 a 69,34473
+2010,50,Mendoza,Varón,70 a 74,26982
+2010,50,Mendoza,Varón,75 a 79,19972
+2010,50,Mendoza,Varón,80+,14705
+2010,54,Misiones,Mujer,20 a 24,7965
+2010,54,Misiones,Mujer,25 a 29,47602
+2010,54,Misiones,Mujer,30 a 34,41976
+2010,54,Misiones,Mujer,35 a 39,39332
+2010,54,Misiones,Mujer,40 a 44,33867
+2010,54,Misiones,Mujer,45 a 49,29813
+2010,54,Misiones,Mujer,50 a 54,28037
+2010,54,Misiones,Mujer,55 a 59,24634
+2010,54,Misiones,Mujer,60 a 64,20437
+2010,54,Misiones,Mujer,65 a 69,15965
+2010,54,Misiones,Mujer,70 a 74,12375
+2010,54,Misiones,Mujer,75 a 79,9829
+2010,54,Misiones,Mujer,80+,7278
+2010,54,Misiones,Varón,20 a 24,5466
+2010,54,Misiones,Varón,25 a 29,46576
+2010,54,Misiones,Varón,30 a 34,40583
+2010,54,Misiones,Varón,35 a 39,38075
+2010,54,Misiones,Varón,40 a 44,32837
+2010,54,Misiones,Varón,45 a 49,28980
+2010,54,Misiones,Varón,50 a 54,28019
+2010,54,Misiones,Varón,55 a 59,25147
+2010,54,Misiones,Varón,60 a 64,20976
+2010,54,Misiones,Varón,65 a 69,16032
+2010,54,Misiones,Varón,70 a 74,12022
+2010,54,Misiones,Varón,75 a 79,8902
+2010,54,Misiones,Varón,80+,5988
+2010,58,Neuquén,Mujer,20 a 24,4648
+2010,58,Neuquén,Mujer,25 a 29,23866
+2010,58,Neuquén,Mujer,30 a 34,23455
+2010,58,Neuquén,Mujer,35 a 39,23875
+2010,58,Neuquén,Mujer,40 a 44,21166
+2010,58,Neuquén,Mujer,45 a 49,18186
+2010,58,Neuquén,Mujer,50 a 54,16661
+2010,58,Neuquén,Mujer,55 a 59,14482
+2010,58,Neuquén,Mujer,60 a 64,12195
+2010,58,Neuquén,Mujer,65 a 69,9631
+2010,58,Neuquén,Mujer,70 a 74,7025
+2010,58,Neuquén,Mujer,75 a 79,5186
+2010,58,Neuquén,Mujer,80+,3816
+2010,58,Neuquén,Varón,20 a 24,2663
+2010,58,Neuquén,Varón,25 a 29,24515
+2010,58,Neuquén,Varón,30 a 34,23213
+2010,58,Neuquén,Varón,35 a 39,23343
+2010,58,Neuquén,Varón,40 a 44,20596
+2010,58,Neuquén,Varón,45 a 49,17436
+2010,58,Neuquén,Varón,50 a 54,15864
+2010,58,Neuquén,Varón,55 a 59,14066
+2010,58,Neuquén,Varón,60 a 64,11923
+2010,58,Neuquén,Varón,65 a 69,9340
+2010,58,Neuquén,Varón,70 a 74,6597
+2010,58,Neuquén,Varón,75 a 79,4476
+2010,58,Neuquén,Varón,80+,2895
+2010,62,Río Negro,Mujer,20 a 24,7326
+2010,62,Río Negro,Mujer,25 a 29,25729
+2010,62,Río Negro,Mujer,30 a 34,25138
+2010,62,Río Negro,Mujer,35 a 39,25590
+2010,62,Río Negro,Mujer,40 a 44,22681
+2010,62,Río Negro,Mujer,45 a 49,19952
+2010,62,Río Negro,Mujer,50 a 54,18768
+2010,62,Río Negro,Mujer,55 a 59,16863
+2010,62,Río Negro,Mujer,60 a 64,14820
+2010,62,Río Negro,Mujer,65 a 69,12516
+2010,62,Río Negro,Mujer,70 a 74,9783
+2010,62,Río Negro,Mujer,75 a 79,7441
+2010,62,Río Negro,Mujer,80+,5708
+2010,62,Río Negro,Varón,20 a 24,4361
+2010,62,Río Negro,Varón,25 a 29,26465
+2010,62,Río Negro,Varón,30 a 34,25193
+2010,62,Río Negro,Varón,35 a 39,24917
+2010,62,Río Negro,Varón,40 a 44,22159
+2010,62,Río Negro,Varón,45 a 49,19326
+2010,62,Río Negro,Varón,50 a 54,18110
+2010,62,Río Negro,Varón,55 a 59,16395
+2010,62,Río Negro,Varón,60 a 64,14518
+2010,62,Río Negro,Varón,65 a 69,12167
+2010,62,Río Negro,Varón,70 a 74,9159
+2010,62,Río Negro,Varón,75 a 79,6554
+2010,62,Río Negro,Varón,80+,4502
+2010,66,Salta,Mujer,20 a 24,10795
+2010,66,Salta,Mujer,25 a 29,52827
+2010,66,Salta,Mujer,30 a 34,48278
+2010,66,Salta,Mujer,35 a 39,46497
+2010,66,Salta,Mujer,40 a 44,39959
+2010,66,Salta,Mujer,45 a 49,33619
+2010,66,Salta,Mujer,50 a 54,30202
+2010,66,Salta,Mujer,55 a 59,27088
+2010,66,Salta,Mujer,60 a 64,24053
+2010,66,Salta,Mujer,65 a 69,19909
+2010,66,Salta,Mujer,70 a 74,15434
+2010,66,Salta,Mujer,75 a 79,11980
+2010,66,Salta,Mujer,80+,9155
+2010,66,Salta,Varón,20 a 24,6793
+2010,66,Salta,Varón,25 a 29,52103
+2010,66,Salta,Varón,30 a 34,46417
+2010,66,Salta,Varón,35 a 39,44096
+2010,66,Salta,Varón,40 a 44,37727
+2010,66,Salta,Varón,45 a 49,32052
+2010,66,Salta,Varón,50 a 54,29026
+2010,66,Salta,Varón,55 a 59,25723
+2010,66,Salta,Varón,60 a 64,22580
+2010,66,Salta,Varón,65 a 69,18287
+2010,66,Salta,Varón,70 a 74,14016
+2010,66,Salta,Varón,75 a 79,10462
+2010,66,Salta,Varón,80+,7382
+2010,70,San Juan,Mujer,20 a 24,7860
+2010,70,San Juan,Mujer,25 a 29,27803
+2010,70,San Juan,Mujer,30 a 34,26169
+2010,70,San Juan,Mujer,35 a 39,25612
+2010,70,San Juan,Mujer,40 a 44,23094
+2010,70,San Juan,Mujer,45 a 49,19546
+2010,70,San Juan,Mujer,50 a 54,18185
+2010,70,San Juan,Mujer,55 a 59,17291
+2010,70,San Juan,Mujer,60 a 64,16329
+2010,70,San Juan,Mujer,65 a 69,14407
+2010,70,San Juan,Mujer,70 a 74,11545
+2010,70,San Juan,Mujer,75 a 79,8699
+2010,70,San Juan,Mujer,80+,6691
+2010,70,San Juan,Varón,20 a 24,4512
+2010,70,San Juan,Varón,25 a 29,28599
+2010,70,San Juan,Varón,30 a 34,26426
+2010,70,San Juan,Varón,35 a 39,25663
+2010,70,San Juan,Varón,40 a 44,22494
+2010,70,San Juan,Varón,45 a 49,18564
+2010,70,San Juan,Varón,50 a 54,16890
+2010,70,San Juan,Varón,55 a 59,15530
+2010,70,San Juan,Varón,60 a 64,14534
+2010,70,San Juan,Varón,65 a 69,12586
+2010,70,San Juan,Varón,70 a 74,9676
+2010,70,San Juan,Varón,75 a 79,6710
+2010,70,San Juan,Varón,80+,4800
+2010,74,San Luis,Mujer,20 a 24,5366
+2010,74,San Luis,Mujer,25 a 29,17510
+2010,74,San Luis,Mujer,30 a 34,16955
+2010,74,San Luis,Mujer,35 a 39,17206
+2010,74,San Luis,Mujer,40 a 44,14823
+2010,74,San Luis,Mujer,45 a 49,12867
+2010,74,San Luis,Mujer,50 a 54,11996
+2010,74,San Luis,Mujer,55 a 59,10991
+2010,74,San Luis,Mujer,60 a 64,9999
+2010,74,San Luis,Mujer,65 a 69,8686
+2010,74,San Luis,Mujer,70 a 74,7089
+2010,74,San Luis,Mujer,75 a 79,5361
+2010,74,San Luis,Mujer,80+,4146
+2010,74,San Luis,Varón,20 a 24,2829
+2010,74,San Luis,Varón,25 a 29,17490
+2010,74,San Luis,Varón,30 a 34,16581
+2010,74,San Luis,Varón,35 a 39,16967
+2010,74,San Luis,Varón,40 a 44,14825
+2010,74,San Luis,Varón,45 a 49,12993
+2010,74,San Luis,Varón,50 a 54,11983
+2010,74,San Luis,Varón,55 a 59,10792
+2010,74,San Luis,Varón,60 a 64,9720
+2010,74,San Luis,Varón,65 a 69,8248
+2010,74,San Luis,Varón,70 a 74,6342
+2010,74,San Luis,Varón,75 a 79,4428
+2010,74,San Luis,Varón,80+,3125
+2010,78,Santa Cruz,Mujer,20 a 24,1495
+2010,78,Santa Cruz,Mujer,25 a 29,11255
+2010,78,Santa Cruz,Mujer,30 a 34,11885
+2010,78,Santa Cruz,Mujer,35 a 39,11848
+2010,78,Santa Cruz,Mujer,40 a 44,9799
+2010,78,Santa Cruz,Mujer,45 a 49,8053
+2010,78,Santa Cruz,Mujer,50 a 54,7244
+2010,78,Santa Cruz,Mujer,55 a 59,6095
+2010,78,Santa Cruz,Mujer,60 a 64,4900
+2010,78,Santa Cruz,Mujer,65 a 69,3756
+2010,78,Santa Cruz,Mujer,70 a 74,2844
+2010,78,Santa Cruz,Mujer,75 a 79,2049
+2010,78,Santa Cruz,Mujer,80+,1463
+2010,78,Santa Cruz,Varón,20 a 24,984
+2010,78,Santa Cruz,Varón,25 a 29,12416
+2010,78,Santa Cruz,Varón,30 a 34,13062
+2010,78,Santa Cruz,Varón,35 a 39,12985
+2010,78,Santa Cruz,Varón,40 a 44,10603
+2010,78,Santa Cruz,Varón,45 a 49,8657
+2010,78,Santa Cruz,Varón,50 a 54,7945
+2010,78,Santa Cruz,Varón,55 a 59,6795
+2010,78,Santa Cruz,Varón,60 a 64,5336
+2010,78,Santa Cruz,Varón,65 a 69,3829
+2010,78,Santa Cruz,Varón,70 a 74,2629
+2010,78,Santa Cruz,Varón,75 a 79,1870
+2010,78,Santa Cruz,Varón,80+,1191
+2010,82,Santa Fe,Mujer,20 a 24,67309
+2010,82,Santa Fe,Mujer,25 a 29,135228
+2010,82,Santa Fe,Mujer,30 a 34,131404
+2010,82,Santa Fe,Mujer,35 a 39,127131
+2010,82,Santa Fe,Mujer,40 a 44,106784
+2010,82,Santa Fe,Mujer,45 a 49,94373
+2010,82,Santa Fe,Mujer,50 a 54,92785
+2010,82,Santa Fe,Mujer,55 a 59,88072
+2010,82,Santa Fe,Mujer,60 a 64,82277
+2010,82,Santa Fe,Mujer,65 a 69,74102
+2010,82,Santa Fe,Mujer,70 a 74,62846
+2010,82,Santa Fe,Mujer,75 a 79,54369
+2010,82,Santa Fe,Mujer,80+,46489
+2010,82,Santa Fe,Varón,20 a 24,30934
+2010,82,Santa Fe,Varón,25 a 29,135868
+2010,82,Santa Fe,Varón,30 a 34,131552
+2010,82,Santa Fe,Varón,35 a 39,125448
+2010,82,Santa Fe,Varón,40 a 44,104200
+2010,82,Santa Fe,Varón,45 a 49,91312
+2010,82,Santa Fe,Varón,50 a 54,88330
+2010,82,Santa Fe,Varón,55 a 59,82833
+2010,82,Santa Fe,Varón,60 a 64,75919
+2010,82,Santa Fe,Varón,65 a 69,64976
+2010,82,Santa Fe,Varón,70 a 74,51678
+2010,82,Santa Fe,Varón,75 a 79,40250
+2010,82,Santa Fe,Varón,80+,29661
+2010,86,Santiago del Estero,Mujer,20 a 24,9462
+2010,86,Santiago del Estero,Mujer,25 a 29,36039
+2010,86,Santiago del Estero,Mujer,30 a 34,33652
+2010,86,Santiago del Estero,Mujer,35 a 39,32713
+2010,86,Santiago del Estero,Mujer,40 a 44,27236
+2010,86,Santiago del Estero,Mujer,45 a 49,22255
+2010,86,Santiago del Estero,Mujer,50 a 54,20371
+2010,86,Santiago del Estero,Mujer,55 a 59,19147
+2010,86,Santiago del Estero,Mujer,60 a 64,17131
+2010,86,Santiago del Estero,Mujer,65 a 69,14221
+2010,86,Santiago del Estero,Mujer,70 a 74,11560
+2010,86,Santiago del Estero,Mujer,75 a 79,9447
+2010,86,Santiago del Estero,Mujer,80+,7322
+2010,86,Santiago del Estero,Varón,20 a 24,5468
+2010,86,Santiago del Estero,Varón,25 a 29,35768
+2010,86,Santiago del Estero,Varón,30 a 34,32587
+2010,86,Santiago del Estero,Varón,35 a 39,31550
+2010,86,Santiago del Estero,Varón,40 a 44,26810
+2010,86,Santiago del Estero,Varón,45 a 49,22630
+2010,86,Santiago del Estero,Varón,50 a 54,20669
+2010,86,Santiago del Estero,Varón,55 a 59,19275
+2010,86,Santiago del Estero,Varón,60 a 64,17632
+2010,86,Santiago del Estero,Varón,65 a 69,14217
+2010,86,Santiago del Estero,Varón,70 a 74,10823
+2010,86,Santiago del Estero,Varón,75 a 79,8010
+2010,86,Santiago del Estero,Varón,80+,5538
+2010,90,Tucumán,Mujer,20 a 24,16936
+2010,90,Tucumán,Mujer,25 a 29,64145
+2010,90,Tucumán,Mujer,30 a 34,59743
+2010,90,Tucumán,Mujer,35 a 39,58606
+2010,90,Tucumán,Mujer,40 a 44,47632
+2010,90,Tucumán,Mujer,45 a 49,39744
+2010,90,Tucumán,Mujer,50 a 54,38087
+2010,90,Tucumán,Mujer,55 a 59,37567
+2010,90,Tucumán,Mujer,60 a 64,34092
+2010,90,Tucumán,Mujer,65 a 69,27793
+2010,90,Tucumán,Mujer,70 a 74,21092
+2010,90,Tucumán,Mujer,75 a 79,16786
+2010,90,Tucumán,Mujer,80+,13914
+2010,90,Tucumán,Varón,20 a 24,9437
+2010,90,Tucumán,Varón,25 a 29,63837
+2010,90,Tucumán,Varón,30 a 34,58760
+2010,90,Tucumán,Varón,35 a 39,57210
+2010,90,Tucumán,Varón,40 a 44,45885
+2010,90,Tucumán,Varón,45 a 49,37992
+2010,90,Tucumán,Varón,50 a 54,35635
+2010,90,Tucumán,Varón,55 a 59,34879
+2010,90,Tucumán,Varón,60 a 64,32454
+2010,90,Tucumán,Varón,65 a 69,25794
+2010,90,Tucumán,Varón,70 a 74,18363
+2010,90,Tucumán,Varón,75 a 79,13076
+2010,90,Tucumán,Varón,80+,9580
+2010,94,Tierra del Fuego,Mujer,20 a 24,532
+2010,94,Tierra del Fuego,Mujer,25 a 29,5334
+2010,94,Tierra del Fuego,Mujer,30 a 34,5613
+2010,94,Tierra del Fuego,Mujer,35 a 39,5685
+2010,94,Tierra del Fuego,Mujer,40 a 44,4899
+2010,94,Tierra del Fuego,Mujer,45 a 49,4322
+2010,94,Tierra del Fuego,Mujer,50 a 54,4343
+2010,94,Tierra del Fuego,Mujer,55 a 59,3463
+2010,94,Tierra del Fuego,Mujer,60 a 64,2447
+2010,94,Tierra del Fuego,Mujer,65 a 69,1631
+2010,94,Tierra del Fuego,Mujer,70 a 74,1046
+2010,94,Tierra del Fuego,Mujer,75 a 79,713
+2010,94,Tierra del Fuego,Mujer,80+,480
+2010,94,Tierra del Fuego,Varón,20 a 24,268
+2010,94,Tierra del Fuego,Varón,25 a 29,5718
+2010,94,Tierra del Fuego,Varón,30 a 34,5861
+2010,94,Tierra del Fuego,Varón,35 a 39,5951
+2010,94,Tierra del Fuego,Varón,40 a 44,5032
+2010,94,Tierra del Fuego,Varón,45 a 49,4384
+2010,94,Tierra del Fuego,Varón,50 a 54,4548
+2010,94,Tierra del Fuego,Varón,55 a 59,3888
+2010,94,Tierra del Fuego,Varón,60 a 64,2689
+2010,94,Tierra del Fuego,Varón,65 a 69,1742
+2010,94,Tierra del Fuego,Varón,70 a 74,1024
+2010,94,Tierra del Fuego,Varón,75 a 79,631
+2010,94,Tierra del Fuego,Varón,80+,358
+2013,2,CABA,Mujer,20 a 24,101073
+2013,2,CABA,Mujer,25 a 29,107904
+2013,2,CABA,Mujer,30 a 34,123291
+2013,2,CABA,Mujer,35 a 39,122399
+2013,2,CABA,Mujer,40 a 44,117873
+2013,2,CABA,Mujer,45 a 49,103449
+2013,2,CABA,Mujer,50 a 54,90235
+2013,2,CABA,Mujer,55 a 59,90183
+2013,2,CABA,Mujer,60 a 64,89792
+2013,2,CABA,Mujer,65 a 69,84693
+2013,2,CABA,Mujer,70 a 74,77973
+2013,2,CABA,Mujer,75 a 79,67500
+2013,2,CABA,Mujer,80+,56207
+2013,2,CABA,Varón,20 a 24,43536
+2013,2,CABA,Varón,25 a 29,104110
+2013,2,CABA,Varón,30 a 34,117246
+2013,2,CABA,Varón,35 a 39,116349
+2013,2,CABA,Varón,40 a 44,111330
+2013,2,CABA,Varón,45 a 49,94699
+2013,2,CABA,Varón,50 a 54,79438
+2013,2,CABA,Varón,55 a 59,75821
+2013,2,CABA,Varón,60 a 64,71739
+2013,2,CABA,Varón,65 a 69,64174
+2013,2,CABA,Varón,70 a 74,55541
+2013,2,CABA,Varón,75 a 79,44250
+2013,2,CABA,Varón,80+,32565
+2013,6,Buenos Aires,Mujer,20 a 24,291747
+2013,6,Buenos Aires,Mujer,25 a 29,650938
+2013,6,Buenos Aires,Mujer,30 a 34,625637
+2013,6,Buenos Aires,Mujer,35 a 39,608207
+2013,6,Buenos Aires,Mujer,40 a 44,587668
+2013,6,Buenos Aires,Mujer,45 a 49,511706
+2013,6,Buenos Aires,Mujer,50 a 54,461300
+2013,6,Buenos Aires,Mujer,55 a 59,435514
+2013,6,Buenos Aires,Mujer,60 a 64,403317
+2013,6,Buenos Aires,Mujer,65 a 69,367645
+2013,6,Buenos Aires,Mujer,70 a 74,313977
+2013,6,Buenos Aires,Mujer,75 a 79,250172
+2013,6,Buenos Aires,Mujer,80+,202198
+2013,6,Buenos Aires,Varón,20 a 24,140751
+2013,6,Buenos Aires,Varón,25 a 29,660503
+2013,6,Buenos Aires,Varón,30 a 34,628689
+2013,6,Buenos Aires,Varón,35 a 39,603247
+2013,6,Buenos Aires,Varón,40 a 44,575077
+2013,6,Buenos Aires,Varón,45 a 49,495245
+2013,6,Buenos Aires,Varón,50 a 54,439763
+2013,6,Buenos Aires,Varón,55 a 59,408022
+2013,6,Buenos Aires,Varón,60 a 64,368409
+2013,6,Buenos Aires,Varón,65 a 69,322774
+2013,6,Buenos Aires,Varón,70 a 74,262148
+2013,6,Buenos Aires,Varón,75 a 79,190442
+2013,6,Buenos Aires,Varón,80+,134550
+2013,10,Catamarca,Mujer,20 a 24,4901
+2013,10,Catamarca,Mujer,25 a 29,16454
+2013,10,Catamarca,Mujer,30 a 34,14102
+2013,10,Catamarca,Mujer,35 a 39,14402
+2013,10,Catamarca,Mujer,40 a 44,13933
+2013,10,Catamarca,Mujer,45 a 49,11493
+2013,10,Catamarca,Mujer,50 a 54,9900
+2013,10,Catamarca,Mujer,55 a 59,9091
+2013,10,Catamarca,Mujer,60 a 64,8349
+2013,10,Catamarca,Mujer,65 a 69,7221
+2013,10,Catamarca,Mujer,70 a 74,5771
+2013,10,Catamarca,Mujer,75 a 79,4407
+2013,10,Catamarca,Mujer,80+,3434
+2013,10,Catamarca,Varón,20 a 24,2645
+2013,10,Catamarca,Varón,25 a 29,17152
+2013,10,Catamarca,Varón,30 a 34,14350
+2013,10,Catamarca,Varón,35 a 39,14384
+2013,10,Catamarca,Varón,40 a 44,13813
+2013,10,Catamarca,Varón,45 a 49,11475
+2013,10,Catamarca,Varón,50 a 54,9870
+2013,10,Catamarca,Varón,55 a 59,9091
+2013,10,Catamarca,Varón,60 a 64,8334
+2013,10,Catamarca,Varón,65 a 69,7053
+2013,10,Catamarca,Varón,70 a 74,5296
+2013,10,Catamarca,Varón,75 a 79,3716
+2013,10,Catamarca,Varón,80+,2518
+2013,14,Córdoba,Mujer,20 a 24,64509
+2013,14,Córdoba,Mujer,25 a 29,145119
+2013,14,Córdoba,Mujer,30 a 34,137220
+2013,14,Córdoba,Mujer,35 a 39,132341
+2013,14,Córdoba,Mujer,40 a 44,123777
+2013,14,Córdoba,Mujer,45 a 49,105304
+2013,14,Córdoba,Mujer,50 a 54,97005
+2013,14,Córdoba,Mujer,55 a 59,92903
+2013,14,Córdoba,Mujer,60 a 64,86134
+2013,14,Córdoba,Mujer,65 a 69,80959
+2013,14,Córdoba,Mujer,70 a 74,70902
+2013,14,Córdoba,Mujer,75 a 79,56997
+2013,14,Córdoba,Mujer,80+,45571
+2013,14,Córdoba,Varón,20 a 24,31092
+2013,14,Córdoba,Varón,25 a 29,146555
+2013,14,Córdoba,Varón,30 a 34,137107
+2013,14,Córdoba,Varón,35 a 39,131697
+2013,14,Córdoba,Varón,40 a 44,121978
+2013,14,Córdoba,Varón,45 a 49,101388
+2013,14,Córdoba,Varón,50 a 54,91854
+2013,14,Córdoba,Varón,55 a 59,87130
+2013,14,Córdoba,Varón,60 a 64,78434
+2013,14,Córdoba,Varón,65 a 69,70474
+2013,14,Córdoba,Varón,70 a 74,58469
+2013,14,Córdoba,Varón,75 a 79,43329
+2013,14,Córdoba,Varón,80+,30556
+2013,18,Corrientes,Mujer,20 a 24,12227
+2013,18,Corrientes,Mujer,25 a 29,48842
+2013,18,Corrientes,Mujer,30 a 34,40442
+2013,18,Corrientes,Mujer,35 a 39,36927
+2013,18,Corrientes,Mujer,40 a 44,34438
+2013,18,Corrientes,Mujer,45 a 49,29749
+2013,18,Corrientes,Mujer,50 a 54,27671
+2013,18,Corrientes,Mujer,55 a 59,26227
+2013,18,Corrientes,Mujer,60 a 64,23338
+2013,18,Corrientes,Mujer,65 a 69,19715
+2013,18,Corrientes,Mujer,70 a 74,15598
+2013,18,Corrientes,Mujer,75 a 79,12293
+2013,18,Corrientes,Mujer,80+,9523
+2013,18,Corrientes,Varón,20 a 24,6752
+2013,18,Corrientes,Varón,25 a 29,48390
+2013,18,Corrientes,Varón,30 a 34,38652
+2013,18,Corrientes,Varón,35 a 39,35142
+2013,18,Corrientes,Varón,40 a 44,32029
+2013,18,Corrientes,Varón,45 a 49,27661
+2013,18,Corrientes,Varón,50 a 54,26158
+2013,18,Corrientes,Varón,55 a 59,24960
+2013,18,Corrientes,Varón,60 a 64,22517
+2013,18,Corrientes,Varón,65 a 69,19105
+2013,18,Corrientes,Varón,70 a 74,14372
+2013,18,Corrientes,Varón,75 a 79,10113
+2013,18,Corrientes,Varón,80+,6691
+2013,22,Chaco,Mujer,20 a 24,10725
+2013,22,Chaco,Mujer,25 a 29,51842
+2013,22,Chaco,Mujer,30 a 34,43448
+2013,22,Chaco,Mujer,35 a 39,40936
+2013,22,Chaco,Mujer,40 a 44,36884
+2013,22,Chaco,Mujer,45 a 49,30886
+2013,22,Chaco,Mujer,50 a 54,28165
+2013,22,Chaco,Mujer,55 a 59,26534
+2013,22,Chaco,Mujer,60 a 64,23466
+2013,22,Chaco,Mujer,65 a 69,18934
+2013,22,Chaco,Mujer,70 a 74,14505
+2013,22,Chaco,Mujer,75 a 79,11575
+2013,22,Chaco,Mujer,80+,8910
+2013,22,Chaco,Varón,20 a 24,5918
+2013,22,Chaco,Varón,25 a 29,51684
+2013,22,Chaco,Varón,30 a 34,41572
+2013,22,Chaco,Varón,35 a 39,38847
+2013,22,Chaco,Varón,40 a 44,34923
+2013,22,Chaco,Varón,45 a 49,29101
+2013,22,Chaco,Varón,50 a 54,26813
+2013,22,Chaco,Varón,55 a 59,25595
+2013,22,Chaco,Varón,60 a 64,22885
+2013,22,Chaco,Varón,65 a 69,18307
+2013,22,Chaco,Varón,70 a 74,13256
+2013,22,Chaco,Varón,75 a 79,9349
+2013,22,Chaco,Varón,80+,6322
+2013,26,Chubut,Mujer,20 a 24,5789
+2013,26,Chubut,Mujer,25 a 29,21731
+2013,26,Chubut,Mujer,30 a 34,21697
+2013,26,Chubut,Mujer,35 a 39,22605
+2013,26,Chubut,Mujer,40 a 44,21057
+2013,26,Chubut,Mujer,45 a 49,17200
+2013,26,Chubut,Mujer,50 a 54,14964
+2013,26,Chubut,Mujer,55 a 59,13768
+2013,26,Chubut,Mujer,60 a 64,12077
+2013,26,Chubut,Mujer,65 a 69,10042
+2013,26,Chubut,Mujer,70 a 74,7875
+2013,26,Chubut,Mujer,75 a 79,5987
+2013,26,Chubut,Mujer,80+,4466
+2013,26,Chubut,Varón,20 a 24,3249
+2013,26,Chubut,Varón,25 a 29,22353
+2013,26,Chubut,Varón,30 a 34,22204
+2013,26,Chubut,Varón,35 a 39,23352
+2013,26,Chubut,Varón,40 a 44,21477
+2013,26,Chubut,Varón,45 a 49,17231
+2013,26,Chubut,Varón,50 a 54,14837
+2013,26,Chubut,Varón,55 a 59,13696
+2013,26,Chubut,Varón,60 a 64,11835
+2013,26,Chubut,Varón,65 a 69,9583
+2013,26,Chubut,Varón,70 a 74,7115
+2013,26,Chubut,Varón,75 a 79,4948
+2013,26,Chubut,Varón,80+,3233
+2013,30,Entre Ríos,Mujer,20 a 24,22085
+2013,30,Entre Ríos,Mujer,25 a 29,52436
+2013,30,Entre Ríos,Mujer,30 a 34,47664
+2013,30,Entre Ríos,Mujer,35 a 39,47276
+2013,30,Entre Ríos,Mujer,40 a 44,44893
+2013,30,Entre Ríos,Mujer,45 a 49,38665
+2013,30,Entre Ríos,Mujer,50 a 54,35535
+2013,30,Entre Ríos,Mujer,55 a 59,34277
+2013,30,Entre Ríos,Mujer,60 a 64,31389
+2013,30,Entre Ríos,Mujer,65 a 69,28192
+2013,30,Entre Ríos,Mujer,70 a 74,24230
+2013,30,Entre Ríos,Mujer,75 a 79,19783
+2013,30,Entre Ríos,Mujer,80+,15897
+2013,30,Entre Ríos,Varón,20 a 24,9807
+2013,30,Entre Ríos,Varón,25 a 29,53552
+2013,30,Entre Ríos,Varón,30 a 34,47493
+2013,30,Entre Ríos,Varón,35 a 39,46376
+2013,30,Entre Ríos,Varón,40 a 44,43979
+2013,30,Entre Ríos,Varón,45 a 49,37884
+2013,30,Entre Ríos,Varón,50 a 54,34358
+2013,30,Entre Ríos,Varón,55 a 59,32220
+2013,30,Entre Ríos,Varón,60 a 64,29158
+2013,30,Entre Ríos,Varón,65 a 69,25670
+2013,30,Entre Ríos,Varón,70 a 74,20648
+2013,30,Entre Ríos,Varón,75 a 79,15304
+2013,30,Entre Ríos,Varón,80+,10317
+2013,34,Formosa,Mujer,20 a 24,5024
+2013,34,Formosa,Mujer,25 a 29,25494
+2013,34,Formosa,Mujer,30 a 34,19919
+2013,34,Formosa,Mujer,35 a 39,19217
+2013,34,Formosa,Mujer,40 a 44,18177
+2013,34,Formosa,Mujer,45 a 49,15931
+2013,34,Formosa,Mujer,50 a 54,14547
+2013,34,Formosa,Mujer,55 a 59,13383
+2013,34,Formosa,Mujer,60 a 64,12029
+2013,34,Formosa,Mujer,65 a 69,9660
+2013,34,Formosa,Mujer,70 a 74,7437
+2013,34,Formosa,Mujer,75 a 79,5797
+2013,34,Formosa,Mujer,80+,4258
+2013,34,Formosa,Varón,20 a 24,3646
+2013,34,Formosa,Varón,25 a 29,25748
+2013,34,Formosa,Varón,30 a 34,18771
+2013,34,Formosa,Varón,35 a 39,17843
+2013,34,Formosa,Varón,40 a 44,16914
+2013,34,Formosa,Varón,45 a 49,14991
+2013,34,Formosa,Varón,50 a 54,14278
+2013,34,Formosa,Varón,55 a 59,13368
+2013,34,Formosa,Varón,60 a 64,11753
+2013,34,Formosa,Varón,65 a 69,9532
+2013,34,Formosa,Varón,70 a 74,7075
+2013,34,Formosa,Varón,75 a 79,5287
+2013,34,Formosa,Varón,80+,3672
+2013,38,Jujuy,Mujer,20 a 24,6693
+2013,38,Jujuy,Mujer,25 a 29,31299
+2013,38,Jujuy,Mujer,30 a 34,26803
+2013,38,Jujuy,Mujer,35 a 39,27364
+2013,38,Jujuy,Mujer,40 a 44,25926
+2013,38,Jujuy,Mujer,45 a 49,21366
+2013,38,Jujuy,Mujer,50 a 54,18247
+2013,38,Jujuy,Mujer,55 a 59,16771
+2013,38,Jujuy,Mujer,60 a 64,15152
+2013,38,Jujuy,Mujer,65 a 69,12939
+2013,38,Jujuy,Mujer,70 a 74,10271
+2013,38,Jujuy,Mujer,75 a 79,7728
+2013,38,Jujuy,Mujer,80+,5636
+2013,38,Jujuy,Varón,20 a 24,4229
+2013,38,Jujuy,Varón,25 a 29,31398
+2013,38,Jujuy,Varón,30 a 34,25957
+2013,38,Jujuy,Varón,35 a 39,26488
+2013,38,Jujuy,Varón,40 a 44,25051
+2013,38,Jujuy,Varón,45 a 49,20181
+2013,38,Jujuy,Varón,50 a 54,16804
+2013,38,Jujuy,Varón,55 a 59,15133
+2013,38,Jujuy,Varón,60 a 64,13556
+2013,38,Jujuy,Varón,65 a 69,11641
+2013,38,Jujuy,Varón,70 a 74,8940
+2013,38,Jujuy,Varón,75 a 79,6494
+2013,38,Jujuy,Varón,80+,4517
+2013,42,La Pampa,Mujer,20 a 24,6036
+2013,42,La Pampa,Mujer,25 a 29,12932
+2013,42,La Pampa,Mujer,30 a 34,11994
+2013,42,La Pampa,Mujer,35 a 39,12143
+2013,42,La Pampa,Mujer,40 a 44,11676
+2013,42,La Pampa,Mujer,45 a 49,10403
+2013,42,La Pampa,Mujer,50 a 54,9728
+2013,42,La Pampa,Mujer,55 a 59,9159
+2013,42,La Pampa,Mujer,60 a 64,8214
+2013,42,La Pampa,Mujer,65 a 69,7506
+2013,42,La Pampa,Mujer,70 a 74,6567
+2013,42,La Pampa,Mujer,75 a 79,5371
+2013,42,La Pampa,Mujer,80+,4241
+2013,42,La Pampa,Varón,20 a 24,3313
+2013,42,La Pampa,Varón,25 a 29,13467
+2013,42,La Pampa,Varón,30 a 34,12199
+2013,42,La Pampa,Varón,35 a 39,12148
+2013,42,La Pampa,Varón,40 a 44,11616
+2013,42,La Pampa,Varón,45 a 49,10173
+2013,42,La Pampa,Varón,50 a 54,9576
+2013,42,La Pampa,Varón,55 a 59,9100
+2013,42,La Pampa,Varón,60 a 64,8204
+2013,42,La Pampa,Varón,65 a 69,7349
+2013,42,La Pampa,Varón,70 a 74,6122
+2013,42,La Pampa,Varón,75 a 79,4613
+2013,42,La Pampa,Varón,80+,3161
+2013,46,La Rioja,Mujer,20 a 24,3825
+2013,46,La Rioja,Mujer,25 a 29,17103
+2013,46,La Rioja,Mujer,30 a 34,14651
+2013,46,La Rioja,Mujer,35 a 39,14003
+2013,46,La Rioja,Mujer,40 a 44,13060
+2013,46,La Rioja,Mujer,45 a 49,10476
+2013,46,La Rioja,Mujer,50 a 54,9177
+2013,46,La Rioja,Mujer,55 a 59,8438
+2013,46,La Rioja,Mujer,60 a 64,7427
+2013,46,La Rioja,Mujer,65 a 69,6336
+2013,46,La Rioja,Mujer,70 a 74,4864
+2013,46,La Rioja,Mujer,75 a 79,3709
+2013,46,La Rioja,Mujer,80+,2856
+2013,46,La Rioja,Varón,20 a 24,2150
+2013,46,La Rioja,Varón,25 a 29,17165
+2013,46,La Rioja,Varón,30 a 34,14479
+2013,46,La Rioja,Varón,35 a 39,13856
+2013,46,La Rioja,Varón,40 a 44,12790
+2013,46,La Rioja,Varón,45 a 49,10354
+2013,46,La Rioja,Varón,50 a 54,9109
+2013,46,La Rioja,Varón,55 a 59,8427
+2013,46,La Rioja,Varón,60 a 64,7481
+2013,46,La Rioja,Varón,65 a 69,6205
+2013,46,La Rioja,Varón,70 a 74,4608
+2013,46,La Rioja,Varón,75 a 79,3180
+2013,46,La Rioja,Varón,80+,2090
+2013,50,Mendoza,Mujer,20 a 24,29364
+2013,50,Mendoza,Mujer,25 a 29,77907
+2013,50,Mendoza,Mujer,30 a 34,71691
+2013,50,Mendoza,Mujer,35 a 39,67779
+2013,50,Mendoza,Mujer,40 a 44,64163
+2013,50,Mendoza,Mujer,45 a 49,54916
+2013,50,Mendoza,Mujer,50 a 54,48865
+2013,50,Mendoza,Mujer,55 a 59,46442
+2013,50,Mendoza,Mujer,60 a 64,44433
+2013,50,Mendoza,Mujer,65 a 69,41621
+2013,50,Mendoza,Mujer,70 a 74,35413
+2013,50,Mendoza,Mujer,75 a 79,27657
+2013,50,Mendoza,Mujer,80+,21283
+2013,50,Mendoza,Varón,20 a 24,16331
+2013,50,Mendoza,Varón,25 a 29,79661
+2013,50,Mendoza,Varón,30 a 34,72533
+2013,50,Mendoza,Varón,35 a 39,67402
+2013,50,Mendoza,Varón,40 a 44,62070
+2013,50,Mendoza,Varón,45 a 49,52086
+2013,50,Mendoza,Varón,50 a 54,45536
+2013,50,Mendoza,Varón,55 a 59,42618
+2013,50,Mendoza,Varón,60 a 64,39854
+2013,50,Mendoza,Varón,65 a 69,36253
+2013,50,Mendoza,Varón,70 a 74,29751
+2013,50,Mendoza,Varón,75 a 79,21724
+2013,50,Mendoza,Varón,80+,15183
+2013,54,Misiones,Mujer,20 a 24,9390
+2013,54,Misiones,Mujer,25 a 29,52608
+2013,54,Misiones,Mujer,30 a 34,43125
+2013,54,Misiones,Mujer,35 a 39,40564
+2013,54,Misiones,Mujer,40 a 44,37105
+2013,54,Misiones,Mujer,45 a 49,31666
+2013,54,Misiones,Mujer,50 a 54,28722
+2013,54,Misiones,Mujer,55 a 59,26539
+2013,54,Misiones,Mujer,60 a 64,22580
+2013,54,Misiones,Mujer,65 a 69,18125
+2013,54,Misiones,Mujer,70 a 74,13794
+2013,54,Misiones,Mujer,75 a 79,10574
+2013,54,Misiones,Mujer,80+,8000
+2013,54,Misiones,Varón,20 a 24,6096
+2013,54,Misiones,Varón,25 a 29,52457
+2013,54,Misiones,Varón,30 a 34,41629
+2013,54,Misiones,Varón,35 a 39,39023
+2013,54,Misiones,Varón,40 a 44,35895
+2013,54,Misiones,Varón,45 a 49,30562
+2013,54,Misiones,Varón,50 a 54,28098
+2013,54,Misiones,Varón,55 a 59,26648
+2013,54,Misiones,Varón,60 a 64,22904
+2013,54,Misiones,Varón,65 a 69,18164
+2013,54,Misiones,Varón,70 a 74,13240
+2013,54,Misiones,Varón,75 a 79,9526
+2013,54,Misiones,Varón,80+,6459
+2013,58,Neuquén,Mujer,20 a 24,5424
+2013,58,Neuquén,Mujer,25 a 29,24834
+2013,58,Neuquén,Mujer,30 a 34,23772
+2013,58,Neuquén,Mujer,35 a 39,24157
+2013,58,Neuquén,Mujer,40 a 44,23183
+2013,58,Neuquén,Mujer,45 a 49,19836
+2013,58,Neuquén,Mujer,50 a 54,17463
+2013,58,Neuquén,Mujer,55 a 59,15768
+2013,58,Neuquén,Mujer,60 a 64,13398
+2013,58,Neuquén,Mujer,65 a 69,10987
+2013,58,Neuquén,Mujer,70 a 74,8293
+2013,58,Neuquén,Mujer,75 a 79,5947
+2013,58,Neuquén,Mujer,80+,4273
+2013,58,Neuquén,Varón,20 a 24,3096
+2013,58,Neuquén,Varón,25 a 29,25809
+2013,58,Neuquén,Varón,30 a 34,23937
+2013,58,Neuquén,Varón,35 a 39,23580
+2013,58,Neuquén,Varón,40 a 44,22630
+2013,58,Neuquén,Varón,45 a 49,19098
+2013,58,Neuquén,Varón,50 a 54,16534
+2013,58,Neuquén,Varón,55 a 59,14976
+2013,58,Neuquén,Varón,60 a 64,12896
+2013,58,Neuquén,Varón,65 a 69,10487
+2013,58,Neuquén,Varón,70 a 74,7701
+2013,58,Neuquén,Varón,75 a 79,5157
+2013,58,Neuquén,Varón,80+,3259
+2013,62,Río Negro,Mujer,20 a 24,8250
+2013,62,Río Negro,Mujer,25 a 29,27405
+2013,62,Río Negro,Mujer,30 a 34,25372
+2013,62,Río Negro,Mujer,35 a 39,26274
+2013,62,Río Negro,Mujer,40 a 44,25303
+2013,62,Río Negro,Mujer,45 a 49,21492
+2013,62,Río Negro,Mujer,50 a 54,19352
+2013,62,Río Negro,Mujer,55 a 59,17976
+2013,62,Río Negro,Mujer,60 a 64,15863
+2013,62,Río Negro,Mujer,65 a 69,13693
+2013,62,Río Negro,Mujer,70 a 74,11118
+2013,62,Río Negro,Mujer,75 a 79,8302
+2013,62,Río Negro,Mujer,80+,6145
+2013,62,Río Negro,Varón,20 a 24,5005
+2013,62,Río Negro,Varón,25 a 29,28362
+2013,62,Río Negro,Varón,30 a 34,25749
+2013,62,Río Negro,Varón,35 a 39,25843
+2013,62,Río Negro,Varón,40 a 44,24541
+2013,62,Río Negro,Varón,45 a 49,21048
+2013,62,Río Negro,Varón,50 a 54,18695
+2013,62,Río Negro,Varón,55 a 59,17308
+2013,62,Río Negro,Varón,60 a 64,15341
+2013,62,Río Negro,Varón,65 a 69,13213
+2013,62,Río Negro,Varón,70 a 74,10378
+2013,62,Río Negro,Varón,75 a 79,7343
+2013,62,Río Negro,Varón,80+,4908
+2013,66,Salta,Mujer,20 a 24,12357
+2013,66,Salta,Mujer,25 a 29,58134
+2013,66,Salta,Mujer,30 a 34,49237
+2013,66,Salta,Mujer,35 a 39,47602
+2013,66,Salta,Mujer,40 a 44,44198
+2013,66,Salta,Mujer,45 a 49,36863
+2013,66,Salta,Mujer,50 a 54,31753
+2013,66,Salta,Mujer,55 a 59,28684
+2013,66,Salta,Mujer,60 a 64,25425
+2013,66,Salta,Mujer,65 a 69,21928
+2013,66,Salta,Mujer,70 a 74,17349
+2013,66,Salta,Mujer,75 a 79,13146
+2013,66,Salta,Mujer,80+,9873
+2013,66,Salta,Varón,20 a 24,7703
+2013,66,Salta,Varón,25 a 29,58265
+2013,66,Salta,Varón,30 a 34,47561
+2013,66,Salta,Varón,35 a 39,45189
+2013,66,Salta,Varón,40 a 44,41690
+2013,66,Salta,Varón,45 a 49,34872
+2013,66,Salta,Varón,50 a 54,30351
+2013,66,Salta,Varón,55 a 59,27212
+2013,66,Salta,Varón,60 a 64,23709
+2013,66,Salta,Varón,65 a 69,20046
+2013,66,Salta,Varón,70 a 74,15446
+2013,66,Salta,Varón,75 a 79,11330
+2013,66,Salta,Varón,80+,7882
+2013,70,San Juan,Mujer,20 a 24,8674
+2013,70,San Juan,Mujer,25 a 29,30206
+2013,70,San Juan,Mujer,30 a 34,26552
+2013,70,San Juan,Mujer,35 a 39,25949
+2013,70,San Juan,Mujer,40 a 44,24842
+2013,70,San Juan,Mujer,45 a 49,21530
+2013,70,San Juan,Mujer,50 a 54,18649
+2013,70,San Juan,Mujer,55 a 59,17683
+2013,70,San Juan,Mujer,60 a 64,16708
+2013,70,San Juan,Mujer,65 a 69,15311
+2013,70,San Juan,Mujer,70 a 74,12816
+2013,70,San Juan,Mujer,75 a 79,9726
+2013,70,San Juan,Mujer,80+,7008
+2013,70,San Juan,Varón,20 a 24,4971
+2013,70,San Juan,Varón,25 a 29,30928
+2013,70,San Juan,Varón,30 a 34,27067
+2013,70,San Juan,Varón,35 a 39,26035
+2013,70,San Juan,Varón,40 a 44,24651
+2013,70,San Juan,Varón,45 a 49,20708
+2013,70,San Juan,Varón,50 a 54,17505
+2013,70,San Juan,Varón,55 a 59,16107
+2013,70,San Juan,Varón,60 a 64,14743
+2013,70,San Juan,Varón,65 a 69,13298
+2013,70,San Juan,Varón,70 a 74,10769
+2013,70,San Juan,Varón,75 a 79,7552
+2013,70,San Juan,Varón,80+,4965
+2013,74,San Luis,Mujer,20 a 24,6056
+2013,74,San Luis,Mujer,25 a 29,19041
+2013,74,San Luis,Mujer,30 a 34,17038
+2013,74,San Luis,Mujer,35 a 39,17444
+2013,74,San Luis,Mujer,40 a 44,16638
+2013,74,San Luis,Mujer,45 a 49,13902
+2013,74,San Luis,Mujer,50 a 54,12396
+2013,74,San Luis,Mujer,55 a 59,11599
+2013,74,San Luis,Mujer,60 a 64,10603
+2013,74,San Luis,Mujer,65 a 69,9438
+2013,74,San Luis,Mujer,70 a 74,7930
+2013,74,San Luis,Mujer,75 a 79,6072
+2013,74,San Luis,Mujer,80+,4456
+2013,74,San Luis,Varón,20 a 24,3253
+2013,74,San Luis,Varón,25 a 29,19213
+2013,74,San Luis,Varón,30 a 34,16846
+2013,74,San Luis,Varón,35 a 39,17078
+2013,74,San Luis,Varón,40 a 44,16490
+2013,74,San Luis,Varón,45 a 49,13987
+2013,74,San Luis,Varón,50 a 54,12507
+2013,74,San Luis,Varón,55 a 59,11434
+2013,74,San Luis,Varón,60 a 64,10225
+2013,74,San Luis,Varón,65 a 69,8890
+2013,74,San Luis,Varón,70 a 74,7166
+2013,74,San Luis,Varón,75 a 79,5068
+2013,74,San Luis,Varón,80+,3317
+2013,78,Santa Cruz,Mujer,20 a 24,1822
+2013,78,Santa Cruz,Mujer,25 a 29,11963
+2013,78,Santa Cruz,Mujer,30 a 34,12500
+2013,78,Santa Cruz,Mujer,35 a 39,13185
+2013,78,Santa Cruz,Mujer,40 a 44,11787
+2013,78,Santa Cruz,Mujer,45 a 49,9189
+2013,78,Santa Cruz,Mujer,50 a 54,7768
+2013,78,Santa Cruz,Mujer,55 a 59,6824
+2013,78,Santa Cruz,Mujer,60 a 64,5543
+2013,78,Santa Cruz,Mujer,65 a 69,4338
+2013,78,Santa Cruz,Mujer,70 a 74,3234
+2013,78,Santa Cruz,Mujer,75 a 79,2362
+2013,78,Santa Cruz,Mujer,80+,1646
+2013,78,Santa Cruz,Varón,20 a 24,1164
+2013,78,Santa Cruz,Varón,25 a 29,12777
+2013,78,Santa Cruz,Varón,30 a 34,13648
+2013,78,Santa Cruz,Varón,35 a 39,14424
+2013,78,Santa Cruz,Varón,40 a 44,12928
+2013,78,Santa Cruz,Varón,45 a 49,9948
+2013,78,Santa Cruz,Varón,50 a 54,8455
+2013,78,Santa Cruz,Varón,55 a 59,7552
+2013,78,Santa Cruz,Varón,60 a 64,6102
+2013,78,Santa Cruz,Varón,65 a 69,4501
+2013,78,Santa Cruz,Varón,70 a 74,3043
+2013,78,Santa Cruz,Varón,75 a 79,2019
+2013,78,Santa Cruz,Varón,80+,1322
+2013,82,Santa Fe,Mujer,20 a 24,70990
+2013,82,Santa Fe,Mujer,25 a 29,137877
+2013,82,Santa Fe,Mujer,30 a 34,133566
+2013,82,Santa Fe,Mujer,35 a 39,130440
+2013,82,Santa Fe,Mujer,40 a 44,119685
+2013,82,Santa Fe,Mujer,45 a 49,99662
+2013,82,Santa Fe,Mujer,50 a 54,92721
+2013,82,Santa Fe,Mujer,55 a 59,90555
+2013,82,Santa Fe,Mujer,60 a 64,84548
+2013,82,Santa Fe,Mujer,65 a 69,77710
+2013,82,Santa Fe,Mujer,70 a 74,67297
+2013,82,Santa Fe,Mujer,75 a 79,55916
+2013,82,Santa Fe,Mujer,80+,46908
+2013,82,Santa Fe,Varón,20 a 24,32409
+2013,82,Santa Fe,Varón,25 a 29,138549
+2013,82,Santa Fe,Varón,30 a 34,133812
+2013,82,Santa Fe,Varón,35 a 39,129831
+2013,82,Santa Fe,Varón,40 a 44,117309
+2013,82,Santa Fe,Varón,45 a 49,96589
+2013,82,Santa Fe,Varón,50 a 54,88556
+2013,82,Santa Fe,Varón,55 a 59,84831
+2013,82,Santa Fe,Varón,60 a 64,77750
+2013,82,Santa Fe,Varón,65 a 69,68554
+2013,82,Santa Fe,Varón,70 a 74,55090
+2013,82,Santa Fe,Varón,75 a 79,41737
+2013,82,Santa Fe,Varón,80+,30157
+2013,86,Santiago del Estero,Mujer,20 a 24,10276
+2013,86,Santiago del Estero,Mujer,25 a 29,39702
+2013,86,Santiago del Estero,Mujer,30 a 34,33481
+2013,86,Santiago del Estero,Mujer,35 a 39,33296
+2013,86,Santiago del Estero,Mujer,40 a 44,30819
+2013,86,Santiago del Estero,Mujer,45 a 49,24767
+2013,86,Santiago del Estero,Mujer,50 a 54,20976
+2013,86,Santiago del Estero,Mujer,55 a 59,19618
+2013,86,Santiago del Estero,Mujer,60 a 64,18082
+2013,86,Santiago del Estero,Mujer,65 a 69,15570
+2013,86,Santiago del Estero,Mujer,70 a 74,12546
+2013,86,Santiago del Estero,Mujer,75 a 79,9996
+2013,86,Santiago del Estero,Mujer,80+,7776
+2013,86,Santiago del Estero,Varón,20 a 24,5840
+2013,86,Santiago del Estero,Varón,25 a 29,40139
+2013,86,Santiago del Estero,Varón,30 a 34,32389
+2013,86,Santiago del Estero,Varón,35 a 39,31629
+2013,86,Santiago del Estero,Varón,40 a 44,29657
+2013,86,Santiago del Estero,Varón,45 a 49,24675
+2013,86,Santiago del Estero,Varón,50 a 54,21324
+2013,86,Santiago del Estero,Varón,55 a 59,19645
+2013,86,Santiago del Estero,Varón,60 a 64,18155
+2013,86,Santiago del Estero,Varón,65 a 69,15607
+2013,86,Santiago del Estero,Varón,70 a 74,11821
+2013,86,Santiago del Estero,Varón,75 a 79,8593
+2013,86,Santiago del Estero,Varón,80+,5877
+2013,90,Tucumán,Mujer,20 a 24,18943
+2013,90,Tucumán,Mujer,25 a 29,69021
+2013,90,Tucumán,Mujer,30 a 34,61303
+2013,90,Tucumán,Mujer,35 a 39,59259
+2013,90,Tucumán,Mujer,40 a 44,54766
+2013,90,Tucumán,Mujer,45 a 49,43391
+2013,90,Tucumán,Mujer,50 a 54,38308
+2013,90,Tucumán,Mujer,55 a 59,37619
+2013,90,Tucumán,Mujer,60 a 64,35989
+2013,90,Tucumán,Mujer,65 a 69,31038
+2013,90,Tucumán,Mujer,70 a 74,24008
+2013,90,Tucumán,Mujer,75 a 79,17888
+2013,90,Tucumán,Mujer,80+,14114
+2013,90,Tucumán,Varón,20 a 24,10336
+2013,90,Tucumán,Varón,25 a 29,69013
+2013,90,Tucumán,Varón,30 a 34,60394
+2013,90,Tucumán,Varón,35 a 39,57986
+2013,90,Tucumán,Varón,40 a 44,52991
+2013,90,Tucumán,Varón,45 a 49,41510
+2013,90,Tucumán,Varón,50 a 54,36232
+2013,90,Tucumán,Varón,55 a 59,34706
+2013,90,Tucumán,Varón,60 a 64,33359
+2013,90,Tucumán,Varón,65 a 69,28881
+2013,90,Tucumán,Varón,70 a 74,21164
+2013,90,Tucumán,Varón,75 a 79,14312
+2013,90,Tucumán,Varón,80+,9730
+2013,94,Tierra del Fuego,Mujer,20 a 24,642
+2013,94,Tierra del Fuego,Mujer,25 a 29,5798
+2013,94,Tierra del Fuego,Mujer,30 a 34,5948
+2013,94,Tierra del Fuego,Mujer,35 a 39,6263
+2013,94,Tierra del Fuego,Mujer,40 a 44,5713
+2013,94,Tierra del Fuego,Mujer,45 a 49,4772
+2013,94,Tierra del Fuego,Mujer,50 a 54,4437
+2013,94,Tierra del Fuego,Mujer,55 a 59,4059
+2013,94,Tierra del Fuego,Mujer,60 a 64,2980
+2013,94,Tierra del Fuego,Mujer,65 a 69,2043
+2013,94,Tierra del Fuego,Mujer,70 a 74,1325
+2013,94,Tierra del Fuego,Mujer,75 a 79,829
+2013,94,Tierra del Fuego,Mujer,80+,549
+2013,94,Tierra del Fuego,Varón,20 a 24,333
+2013,94,Tierra del Fuego,Varón,25 a 29,6096
+2013,94,Tierra del Fuego,Varón,30 a 34,6246
+2013,94,Tierra del Fuego,Varón,35 a 39,6649
+2013,94,Tierra del Fuego,Varón,40 a 44,5998
+2013,94,Tierra del Fuego,Varón,45 a 49,4815
+2013,94,Tierra del Fuego,Varón,50 a 54,4480
+2013,94,Tierra del Fuego,Varón,55 a 59,4358
+2013,94,Tierra del Fuego,Varón,60 a 64,3318
+2013,94,Tierra del Fuego,Varón,65 a 69,2199
+2013,94,Tierra del Fuego,Varón,70 a 74,1346
+2013,94,Tierra del Fuego,Varón,75 a 79,750
+2013,94,Tierra del Fuego,Varón,80+,431
+2018,2,CABA,Mujer,20 a 24,100797
+2018,2,CABA,Mujer,25 a 29,100120
+2018,2,CABA,Mujer,30 a 34,111328
+2018,2,CABA,Mujer,35 a 39,122194
+2018,2,CABA,Mujer,40 a 44,118330
+2018,2,CABA,Mujer,45 a 49,114001
+2018,2,CABA,Mujer,50 a 54,100838
+2018,2,CABA,Mujer,55 a 59,87990
+2018,2,CABA,Mujer,60 a 64,87545
+2018,2,CABA,Mujer,65 a 69,86172
+2018,2,CABA,Mujer,70 a 74,80077
+2018,2,CABA,Mujer,75 a 79,71969
+2018,2,CABA,Mujer,80+,59528
+2018,2,CABA,Varón,20 a 24,44205
+2018,2,CABA,Varón,25 a 29,98589
+2018,2,CABA,Varón,30 a 34,106619
+2018,2,CABA,Varón,35 a 39,116251
+2018,2,CABA,Varón,40 a 44,112354
+2018,2,CABA,Varón,45 a 49,106598
+2018,2,CABA,Varón,50 a 54,90836
+2018,2,CABA,Varón,55 a 59,76151
+2018,2,CABA,Varón,60 a 64,71665
+2018,2,CABA,Varón,65 a 69,66342
+2018,2,CABA,Varón,70 a 74,57610
+2018,2,CABA,Varón,75 a 79,47577
+2018,2,CABA,Varón,80+,34952
+2018,6,Buenos Aires,Mujer,20 a 24,320908
+2018,6,Buenos Aires,Mujer,25 a 29,636609
+2018,6,Buenos Aires,Mujer,30 a 34,658129
+2018,6,Buenos Aires,Mujer,35 a 39,628204
+2018,6,Buenos Aires,Mujer,40 a 44,609032
+2018,6,Buenos Aires,Mujer,45 a 49,586658
+2018,6,Buenos Aires,Mujer,50 a 54,508661
+2018,6,Buenos Aires,Mujer,55 a 59,455774
+2018,6,Buenos Aires,Mujer,60 a 64,426594
+2018,6,Buenos Aires,Mujer,65 a 69,390313
+2018,6,Buenos Aires,Mujer,70 a 74,349411
+2018,6,Buenos Aires,Mujer,75 a 79,290137
+2018,6,Buenos Aires,Mujer,80+,219934
+2018,6,Buenos Aires,Varón,20 a 24,156238
+2018,6,Buenos Aires,Varón,25 a 29,653209
+2018,6,Buenos Aires,Varón,30 a 34,666296
+2018,6,Buenos Aires,Varón,35 a 39,629665
+2018,6,Buenos Aires,Varón,40 a 44,601354
+2018,6,Buenos Aires,Varón,45 a 49,571321
+2018,6,Buenos Aires,Varón,50 a 54,489076
+2018,6,Buenos Aires,Varón,55 a 59,429207
+2018,6,Buenos Aires,Varón,60 a 64,391282
+2018,6,Buenos Aires,Varón,65 a 69,344756
+2018,6,Buenos Aires,Varón,70 a 74,290896
+2018,6,Buenos Aires,Varón,75 a 79,223391
+2018,6,Buenos Aires,Varón,80+,148887
+2018,10,Catamarca,Mujer,20 a 24,5643
+2018,10,Catamarca,Mujer,25 a 29,18045
+2018,10,Catamarca,Mujer,30 a 34,15620
+2018,10,Catamarca,Mujer,35 a 39,13806
+2018,10,Catamarca,Mujer,40 a 44,14283
+2018,10,Catamarca,Mujer,45 a 49,13920
+2018,10,Catamarca,Mujer,50 a 54,11453
+2018,10,Catamarca,Mujer,55 a 59,9828
+2018,10,Catamarca,Mujer,60 a 64,8935
+2018,10,Catamarca,Mujer,65 a 69,8084
+2018,10,Catamarca,Mujer,70 a 74,6902
+2018,10,Catamarca,Mujer,75 a 79,5338
+2018,10,Catamarca,Mujer,80+,3888
+2018,10,Catamarca,Varón,20 a 24,3096
+2018,10,Catamarca,Varón,25 a 29,19009
+2018,10,Catamarca,Varón,30 a 34,16311
+2018,10,Catamarca,Varón,35 a 39,13938
+2018,10,Catamarca,Varón,40 a 44,14207
+2018,10,Catamarca,Varón,45 a 49,13687
+2018,10,Catamarca,Varón,50 a 54,11319
+2018,10,Catamarca,Varón,55 a 59,9716
+2018,10,Catamarca,Varón,60 a 64,8816
+2018,10,Catamarca,Varón,65 a 69,7871
+2018,10,Catamarca,Varón,70 a 74,6445
+2018,10,Catamarca,Varón,75 a 79,4616
+2018,10,Catamarca,Varón,80+,3006
+2018,14,Córdoba,Mujer,20 a 24,71435
+2018,14,Córdoba,Mujer,25 a 29,147534
+2018,14,Córdoba,Mujer,30 a 34,147768
+2018,14,Córdoba,Mujer,35 a 39,136457
+2018,14,Córdoba,Mujer,40 a 44,132033
+2018,14,Córdoba,Mujer,45 a 49,123704
+2018,14,Córdoba,Mujer,50 a 54,105077
+2018,14,Córdoba,Mujer,55 a 59,96254
+2018,14,Córdoba,Mujer,60 a 64,91365
+2018,14,Córdoba,Mujer,65 a 69,84004
+2018,14,Córdoba,Mujer,70 a 74,77596
+2018,14,Córdoba,Mujer,75 a 79,65935
+2018,14,Córdoba,Mujer,80+,50310
+2018,14,Córdoba,Varón,20 a 24,34923
+2018,14,Córdoba,Varón,25 a 29,149714
+2018,14,Córdoba,Varón,30 a 34,149126
+2018,14,Córdoba,Varón,35 a 39,136372
+2018,14,Córdoba,Varón,40 a 44,130713
+2018,14,Córdoba,Varón,45 a 49,121275
+2018,14,Córdoba,Varón,50 a 54,100482
+2018,14,Córdoba,Varón,55 a 59,90306
+2018,14,Córdoba,Varón,60 a 64,84225
+2018,14,Córdoba,Varón,65 a 69,73833
+2018,14,Córdoba,Varón,70 a 74,63922
+2018,14,Córdoba,Varón,75 a 79,50389
+2018,14,Córdoba,Varón,80+,34195
+2018,18,Corrientes,Mujer,20 a 24,14557
+2018,18,Corrientes,Mujer,25 a 29,51870
+2018,18,Corrientes,Mujer,30 a 34,46593
+2018,18,Corrientes,Mujer,35 a 39,38545
+2018,18,Corrientes,Mujer,40 a 44,36019
+2018,18,Corrientes,Mujer,45 a 49,33847
+2018,18,Corrientes,Mujer,50 a 54,29172
+2018,18,Corrientes,Mujer,55 a 59,27080
+2018,18,Corrientes,Mujer,60 a 64,25433
+2018,18,Corrientes,Mujer,65 a 69,22384
+2018,18,Corrientes,Mujer,70 a 74,18579
+2018,18,Corrientes,Mujer,75 a 79,14223
+2018,18,Corrientes,Mujer,80+,10620
+2018,18,Corrientes,Varón,20 a 24,7859
+2018,18,Corrientes,Varón,25 a 29,52948
+2018,18,Corrientes,Varón,30 a 34,45825
+2018,18,Corrientes,Varón,35 a 39,36593
+2018,18,Corrientes,Varón,40 a 44,33997
+2018,18,Corrientes,Varón,45 a 49,31267
+2018,18,Corrientes,Varón,50 a 54,27081
+2018,18,Corrientes,Varón,55 a 59,25424
+2018,18,Corrientes,Varón,60 a 64,23834
+2018,18,Corrientes,Varón,65 a 69,20915
+2018,18,Corrientes,Varón,70 a 74,17188
+2018,18,Corrientes,Varón,75 a 79,12329
+2018,18,Corrientes,Varón,80+,7898
+2018,22,Chaco,Mujer,20 a 24,12940
+2018,22,Chaco,Mujer,25 a 29,56351
+2018,22,Chaco,Mujer,30 a 34,49726
+2018,22,Chaco,Mujer,35 a 39,42133
+2018,22,Chaco,Mujer,40 a 44,40248
+2018,22,Chaco,Mujer,45 a 49,36357
+2018,22,Chaco,Mujer,50 a 54,30253
+2018,22,Chaco,Mujer,55 a 59,27466
+2018,22,Chaco,Mujer,60 a 64,25665
+2018,22,Chaco,Mujer,65 a 69,22379
+2018,22,Chaco,Mujer,70 a 74,17686
+2018,22,Chaco,Mujer,75 a 79,13067
+2018,22,Chaco,Mujer,80+,9828
+2018,22,Chaco,Varón,20 a 24,6892
+2018,22,Chaco,Varón,25 a 29,57755
+2018,22,Chaco,Varón,30 a 34,49092
+2018,22,Chaco,Varón,35 a 39,39866
+2018,22,Chaco,Varón,40 a 44,37800
+2018,22,Chaco,Varón,45 a 49,34144
+2018,22,Chaco,Varón,50 a 54,28381
+2018,22,Chaco,Varón,55 a 59,25891
+2018,22,Chaco,Varón,60 a 64,24234
+2018,22,Chaco,Varón,65 a 69,21067
+2018,22,Chaco,Varón,70 a 74,16215
+2018,22,Chaco,Varón,75 a 79,10989
+2018,22,Chaco,Varón,80+,7019
+2018,26,Chubut,Mujer,20 a 24,7156
+2018,26,Chubut,Mujer,25 a 29,22714
+2018,26,Chubut,Mujer,30 a 34,22569
+2018,26,Chubut,Mujer,35 a 39,23313
+2018,26,Chubut,Mujer,40 a 44,23615
+2018,26,Chubut,Mujer,45 a 49,21550
+2018,26,Chubut,Mujer,50 a 54,17372
+2018,26,Chubut,Mujer,55 a 59,14926
+2018,26,Chubut,Mujer,60 a 64,13642
+2018,26,Chubut,Mujer,65 a 69,11811
+2018,26,Chubut,Mujer,70 a 74,9684
+2018,26,Chubut,Mujer,75 a 79,7394
+2018,26,Chubut,Mujer,80+,5337
+2018,26,Chubut,Varón,20 a 24,3909
+2018,26,Chubut,Varón,25 a 29,23777
+2018,26,Chubut,Varón,30 a 34,23129
+2018,26,Chubut,Varón,35 a 39,23878
+2018,26,Chubut,Varón,40 a 44,24724
+2018,26,Chubut,Varón,45 a 49,22131
+2018,26,Chubut,Varón,50 a 54,17366
+2018,26,Chubut,Varón,55 a 59,14635
+2018,26,Chubut,Varón,60 a 64,13338
+2018,26,Chubut,Varón,65 a 69,11213
+2018,26,Chubut,Varón,70 a 74,8715
+2018,26,Chubut,Varón,75 a 79,6155
+2018,26,Chubut,Varón,80+,3950
+2018,30,Entre Ríos,Mujer,20 a 24,24977
+2018,30,Entre Ríos,Mujer,25 a 29,55755
+2018,30,Entre Ríos,Mujer,30 a 34,51291
+2018,30,Entre Ríos,Mujer,35 a 39,47789
+2018,30,Entre Ríos,Mujer,40 a 44,47541
+2018,30,Entre Ríos,Mujer,45 a 49,44958
+2018,30,Entre Ríos,Mujer,50 a 54,38560
+2018,30,Entre Ríos,Mujer,55 a 59,35136
+2018,30,Entre Ríos,Mujer,60 a 64,33589
+2018,30,Entre Ríos,Mujer,65 a 69,30447
+2018,30,Entre Ríos,Mujer,70 a 74,26966
+2018,30,Entre Ríos,Mujer,75 a 79,22559
+2018,30,Entre Ríos,Mujer,80+,17458
+2018,30,Entre Ríos,Varón,20 a 24,11458
+2018,30,Entre Ríos,Varón,25 a 29,57526
+2018,30,Entre Ríos,Varón,30 a 34,52131
+2018,30,Entre Ríos,Varón,35 a 39,47115
+2018,30,Entre Ríos,Varón,40 a 44,46422
+2018,30,Entre Ríos,Varón,45 a 49,43921
+2018,30,Entre Ríos,Varón,50 a 54,37557
+2018,30,Entre Ríos,Varón,55 a 59,33631
+2018,30,Entre Ríos,Varón,60 a 64,30873
+2018,30,Entre Ríos,Varón,65 a 69,27145
+2018,30,Entre Ríos,Varón,70 a 74,23101
+2018,30,Entre Ríos,Varón,75 a 79,17767
+2018,30,Entre Ríos,Varón,80+,12055
+2018,34,Formosa,Mujer,20 a 24,6274
+2018,34,Formosa,Mujer,25 a 29,28239
+2018,34,Formosa,Mujer,30 a 34,23546
+2018,34,Formosa,Mujer,35 a 39,19105
+2018,34,Formosa,Mujer,40 a 44,18768
+2018,34,Formosa,Mujer,45 a 49,17851
+2018,34,Formosa,Mujer,50 a 54,15624
+2018,34,Formosa,Mujer,55 a 59,14183
+2018,34,Formosa,Mujer,60 a 64,13021
+2018,34,Formosa,Mujer,65 a 69,11617
+2018,34,Formosa,Mujer,70 a 74,9156
+2018,34,Formosa,Mujer,75 a 79,6864
+2018,34,Formosa,Mujer,80+,5066
+2018,34,Formosa,Varón,20 a 24,4526
+2018,34,Formosa,Varón,25 a 29,29801
+2018,34,Formosa,Varón,30 a 34,23519
+2018,34,Formosa,Varón,35 a 39,17603
+2018,34,Formosa,Varón,40 a 44,17217
+2018,34,Formosa,Varón,45 a 49,16573
+2018,34,Formosa,Varón,50 a 54,14751
+2018,34,Formosa,Varón,55 a 59,13866
+2018,34,Formosa,Varón,60 a 64,12771
+2018,34,Formosa,Varón,65 a 69,10962
+2018,34,Formosa,Varón,70 a 74,8582
+2018,34,Formosa,Varón,75 a 79,6078
+2018,34,Formosa,Varón,80+,4210
+2018,38,Jujuy,Mujer,20 a 24,8412
+2018,38,Jujuy,Mujer,25 a 29,33721
+2018,38,Jujuy,Mujer,30 a 34,30017
+2018,38,Jujuy,Mujer,35 a 39,26606
+2018,38,Jujuy,Mujer,40 a 44,27396
+2018,38,Jujuy,Mujer,45 a 49,25938
+2018,38,Jujuy,Mujer,50 a 54,21274
+2018,38,Jujuy,Mujer,55 a 59,18038
+2018,38,Jujuy,Mujer,60 a 64,16390
+2018,38,Jujuy,Mujer,65 a 69,14559
+2018,38,Jujuy,Mujer,70 a 74,12205
+2018,38,Jujuy,Mujer,75 a 79,9434
+2018,38,Jujuy,Mujer,80+,6706
+2018,38,Jujuy,Varón,20 a 24,5309
+2018,38,Jujuy,Varón,25 a 29,34677
+2018,38,Jujuy,Varón,30 a 34,29829
+2018,38,Jujuy,Varón,35 a 39,25514
+2018,38,Jujuy,Varón,40 a 44,26527
+2018,38,Jujuy,Varón,45 a 49,24998
+2018,38,Jujuy,Varón,50 a 54,19930
+2018,38,Jujuy,Varón,55 a 59,16399
+2018,38,Jujuy,Varón,60 a 64,14502
+2018,38,Jujuy,Varón,65 a 69,12696
+2018,38,Jujuy,Varón,70 a 74,10592
+2018,38,Jujuy,Varón,75 a 79,7698
+2018,38,Jujuy,Varón,80+,5194
+2018,42,La Pampa,Mujer,20 a 24,6843
+2018,42,La Pampa,Mujer,25 a 29,13293
+2018,42,La Pampa,Mujer,30 a 34,12844
+2018,42,La Pampa,Mujer,35 a 39,12389
+2018,42,La Pampa,Mujer,40 a 44,12338
+2018,42,La Pampa,Mujer,45 a 49,11709
+2018,42,La Pampa,Mujer,50 a 54,10394
+2018,42,La Pampa,Mujer,55 a 59,9634
+2018,42,La Pampa,Mujer,60 a 64,8967
+2018,42,La Pampa,Mujer,65 a 69,7957
+2018,42,La Pampa,Mujer,70 a 74,7128
+2018,42,La Pampa,Mujer,75 a 79,6078
+2018,42,La Pampa,Mujer,80+,4792
+2018,42,La Pampa,Varón,20 a 24,3858
+2018,42,La Pampa,Varón,25 a 29,13990
+2018,42,La Pampa,Varón,30 a 34,13231
+2018,42,La Pampa,Varón,35 a 39,12351
+2018,42,La Pampa,Varón,40 a 44,12222
+2018,42,La Pampa,Varón,45 a 49,11591
+2018,42,La Pampa,Varón,50 a 54,10116
+2018,42,La Pampa,Varón,55 a 59,9393
+2018,42,La Pampa,Varón,60 a 64,8756
+2018,42,La Pampa,Varón,65 a 69,7754
+2018,42,La Pampa,Varón,70 a 74,6714
+2018,42,La Pampa,Varón,75 a 79,5289
+2018,42,La Pampa,Varón,80+,3680
+2018,46,La Rioja,Mujer,20 a 24,4596
+2018,46,La Rioja,Mujer,25 a 29,17649
+2018,46,La Rioja,Mujer,30 a 34,17304
+2018,46,La Rioja,Mujer,35 a 39,14772
+2018,46,La Rioja,Mujer,40 a 44,14051
+2018,46,La Rioja,Mujer,45 a 49,13015
+2018,46,La Rioja,Mujer,50 a 54,10400
+2018,46,La Rioja,Mujer,55 a 59,9105
+2018,46,La Rioja,Mujer,60 a 64,8338
+2018,46,La Rioja,Mujer,65 a 69,7242
+2018,46,La Rioja,Mujer,70 a 74,6039
+2018,46,La Rioja,Mujer,75 a 79,4502
+2018,46,La Rioja,Mujer,80+,3269
+2018,46,La Rioja,Varón,20 a 24,2505
+2018,46,La Rioja,Varón,25 a 29,18069
+2018,46,La Rioja,Varón,30 a 34,17352
+2018,46,La Rioja,Varón,35 a 39,14563
+2018,46,La Rioja,Varón,40 a 44,13880
+2018,46,La Rioja,Varón,45 a 49,12764
+2018,46,La Rioja,Varón,50 a 54,10240
+2018,46,La Rioja,Varón,55 a 59,8926
+2018,46,La Rioja,Varón,60 a 64,8205
+2018,46,La Rioja,Varón,65 a 69,7074
+2018,46,La Rioja,Varón,70 a 74,5638
+2018,46,La Rioja,Varón,75 a 79,3995
+2018,46,La Rioja,Varón,80+,2546
+2018,50,Mendoza,Mujer,20 a 24,33473
+2018,50,Mendoza,Mujer,25 a 29,76913
+2018,50,Mendoza,Mujer,30 a 34,77695
+2018,50,Mendoza,Mujer,35 a 39,71474
+2018,50,Mendoza,Mujer,40 a 44,67690
+2018,50,Mendoza,Mujer,45 a 49,64012
+2018,50,Mendoza,Mujer,50 a 54,54681
+2018,50,Mendoza,Mujer,55 a 59,48316
+2018,50,Mendoza,Mujer,60 a 64,45535
+2018,50,Mendoza,Mujer,65 a 69,43113
+2018,50,Mendoza,Mujer,70 a 74,39723
+2018,50,Mendoza,Mujer,75 a 79,32846
+2018,50,Mendoza,Mujer,80+,24282
+2018,50,Mendoza,Varón,20 a 24,18606
+2018,50,Mendoza,Varón,25 a 29,79299
+2018,50,Mendoza,Varón,30 a 34,79107
+2018,50,Mendoza,Varón,35 a 39,71923
+2018,50,Mendoza,Varón,40 a 44,67008
+2018,50,Mendoza,Varón,45 a 49,61644
+2018,50,Mendoza,Varón,50 a 54,51660
+2018,50,Mendoza,Varón,55 a 59,44806
+2018,50,Mendoza,Varón,60 a 64,41060
+2018,50,Mendoza,Varón,65 a 69,37466
+2018,50,Mendoza,Varón,70 a 74,33130
+2018,50,Mendoza,Varón,75 a 79,25833
+2018,50,Mendoza,Varón,80+,17335
+2018,54,Misiones,Mujer,20 a 24,11974
+2018,54,Misiones,Mujer,25 a 29,58434
+2018,54,Misiones,Mujer,30 a 34,49928
+2018,54,Misiones,Mujer,35 a 39,42137
+2018,54,Misiones,Mujer,40 a 44,40123
+2018,54,Misiones,Mujer,45 a 49,36732
+2018,54,Misiones,Mujer,50 a 54,31193
+2018,54,Misiones,Mujer,55 a 59,28117
+2018,54,Misiones,Mujer,60 a 64,25854
+2018,54,Misiones,Mujer,65 a 69,21721
+2018,54,Misiones,Mujer,70 a 74,17096
+2018,54,Misiones,Mujer,75 a 79,12581
+2018,54,Misiones,Mujer,80+,9168
+2018,54,Misiones,Varón,20 a 24,7350
+2018,54,Misiones,Varón,25 a 29,60387
+2018,54,Misiones,Varón,30 a 34,49490
+2018,54,Misiones,Varón,35 a 39,40334
+2018,54,Misiones,Varón,40 a 44,38438
+2018,54,Misiones,Varón,45 a 49,35385
+2018,54,Misiones,Varón,50 a 54,29948
+2018,54,Misiones,Varón,55 a 59,27330
+2018,54,Misiones,Varón,60 a 64,25556
+2018,54,Misiones,Varón,65 a 69,21467
+2018,54,Misiones,Varón,70 a 74,16357
+2018,54,Misiones,Varón,75 a 79,11192
+2018,54,Misiones,Varón,80+,7376
+2018,58,Neuquén,Mujer,20 a 24,6901
+2018,58,Neuquén,Mujer,25 a 29,25111
+2018,58,Neuquén,Mujer,30 a 34,25076
+2018,58,Neuquén,Mujer,35 a 39,24534
+2018,58,Neuquén,Mujer,40 a 44,24334
+2018,58,Neuquén,Mujer,45 a 49,23210
+2018,58,Neuquén,Mujer,50 a 54,19795
+2018,58,Neuquén,Mujer,55 a 59,17291
+2018,58,Neuquén,Mujer,60 a 64,15487
+2018,58,Neuquén,Mujer,65 a 69,13014
+2018,58,Neuquén,Mujer,70 a 74,10515
+2018,58,Neuquén,Mujer,75 a 79,7795
+2018,58,Neuquén,Mujer,80+,5349
+2018,58,Neuquén,Varón,20 a 24,3952
+2018,58,Neuquén,Varón,25 a 29,26234
+2018,58,Neuquén,Varón,30 a 34,25948
+2018,58,Neuquén,Varón,35 a 39,24422
+2018,58,Neuquén,Varón,40 a 44,23710
+2018,58,Neuquén,Varón,45 a 49,22532
+2018,58,Neuquén,Varón,50 a 54,18840
+2018,58,Neuquén,Varón,55 a 59,16168
+2018,58,Neuquén,Varón,60 a 64,14409
+2018,58,Neuquén,Varón,65 a 69,12131
+2018,58,Neuquén,Varón,70 a 74,9547
+2018,58,Neuquén,Varón,75 a 79,6712
+2018,58,Neuquén,Varón,80+,4143
+2018,62,Río Negro,Mujer,20 a 24,9890
+2018,62,Río Negro,Mujer,25 a 29,28424
+2018,62,Río Negro,Mujer,30 a 34,27560
+2018,62,Río Negro,Mujer,35 a 39,26567
+2018,62,Río Negro,Mujer,40 a 44,27320
+2018,62,Río Negro,Mujer,45 a 49,25656
+2018,62,Río Negro,Mujer,50 a 54,21400
+2018,62,Río Negro,Mujer,55 a 59,19163
+2018,62,Río Negro,Mujer,60 a 64,17687
+2018,62,Río Negro,Mujer,65 a 69,15448
+2018,62,Río Negro,Mujer,70 a 74,13130
+2018,62,Río Negro,Mujer,75 a 79,10323
+2018,62,Río Negro,Mujer,80+,7326
+2018,62,Río Negro,Varón,20 a 24,6131
+2018,62,Río Negro,Varón,25 a 29,29806
+2018,62,Río Negro,Varón,30 a 34,28336
+2018,62,Río Negro,Varón,35 a 39,26711
+2018,62,Río Negro,Varón,40 a 44,26726
+2018,62,Río Negro,Varón,45 a 49,24938
+2018,62,Río Negro,Varón,50 a 54,21038
+2018,62,Río Negro,Varón,55 a 59,18408
+2018,62,Río Negro,Varón,60 a 64,16821
+2018,62,Río Negro,Varón,65 a 69,14609
+2018,62,Río Negro,Varón,70 a 74,12168
+2018,62,Río Negro,Varón,75 a 79,9091
+2018,62,Río Negro,Varón,80+,5937
+2018,66,Salta,Mujer,20 a 24,15127
+2018,66,Salta,Mujer,25 a 29,63297
+2018,66,Salta,Mujer,30 a 34,56394
+2018,66,Salta,Mujer,35 a 39,48796
+2018,66,Salta,Mujer,40 a 44,47368
+2018,66,Salta,Mujer,45 a 49,43838
+2018,66,Salta,Mujer,50 a 54,36413
+2018,66,Salta,Mujer,55 a 59,31291
+2018,66,Salta,Mujer,60 a 64,27950
+2018,66,Salta,Mujer,65 a 69,24424
+2018,66,Salta,Mujer,70 a 74,20715
+2018,66,Salta,Mujer,75 a 79,15962
+2018,66,Salta,Mujer,80+,11530
+2018,66,Salta,Varón,20 a 24,9310
+2018,66,Salta,Varón,25 a 29,64980
+2018,66,Salta,Varón,30 a 34,55939
+2018,66,Salta,Varón,35 a 39,46562
+2018,66,Salta,Varón,40 a 44,44786
+2018,66,Salta,Varón,45 a 49,41281
+2018,66,Salta,Varón,50 a 54,34359
+2018,66,Salta,Varón,55 a 59,29546
+2018,66,Salta,Varón,60 a 64,25984
+2018,66,Salta,Varón,65 a 69,22171
+2018,66,Salta,Varón,70 a 74,18217
+2018,66,Salta,Varón,75 a 79,13381
+2018,66,Salta,Varón,80+,9046
+2018,70,San Juan,Mujer,20 a 24,10127
+2018,70,San Juan,Mujer,25 a 29,31960
+2018,70,San Juan,Mujer,30 a 34,29842
+2018,70,San Juan,Mujer,35 a 39,26378
+2018,70,San Juan,Mujer,40 a 44,25876
+2018,70,San Juan,Mujer,45 a 49,24764
+2018,70,San Juan,Mujer,50 a 54,21362
+2018,70,San Juan,Mujer,55 a 59,18413
+2018,70,San Juan,Mujer,60 a 64,17333
+2018,70,San Juan,Mujer,65 a 69,16132
+2018,70,San Juan,Mujer,70 a 74,14478
+2018,70,San Juan,Mujer,75 a 79,11758
+2018,70,San Juan,Mujer,80+,8374
+2018,70,San Juan,Varón,20 a 24,5744
+2018,70,San Juan,Varón,25 a 29,33246
+2018,70,San Juan,Varón,30 a 34,30377
+2018,70,San Juan,Varón,35 a 39,26774
+2018,70,San Juan,Varón,40 a 44,25905
+2018,70,San Juan,Varón,45 a 49,24536
+2018,70,San Juan,Varón,50 a 54,20436
+2018,70,San Juan,Varón,55 a 59,17141
+2018,70,San Juan,Varón,60 a 64,15545
+2018,70,San Juan,Varón,65 a 69,13840
+2018,70,San Juan,Varón,70 a 74,12089
+2018,70,San Juan,Varón,75 a 79,9255
+2018,70,San Juan,Varón,80+,5946
+2018,74,San Luis,Mujer,20 a 24,7259
+2018,74,San Luis,Mujer,25 a 29,20946
+2018,74,San Luis,Mujer,30 a 34,19075
+2018,74,San Luis,Mujer,35 a 39,17372
+2018,74,San Luis,Mujer,40 a 44,17753
+2018,74,San Luis,Mujer,45 a 49,16737
+2018,74,San Luis,Mujer,50 a 54,13825
+2018,74,San Luis,Mujer,55 a 59,12335
+2018,74,San Luis,Mujer,60 a 64,11604
+2018,74,San Luis,Mujer,65 a 69,10501
+2018,74,San Luis,Mujer,70 a 74,9181
+2018,74,San Luis,Mujer,75 a 79,7437
+2018,74,San Luis,Mujer,80+,5399
+2018,74,San Luis,Varón,20 a 24,3956
+2018,74,San Luis,Varón,25 a 29,21508
+2018,74,San Luis,Varón,30 a 34,19251
+2018,74,San Luis,Varón,35 a 39,17181
+2018,74,San Luis,Varón,40 a 44,17384
+2018,74,San Luis,Varón,45 a 49,16583
+2018,74,San Luis,Varón,50 a 54,13934
+2018,74,San Luis,Varón,55 a 59,12364
+2018,74,San Luis,Varón,60 a 64,11220
+2018,74,San Luis,Varón,65 a 69,9778
+2018,74,San Luis,Varón,70 a 74,8255
+2018,74,San Luis,Varón,75 a 79,6343
+2018,74,San Luis,Varón,80+,4070
+2018,78,Santa Cruz,Mujer,20 a 24,2432
+2018,78,Santa Cruz,Mujer,25 a 29,12941
+2018,78,Santa Cruz,Mujer,30 a 34,13535
+2018,78,Santa Cruz,Mujer,35 a 39,14417
+2018,78,Santa Cruz,Mujer,40 a 44,14376
+2018,78,Santa Cruz,Mujer,45 a 49,12264
+2018,78,Santa Cruz,Mujer,50 a 54,9340
+2018,78,Santa Cruz,Mujer,55 a 59,7775
+2018,78,Santa Cruz,Mujer,60 a 64,6721
+2018,78,Santa Cruz,Mujer,65 a 69,5379
+2018,78,Santa Cruz,Mujer,70 a 74,4111
+2018,78,Santa Cruz,Mujer,75 a 79,2963
+2018,78,Santa Cruz,Mujer,80+,2075
+2018,78,Santa Cruz,Varón,20 a 24,1499
+2018,78,Santa Cruz,Varón,25 a 29,13497
+2018,78,Santa Cruz,Varón,30 a 34,14215
+2018,78,Santa Cruz,Varón,35 a 39,15616
+2018,78,Santa Cruz,Varón,40 a 44,15805
+2018,78,Santa Cruz,Varón,45 a 49,13529
+2018,78,Santa Cruz,Varón,50 a 54,10213
+2018,78,Santa Cruz,Varón,55 a 59,8471
+2018,78,Santa Cruz,Varón,60 a 64,7355
+2018,78,Santa Cruz,Varón,65 a 69,5723
+2018,78,Santa Cruz,Varón,70 a 74,4013
+2018,78,Santa Cruz,Varón,75 a 79,2561
+2018,78,Santa Cruz,Varón,80+,1536
+2018,82,Santa Fe,Mujer,20 a 24,76832
+2018,82,Santa Fe,Mujer,25 a 29,134918
+2018,82,Santa Fe,Mujer,30 a 34,138545
+2018,82,Santa Fe,Mujer,35 a 39,132909
+2018,82,Santa Fe,Mujer,40 a 44,129777
+2018,82,Santa Fe,Mujer,45 a 49,119144
+2018,82,Santa Fe,Mujer,50 a 54,98882
+2018,82,Santa Fe,Mujer,55 a 59,91497
+2018,82,Santa Fe,Mujer,60 a 64,88688
+2018,82,Santa Fe,Mujer,65 a 69,81876
+2018,82,Santa Fe,Mujer,70 a 74,73990
+2018,82,Santa Fe,Mujer,75 a 79,62212
+2018,82,Santa Fe,Mujer,80+,49151
+2018,82,Santa Fe,Varón,20 a 24,35277
+2018,82,Santa Fe,Varón,25 a 29,136307
+2018,82,Santa Fe,Varón,30 a 34,138757
+2018,82,Santa Fe,Varón,35 a 39,132991
+2018,82,Santa Fe,Varón,40 a 44,128932
+2018,82,Santa Fe,Varón,45 a 49,116200
+2018,82,Santa Fe,Varón,50 a 54,94918
+2018,82,Santa Fe,Varón,55 a 59,86085
+2018,82,Santa Fe,Varón,60 a 64,81102
+2018,82,Santa Fe,Varón,65 a 69,72403
+2018,82,Santa Fe,Varón,70 a 74,61285
+2018,82,Santa Fe,Varón,75 a 79,46586
+2018,82,Santa Fe,Varón,80+,32385
+2018,86,Santiago del Estero,Mujer,20 a 24,11877
+2018,86,Santiago del Estero,Mujer,25 a 29,45176
+2018,86,Santiago del Estero,Mujer,30 a 34,38035
+2018,86,Santiago del Estero,Mujer,35 a 39,32847
+2018,86,Santiago del Estero,Mujer,40 a 44,33075
+2018,86,Santiago del Estero,Mujer,45 a 49,30618
+2018,86,Santiago del Estero,Mujer,50 a 54,24399
+2018,86,Santiago del Estero,Mujer,55 a 59,20498
+2018,86,Santiago del Estero,Mujer,60 a 64,19029
+2018,86,Santiago del Estero,Mujer,65 a 69,17351
+2018,86,Santiago del Estero,Mujer,70 a 74,14678
+2018,86,Santiago del Estero,Mujer,75 a 79,11437
+2018,86,Santiago del Estero,Mujer,80+,8651
+2018,86,Santiago del Estero,Varón,20 a 24,6729
+2018,86,Santiago del Estero,Varón,25 a 29,46906
+2018,86,Santiago del Estero,Varón,30 a 34,37875
+2018,86,Santiago del Estero,Varón,35 a 39,30965
+2018,86,Santiago del Estero,Varón,40 a 44,30947
+2018,86,Santiago del Estero,Varón,45 a 49,29336
+2018,86,Santiago del Estero,Varón,50 a 54,24192
+2018,86,Santiago del Estero,Varón,55 a 59,20641
+2018,86,Santiago del Estero,Varón,60 a 64,18761
+2018,86,Santiago del Estero,Varón,65 a 69,16897
+2018,86,Santiago del Estero,Varón,70 a 74,13977
+2018,86,Santiago del Estero,Varón,75 a 79,10031
+2018,86,Santiago del Estero,Varón,80+,6705
+2018,90,Tucumán,Mujer,20 a 24,21826
+2018,90,Tucumán,Mujer,25 a 29,72852
+2018,90,Tucumán,Mujer,30 a 34,68820
+2018,90,Tucumán,Mujer,35 a 39,60385
+2018,90,Tucumán,Mujer,40 a 44,58740
+2018,90,Tucumán,Mujer,45 a 49,54449
+2018,90,Tucumán,Mujer,50 a 54,43008
+2018,90,Tucumán,Mujer,55 a 59,37716
+2018,90,Tucumán,Mujer,60 a 64,36707
+2018,90,Tucumán,Mujer,65 a 69,34746
+2018,90,Tucumán,Mujer,70 a 74,29376
+2018,90,Tucumán,Mujer,75 a 79,21980
+2018,90,Tucumán,Mujer,80+,15483
+2018,90,Tucumán,Varón,20 a 24,11667
+2018,90,Tucumán,Varón,25 a 29,73930
+2018,90,Tucumán,Varón,30 a 34,68273
+2018,90,Tucumán,Varón,35 a 39,59259
+2018,90,Tucumán,Varón,40 a 44,57184
+2018,90,Tucumán,Varón,45 a 49,52360
+2018,90,Tucumán,Varón,50 a 54,40917
+2018,90,Tucumán,Varón,55 a 59,35365
+2018,90,Tucumán,Varón,60 a 64,33320
+2018,90,Tucumán,Varón,65 a 69,31296
+2018,90,Tucumán,Varón,70 a 74,26141
+2018,90,Tucumán,Varón,75 a 79,18147
+2018,90,Tucumán,Varón,80+,11176
+2018,94,Tierra del Fuego,Mujer,20 a 24,847
+2018,94,Tierra del Fuego,Mujer,25 a 29,6376
+2018,94,Tierra del Fuego,Mujer,30 a 34,6605
+2018,94,Tierra del Fuego,Mujer,35 a 39,6902
+2018,94,Tierra del Fuego,Mujer,40 a 44,6805
+2018,94,Tierra del Fuego,Mujer,45 a 49,6040
+2018,94,Tierra del Fuego,Mujer,50 a 54,4968
+2018,94,Tierra del Fuego,Mujer,55 a 59,4418
+2018,94,Tierra del Fuego,Mujer,60 a 64,3949
+2018,94,Tierra del Fuego,Mujer,65 a 69,2877
+2018,94,Tierra del Fuego,Mujer,70 a 74,1950
+2018,94,Tierra del Fuego,Mujer,75 a 79,1217
+2018,94,Tierra del Fuego,Mujer,80+,708
+2018,94,Tierra del Fuego,Varón,20 a 24,480
+2018,94,Tierra del Fuego,Varón,25 a 29,6775
+2018,94,Tierra del Fuego,Varón,30 a 34,6798
+2018,94,Tierra del Fuego,Varón,35 a 39,7363
+2018,94,Tierra del Fuego,Varón,40 a 44,7352
+2018,94,Tierra del Fuego,Varón,45 a 49,6268
+2018,94,Tierra del Fuego,Varón,50 a 54,4928
+2018,94,Tierra del Fuego,Varón,55 a 59,4421
+2018,94,Tierra del Fuego,Varón,60 a 64,4183
+2018,94,Tierra del Fuego,Varón,65 a 69,3148
+2018,94,Tierra del Fuego,Varón,70 a 74,2034
+2018,94,Tierra del Fuego,Varón,75 a 79,1161
+2018,94,Tierra del Fuego,Varón,80+,584

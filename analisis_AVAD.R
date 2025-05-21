@@ -14,16 +14,16 @@ library(tidyverse)
 
 # Cargar datos ------------------------------------------------------------
 ## Defunciones por DM2 (DEIS)
-defun_dm <- read_csv("Bases de datos/clean/arg_defun_dm_clean.csv")
+defun_dm <- read_csv("Bases de datos/clean/arg_defun_dm.csv")
 
 ## Tabla de vida GHO-WHO 2010
-esp_vida <- read_csv("Bases de datos/clean/arg_esp_vida_2019_clean.csv")
+esp_vida <- read_csv("Bases de datos/clean/arg_esp_vida_2019.csv")
 
 ## Prevalencia DM2 según ENFR por grupos quinquenales de edad
 prev_dm5 <- read_csv("Bases de datos/clean/prev_dm_g5.csv")
 
 ## Prevalencia DM2 según ENFR por grupos decenales de edad
-prev_dm5 <- read_csv("Bases de datos/clean/prev_dm_g10.csv")
+prev_dm10 <- read_csv("Bases de datos/clean/prev_dm_g10.csv")
 
 ## Secuelas DM2 (datos temporales)
 
@@ -31,7 +31,7 @@ prev_dm5 <- read_csv("Bases de datos/clean/prev_dm_g10.csv")
 pob_05 <- import("Bases de datos/Proyecciones INDEC/proyec_2005.xlsx")
 
 ## Proyecciones INDEC 2010-2018
-pob_10 <- import("Bases de datos/Proyecciones INDEC/proyec_2010_2018.xlsx")
+pob_10 <- import("Bases de datos/clean/arg_proy_2010_2018.csv")
 
 
 # Cálculo de los AVP ------------------------------------------------------

@@ -8,7 +8,7 @@
 ### 10 años para población de 20 años y más según sexo.
 ### Autoras: Micaela Gauto y Tamara Ricardo
 ### Última modificación:
-# Wed May 21 14:53:01 2025 ------------------------------
+# Wed May 21 18:20:28 2025 ------------------------------
 
 
 
@@ -155,11 +155,6 @@ tabyl(def_join$grupo_edad)
 tabyl(def_join$grupo_edad_10)
 
 
-
-# Guardar datos defunciones -----------------------------------------------
-write_csv(def_join, "Bases de datos/clean/arg_defun_dm_clean.csv")
-
-
 # Limpiar datos esperanza de vida -----------------------------------------
 esp_vida <- esp_vida_raw |> 
   # Estandarizar nombres de columna
@@ -195,7 +190,12 @@ esp_vida <- esp_vida_raw |>
 
 
 # Guardar datos esperanza de vida -----------------------------------------
-write_csv(esp_vida, "Bases de datos/clean/arg_esp_vida_2019_clean.csv")
+## Defunciones por DM
+write_csv(def_join, "Bases de datos/clean/arg_defun_dm.csv")
+
+## Esperanza de vida 2019
+write_csv(esp_vida, "Bases de datos/clean/arg_esp_vida_2019.csv")
+
 
 ## Limpiar environment
 rm(list = ls())
