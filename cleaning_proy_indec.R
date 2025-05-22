@@ -2,7 +2,7 @@
 ### años 2010-2021 según provincia, sexo y grupo edad quinquenal
 ### Autora: Tamara Ricardo
 ### Fecha modificación:
-# Thu May 22 15:20:38 2025 ------------------------------
+# Thu May 22 15:48:07 2025 ------------------------------
 
 
 
@@ -25,8 +25,7 @@ grupos_edad <- read_csv("Bases de datos/grupos_edad.csv") |>
   mutate_all(.funs = ~ factor(.x))
 
 
-## Proyecciones 2001-2005
-# Extraer tablas por provincia
+## Proyecciones 2001-2005 (extraer tablas por provincia)
 proy_01_raw <- extract_areas(
   "Bases de datos/Proyecciones INDEC/INDEC_proyec 2001-2015.pdf",
   pages = 22:45,
@@ -37,7 +36,8 @@ proy_01_raw <- extract_areas(
 
 ## Proyecciones 2010-2040
 # Ruta del archivo de Excel
-indec_10 <- "Bases de datos/Proyecciones INDEC/c2_proyecciones_prov_2010_2040.xls"
+indec_10 <- "Bases de datos/Proyecciones INDEC/c2_proyecciones_prov_2010_2040.xls" 
+  
 
 # Cargar/unir hojas
 proy_10_raw <- excel_sheets(indec_10)[-c(1:2)] |>  # Listar hojas por provincia
@@ -89,28 +89,16 @@ proy_01 <- proy_01_raw |>
   
   # Pasar a formato long para obtener proyecciones
   pivot_longer(cols = c(V_2001:M_2005),
-               values_to = "proy_pob",
-               values_transform = list(proy_pob = as.numeric)) |> 
+               values_to = "proy_pob") |> 
   
   # Crear columnas para sexo y año
   separate(name, into = c("sexo", "anio")) |> 
   
   # Transformar escala proyección poblacional
-  mutate(proy_pob = proy_pob*1000) |> 
+  mutate(proy_pob = parse_number(proy_pob, 
+                                 locale = locale(decimal_mark = ","))) 
   
-  # Cambiar etiquetas sexo
-  mutate(sexo = if_else(sexo == "V", "Varón", "Mujer")) |> 
   
-  # Cambiar etiquetas grupo edad
-  mutate(grupo_edad = fct_relabel(grupo_edad, 
-                                  ~ levels(factor(grupos_edad$grupo_edad)))
-         ) |>
-  
-  # Añadir etiqueta provincias
-  mutate(prov_id = as.numeric(prov_id)) |> 
-  left_join(id_prov)
-
-
 ## Limpiar tablas 2010-2040
 proy_10 <- proy_10_raw |> 
   # Estandarizar nombres de columnas
@@ -126,50 +114,55 @@ proy_10 <- proy_10_raw |>
          V_2018 = x37,
          M_2018 = x38)  |> 
   
-  # Filtrar filas con totales o datos ausentes
-  filter(!grupo_edad %in% c(NA, "Total")) |> 
+  # Filtrar filas con valores ausentes
+  drop_na() |> 
   
-  # Limpiar id de provincia
-  mutate(prov_id = str_sub(prov_id, 1, 2) |> 
-           as.numeric()) |> 
+  # Filtrar <20 años y totales
+  filter(!grupo_edad %in% c("Total", "0-4", "5-9", "10-14", "15-19")) |> 
   
-  # Añadir identificador categórico provincia
-  left_join(id_prov) |> 
+  # Limpiar id numérico de provincia
+  mutate(prov_id = str_sub(prov_id, 1, 2)) |> 
   
   # Formato long
   pivot_longer(cols = c(V_2010:M_2018), 
-               values_to = "proyeccion") |> 
+               values_to = "proy_pob") |> 
   
   # Crear columnas para año y sexo
   separate(name, into = c("sexo", "anio")) |> 
-  
-  # Modificar etiquetas sexo
-  mutate(sexo = if_else(sexo == "V", "Varón", "Mujer")) |> 
-  
-  # Filtrar menores de 20 años
-  filter(!grupo_edad %in% c("0-4", "5-9", "10-14", "15-19")) |> 
   
   # Agrupar mayores de 80 años
   mutate(grupo_edad = fct_collapse(grupo_edad,
                                  "80+" = c("80-84", "85-89","90-94",
                                            "95-99", "100 y más"))) |> 
   
-  # Cambiar etiquetas grupos edad
-  mutate(grupo_edad = fct_relabel(grupo_edad, ~ levels(grupos_edad$grupo_edad))
-         ) |> 
-  
   # Convertir proyección a numérico
-  mutate(proyeccion = as.numeric(proyeccion)) |> 
+  mutate(proy_pob = parse_number(proy_pob)) |> 
   
   # Calcular población para mayores de 80 años
-  group_by(anio, prov_id, prov_nombre, sexo, grupo_edad) |> 
-  summarise(proy_pob = sum(proyeccion, na.rm = TRUE),
-            .groups = "drop")
+  group_by(anio, prov_id, sexo, grupo_edad) |> 
+  summarise(proy_pob = sum(proy_pob, na.rm = TRUE),
+            .groups = "drop") 
   
 
 ### Unir bases proyecciones
-proy_join <- proy_01 |> 
-  bind_rows(proy_10)
+proy_join <- bind_rows(proy_01, proy_10) |> 
+  
+  # Cambiar prov_id a numérico
+  mutate(prov_id = parse_number(prov_id)) |> 
+  
+  # Añadir nombre de provincia
+  mutate(prov_nombre = factor(prov_id,
+                              labels = levels(id_prov$prov_nombre))) |> 
+  
+  # Cambiar etiquetas sexo
+  mutate(sexo = if_else(sexo == "V", "Varón", "Mujer")) |> 
+  
+  # Cambiar etiquetas grupo edad
+  mutate(grupo_edad = fct_recode(grupo_edad, 
+                                 "80+" = "80 y más") |> 
+           fct_relabel(~ levels(grupos_edad$grupo_edad))
+         )
+
 
 # Guardar datos limpios ---------------------------------------------------
 write_csv(proy_join, file = "Bases de datos/clean/arg_proy_2005_2018.csv")
