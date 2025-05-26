@@ -2,12 +2,12 @@
 ### años 2010-2021 según provincia, sexo y grupo edad quinquenal
 ### Autora: Tamara Ricardo
 ### Fecha modificación:
-# Thu May 22 15:48:07 2025 ------------------------------
-
+# Mon May 26 14:01:39 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
+  rio,
   tabulapdf, # Extraer datos de PDF
   janitor,
   tidyverse,
@@ -161,10 +161,41 @@ proy_join <- bind_rows(proy_01, proy_10) |>
   mutate(grupo_edad = fct_recode(grupo_edad, 
                                  "80+" = "80 y más") |> 
            fct_relabel(~ levels(grupos_edad$grupo_edad))
-         )
+         ) |> 
+  
+  # Ordenar columnas
+  select(anio, prov_id, prov_nombre, grupo_edad, sexo, proy_pob)
 
+
+# Diccionario de datos ----------------------------------------------------
+data_dict <- tibble(
+  variable = c("anio", "prov_id", "prov_nombre", 
+               "grupo_edad", "sexo", "proy_pob"),
+  
+  descripcion = c(
+    "Año",
+    "Identificador numérico provincia",
+    "Nombre de provincia",
+    "Grupo de edad quinquenal",
+    "Sexo biológico",
+    "Proyección poblacional"),
+  
+  tipo_var = c(rep("factor", 5), "numeric"),
+  
+  niveles = list(c(2001, 2005, 2010, 2013, 2018),
+                 levels(id_prov$prov_id |>  factor()),
+                 levels(id_prov$prov_nombre),
+                 levels(grupos_edad$grupo_edad),
+                 c("Varón", "Mujer"),
+                 NA) |> 
+    as.character()
+) |> 
+  
+  mutate(niveles = str_remove_all(niveles, '^c\\(|\\)$|"'))
 
 # Guardar datos limpios ---------------------------------------------------
+## Proyecciones poblacionales
 write_csv(proy_join, file = "Bases de datos/clean/arg_proy_2005_2018.csv")
 
-
+## Diccionario de datos
+export(data_dict, file = "Bases de datos/clean/dic_arg_proy_205_2018.xlsx")
