@@ -3,14 +3,17 @@
 ### quinquenales y decenales de edad.
 ### Autora: Tamara Ricardo
 ### Fecha modificación:
-# Mon May 26 13:58:06 2025 ------------------------------
+# Wed May 28 09:51:47 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
-library(janitor)
-library(epikit)
-library(srvyr)
-library(tidyverse)
+pacman::p_load(
+  rio,
+  srvyr,
+  epikit,
+  janitor,
+  tidyverse
+)
 
 
 # Cargar datos ------------------------------------------------------------
@@ -30,7 +33,7 @@ datos05_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.tx
                          sexo = CHCH04, 
                          edad = CHCH05, 
                          dm_auto = CIDI01, 
-                         dm_gest = CIDI02,
+                         # dm_gest = CIDI02,
                          ponderacion = PONDERACION)) 
 
 ## ENFR 2009
@@ -40,7 +43,7 @@ datos09_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.tx
                                       sexo = BHCH04,
                                       edad = BHCH05,
                                       dm_auto = BIDI01,
-                                      dm_gest = BIDI02,
+                                      # dm_gest = BIDI02,
                                       ponderacion = PONDERACION))
 
 ## ENFR 2013
@@ -50,7 +53,7 @@ datos13_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.tx
                                       sexo = BHCH04,
                                       edad = BHCH05,
                                       dm_auto = BIDI01,
-                                      dm_gest = BIDI02,
+                                      # dm_gest = BIDI02,
                                       ponderacion = PONDERACION))
 
 ## ENFR 2018
@@ -60,7 +63,7 @@ datos18_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.tx
                                       sexo = bhch03,
                                       edad = bhch04,
                                       dm_auto = bidi01,
-                                      dm_gest = bidi02,
+                                      # dm_gest = bidi02,
                                       wf1p)) |> 
   
   # Añadir base de réplicas
@@ -119,13 +122,13 @@ cleaning_enfr <- function(x){
     
     # Cambiar etiquetas DM por autorreporte
     mutate(dm_auto = factor(dm_auto,
-                            labels = c("Sí", "No", "NS/NC"))) |> 
+                            labels = c("Sí", "No", "NS/NC"))) #|> 
     
-    # Cambiar etiqueta DM gestacional
-    mutate(dm_gest = case_when(dm_gest == 1 ~ "Sí",
-                               dm_gest == 2 ~ "No",
-                               dm_gest == 9 ~ "NS/NC",
-                               TRUE ~ NA))
+    # # Cambiar etiqueta DM gestacional
+    # mutate(dm_gest = case_when(dm_gest == 1 ~ "Sí",
+    #                            dm_gest == 2 ~ "No",
+    #                            dm_gest == 9 ~ "NS/NC",
+    #                            TRUE ~ NA))
 }
 
 
@@ -211,9 +214,10 @@ prev05_g5 <- datos05 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |> 
   
-  # Estimar prevalencia
+  # Estimar cantidad de personas con DM y prevalencia
   group_by(prov_id, prov_nombre, grupo_edad, sexo) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
 
 
@@ -222,9 +226,10 @@ prev09_g5 <- datos09 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |> 
   
-  # Estimar prevalencia
+  # Estimar cantidad de personas con DM y prevalencia
   group_by(prov_id, prov_nombre, grupo_edad, sexo) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
 
 
@@ -233,9 +238,10 @@ prev13_g5 <- datos13 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |> 
   
-  # Estimar prevalencia
+  # Estimar cantidad de personas con DM y prevalencia
   group_by(prov_id, prov_nombre, grupo_edad, sexo) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
 
 
@@ -247,9 +253,10 @@ prev18_g5 <- datos18 |>
                 type = "bootstrap"
                 ) |> 
   
-  # Estimar prevalencia
-  group_by(prov_id, prov_nombre, sexo, grupo_edad) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  # Estimar cantidad de personas con DM y prevalencia
+  group_by(prov_id, prov_nombre, grupo_edad, sexo) |> 
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
 
 
@@ -279,9 +286,10 @@ prev05_g10 <- datos05 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |> 
   
-  # Estimar prevalencia
+  # Estimar cantidad de personas con DM y prevalencia
   group_by(prov_id, prov_nombre, grupo_edad_10, sexo) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
 
 
@@ -290,22 +298,22 @@ prev09_g10 <- datos09 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |> 
   
-  # Estimar prevalencia
+  # Estimar cantidad de personas con DM y prevalencia
   group_by(prov_id, prov_nombre, grupo_edad_10, sexo) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
-
 
 ## ENFR 2013
 prev13_g10 <- datos13 |> 
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |> 
   
-  # Estimar prevalencia
+  # Estimar cantidad de personas con DM y prevalencia
   group_by(prov_id, prov_nombre, grupo_edad_10, sexo) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
-
 
 ## ENFR 2018 (Warning)
 prev18_g10 <- datos18 |> 
@@ -315,9 +323,10 @@ prev18_g10 <- datos18 |>
                 type = "bootstrap"
   ) |> 
   
-  # Estimar prevalencia
-  group_by(prov_id, prov_nombre, sexo, grupo_edad_10) |> 
-  summarise(prev_dm = survey_mean(dm_auto_bin, vartype = "cv"),
+  # Estimar cantidad de personas con DM y prevalencia
+  group_by(prov_id, prov_nombre, grupo_edad_10, sexo) |> 
+  summarise(dm_total = survey_total(dm_auto_bin, vartype = "cv"),
+            dm_prev = survey_mean(dm_auto_bin, vartype = "cv"),
             .groups = "drop")
 
 
@@ -345,7 +354,7 @@ prev_join_g10 <- bind_rows(prev05_g10,
 data_dict <- tibble(
   variable = c("anio_enfr", "prov_id", "prov_nombre", 
                "grupo_edad", "grupo_edad_10", "sexo",
-               "prev_dm", "prev_dm_cv"),
+               "dm_total", "dm_total_cv", "dm_prev", "dm_prev_cv"),
   
   descripcion = c(
     "Año de realización ENFR",
@@ -354,10 +363,12 @@ data_dict <- tibble(
     "Grupo de edad quinquenal",
     "Grupo de edad decenal",
     "Sexo biológico",
+    "Total estimado de personas con diabetes mellitus por provincia, edad y sexo",
+    "Coeficiente de variación del total",
     "Prevalencia de diabetes mellitus por autorreporte",
     "Coeficiente de variación de la prevalencia"),
   
-  tipo_var = c(rep("factor", 6), rep("numeric", 2)),
+  tipo_var = c(rep("factor", 6), rep("numeric", 4)),
   
   niveles = list(c(2005, 2009, 2013, 2018),
                  levels(id_prov$prov_id |>  factor()),
@@ -365,7 +376,7 @@ data_dict <- tibble(
                  levels(grupos_edad$grupo_edad),
                  levels(grupos_edad$grupo_edad_10),
                  c("Varón", "Mujer"),
-                 NA, NA) |> 
+                 NA, NA, NA, NA) |> 
     as.character()
 ) |> 
   

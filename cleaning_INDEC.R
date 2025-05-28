@@ -2,7 +2,7 @@
 ### años 2010-2021 según provincia, sexo y grupo edad quinquenal
 ### Autora: Tamara Ricardo
 ### Fecha modificación:
-# Mon May 26 14:01:39 2025 ------------------------------
+# Wed May 28 10:29:11 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -76,8 +76,8 @@ proy_01 <- proy_01_raw |>
   # Seleccionar columnas relevantes
   select(prov_id,
          grupo_edad = x1,
-         V_2001 = x2001,
-         M_2001 = x4,
+         # V_2001 = x2001,
+         # M_2001 = x4,
          V_2005 = x2005,
          M_2005 = x7) |> 
   
@@ -87,8 +87,11 @@ proy_01 <- proy_01_raw |>
   # Filtrar <20 años y totales
   filter(!grupo_edad %in% c("Total", "0-4", "5-9", "10-14", "15-19")) |> 
   
+  # Identificador de provincia a numérico
+  mutate(prov_id= as.numeric(prov_id)) |> 
+  
   # Pasar a formato long para obtener proyecciones
-  pivot_longer(cols = c(V_2001:M_2005),
+  pivot_longer(cols = c(V_2005,M_2005),
                values_to = "proy_pob") |> 
   
   # Crear columnas para sexo y año
@@ -121,7 +124,8 @@ proy_10 <- proy_10_raw |>
   filter(!grupo_edad %in% c("Total", "0-4", "5-9", "10-14", "15-19")) |> 
   
   # Limpiar id numérico de provincia
-  mutate(prov_id = str_sub(prov_id, 1, 2)) |> 
+  mutate(prov_id = str_sub(prov_id, 1, 2) |> 
+           as.numeric()) |> 
   
   # Formato long
   pivot_longer(cols = c(V_2010:M_2018), 
@@ -133,7 +137,7 @@ proy_10 <- proy_10_raw |>
   # Agrupar mayores de 80 años
   mutate(grupo_edad = fct_collapse(grupo_edad,
                                  "80+" = c("80-84", "85-89","90-94",
-                                           "95-99", "100 y más"))) |> 
+                                           "95-99", "100 y más"))) |>
   
   # Convertir proyección a numérico
   mutate(proy_pob = parse_number(proy_pob)) |> 
@@ -147,12 +151,8 @@ proy_10 <- proy_10_raw |>
 ### Unir bases proyecciones
 proy_join <- bind_rows(proy_01, proy_10) |> 
   
-  # Cambiar prov_id a numérico
-  mutate(prov_id = parse_number(prov_id)) |> 
-  
   # Añadir nombre de provincia
-  mutate(prov_nombre = factor(prov_id,
-                              labels = levels(id_prov$prov_nombre))) |> 
+  left_join(id_prov) |> 
   
   # Cambiar etiquetas sexo
   mutate(sexo = if_else(sexo == "V", "Varón", "Mujer")) |> 
@@ -163,29 +163,40 @@ proy_join <- bind_rows(proy_01, proy_10) |>
            fct_relabel(~ levels(grupos_edad$grupo_edad))
          ) |> 
   
+  # Añadir grupo etario decenal
+  left_join(grupos_edad) |> 
+  
+  # Añadir año ENFR
+  mutate(anio_enfr = if_else(anio == "2010", "2009", anio)) |> 
+  
   # Ordenar columnas
-  select(anio, prov_id, prov_nombre, grupo_edad, sexo, proy_pob)
+  select(starts_with("anio"), starts_with("prov"), starts_with("grupo"),
+         sexo, proy_pob)
 
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
-  variable = c("anio", "prov_id", "prov_nombre", 
-               "grupo_edad", "sexo", "proy_pob"),
+  variable = c("anio", "anio_enfr", "prov_id", "prov_nombre", 
+               "grupo_edad", "grupo_edad_10", "sexo", "proy_pob"),
   
   descripcion = c(
     "Año",
+    "Año de realización ENFR",
     "Identificador numérico provincia",
     "Nombre de provincia",
     "Grupo de edad quinquenal",
+    "Grupo edad decenal",
     "Sexo biológico",
     "Proyección poblacional"),
   
-  tipo_var = c(rep("factor", 5), "numeric"),
+  tipo_var = c(rep("factor", 7), "numeric"),
   
-  niveles = list(c(2001, 2005, 2010, 2013, 2018),
+  niveles = list(c(2005, 2010, 2013, 2018),
+                 c(2005, 2009, 2013, 2018),
                  levels(id_prov$prov_id |>  factor()),
                  levels(id_prov$prov_nombre),
                  levels(grupos_edad$grupo_edad),
+                 levels(grupos_edad$grupo_edad_10),
                  c("Varón", "Mujer"),
                  NA) |> 
     as.character()
