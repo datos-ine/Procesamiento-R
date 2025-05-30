@@ -5,60 +5,51 @@
 ## Autora: Micaela Gauto 
 ## Colaboradora: Tamara Ricardo 
 ## Fecha modificación: 
-# Wed May 14 11:39:28 2025 ------------------------------
+# Thu May 29 14:53:34 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
-library(rio)
-library(janitor)
-library(tidyverse)
+pacman::p_load(
+  rio,
+  janitor, 
+  tidyverse
+)
 
 
 # Cargar datos crudos -----------------------------------------------------
-## Secuelas DM
-DW_raw <- import("Bases de datos/Complicaciones y DW.xlsx",
-                 sheet = "DW_DM")
-
-## Prevalencia DM Argentina por grupos edad ENFR
-prev_dm <- read_csv("Bases de datos/clean/prev_dm_enfr.csv")
+dw_raw <- import("Bases de datos/GBD/IHME_GBD_2019_DISABILITY_WEIGHTS_Y2020M010D15.XLSX",
+             skip = 1)
 
 
-# Limpieza de datos -------------------------------------------------------
-DW_clean <- DW_raw |> 
-  
-  # Estandarizar nombres de columnas
+# Limpiar datos -----------------------------------------------------------
+dw_dm <- dw_raw |> 
+  # Estandarizar nombres columnas
   clean_names() |> 
   
-  # Eliminar datos ausentes
-  drop_na() |> 
+  # Filtrar campos DM2
+  filter(str_detect(sequela, "diabetes mellitus type 2| type 2 diab")) |> 
   
-  # Variables caracter a factor
-  mutate(across(.cols = where(is.character),
-                .fns = ~ factor(.x)))
-
-
-# Calcular AVD ------------------------------------------------------------
-# Asumiendo mismas frecuencias de secuelas por provincia, sexo y grupo edad ENFR
-prev_dm_dw <- prev_dm |>
-  # Completar filas sin prevalencia DM
-  complete(anio_enfr, prov_nombre, sexo, grupo_edad_enfr,
-           fill = list(prev = 0)) |> 
+  # Separar columnas DW
+  separate(disability_weight, into = c("dw", "ci"), sep = "\\(") |> 
   
- # Añadir pesos discapacidad
-  cross_join(DW_clean |> 
-               select(-sequela)) |> 
+  separate(ci, into = c("lower", "upper"), sep = "-") |> 
   
-  # Calcular AVD por secuela
-  mutate(AVD_indiv = (freq_dm * frecuencia_wandurranga) / (100 * disability_weight)) |> 
+  # Limpiar formato columnas
+  mutate(upper = str_remove(upper, "\\)")) |> 
   
-  # Calcular AVD por secuela agrupados
-  group_by(anio_enfr, prov_nombre, grupo_edad_enfr, sexo, freq_dm, prev_dm) |> 
-  summarise(AVD_total = sum(AVD_indiv, na.rm = T),
-            .groups = "drop")
+  # Cambiar a numérico
+  mutate(across(.cols = c(dw, lower, upper),
+                .fns = ~ parse_number(.x))) |> 
+  
+  # Añadir frecuencias Wandurranga
+  mutate(frec_wandurranga = case_when(
+    str_detect(sequela, "Uncomplicated") ~ 37.14, # Sin complicaciones
+    str_detect(sequela, "Severe vision") ~ 12.46, # Retinopatía severa
+    str_detect(sequela, "type 2, without") ~ 30.91, # Neuropatía s/amputación
+    TRUE ~ NA
+  ))
 
 
-# Guardar datos limpios ---------------------------------------------------
-write_csv(prev_dm_dw, file = "Bases de datos/clean/prev_dm_avd.csv") # Revisar
+# Guardar datos -----------------------------------------------------------
+write_csv(dw_dm, file = "Bases de datos/clean/comp_dm_temp.csv")
 
-# Limpiar environment
-rm(list = ls())

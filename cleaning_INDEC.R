@@ -2,7 +2,7 @@
 ### años 2010-2021 según provincia, sexo y grupo edad quinquenal
 ### Autora: Tamara Ricardo
 ### Fecha modificación:
-# Wed May 28 10:29:11 2025 ------------------------------
+# Thu May 29 13:37:47 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -67,7 +67,7 @@ proy_01 <- proy_01_raw |>
   set_names(c(2, 6, 10, 22, 26, 14, 18, 30, 34, 38, 42, 46, 50,
               54, 58, 62, 66, 70, 74, 78, 82, 86, 94, 90)) |> 
   
-  # Unir tablas
+  # Unir tablas por provincia
   list_rbind(names_to = "prov_id") |> 
   
   # Estandarizar nombres de columnas
@@ -148,8 +148,8 @@ proy_10 <- proy_10_raw |>
             .groups = "drop") 
   
 
-### Unir bases proyecciones
-proy_join <- bind_rows(proy_01, proy_10) |> 
+### Unir bases proyecciones por grupo quinquenal de edad
+proy_join_5 <- bind_rows(proy_01, proy_10) |> 
   
   # Añadir nombre de provincia
   left_join(id_prov) |> 
@@ -163,9 +163,6 @@ proy_join <- bind_rows(proy_01, proy_10) |>
            fct_relabel(~ levels(grupos_edad$grupo_edad))
          ) |> 
   
-  # Añadir grupo etario decenal
-  left_join(grupos_edad) |> 
-  
   # Añadir año ENFR
   mutate(anio_enfr = if_else(anio == "2010", "2009", anio)) |> 
   
@@ -173,6 +170,17 @@ proy_join <- bind_rows(proy_01, proy_10) |>
   select(starts_with("anio"), starts_with("prov"), starts_with("grupo"),
          sexo, proy_pob)
 
+
+### Unir bases proyecciones por grupo decenal de edad
+proy_join_10 <- proy_join_5 |> 
+  # Añadir grupo decenal de edad
+  left_join(grupos_edad) |> 
+  
+  # Calcular proyección por provincia, sexo y grupo decenal
+  group_by(anio, anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo) |> 
+  summarise(proy_pob = sum(proy_pob, na.rm = TRUE),
+            .groups = "drop")
+  
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
@@ -205,8 +213,11 @@ data_dict <- tibble(
   mutate(niveles = str_remove_all(niveles, '^c\\(|\\)$|"'))
 
 # Guardar datos limpios ---------------------------------------------------
-## Proyecciones poblacionales
-write_csv(proy_join, file = "Bases de datos/clean/arg_proy_2005_2018.csv")
+## Proyecciones poblacionales por grupo edad quinquenal
+write_csv(proy_join_5, file = "Bases de datos/clean/arg_proy_2005_2018_g5.csv")
+
+## Proyecciones poblacionales por grupo edad decenal
+write_csv(proy_join_10, file = "Bases de datos/clean/arg_proy_2005_2018_g10.csv")
 
 ## Diccionario de datos
 export(data_dict, file = "Bases de datos/clean/dic_arg_proy_205_2018.xlsx")
