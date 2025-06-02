@@ -3,7 +3,7 @@
 ### Factores de Riesgo (2005, 2009, 2013 y 2018).
 ### Autoras: Micaela Gauto y Tamara Ricardo
 ### Fecha modificacion:
-# Mon Jun  2 10:31:26 2025 ------------------------------
+# Mon Jun  2 13:02:26 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -170,7 +170,29 @@ AVAD_ge10 |>
   theme_minimal()
 
 
-
+## Pirámide poblacional por grupo quinquenal de edad, sexo y región
+AVAD_ge5 |>
+  # Tasa AVAD nacional
+  count(reg_nombre, grupo_edad_5, sexo,
+        wt = AVAD_tasa, name = "AVAD_tasa")  |> 
+  
+  # Pirámide
+  age_pyramid(age_group = grupo_edad_5,
+              split_by = sexo,
+              count = AVAD_tasa,
+              show_midpoint = FALSE) +
+  
+  # Dividir por año ENFR
+  facet_wrap(~ reg_nombre) +
+  
+  # Colores
+  scale_fill_scico_d(palette = "hawaii") +
+  
+  # Etiquetas ejes
+  labs(x = "Grupo etario", y = "Tasa AVAD") +
+  
+  # Tema
+  theme_minimal()
 
 # # Calcular intervalos de incertidumbre ------------------------------------
 # ## Simular disability weights con distribución normal truncada
