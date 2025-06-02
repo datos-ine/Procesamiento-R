@@ -8,7 +8,7 @@
 ### 10 años para población de 20 años y más según sexo.
 ### Autoras: Micaela Gauto y Tamara Ricardo
 ### Última modificación:
-# Fri May 30 14:02:29 2025 ------------------------------
+# Mon Jun  2 09:05:04 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -233,18 +233,16 @@ AVP_ge5 <- def_join |>
 write_csv(AVP_ge5, file = "Bases de datos/clean/arg_defun_avp_ge5.csv")
 
 
-
-
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
   variable = c("anio_enfr", "prov_id", "prov_nombre", 
-               "grupo_edad", "grupo_edad_10", "sexo",
+               "grupo_edad_5", "grupo_edad_10", "sexo",
                "defun_n", "defun_mean", "lx", "Tx", "ex", "AVP"),
   
   descripcion = c(
     "Año de realización ENFR",
-    "Identificador numérico provincia",
-    "Nombre de provincia",
+    "Identificador numérico de provincia",
+    "Identificador categórico de provincia",
     "Grupo de edad quinquenal",
     "Grupo de edad decenal",
     "Sexo biológico",
@@ -257,21 +255,24 @@ data_dict <- tibble(
   
   tipo_var = c(rep("factor", 6), rep("numeric", 6)),
   
-  valores = list(c(2005, 2009, 2013, 2018),
+  valor = list(c(2005, 2009, 2013, 2018),
                  levels(id_provincias$prov_id |>  factor()),
                  levels(id_provincias$prov_nombre),
                  levels(grupos_etarios$grupo_edad_5 |>  factor()),
                  levels(grupos_etarios$grupo_edad_10 |>  factor()),
                  c("Varón", "Mujer"),
                  "0-Inf", "0-Inf", "0-Inf", "0-Inf", "0-Inf", "0-Inf") |> 
-    as.character()
-) |> 
+    as.character() |> 
+    str_remove_all('^c\\(|\\)$|"')
+)
   
-  mutate(valores = str_remove_all(valores, '^c\\(|\\)$|"'))
 
 ## Guardar diccionario de datos
 export(data_dict, file = "Bases de datos/clean/dic_arg_defun_avp.xlsx")
 
 
-## Limpiar environment
+## Limpiar environment y desactivar paquetes
 rm(list = ls())
+
+pacman::p_unload("all")
+

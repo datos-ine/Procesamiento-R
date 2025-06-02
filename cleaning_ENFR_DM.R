@@ -390,5 +390,8 @@ data_dict <- tibble(
 export(data_dict, file = "Bases de datos/clean/dic_arg_prev_dm.xlsx")
 
 
-### Limpiar environment
+## Limpiar environment y desactivar paquetes
 rm(list = ls())
+
+pacman::p_unload("all")
+
