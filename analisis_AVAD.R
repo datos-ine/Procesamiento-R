@@ -83,7 +83,11 @@ AVAD_ge5 <- cross_join(prev_dm_ge5, comp_dm) |>
   # Calcular tasas específicas y ajustadas AVP, AVD y AVAD
   mutate(across(.cols = c(AVD, AVP, AVAD),
                 .fns = list(tasa = ~ 100000 * .x/proy_pob,
-                            tasa_est = ~ 100000 * .x/pob_est_2010)))
+                            tasa_est = ~ 100000 * .x/pob_est_2010))) |> 
+  
+  # Variables caracter a factor
+  mutate(across(.cols = where(is.character),  
+                .fn = ~ factor(.x))) 
   
 
 ## Por provincia, sexo y grupos decenales de edad
@@ -108,69 +112,66 @@ AVAD_ge10 <- cross_join(prev_dm_ge10, comp_dm) |>
   # Calcular tasas específicas y ajustadas AVP, AVD y AVAD
   mutate(across(.cols = c(AVD, AVP, AVAD),
                 .fns = list(tasa = ~ 100000 * .x/proy_pob,
-                            tasa_est = ~ 100000 * .x/pob_est_2010)))
-
-
-# Guardar datos limpios (opcional) ----------------------------------------
-# ## AVAD por provincia, sexo y grupo quinquenal de edad
-# write_csv(AVAD_5, "Bases de datos/clean/arg_AVAD_g5.csv")
-# 
-# ## AVAD por provincia, sexo y grupo decenal de edad
-# write_csv(AVAD_10, "Bases de datos/clean/arg_AVAD_g10.csv")
-
-## Limpiar objetos intermedios
-rm(AVP_5, AVP_10, comp_dm, prev_dm_5, prev_dm_10)
-
-
-
-# Análisis datos ----------------------------------------------------------
-### Tasas generales AVAD por año, provincia y sexo
-tasa_gral <- AVAD_5 |> 
-  group_by(anio_enfr, prov_nombre, sexo) |> 
-  summarise(across(.cols = c(AVP, AVD, AVAD),
-                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
-                   .names = "{.col}_gral"),
-            .groups = "drop")
-
-
-### Tasas generales AVAD por año, sexo y grupo etario quinquenal
-tasa_nac_5 <- AVAD_5 |> 
-  group_by(anio_enfr, sexo, grupo_edad) |> 
-  summarise(across(.cols = c(AVP, AVD, AVAD),
-                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
-                   .names = "{.col}_nac"),
-            .groups = "drop")
-
-
-### Tasas generales AVAD por año, sexo y grupo etario decenal
-tasa_nac_10 <- AVAD_10 |> 
-  group_by(anio_enfr, sexo, grupo_edad_10) |> 
-  summarise(across(.cols = c(AVP, AVD, AVAD),
-                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
-                   .names = "{.col}_nac"),
-            .groups = "drop")
+                            tasa_est = ~ 100000 * .x/pob_est_2010))) |> 
+  
+  # Variables caracter a factor
+  mutate(across(.cols = where(is.character),  
+                .fn = ~ factor(.x))) 
 
 
 # Gráficos exploratorios --------------------------------------------------
-## Tasas nacionales
-tasa_nac_5 |> 
-  ggplot(aes(x = anio_enfr, y = AVAD_nac, color = sexo)) +
+## Pirámide poblacional por año, grupo quinquenal de edad y sexo
+AVAD_ge5 |>
+  # Tasa AVAD nacional
+  count(anio_enfr, grupo_edad_5, sexo,
+        wt = AVAD_tasa, name = "AVAD_tasa")  |> 
   
-  # Capas geométricas
-  geom_point() +
-  geom_line() +
-  facet_wrap(~ grupo_edad) +
+ # Pirámide
+   age_pyramid(age_group = grupo_edad_5,
+              split_by = sexo,
+              count = AVAD_tasa,
+              show_midpoint = FALSE) +
   
-  # Personalización escalas y ejes
-  scale_color_scico_d(palette = "hawaii") +
-  scale_x_continuous(breaks = c(2005, 2009, 2013, 2018)) +
-  labs(x = "Año ENFR", y = "Tasa AVAD") +
+  # Dividir por año ENFR
+  facet_wrap(~ anio_enfr) +
   
-  # Personalización tema
-  theme_minimal() +
-  theme(legend.position = "bottom")
+  # Colores
+  scale_fill_scico_d(palette = "hawaii") +
+  
+  # Etiquetas ejes
+  labs(x = "Grupo etario", y = "Tasa AVAD") +
+  
+  # Tema
+  theme_minimal()
 
+
+## Pirámide poblacional por año, grupo decenal de edad y sexo
+AVAD_ge10 |>
+  # Tasa AVAD nacional
+  count(anio_enfr, grupo_edad_10, sexo,
+        wt = AVAD_tasa, name = "AVAD_tasa")  |> 
   
+  # Pirámide
+  age_pyramid(age_group = grupo_edad_10,
+              split_by = sexo,
+              count = AVAD_tasa,
+              show_midpoint = FALSE) +
+  
+  # Dividir por año ENFR
+  facet_wrap(~ anio_enfr) +
+  
+  # Colores
+  scale_fill_scico_d(palette = "hawaii") +
+  
+  # Etiquetas ejes
+  labs(x = "Grupo etario", y = "Tasa AVAD") +
+  
+  # Tema
+  theme_minimal()
+
+
+
+
 # # Calcular intervalos de incertidumbre ------------------------------------
 # ## Simular disability weights con distribución normal truncada
 # dw_sim <- comp_dm  |> 

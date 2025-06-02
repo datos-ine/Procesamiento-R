@@ -25,10 +25,13 @@ grupos_etarios <- read_csv("Bases de datos/grupos_etarios.csv") |>
   mutate_all(~ factor(.x))
 
 
-## Proyecciones 2001-2005 (extraer tablas por provincia)
-proy_01_raw <- extract_areas(
-  "Bases de datos/Proyecciones INDEC/INDEC_proyec 2001-2015.pdf",
-  pages = c(22:24, 27:28, 25:26, 29:43, 45, 44))
+# ## Proyecciones 2001-2005 (extraer tablas por provincia)
+# proy_01_raw <- extract_areas(
+#   "Bases de datos/Proyecciones INDEC/INDEC_proyec 2001-2015.pdf",
+#   pages = c(22:24, 27:28, 25:26, 29:43, 45, 44))
+
+## Cargar datos limpios 2005 (opcional)
+proy_01 <- read_csv("Bases de datos/Proyecciones INDEC/proy_2005.csv")
 
 
 ## Proyecciones 2010-2040
@@ -58,46 +61,43 @@ proy_10_raw <- excel_sheets(indec_10)[-c(1:2)] |>  # Listar hojas por provincia
 
 
 # Limpiar datos -----------------------------------------------------------
-## Unir y limpiar las tablas de proyecciones 2001-2005
-proy_01 <- proy_01_raw |> 
-  # Asignar identificador numérico a cada provincia
-  set_names(unique(id_provincias$prov_id)) |> 
-  
-  # Unir tablas de provincias
-  list_rbind(names_to = "prov_id") |> 
-  
-  # Estandarizar nombres de columnas
-  clean_names() |> 
-  
-  # Seleccionar columnas relevantes
-  select(prov_id,
-         grupo_edad = x1,
-         Varón_2005 = x2005,
-         Mujer_2005 = x7) |> 
-  
-  # Filtrar filas con valores ausentes
-  drop_na() |> 
-  
-  # Filtrar <20 años y totales
-  filter(!grupo_edad %in% c("Total", "0-4", "5-9", "10-14", "15-19")) |> 
-  
-  # Identificador de provincia a numérico
-  mutate(prov_id = parse_number(prov_id)) |> 
-  
-  # Pasar a formato long para obtener proyecciones
-  pivot_longer(cols = c(Varón_2005, Mujer_2005)) |> 
-  
-  # Crear columnas para sexo y año
-  separate(name, into = c("sexo", "anio"), sep = "_") |> 
-  
-  # Transformar escala proyección poblacional
-  mutate(value = parse_number(value, locale = locale(decimal_mark = ","))) 
-  
+# ## Unir y limpiar las tablas de proyecciones 2001-2005
+# proy_01 <- proy_01_raw |> 
+#   # Asignar identificador numérico a cada provincia
+#   set_names(unique(id_provincias$prov_id)) |> 
+#   
+#   # Unir tablas de provincias
+#   list_rbind(names_to = "prov_id") |> 
+#   
+#   # Estandarizar nombres de columnas
+#   clean_names() |> 
+#   
+#   # Seleccionar columnas relevantes
+#   select(prov_id,
+#          grupo_edad = x1,
+#          Varón_2005 = x2005,
+#          Mujer_2005 = x7) |> 
+#   
+#   # Filtrar filas con valores ausentes
+#   drop_na() |> 
+#   
+#   # Filtrar <20 años y totales
+#   filter(!grupo_edad %in% c("Total", "0-4", "5-9", "10-14", "15-19")) |> 
+#   
+#   # Identificador de provincia a numérico
+#   mutate(prov_id = parse_number(prov_id)) |> 
+#   
+#   # Pasar a formato long para obtener proyecciones
+#   pivot_longer(cols = c(Varón_2005, Mujer_2005)) |> 
+#   
+#   # Crear columnas para sexo y año
+#   separate(name, into = c("sexo", "anio"), sep = "_") |> 
+#   
+#   # Transformar escala proyección poblacional
+#   mutate(value = parse_number(value, locale = locale(decimal_mark = ","))) 
+#   
 # ## Guardar (opcional)
 # write_csv(proy_01, "Bases de datos/Proyecciones INDEC/proy_2005.csv")
-
-# ## Cargar datos limpios 2005 (opcional)
-proy_01 <- read_csv("Bases de datos/Proyecciones INDEC/proy_2005.csv")
 
 
 ## Limpiar tablas 2010-2018
@@ -161,24 +161,24 @@ proy_join |>
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90))
 
-
-## Estimar proyección 2009 por método lineal
-proy_2009 <- proy_join  |> 
+## Estimar proyección 2009
+# Método lineal
+proy_2009 <- proy_join  |>
   # Filtrar proyecciones 2005 y 2010
   filter(between(anio, 2005, 2010)) |>
-  
+
   # Formato wide
   pivot_wider(names_from = anio,
               values_from = proy_pob,
-              names_prefix = "pob_") |> 
-  
+              names_prefix = "pob_") |>
+
   # Interpolación lineal
   mutate(anio = 2009,
-         proy_pob = pob_2005 + (4 / 5) * (pob_2010 - pob_2005)) |> 
-  
+         proy_pob = pob_2005 + (4 / 5) * (pob_2010 - pob_2005)) |>
+
   # Filtrar datos 2009
-  filter(anio == 2009) |> 
-  
+  filter(anio == 2009) |>
+
   # Descartar columnas innecesarias
   select(-starts_with("pob_"))
 
