@@ -217,18 +217,6 @@ AVP_ge5 <- def_join |>
                 .fns = ~ round(.x, 2)))
   
 
-# ## Por año ENFR, provincia, grupo decenal de edad y sexo
-# AVP_ge10 <- AVP_ge5 |> 
-#   # Estimar esperanza vida y AVP por grupo decenal de edad
-#   group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo) |> 
-#   summarise(defun_n = sum(defun_n, na.rm = TRUE),
-#             defun_mean = mean(defun_n, na.rm = TRUE),
-#             ex = weighted.mean(ex, lx, na.rm = TRUE),
-#             AVP = defun_mean * ex,
-#             .groups = "drop")
- 
-
-
 # Guardar datos limpios ---------------------------------------------------
 write_csv(AVP_ge5, file = "Bases de datos/clean/arg_defun_avp_ge5.csv")
 

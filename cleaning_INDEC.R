@@ -2,7 +2,7 @@
 ### años 2010-2021 según provincia, sexo y grupo edad quinquenal
 ### Autora: Tamara Ricardo
 ### Fecha modificación:
-# Mon Jun  2 08:59:36 2025 ------------------------------
+# Mon Jun  2 10:19:37 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -93,7 +93,13 @@ proy_01 <- proy_01_raw |>
   # Transformar escala proyección poblacional
   mutate(value = parse_number(value, locale = locale(decimal_mark = ","))) 
   
-  
+# ## Guardar (opcional)
+# write_csv(proy_01, "Bases de datos/Proyecciones INDEC/proy_2005.csv")
+
+# ## Cargar datos limpios 2005 (opcional)
+proy_01 <- read_csv("Bases de datos/Proyecciones INDEC/proy_2005.csv")
+
+
 ## Limpiar tablas 2010-2018
 proy_10 <- proy_10_raw |> 
   # Estandarizar nombres de columnas
@@ -125,9 +131,10 @@ proy_10 <- proy_10_raw |>
   # Crear columnas para año y sexo
   separate(name, into = c("sexo", "anio"), sep = "_") |> 
   
-  # Convertir proyección a numérico
-  mutate(value = parse_number(value))
-  
+  # Convertir año y proyección a numérico
+  mutate(across(.cols = c(anio, value),
+                .fns = ~ parse_number(.x)))
+
 
 ### Unir bases proyecciones por grupo quinquenal de edad
 proy_join <- bind_rows(proy_01, proy_10) |> 
@@ -138,34 +145,81 @@ proy_join <- bind_rows(proy_01, proy_10) |>
   # Añadir grupos etarios
   left_join(grupos_etarios) |> 
   
-  # Añadir año ENFR
-  mutate(anio_enfr = if_else(anio == "2010", "2009", anio)) |> 
-  
   # Recalcular proyecciones
-  count(anio_enfr, anio, prov_id, prov_nombre, grupo_edad_5, grupo_edad_10, sexo,
+  count(anio, prov_id, prov_nombre, grupo_edad_5, grupo_edad_10, sexo,
         wt = value, name = "proy_pob")
 
 
+# Estimar proyección para 2009 --------------------------------------------
+## Graficar tendencia para los años disponibles
+proy_join |> 
+  ggplot(aes(x = prov_nombre, y = proy_pob, fill = factor(anio))) +
+  
+  geom_col(position = "dodge") +
+  facet_wrap(~ grupo_edad_5) +
+  
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90))
+
+
+## Estimar proyección 2009 por método lineal
+proy_2009 <- proy_join  |> 
+  # Filtrar proyecciones 2005 y 2010
+  filter(between(anio, 2005, 2010)) |>
+  
+  # Formato wide
+  pivot_wider(names_from = anio,
+              values_from = proy_pob,
+              names_prefix = "pob_") |> 
+  
+  # Interpolación lineal
+  mutate(anio = 2009,
+         proy_pob = pob_2005 + (4 / 5) * (pob_2010 - pob_2005)) |> 
+  
+  # Filtrar datos 2009
+  filter(anio == 2009) |> 
+  
+  # Descartar columnas innecesarias
+  select(-starts_with("pob_"))
+
+
+# Añadir proyección 2009 --------------------------------------------------
+proy_join_ge5 <- bind_rows(proy_join, proy_2009) |> 
+  
+  # Crear variable para año ENFR
+  mutate(anio_enfr = if_else(anio == 2010, NA, anio)) |> 
+  
+  # Crear variable para población estándar Censo 2010
+  left_join(proy_join |> 
+              filter(anio == 2010) |> 
+              select(prov_id, prov_nombre, grupo_edad_5, grupo_edad_10, sexo,
+                     pob_est_2010 = proy_pob)) |> 
+  
+  # Eliminar NAs
+  drop_na()
+
+
 # Guardar datos limpios ---------------------------------------------------
-write_csv(proy_join, file = "Bases de datos/clean/arg_proy_2005_2018_g5.csv")
+write_csv(proy_join_ge5, file = "Bases de datos/clean/arg_proy_2005_2018_ge5.csv")
 
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
   variable = c("anio_enfr", "anio", "prov_id", "prov_nombre", 
-               "grupo_edad_5", "grupo_edad_10", "sexo", "proy_pob"),
+               "grupo_edad_5", "grupo_edad_10", "sexo", "proy_pob", "pob_est_2010"),
   
   descripcion = c(
     "Año de realización ENFR",
-    "Año para la proyección poblacional",
+    "Año para la proyección poblacional (para 2009 se interpoló linealmente a partir de 2005 y 2010)",
     "Identificador numérico de provincia",
     "Identificador categórico de provincia",
     "Grupo de edad quinquenal",
     "Grupo de edad decenal",
     "Sexo biológico",
-    "Proyección poblacional"),
+    "Proyección poblacional",
+    "Población estándar Censo 2010"),
   
-  tipo_var = c(rep("factor", 7), "numeric"),
+  tipo_var = c(rep("factor", 7), rep("numeric", 2)),
   
   valores = list(c(2005, 2009, 2013, 2018),
                  c(2005, 2010, 2013, 2018),
@@ -174,14 +228,14 @@ data_dict <- tibble(
                  levels(grupos_etarios$grupo_edad_5),
                  levels(grupos_etarios$grupo_edad_10),
                  c("Varón", "Mujer"),
-                 "0-Inf") |> 
+                 "0-Inf", "0-Inf") |> 
     as.character() |> 
     str_remove_all('^c\\(|\\)$|"')
 )
 
 
 ## Guardar diccionario de datos
-export(data_dict, file = "Bases de datos/clean/dic_arg_proy_205_2018.xlsx")
+export(data_dict, file = "Bases de datos/clean/dic_arg_proy_2005_2018.xlsx")
 
 
 ## Limpiar environment y desactivar paquetes

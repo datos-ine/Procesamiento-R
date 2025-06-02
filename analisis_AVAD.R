@@ -3,6 +3,7 @@
 ### Factores de Riesgo (2005, 2009, 2013 y 2018).
 ### Autoras: Micaela Gauto y Tamara Ricardo
 ### Fecha modificacion:
+# Mon Jun  2 10:31:26 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -18,10 +19,10 @@ pacman::p_load(
 
 # Cargar datos ------------------------------------------------------------
 ## Prevalencia DM por grupos quinquenales de edad
-prev_dm_5 <- read_csv("Bases de datos/clean/arg_prev_dm_g5.csv")
+prev_dm_ge5 <- read_csv("Bases de datos/clean/arg_prev_dm_ge5.csv")
 
 ## Prevalencia DM por grupos decenales de edad
-prev_dm_10 <- read_csv("Bases de datos/clean/arg_prev_dm_g10.csv")
+prev_dm_ge10 <- read_csv("Bases de datos/clean/arg_prev_dm_ge10.csv")
 
 
 ## Secuelas DM2 (datos temporales)
@@ -30,23 +31,38 @@ comp_dm <- read_csv("Bases de datos/clean/comp_dm_temp.csv") |>
 
 
 ## AVP por grupos quinquenales de edad
-AVP_5 <- read_csv("Bases de datos/clean/arg_defun_avp_g5.csv")
-
-## AVP por grupos decenales de edad
-AVP_10 <- read_csv("Bases de datos/clean/arg_defun_avp_g10.csv")
+AVP_ge5 <- read_csv("Bases de datos/clean/arg_defun_avp_ge5.csv")
 
 
 ## Proyecciones INDEC 2005-2018 por grupos quinquenales de edad
-proy_pob_5 <- read_csv("Bases de datos/clean/arg_proy_2005_2018_g5.csv")
+proy_ge5 <- read_csv("Bases de datos/clean/arg_proy_2005_2018_ge5.csv")
 
-## Proyecciones INDEC 2005-2018 por grupos decenales de edad
-proy_pob_10 <- read_csv("Bases de datos/clean/arg_proy_2005_2018_g10.csv")
 
+
+# Calcular AVP y proyecciones por grupo decenal ---------------------------
+## AVP
+AVP_ge10 <- AVP_ge5 |> 
+  # Estimar esperanza vida y AVP por grupo decenal de edad
+    group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo) |>
+    summarise(defun_n = sum(defun_n, na.rm = TRUE),
+              defun_mean = mean(defun_n, na.rm = TRUE),
+              ex = weighted.mean(ex, lx, na.rm = TRUE),
+              AVP = defun_mean * ex,
+              .groups = "drop")
+
+  
+# Proyección poblacional
+proy_ge10 <- proy_ge5 |> 
+  # Estimar población por provincia, sexo y grupo decenal de edad
+  group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo) |> 
+  summarise(proy_pob = sum(proy_pob, na.rm = TRUE),
+         pob_est_2010 = sum(pob_est_2010, na.rm = TRUE),
+         .groups = "drop")
 
 
 # Calcular AVAD -----------------------------------------------------------
 ## Por provincia, sexo y grupos quinquenales de edad
-AVAD_5 <- cross_join(prev_dm_5, comp_dm) |> 
+AVAD_ge5 <- cross_join(prev_dm_ge5, comp_dm) |> 
   # Calcular AVD por cada secuela
   mutate(AVD_ind = dm_total * frec_wandurranga/ (100 * dw)) |> 
   
@@ -56,46 +72,43 @@ AVAD_5 <- cross_join(prev_dm_5, comp_dm) |>
             .groups = "drop") |> 
   
   # Añadir datos defunciones, esperanza de vida y AVP
-  left_join(AVP_5) |> 
+  left_join(AVP_ge5) |> 
   
   # Añadir proyecciones poblacionales INDEC
-  left_join(proy_pob_5 |> 
-              select(-anio))  |> 
+  left_join(select(proy_ge5, -anio))  |> 
   
   # Calcular AVAD
   mutate(AVAD = AVD + AVP) |> 
   
-  # Calcular tasas específicas AVP, AVD y AVAD
+  # Calcular tasas específicas y ajustadas AVP, AVD y AVAD
   mutate(across(.cols = c(AVD, AVP, AVAD),
-                .fns = ~ 100000 * (.x/proy_pob), 
-                .names = "{.col}_tasa"))
+                .fns = list(tasa = ~ 100000 * .x/proy_pob,
+                            tasa_est = ~ 100000 * .x/pob_est_2010)))
   
-  
+
 ## Por provincia, sexo y grupos decenales de edad
-AVAD_10 <- cross_join(prev_dm_10, comp_dm) |> 
+AVAD_ge10 <- cross_join(prev_dm_ge10, comp_dm) |> 
   # Calcular AVD por cada secuela
   mutate(AVD_ind = dm_total * frec_wandurranga/ (100 * dw)) |> 
   
   # Calcular AVD totales
-  group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo,
-           dm_total, dm_total_cv, dm_prev, dm_prev_cv) |> 
+  group_by(across(-c(sequela:AVD_ind))) |> 
   summarise(AVD = sum(AVD_ind, na.rm = TRUE),
             .groups = "drop") |> 
   
   # Añadir datos defunciones, esperanza de vida y AVP
-  left_join(AVP_10) |> 
+  left_join(AVP_ge10) |> 
   
   # Añadir proyecciones poblacionales INDEC
-  left_join(proy_pob_10 |> 
-              select(-anio))  |> 
+  left_join(proy_ge10)  |> 
   
   # Calcular AVAD
   mutate(AVAD = AVD + AVP) |> 
   
-  # Calcular tasas específicas AVP, AVD y AVAD
+  # Calcular tasas específicas y ajustadas AVP, AVD y AVAD
   mutate(across(.cols = c(AVD, AVP, AVAD),
-                .fns = ~ 100000 * (.x/proy_pob), 
-                .names = "{.col}_tasa"))
+                .fns = list(tasa = ~ 100000 * .x/proy_pob,
+                            tasa_est = ~ 100000 * .x/pob_est_2010)))
 
 
 # Guardar datos limpios (opcional) ----------------------------------------
@@ -109,6 +122,55 @@ AVAD_10 <- cross_join(prev_dm_10, comp_dm) |>
 rm(AVP_5, AVP_10, comp_dm, prev_dm_5, prev_dm_10)
 
 
+
+# Análisis datos ----------------------------------------------------------
+### Tasas generales AVAD por año, provincia y sexo
+tasa_gral <- AVAD_5 |> 
+  group_by(anio_enfr, prov_nombre, sexo) |> 
+  summarise(across(.cols = c(AVP, AVD, AVAD),
+                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
+                   .names = "{.col}_gral"),
+            .groups = "drop")
+
+
+### Tasas generales AVAD por año, sexo y grupo etario quinquenal
+tasa_nac_5 <- AVAD_5 |> 
+  group_by(anio_enfr, sexo, grupo_edad) |> 
+  summarise(across(.cols = c(AVP, AVD, AVAD),
+                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
+                   .names = "{.col}_nac"),
+            .groups = "drop")
+
+
+### Tasas generales AVAD por año, sexo y grupo etario decenal
+tasa_nac_10 <- AVAD_10 |> 
+  group_by(anio_enfr, sexo, grupo_edad_10) |> 
+  summarise(across(.cols = c(AVP, AVD, AVAD),
+                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
+                   .names = "{.col}_nac"),
+            .groups = "drop")
+
+
+# Gráficos exploratorios --------------------------------------------------
+## Tasas nacionales
+tasa_nac_5 |> 
+  ggplot(aes(x = anio_enfr, y = AVAD_nac, color = sexo)) +
+  
+  # Capas geométricas
+  geom_point() +
+  geom_line() +
+  facet_wrap(~ grupo_edad) +
+  
+  # Personalización escalas y ejes
+  scale_color_scico_d(palette = "hawaii") +
+  scale_x_continuous(breaks = c(2005, 2009, 2013, 2018)) +
+  labs(x = "Año ENFR", y = "Tasa AVAD") +
+  
+  # Personalización tema
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+  
 # # Calcular intervalos de incertidumbre ------------------------------------
 # ## Simular disability weights con distribución normal truncada
 # dw_sim <- comp_dm  |> 
@@ -162,51 +224,3 @@ rm(AVP_5, AVP_10, comp_dm, prev_dm_5, prev_dm_10)
 
 
 
-# Análisis datos ----------------------------------------------------------
-### Tasas generales AVAD por año, provincia y sexo
-tasa_gral <- AVAD_5 |> 
-  group_by(anio_enfr, prov_nombre, sexo) |> 
-  summarise(across(.cols = c(AVP, AVD, AVAD),
-                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
-                   .names = "{.col}_gral"),
-            .groups = "drop")
-
-
-### Tasas generales AVAD por año, sexo y grupo etario quinquenal
-tasa_nac_5 <- AVAD_5 |> 
-  group_by(anio_enfr, sexo, grupo_edad) |> 
-  summarise(across(.cols = c(AVP, AVD, AVAD),
-                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
-                   .names = "{.col}_nac"),
-            .groups = "drop")
-
-
-### Tasas generales AVAD por año, sexo y grupo etario decenal
-tasa_nac_10 <- AVAD_10 |> 
-  group_by(anio_enfr, sexo, grupo_edad_10) |> 
-  summarise(across(.cols = c(AVP, AVD, AVAD),
-                   .fns = ~ 100000 * sum(.x, na.rm = TRUE)/sum(proy_pob, na.rm = TRUE),
-                   .names = "{.col}_nac"),
-            .groups = "drop")
-
-
-# Gráficos exploratorios --------------------------------------------------
-## Tasas nacionales
-tasa_nac_5 |> 
-  ggplot(aes(x = anio_enfr, y = AVAD_nac, color = sexo)) +
-  
-  # Capas geométricas
-  geom_point() +
-  geom_line() +
-  facet_wrap(~ grupo_edad) +
-  
-  # Personalización escalas y ejes
-  scale_color_scico_d(palette = "hawaii") +
-  scale_x_continuous(breaks = c(2005, 2009, 2013, 2018)) +
-  labs(x = "Año ENFR", y = "Tasa AVAD") +
-  
-  # Personalización tema
-  theme_minimal() +
-  theme(legend.position = "bottom")
-
-  
