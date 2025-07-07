@@ -8,7 +8,7 @@
 ### 10 años para población de 20 años y más según sexo.
 ### Autoras: Micaela Gauto y Tamara Ricardo
 ### Última modificación:
-# Mon Jun  2 09:05:04 2025 ------------------------------
+# Mon Jul  7 13:34:46 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -25,7 +25,8 @@ id_provincias <- read_csv("Bases de datos/cod_pcias_arg.csv") |>
   mutate(prov_nombre = factor(prov_nombre))
 
 ## Etiquetas grupos de edad
-grupos_etarios <- read_csv("Bases de datos/grupos_etarios.csv")
+grupos_etarios <- read_csv("Bases de datos/grupos_etarios.csv") |> 
+  filter(!str_detect(grupo_edad, "20|25|30"))
 
 
 ## Defunciones 2004
@@ -68,8 +69,11 @@ def04 <- def04_raw |>
   # Filtrar datos faltantes sexo
   filter(sexo %in% c("Varón", "Mujer")) |> 
   
-  # Filtrar grupos de edad fuera del rango de interés(20-80+)
-  filter(between(grupo_edad, "11.20 a 24", "24.85 y más")) |> 
+  # # Filtrar grupos de edad fuera del rango de interés(20-80+)
+  # filter(between(grupo_edad, "11.20", "24.85 y más")) |>
+  
+  # Filtrar grupos de edad fuera del rango de interés(35-80+)
+  filter(between(grupo_edad, "14.35", "24.85 y más")) |> 
   
   # Modificar etiqueta provincia para CABA
   mutate(prov_nombre = fct_recode(prov_nombre,
@@ -97,8 +101,11 @@ def05_19 <- def05_19_raw |>
   # Filtrar datos faltantes sexo
   filter(between(sexo, 1, 2)) |> 
   
-  # Filtrar grupos de edad fuera del rango de interés
-  filter(between(grupo_edad, "05_20 a 24", "17_80 y más")) |> 
+  # # Filtrar grupos de edad fuera del rango de interés (20-80+)
+  # filter(between(grupo_edad, "05_20 a 24", "17_80 y más")) |> 
+  
+  # Filtrar grupos de edad fuera del rango de interés (35-80+)
+  filter(between(grupo_edad, "08_35 a 39", "17_80 y más")) |> 
   
   # Modificar etiquetas sexo
   mutate(sexo = if_else(sexo == 1, "Varón", "Mujer")) |> 
@@ -121,22 +128,23 @@ def_join <- bind_rows(def04, def05_19) |>
     )) |> 
   
   # Añadir clasificaciones grupo etario
-  left_join(grupos_etarios) |> 
+  left_join(grupos_etarios |> 
+              select(-grupo_edad_10)) |> 
   
   # Añadir filas faltantes (combinaciones sin defunciones)
   complete(nesting(anio, anio_enfr), 
            nesting(prov_id, prov_nombre),
-           nesting(grupo_edad_5, grupo_edad_10),
+           grupo_edad_5,
+           # nesting(grupo_edad_5, grupo_edad_10),
            sexo,
            fill = list(total = 0)) |> 
   
   # Conteo defunciones
-  count(anio, anio_enfr, prov_id, prov_nombre, 
-        grupo_edad_5, grupo_edad_10,sexo,
+  count(anio, anio_enfr, prov_id, prov_nombre, grupo_edad_5, sexo,
         wt = total) |> 
   
   # Calcular defunciones por trienio ENFR
-  group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_5, grupo_edad_10, sexo) |> 
+  group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_5, sexo) |> 
   summarise(defun_n = sum(n, na.rm = TRUE),
             defun_mean = mean(n, na.rm = TRUE),
             .groups = "drop")
@@ -165,8 +173,12 @@ esp_vida <- esp_vida_raw |>
   pivot_wider(names_from = indicator,
               values_from = value) |> 
   
-  # Filtrar menores de 20 años y mayores de 85 años
-  filter(!str_detect(grupo_edad, "<1|1-4|5-9|10-14|15-19|85")) |> 
+  # # Filtrar menores de 20 años y mayores de 85 años
+  # filter(!str_detect(grupo_edad, "<1|1-4|5-9|10-14|15-19|85")) |> 
+  
+  # Filtrar menores de 35 años y mayores de 85 años
+  filter(!str_detect(grupo_edad, "<1|1-4|5-9|10-14|15-19|20-24|25-29|30-34|85")
+         ) |> 
   
   # Añadir clasificaciones grupo etario
   left_join(grupos_etarios) 
@@ -207,7 +219,7 @@ AVP_ge5 <- def_join |>
   # Añadir esperanza de vida
   left_join(esp_vida |> 
               # Descartar columnas innecesarias
-              select(grupo_edad_5, grupo_edad_10, sexo, lx, Tx, ex)) |> 
+              select(grupo_edad_5, sexo, lx, Tx, ex)) |> 
   
   # Calcular AVP
   mutate(AVP = defun_mean * ex) |> 
@@ -218,21 +230,34 @@ AVP_ge5 <- def_join |>
   
 
 # Guardar datos limpios ---------------------------------------------------
-write_csv(AVP_ge5, file = "Bases de datos/clean/arg_defun_avp_ge5.csv")
+# # 20-80 años
+# write_csv(AVP_ge5, file = "Bases de datos/clean/arg_defun_avp_ge5.csv")
+
+# 35-80 años
+write_csv(AVP_ge5, file = "Bases de datos/clean/arg_defun_avp_35.csv")
 
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
-  variable = c("anio_enfr", "prov_id", "prov_nombre", 
-               "grupo_edad_5", "grupo_edad_10", "sexo",
-               "defun_n", "defun_mean", "lx", "Tx", "ex", "AVP"),
+  variable = c("anio_enfr", 
+               "prov_id", 
+               "prov_nombre", 
+               "grupo_edad_5", 
+               # "grupo_edad_10", 
+               "sexo",
+               "defun_n", 
+               "defun_mean", 
+               "lx", 
+               "Tx", 
+               "ex", 
+               "AVP"),
   
   descripcion = c(
     "Año de realización ENFR",
     "Identificador numérico de provincia",
     "Identificador categórico de provincia",
     "Grupo de edad quinquenal",
-    "Grupo de edad decenal",
+    # "Grupo de edad decenal",
     "Sexo biológico",
     "Número de defunciones para el trienio correspondiente",
     "Promedio de defunciones para el trienio correspondiente",
@@ -241,13 +266,13 @@ data_dict <- tibble(
     "Esperanza de vida a la edad x",
     "Años de vida perdidos por muerte prematura"),
   
-  tipo_var = c(rep("factor", 6), rep("numeric", 6)),
+  tipo_var = c(rep("factor", 5), rep("numeric", 6)),
   
   valor = list(c(2005, 2009, 2013, 2018),
                  levels(id_provincias$prov_id |>  factor()),
                  levels(id_provincias$prov_nombre),
                  levels(grupos_etarios$grupo_edad_5 |>  factor()),
-                 levels(grupos_etarios$grupo_edad_10 |>  factor()),
+                 # levels(grupos_etarios$grupo_edad_10 |>  factor()),
                  c("Varón", "Mujer"),
                  "0-Inf", "0-Inf", "0-Inf", "0-Inf", "0-Inf", "0-Inf") |> 
     as.character() |> 

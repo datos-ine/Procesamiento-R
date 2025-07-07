@@ -3,7 +3,7 @@
 ### quinquenales y decenales de edad.
 ### Autora: Tamara Ricardo
 ### Fecha modificación:
-# Fri May 30 14:21:34 2025 ------------------------------
+# Mon Jul  7 13:22:42 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -21,10 +21,6 @@ pacman::p_load(
 id_provincias <- read_csv("Bases de datos/cod_pcias_arg.csv") |> 
   mutate(prov_nombre = factor(prov_nombre))
 
-## Etiquetas grupos de edad
-grupos_etarios <- read_csv("Bases de datos/grupos_etarios.csv") |> 
-  mutate_all(~ factor(.x))
-
 
 ## ENFR 2005
 datos05_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.txt",
@@ -34,7 +30,6 @@ datos05_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.tx
                          sexo = CHCH04, 
                          edad = CHCH05, 
                          dm_auto = CIDI01, 
-                         # dm_gest = CIDI02,
                          ponderacion = PONDERACION)) 
 
 ## ENFR 2009
@@ -45,7 +40,6 @@ datos09_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.tx
                                       sexo = BHCH04,
                                       edad = BHCH05,
                                       dm_auto = BIDI01,
-                                      # dm_gest = BIDI02,
                                       ponderacion = PONDERACION))
 
 ## ENFR 2013
@@ -56,7 +50,6 @@ datos13_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.tx
                                       sexo = BHCH04,
                                       edad = BHCH05,
                                       dm_auto = BIDI01,
-                                      # dm_gest = BIDI02,
                                       ponderacion = PONDERACION))
 
 ## ENFR 2018
@@ -67,7 +60,6 @@ datos18_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.tx
                                       sexo = bhch03,
                                       edad = bhch04,
                                       dm_auto = bidi01,
-                                      # dm_gest = bidi02,
                                       wf1p)) |> 
   
   # Añadir base de réplicas
@@ -95,8 +87,11 @@ tabyl(datos18_raw$dm_auto)
 # Función para limpiar datos ----------------------------------------------
 cleaning_enfr <- function(x){
   x |> 
-    # Filtrar menores de 20 años
-    filter(edad >= 20) |>
+    # # Filtrar menores de 20 años
+    # filter(edad >= 20) |>
+    
+    # Filtrar menores de 35 años
+    filter(edad >= 35) |> 
     
     # Añadir etiquetas provincia
     left_join(id_provincias) |> 
@@ -113,19 +108,23 @@ cleaning_enfr <- function(x){
     
     # Crear grupos de edad
     mutate(
+      # # Grupo edad quinquenal
+      # grupo_edad_5 = age_categories(edad,
+      #                             lower = 20,
+      #                             upper = 80,
+      #                             by = 5),
+      
       # Grupo edad quinquenal
       grupo_edad_5 = age_categories(edad,
-                                  lower = 20,
+                                  lower = 35,
                                   upper = 80,
-                                  by = 5) |> 
-        fct_relabel(~ levels(grupos_etarios$grupo_edad_5)),
+                                  by = 5),
       
-      # Grupo edad decenal
-      grupo_edad_10 = age_categories(edad,
-                                     lower = 20,
-                                     upper = 80,
-                                     by = 10) |> 
-        fct_relabel(~ levels(grupos_etarios$grupo_edad_10)),
+      # # Grupo edad decenal
+      # grupo_edad_10 = age_categories(edad,
+      #                                lower = 20,
+      #                                upper = 80,
+      #                                by = 10),
       .after = edad) |> 
     
     # Cambiar etiquetas sexo
@@ -142,7 +141,7 @@ cleaning_enfr <- function(x){
 # Limpiar datos -----------------------------------------------------------
 ## ENFR 2005
 datos05 <- datos05_raw |> 
-  # Aplicar función de limpieza
+# Aplicar función de limpieza
   cleaning_enfr()
 
 ## ENFR 2009
@@ -164,7 +163,7 @@ datos18 <- datos18_raw |>
 # Explorar combinaciones faltantes ----------------------------------------
 ## Crear objeto para combinaciones posibles según grupo edad quinquenal
 comb_ge5 <- id_provincias |> 
-  cross_join(grupos_etarios |>  
+  cross_join(datos05 |>  
                select(grupo_edad_5)) |> 
   
   expand_grid(sexo = c("Varón", "Mujer"),
@@ -188,32 +187,32 @@ comb_ge5 |>
 comb_ge5 |> 
   anti_join(datos18)
 
-## Crear objeto para combinaciones posibles según grupo edad decenal
-comb_ge10 <- id_provincias |> 
-  cross_join(grupos_etarios |>  
-               select(grupo_edad_10)) |> 
-  
-  expand_grid(sexo = c("Varón", "Mujer"),
-              dm_auto = "Sí") |> 
-  
-  distinct()
-
-## Faltantes ENFR 2005
-comb_ge10 |> 
-  anti_join(datos05)
-
-## Faltantes ENFR 2009
-comb_ge10 |> 
-  anti_join(datos09)
-
-## Faltantes ENFR 2013
-comb_ge10 |> 
-  anti_join(datos13)
-
-## Faltantes ENFR 2018
-comb_ge10 |> 
-  anti_join(datos18)
-
+# ## Crear objeto para combinaciones posibles según grupo edad decenal
+# comb_ge10 <- id_provincias |> 
+#   cross_join(grupos_etarios |>  
+#                select(grupo_edad_10)) |> 
+#   
+#   expand_grid(sexo = c("Varón", "Mujer"),
+#               dm_auto = "Sí") |> 
+#   
+#   distinct()
+# 
+# ## Faltantes ENFR 2005
+# comb_ge10 |> 
+#   anti_join(datos05)
+# 
+# ## Faltantes ENFR 2009
+# comb_ge10 |> 
+#   anti_join(datos09)
+# 
+# ## Faltantes ENFR 2013
+# comb_ge10 |> 
+#   anti_join(datos13)
+# 
+# ## Faltantes ENFR 2018
+# comb_ge10 |> 
+#   anti_join(datos18)
+# 
 
 # Calcular prevalencias por grupos quinquenales ---------------------------
 ## ENFR 2005
@@ -282,94 +281,113 @@ prev_join_ge5 <- bind_rows(prev05_ge5,
   mutate(across(.cols = where(is.numeric),
                 .fns = ~ round(.x, 2))) |> 
   
-  # Variables categóricas a factor
-  mutate(across(.cols = c(anio_enfr:sexo),
-                .fns = ~ factor(.x)))
-
-
-# Calcular prevalencias por grupos decenales ------------------------------
-## ENFR 2005
-prev05_ge10 <- datos05 |> 
-  # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |> 
-  
-  # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |> 
-  summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
-            dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
-            .groups = "drop")
-
-
-## ENFR 2009
-prev09_ge10 <- datos09 |> 
-  # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |> 
-  
-  # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |> 
-  summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
-            dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
-            .groups = "drop")
-
-## ENFR 2013
-prev13_ge10 <- datos13 |> 
-  # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |> 
-  
-  # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |>  
-  summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
-            dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
-            .groups = "drop")
-
-## ENFR 2018 (Warning)
-prev18_ge10 <- datos18 |> 
-  # Crear objeto diseño
-  as_survey_rep(weights = wf1p, 
-                repweights = starts_with("wf1p"),
-                type = "bootstrap"
-  ) |> 
-  
-  # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |> 
-  summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
-            dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
-            .groups = "drop")
-
-
-## Unir bases prevalencia por grupos decenales
-prev_join_ge10 <- bind_rows(prev05_ge10,
-                           prev09_ge10,
-                           prev13_ge10,
-                           prev18_ge10,
-                           .id = "anio_enfr") |> 
-  
-  # Reemplaza etiquetas año ENFR
-  mutate(anio_enfr = fct_relabel(anio_enfr, ~ c("2005", "2009", "2013", "2018"))
+  # Categorizar coeficiente de variación
+  mutate(dm_prev_cv_cat = cut(dm_prev_cv, breaks = c(-Inf, .1, .2, .3, Inf),
+                              labels = c("Baja", "Moderada", "Alta", "Muy alta"))
          ) |> 
   
-  # Redondear variables numéricas
-  mutate(across(.cols = where(is.numeric),
-                .fns = ~ round(.x, 2))) |> 
-  
   # Variables categóricas a factor
   mutate(across(.cols = c(anio_enfr:sexo),
                 .fns = ~ factor(.x)))
 
-# Guardar datos limpios ---------------------------------------------------
-## Grupos etarios quinquenales
-write_csv(prev_join_ge5, file = "Bases de datos/clean/arg_prev_dm_ge5.csv")
 
-## Grupos etarios decenales
-write_csv(prev_join_ge10, file = "Bases de datos/clean/arg_prev_dm_ge10.csv")
+# # Calcular prevalencias por grupos decenales ------------------------------
+# ## ENFR 2005
+# prev05_ge10 <- datos05 |> 
+#   # Generar objeto de diseño
+#   as_survey_design(weights = ponderacion) |> 
+#   
+#   # Estimar cantidad de personas con DM y prevalencia
+#   group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |> 
+#   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
+#             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
+#             .groups = "drop")
+# 
+# 
+# ## ENFR 2009
+# prev09_ge10 <- datos09 |> 
+#   # Generar objeto de diseño
+#   as_survey_design(weights = ponderacion) |> 
+#   
+#   # Estimar cantidad de personas con DM y prevalencia
+#   group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |> 
+#   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
+#             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
+#             .groups = "drop")
+# 
+# ## ENFR 2013
+# prev13_ge10 <- datos13 |> 
+#   # Generar objeto de diseño
+#   as_survey_design(weights = ponderacion) |> 
+#   
+#   # Estimar cantidad de personas con DM y prevalencia
+#   group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |>  
+#   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
+#             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
+#             .groups = "drop")
+# 
+# ## ENFR 2018 (Warning)
+# prev18_ge10 <- datos18 |> 
+#   # Crear objeto diseño
+#   as_survey_rep(weights = wf1p, 
+#                 repweights = starts_with("wf1p"),
+#                 type = "bootstrap"
+#   ) |> 
+#   
+#   # Estimar cantidad de personas con DM y prevalencia
+#   group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_10, sexo) |> 
+#   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
+#             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
+#             .groups = "drop")
+# 
+# 
+# ## Unir bases prevalencia por grupos decenales
+# prev_join_ge10 <- bind_rows(prev05_ge10,
+#                            prev09_ge10,
+#                            prev13_ge10,
+#                            prev18_ge10,
+#                            .id = "anio_enfr") |> 
+#   
+#   # Reemplaza etiquetas año ENFR
+#   mutate(anio_enfr = fct_relabel(anio_enfr, ~ c("2005", "2009", "2013", "2018"))
+#          ) |> 
+#   
+#   # Redondear variables numéricas
+#   mutate(across(.cols = where(is.numeric),
+#                 .fns = ~ round(.x, 2))) |> 
+#   
+#   # Variables categóricas a factor
+#   mutate(across(.cols = c(anio_enfr:sexo),
+#                 .fns = ~ factor(.x)))
+
+# Guardar datos limpios ---------------------------------------------------
+# ## Grupos etarios quinquenales (20+ años)
+# write_csv(prev_join_ge5, file = "Bases de datos/clean/arg_prev_dm_ge5.csv")
+
+## Grupos etarios quinquenales (35+ años)
+write_csv(prev_join_ge5, file = "Bases de datos/clean/arg_prev_dm_35.csv")
+
+# ## Grupos etarios decenales
+# write_csv(prev_join_ge10, file = "Bases de datos/clean/arg_prev_dm_ge10.csv")
 
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
-  variable = c("anio_enfr", "prov_id", "prov_nombre", "reg_id", "reg_nombre",
-               "grupo_edad", "grupo_edad_10", "sexo",
-               "dm_total", "dm_total_se", "dm_total_cv",
-               "dm_prev", "dm_prev_se", "dm_prev_cv"),
+  variable = c("anio_enfr", 
+               "prov_id", 
+               "prov_nombre", 
+               "reg_id", 
+               "reg_nombre",
+               "grupo_edad_5", 
+               # "grupo_edad_10", 
+               "sexo",
+               "dm_total", 
+               "dm_total_se", 
+               "dm_total_cv",
+               "dm_prev", 
+               "dm_prev_se", 
+               "dm_prev_cv", 
+               "dm_prev_cv_cat"),
   
   descripcion = c(
     "Año de realización ENFR",
@@ -378,26 +396,28 @@ data_dict <- tibble(
     "Identificador numérico de región estadística",
     "Identificador categórico de región estadística",
     "Grupo de edad quinquenal",
-    "Grupo de edad decenal",
+    # "Grupo de edad decenal",
     "Sexo biológico",
     "Total estimado de personas con diabetes mellitus por provincia, edad y sexo",
     "Error estándar del total de personas con DM",
     "Coeficiente de variación del total de personas con DM",
     "Prevalencia de diabetes mellitus por autorreporte",
     "Error estándar del total de la prevalencia de personas con DM",
-    "Coeficiente de variación de la prevalencia de personas con DM"),
+    "Coeficiente de variación de la prevalencia de personas con DM",
+    "Categorización del coeficiente de variación de la prevalencia de personas con DM"),
   
-  tipo_var = c(rep("factor", 8), rep("numeric", 6)),
+  tipo_var = c(rep("factor", 7), rep("numeric", 6), "factor"),
   
   niveles = list(c(2005, 2009, 2013, 2018),
                  levels(id_provincias$prov_id |>  factor()),
                  levels(id_provincias$prov_nombre),
                  levels(prev_join_ge5$reg_id),
                  levels(prev_join_ge5$reg_nombre),
-                 levels(grupos_etarios$grupo_edad_5),
-                 levels(grupos_etarios$grupo_edad_10),
+                 levels(prev_join_ge5$grupo_edad_5),
+                 # levels(grupos_etarios$grupo_edad_10),
                  c("Varón", "Mujer"),
-                 NA, NA, NA, NA, NA, NA) |> 
+                 NA, NA, NA, NA, NA, NA,
+                 c("Baja", "Moderada", "Alta", "Muy alta")) |> 
     as.character()
 ) |> 
   
