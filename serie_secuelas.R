@@ -27,7 +27,7 @@ dw_dm <- dw_raw |>
   clean_names() |> 
   
   # Filtrar campos DM2
-  filter(str_detect(sequela, "diabetes mellitus type 2| type 2 diab")) |> 
+  filter(str_detect(sequela, "diabetes mellitus type 2| type 2 diab| major depr")) |> 
   
   # Separar columnas DW
   separate(disability_weight, into = c("dw", "ci"), sep = "\\(") |> 
