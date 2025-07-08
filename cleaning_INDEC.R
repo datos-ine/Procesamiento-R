@@ -1,8 +1,8 @@
 ### Limpieza y procesamiento de las proyecciones poblacionales de INDEC para los
 ### años 2010-2021 según provincia, sexo y grupo edad quinquenal
-### Autora: Tamara Ricardo
+### Autoras: Tamara Ricardo y Micaela Gauto
 ### Fecha modificación:
-# Mon Jun  2 10:19:37 2025 ------------------------------
+# Tue Jul  8 10:17 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -26,18 +26,18 @@ grupos_etarios <- read_csv("Bases de datos/grupos_etarios.csv") |>
 
 
 # ## Proyecciones 2001-2005 (extraer tablas por provincia)
-# proy_01_raw <- extract_areas(
+# proy_01_05_raw <- extract_areas(
 #   "Bases de datos/Proyecciones INDEC/INDEC_proyec 2001-2015.pdf",
 #   pages = c(22:24, 27:28, 25:26, 29:43, 45, 44))
 
 ## Cargar datos limpios 2005 (opcional)
-proy_01 <- read_csv("Bases de datos/Proyecciones INDEC/proy_2005.csv")
+proy_05 <- read_csv("Bases de datos/Proyecciones INDEC/proy_2005.csv")
 
 
 ## Proyecciones 2010-2040
 # Ruta del archivo de Excel
 indec_10 <- "Bases de datos/Proyecciones INDEC/c2_proyecciones_prov_2010_2040.xls" 
-  
+
 
 # Cargar/unir hojas
 proy_10_raw <- excel_sheets(indec_10)[-c(1:2)] |>  # Listar hojas por provincia
@@ -59,10 +59,14 @@ proy_10_raw <- excel_sheets(indec_10)[-c(1:2)] |>  # Listar hojas por provincia
       list_rbind(names_to = "prov")
   )
 
+## Cargar datos limpios 2001 (para cálculo de proyección 2009)
+proy_01 <- read_excel("Bases de datos/Proyecciones INDEC/proyec_2001.xls")
+
 
 # Limpiar datos -----------------------------------------------------------
+
 # ## Unir y limpiar las tablas de proyecciones 2001-2005
-# proy_01 <- proy_01_raw |> 
+# proy_05 <- proy_01_05_raw |> 
 #   # Asignar identificador numérico a cada provincia
 #   set_names(unique(id_provincias$prov_id)) |> 
 #   
@@ -97,7 +101,7 @@ proy_10_raw <- excel_sheets(indec_10)[-c(1:2)] |>  # Listar hojas por provincia
 #   mutate(value = parse_number(value, locale = locale(decimal_mark = ","))) 
 #   
 # ## Guardar (opcional)
-# write_csv(proy_01, "Bases de datos/Proyecciones INDEC/proy_2005.csv")
+# write_csv(proy_05, "Bases de datos/Proyecciones INDEC/proy_2005.csv")
 
 
 ## Limpiar tablas 2010-2018
@@ -136,8 +140,77 @@ proy_10 <- proy_10_raw |>
                 .fns = ~ parse_number(.x)))
 
 
-### Unir bases proyecciones por grupo quinquenal de edad
-proy_join <- bind_rows(proy_01, proy_10) |> 
+## Limpiar datos del 2001 y homogeneizar formato
+proy_01 <- proy_01 %>% 
+  
+  # Asignar identificador numérico a cada provincia
+  left_join(id_provincias, by = join_by("Jurisdicción" == "prov_nombre")) %>% 
+  
+  # Estandarizar nombres de columnas
+  clean_names() |>
+  
+  # Seleccionar columnas relevantes
+  select(prov_id,
+         grupo_edad = edad,
+         Varón_2001 = varones,
+         Mujer_2001 = mujeres) |>
+  
+  # Filtrar filas con valores ausentes
+  drop_na() |>
+  
+  # Filtrar <20 años y totales
+  filter(!grupo_edad %in% c("Total", "0-4", "5-9", "10-14", "15-19")) |>
+  
+  # Identificador de provincia a numérico
+  #mutate(prov_id = parse_number(prov_id)) |> 
+  
+  # Pasar a formato long para obtener proyecciones
+  pivot_longer(cols = c(Varón_2001, Mujer_2001)) |>
+  
+  # Crear columnas para sexo y año
+  separate(name, into = c("sexo", "anio"), sep = "_") %>% 
+  
+  # Transformar anio a formato número
+  mutate(anio = parse_number(anio))
+
+# Transformar escala proyección poblacional
+#mutate(value = parse_number(value, locale = locale(decimal_mark = ",")))
+
+## Guardar (opcional)
+#write_csv(proy_01, "Bases de datos/Proyecciones INDEC/proy_2001.csv")
+
+
+# Estimar proyección 2009 -------------------------------------------------
+
+# Método lineal
+proy_09 <- proy_10  |>
+  # Filtrar proyecciones 2010
+  filter(anio == 2010) |>
+  
+  # Unión con población 2001
+  bind_rows(proy_01) %>% 
+  
+  # Formato wide
+  pivot_wider(names_from = anio,
+              values_from = value,
+              names_prefix = "pob_") |>
+  
+  # Interpolación lineal
+  mutate(anio = 2009,
+         tasa_anual = log(pob_2010 / pob_2001) / 9,
+         proy_pob = round((pob_2001 * tasa_anual * 8) + pob_2001)) |>
+  
+  # Descartar columnas innecesarias
+  select(prov_id, grupo_edad, sexo, anio, 
+         value = proy_pob)
+
+
+# Unión de proyecciones 2005, 2009, 2013 y 2018 ---------------------------
+
+proy_join <- bind_rows(proy_05, proy_09, proy_10)
+
+## Limpieza de base proyecciones
+proy_join <- proy_join |> 
   
   # Añadir nombre de provincia
   left_join(id_provincias) |> 
@@ -150,41 +223,8 @@ proy_join <- bind_rows(proy_01, proy_10) |>
         wt = value, name = "proy_pob")
 
 
-# Estimar proyección para 2009 --------------------------------------------
-## Graficar tendencia para los años disponibles
-proy_join |> 
-  ggplot(aes(x = prov_nombre, y = proy_pob, fill = factor(anio))) +
-  
-  geom_col(position = "dodge") +
-  facet_wrap(~ grupo_edad_5) +
-  
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90))
-
-## Estimar proyección 2009
-# Método lineal
-proy_2009 <- proy_join  |>
-  # Filtrar proyecciones 2005 y 2010
-  filter(between(anio, 2005, 2010)) |>
-
-  # Formato wide
-  pivot_wider(names_from = anio,
-              values_from = proy_pob,
-              names_prefix = "pob_") |>
-
-  # Interpolación lineal
-  mutate(anio = 2009,
-         proy_pob = pob_2005 + (4 / 5) * (pob_2010 - pob_2005)) |>
-
-  # Filtrar datos 2009
-  filter(anio == 2009) |>
-
-  # Descartar columnas innecesarias
-  select(-starts_with("pob_"))
-
-
-# Añadir proyección 2009 --------------------------------------------------
-proy_join_ge5 <- bind_rows(proy_join, proy_2009) |> 
+# Añadir población estándar Censo 2010 -------------------------------------
+proy_join_ge5 <- proy_join |> 
   
   # Crear variable para año ENFR
   mutate(anio_enfr = if_else(anio == 2010, NA, anio)) |> 
