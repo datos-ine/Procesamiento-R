@@ -5,7 +5,6 @@
 ## Autora: Micaela Gauto 
 ## Colaboradora: Tamara Ricardo 
 ## Fecha modificación: 
-# Thu May 29 14:53:34 2025 ------------------------------
 
 
 # Cargar paquetes ---------------------------------------------------------
@@ -17,17 +16,24 @@ pacman::p_load(
 
 
 # Cargar datos crudos -----------------------------------------------------
+## Frecuencias en Argentina
+comp_fr_raw <- import("Bases de datos/fr_complicaciones_arg.csv")
+
+
+## Pesos discapacidad
 dw_raw <- import("Bases de datos/GBD/IHME_GBD_2019_DISABILITY_WEIGHTS_Y2020M010D15.XLSX",
-             skip = 1)
+                 skip = 1)
 
 
 # Limpiar datos -----------------------------------------------------------
+## Pesos discapacidad
 dw_dm <- dw_raw |> 
   # Estandarizar nombres columnas
   clean_names() |> 
   
-  # Filtrar campos DM2
-  filter(str_detect(sequela, "diabetes mellitus type 2| type 2 diab| major depr")) |> 
+  # # Filtrar campos DM2
+  # filter(str_detect(sequela, "diabetes mellitus type 2| type 2 diab|
+  #                   major depr|claud")) |> 
   
   # Separar columnas DW
   separate(disability_weight, into = c("dw", "ci"), sep = "\\(") |> 
@@ -39,15 +45,20 @@ dw_dm <- dw_raw |>
   
   # Cambiar a numérico
   mutate(across(.cols = c(dw, lower, upper),
-                .fns = ~ parse_number(.x))) |> 
-  
-  # Añadir frecuencias Wandurranga
-  mutate(frec_wandurranga = case_when(
-    str_detect(sequela, "Uncomplicated") ~ 37.14, # Sin complicaciones
-    str_detect(sequela, "Severe vision") ~ 12.46, # Retinopatía severa
-    str_detect(sequela, "type 2, without") ~ 30.91, # Neuropatía s/amputación
-    TRUE ~ NA
-  ))
+                .fns = ~ parse_number(.x))) 
+
+
+## Frecuencia complicaciones en Argentina
+
+
+
+  # # Añadir frecuencias Wandurranga
+  # mutate(frec_wandurranga = case_when(
+  #   str_detect(sequela, "Uncomplicated") ~ 37.14, # Sin complicaciones
+  #   str_detect(sequela, "Severe vision") ~ 12.46, # Retinopatía severa
+  #   str_detect(sequela, "type 2, without") ~ 30.91, # Neuropatía s/amputación
+  #   TRUE ~ NA
+  # ))
 
 
 # Guardar datos -----------------------------------------------------------
