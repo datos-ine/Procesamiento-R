@@ -26,7 +26,7 @@ id_provincias <- read_csv("Bases de datos/cod_pcias_arg.csv") |>
 
 ## Etiquetas grupos de edad
 grupos_etarios <- read_csv("Bases de datos/grupos_etarios.csv") |> 
-  filter(!str_detect(grupo_edad, "20|25|30"))
+  filter(!str_detect(grupo_edad_5, "20-24|25-29|30-34"))
 
 
 ## Defunciones 2004
