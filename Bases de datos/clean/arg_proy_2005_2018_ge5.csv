@@ -623,6 +623,630 @@ anio,prov_id,prov_nombre,grupo_edad_5,grupo_edad_10,sexo,proy_pob,anio_enfr,pob_
 2005,94,Tierra del Fuego,75-79 años,70-79 años,Varón,295,2005,358
 2005,94,Tierra del Fuego,80+ años,80+ años,Mujer,286,2005,532
 2005,94,Tierra del Fuego,80+ años,80+ años,Varón,194,2005,268
+2009,2,CABA,20-24 años,20-29 años,Mujer,116961,2009,116572
+2009,2,CABA,20-24 años,20-29 años,Varón,111926,2009,111726
+2009,2,CABA,25-29 años,20-29 años,Mujer,122528,2009,122615
+2009,2,CABA,25-29 años,20-29 años,Varón,115986,2009,116490
+2009,2,CABA,30-34 años,30-39 años,Mujer,119763,2009,123148
+2009,2,CABA,30-34 años,30-39 años,Varón,113189,2009,117011
+2009,2,CABA,35-39 años,30-39 años,Mujer,109497,2009,112931
+2009,2,CABA,35-39 años,30-39 años,Varón,101235,2009,105455
+2009,2,CABA,40-44 años,40-49 años,Mujer,95006,2009,95002
+2009,2,CABA,40-44 años,40-49 años,Varón,85343,2009,85885
+2009,2,CABA,45-49 años,40-49 años,Mujer,91149,2009,90855
+2009,2,CABA,45-49 años,40-49 años,Varón,78304,2009,78726
+2009,2,CABA,50-54 años,50-59 años,Mujer,92854,2009,92557
+2009,2,CABA,50-54 años,50-59 años,Varón,76479,2009,76659
+2009,2,CABA,55-59 años,50-59 años,Mujer,88354,2009,88716
+2009,2,CABA,55-59 años,50-59 años,Varón,69449,2009,70233
+2009,2,CABA,60-64 años,60-69 años,Mujer,82799,2009,84016
+2009,2,CABA,60-64 años,60-69 años,Varón,61896,2009,63364
+2009,2,CABA,65-69 años,60-69 años,Mujer,75039,2009,75282
+2009,2,CABA,65-69 años,60-69 años,Varón,53069,2009,53532
+2009,2,CABA,70-74 años,70-79 años,Mujer,65680,2009,65286
+2009,2,CABA,70-74 años,70-79 años,Varón,42853,2009,42547
+2009,2,CABA,75-79 años,70-79 años,Mujer,57010,2009,56642
+2009,2,CABA,75-79 años,70-79 años,Varón,32916,2009,32679
+2009,2,CABA,80+ años,80+ años,Mujer,99770,2009,101710
+2009,2,CABA,80+ años,80+ años,Varón,41551,2009,43137
+2009,6,Buenos Aires,20-24 años,20-29 años,Mujer,632109,2009,637039
+2009,6,Buenos Aires,20-24 años,20-29 años,Varón,638045,2009,643442
+2009,6,Buenos Aires,25-29 años,20-29 años,Mujer,590533,2009,604955
+2009,6,Buenos Aires,25-29 años,20-29 años,Varón,588586,2009,604625
+2009,6,Buenos Aires,30-34 años,30-39 años,Mujer,577402,2009,607257
+2009,6,Buenos Aires,30-34 años,30-39 años,Varón,566974,2009,598679
+2009,6,Buenos Aires,35-39 años,30-39 años,Mujer,522030,2009,541631
+2009,6,Buenos Aires,35-39 años,30-39 años,Varón,506257,2009,528202
+2009,6,Buenos Aires,40-44 años,40-49 años,Mujer,469035,2009,477017
+2009,6,Buenos Aires,40-44 años,40-49 años,Varón,451435,2009,459666
+2009,6,Buenos Aires,45-49 años,40-49 años,Mujer,441929,2009,450322
+2009,6,Buenos Aires,45-49 años,40-49 años,Varón,418711,2009,427517
+2009,6,Buenos Aires,50-54 años,50-59 años,Mujer,415541,2009,421117
+2009,6,Buenos Aires,50-54 años,50-59 años,Varón,388766,2009,394748
+2009,6,Buenos Aires,55-59 años,50-59 años,Mujer,376029,2009,390329
+2009,6,Buenos Aires,55-59 años,50-59 años,Varón,342690,2009,354844
+2009,6,Buenos Aires,60-64 años,60-69 años,Mujer,334481,2009,349449
+2009,6,Buenos Aires,60-64 años,60-69 años,Varón,293940,2009,308412
+2009,6,Buenos Aires,65-69 años,60-69 años,Mujer,280185,2009,286506
+2009,6,Buenos Aires,65-69 años,60-69 años,Varón,232571,2009,238875
+2009,6,Buenos Aires,70-74 años,70-79 años,Mujer,236716,2009,236637
+2009,6,Buenos Aires,70-74 años,70-79 años,Varón,178065,2009,178795
+2009,6,Buenos Aires,75-79 años,70-79 años,Mujer,196878,2009,199627
+2009,6,Buenos Aires,75-79 años,70-79 años,Varón,130518,2009,132750
+2009,6,Buenos Aires,80+ años,80+ años,Mujer,255787,2009,273339
+2009,6,Buenos Aires,80+ años,80+ años,Varón,122582,2009,131209
+2009,10,Catamarca,20-24 años,20-29 años,Mujer,15179,2009,15210
+2009,10,Catamarca,20-24 años,20-29 años,Varón,15559,2009,15603
+2009,10,Catamarca,25-29 años,20-29 años,Mujer,13995,2009,14318
+2009,10,Catamarca,25-29 años,20-29 años,Varón,14138,2009,14479
+2009,10,Catamarca,30-34 años,30-39 años,Mujer,13643,2009,14626
+2009,10,Catamarca,30-34 años,30-39 años,Varón,13537,2009,14522
+2009,10,Catamarca,35-39 años,30-39 años,Mujer,11817,2009,12433
+2009,10,Catamarca,35-39 años,30-39 años,Varón,11800,2009,12457
+2009,10,Catamarca,40-44 años,40-49 años,Mujer,10189,2009,10434
+2009,10,Catamarca,40-44 años,40-49 años,Varón,10290,2009,10481
+2009,10,Catamarca,45-49 años,40-49 años,Mujer,9205,2009,9405
+2009,10,Catamarca,45-49 años,40-49 años,Varón,9255,2009,9436
+2009,10,Catamarca,50-54 años,50-59 años,Mujer,8459,2009,8752
+2009,10,Catamarca,50-54 años,50-59 años,Varón,8574,2009,8823
+2009,10,Catamarca,55-59 años,50-59 años,Mujer,7306,2009,7896
+2009,10,Catamarca,55-59 años,50-59 años,Varón,7222,2009,7911
+2009,10,Catamarca,60-64 años,60-69 años,Mujer,6074,2009,6511
+2009,10,Catamarca,60-64 años,60-69 años,Varón,5761,2009,6323
+2009,10,Catamarca,65-69 años,60-69 años,Mujer,4963,2009,5165
+2009,10,Catamarca,65-69 años,60-69 años,Varón,4418,2009,4671
+2009,10,Catamarca,70-74 años,70-79 años,Mujer,3995,2009,4029
+2009,10,Catamarca,70-74 años,70-79 años,Varón,3257,2009,3322
+2009,10,Catamarca,75-79 años,70-79 años,Mujer,3230,2009,3361
+2009,10,Catamarca,75-79 años,70-79 años,Varón,2272,2009,2371
+2009,10,Catamarca,80+ años,80+ años,Mujer,4066,2009,4389
+2009,10,Catamarca,80+ años,80+ años,Varón,2317,2009,2409
+2009,14,Córdoba,20-24 años,20-29 años,Mujer,139292,2009,139053
+2009,14,Córdoba,20-24 años,20-29 años,Varón,139474,2009,139319
+2009,14,Córdoba,25-29 años,20-29 años,Mujer,130110,2009,133465
+2009,14,Córdoba,25-29 años,20-29 años,Varón,129440,2009,133052
+2009,14,Córdoba,30-34 años,30-39 años,Mujer,122974,2009,129784
+2009,14,Córdoba,30-34 años,30-39 años,Varón,121496,2009,128954
+2009,14,Córdoba,35-39 años,30-39 años,Mujer,109256,2009,112102
+2009,14,Córdoba,35-39 años,30-39 años,Varón,106139,2009,109432
+2009,14,Córdoba,40-44 años,40-49 años,Mujer,97901,2009,98908
+2009,14,Córdoba,40-44 años,40-49 años,Varón,93350,2009,94385
+2009,14,Córdoba,45-49 años,40-49 años,Mujer,94241,2009,95658
+2009,14,Córdoba,45-49 años,40-49 años,Varón,89251,2009,90751
+2009,14,Córdoba,50-54 años,50-59 años,Mujer,88842,2009,89379
+2009,14,Córdoba,50-54 años,50-59 años,Varón,82709,2009,83303
+2009,14,Córdoba,55-59 años,50-59 años,Mujer,82109,2009,84417
+2009,14,Córdoba,55-59 años,50-59 años,Varón,74300,2009,76474
+2009,14,Córdoba,60-64 años,60-69 años,Mujer,74854,2009,77783
+2009,14,Córdoba,60-64 años,60-69 años,Varón,65173,2009,67874
+2009,14,Córdoba,65-69 años,60-69 años,Mujer,63479,2009,64960
+2009,14,Córdoba,65-69 años,60-69 años,Varón,52341,2009,53668
+2009,14,Córdoba,70-74 años,70-79 años,Mujer,53425,2009,53543
+2009,14,Córdoba,70-74 años,70-79 años,Varón,40280,2009,40548
+2009,14,Córdoba,75-79 años,70-79 años,Mujer,43663,2009,44385
+2009,14,Córdoba,75-79 años,70-79 años,Varón,28967,2009,29613
+2009,14,Córdoba,80+ años,80+ años,Mujer,56948,2009,60672
+2009,14,Córdoba,80+ años,80+ años,Varón,27220,2009,29155
+2009,18,Corrientes,20-24 años,20-29 años,Mujer,44433,2009,44791
+2009,18,Corrientes,20-24 años,20-29 años,Varón,43097,2009,43377
+2009,18,Corrientes,25-29 años,20-29 años,Mujer,37855,2009,38908
+2009,18,Corrientes,25-29 años,20-29 años,Varón,36181,2009,37356
+2009,18,Corrientes,30-34 años,30-39 años,Mujer,34964,2009,36594
+2009,18,Corrientes,30-34 años,30-39 años,Varón,32873,2009,34492
+2009,18,Corrientes,35-39 años,30-39 años,Mujer,31262,2009,31806
+2009,18,Corrientes,35-39 años,30-39 años,Varón,29175,2009,29613
+2009,18,Corrientes,40-44 años,40-49 años,Mujer,28183,2009,28521
+2009,18,Corrientes,40-44 años,40-49 años,Varón,26592,2009,26812
+2009,18,Corrientes,45-49 años,40-49 años,Mujer,26534,2009,27398
+2009,18,Corrientes,45-49 años,40-49 años,Varón,25656,2009,26148
+2009,18,Corrientes,50-54 años,50-59 años,Mujer,23939,2009,25011
+2009,18,Corrientes,50-54 años,50-59 años,Varón,23407,2009,24118
+2009,18,Corrientes,55-59 años,50-59 años,Mujer,20301,2009,21860
+2009,18,Corrientes,55-59 años,50-59 años,Varón,19929,2009,21690
+2009,18,Corrientes,60-64 años,60-69 años,Mujer,16956,2009,17803
+2009,18,Corrientes,60-64 años,60-69 años,Varón,15997,2009,17316
+2009,18,Corrientes,65-69 años,60-69 años,Mujer,13717,2009,14259
+2009,18,Corrientes,65-69 años,60-69 años,Varón,12122,2009,12833
+2009,18,Corrientes,70-74 años,70-79 años,Mujer,11253,2009,11572
+2009,18,Corrientes,70-74 años,70-79 años,Varón,8917,2009,9174
+2009,18,Corrientes,75-79 años,70-79 años,Mujer,8528,2009,8936
+2009,18,Corrientes,75-79 años,70-79 años,Varón,6033,2009,6299
+2009,18,Corrientes,80+ años,80+ años,Mujer,10294,2009,10929
+2009,18,Corrientes,80+ años,80+ años,Varón,5899,2009,6201
+2009,22,Chaco,20-24 años,20-29 años,Mujer,46679,2009,47229
+2009,22,Chaco,20-24 años,20-29 años,Varón,45783,2009,46125
+2009,22,Chaco,25-29 años,20-29 años,Mujer,40830,2009,42573
+2009,22,Chaco,25-29 años,20-29 años,Varón,39088,2009,40685
+2009,22,Chaco,30-34 años,30-39 años,Mujer,37346,2009,39599
+2009,22,Chaco,30-34 años,30-39 años,Varón,35660,2009,37852
+2009,22,Chaco,35-39 años,30-39 años,Mujer,32619,2009,33260
+2009,22,Chaco,35-39 años,30-39 años,Varón,31015,2009,31520
+2009,22,Chaco,40-44 años,40-49 años,Mujer,29020,2009,29298
+2009,22,Chaco,40-44 años,40-49 años,Varón,27768,2009,27830
+2009,22,Chaco,45-49 años,40-49 años,Mujer,26909,2009,27726
+2009,22,Chaco,45-49 años,40-49 años,Varón,26357,2009,26755
+2009,22,Chaco,50-54 años,50-59 años,Mujer,23995,2009,25393
+2009,22,Chaco,50-54 años,50-59 años,Varón,24155,2009,24995
+2009,22,Chaco,55-59 años,50-59 años,Mujer,19918,2009,21502
+2009,22,Chaco,55-59 años,50-59 años,Varón,19782,2009,21398
+2009,22,Chaco,60-64 años,60-69 años,Mujer,16182,2009,16768
+2009,22,Chaco,60-64 años,60-69 años,Varón,15489,2009,16294
+2009,22,Chaco,65-69 años,60-69 años,Mujer,13060,2009,13429
+2009,22,Chaco,65-69 años,60-69 años,Varón,11690,2009,12069
+2009,22,Chaco,70-74 años,70-79 años,Mujer,10749,2009,11069
+2009,22,Chaco,70-74 años,70-79 años,Varón,8668,2009,8837
+2009,22,Chaco,75-79 años,70-79 años,Mujer,7799,2009,8279
+2009,22,Chaco,75-79 años,70-79 años,Varón,5781,2009,6064
+2009,22,Chaco,80+ años,80+ años,Mujer,8754,2009,9522
+2009,22,Chaco,80+ años,80+ años,Varón,5123,2009,5387
+2009,26,Chubut,20-24 años,20-29 años,Mujer,20503,2009,21062
+2009,26,Chubut,20-24 años,20-29 años,Varón,20995,2009,21591
+2009,26,Chubut,25-29 años,20-29 años,Mujer,19984,2009,21327
+2009,26,Chubut,25-29 años,20-29 años,Varón,20345,2009,22019
+2009,26,Chubut,30-34 años,30-39 años,Mujer,19472,2009,21540
+2009,26,Chubut,30-34 años,30-39 años,Varón,19576,2009,21926
+2009,26,Chubut,35-39 años,30-39 años,Mujer,17326,2009,18300
+2009,26,Chubut,35-39 años,30-39 años,Varón,17304,2009,18341
+2009,26,Chubut,40-44 años,40-49 años,Mujer,14933,2009,15462
+2009,26,Chubut,40-44 años,40-49 años,Varón,14954,2009,15345
+2009,26,Chubut,45-49 años,40-49 años,Mujer,13683,2009,14310
+2009,26,Chubut,45-49 años,40-49 años,Varón,13739,2009,14327
+2009,26,Chubut,50-54 años,50-59 años,Mujer,12100,2009,12834
+2009,26,Chubut,50-54 años,50-59 años,Varón,12194,2009,12815
+2009,26,Chubut,55-59 años,50-59 años,Mujer,10031,2009,11048
+2009,26,Chubut,55-59 años,50-59 años,Varón,9966,2009,10849
+2009,26,Chubut,60-64 años,60-69 años,Mujer,8191,2009,8891
+2009,26,Chubut,60-64 años,60-69 años,Varón,7983,2009,8557
+2009,26,Chubut,65-69 años,60-69 años,Mujer,6421,2009,6935
+2009,26,Chubut,65-69 años,60-69 años,Varón,5842,2009,6261
+2009,26,Chubut,70-74 años,70-79 años,Mujer,5062,2009,5367
+2009,26,Chubut,70-74 años,70-79 años,Varón,4225,2009,4396
+2009,26,Chubut,75-79 años,70-79 años,Mujer,3792,2009,4083
+2009,26,Chubut,75-79 años,70-79 años,Varón,2821,2009,2975
+2009,26,Chubut,80+ años,80+ años,Mujer,4471,2009,5019
+2009,26,Chubut,80+ años,80+ años,Varón,2543,2009,2895
+2009,30,Entre Ríos,20-24 años,20-29 años,Mujer,49620,2009,49772
+2009,30,Entre Ríos,20-24 años,20-29 años,Varón,50037,2009,50176
+2009,30,Entre Ríos,25-29 años,20-29 años,Mujer,46034,2009,47137
+2009,30,Entre Ríos,25-29 años,20-29 años,Varón,45723,2009,46806
+2009,30,Entre Ríos,30-34 años,30-39 años,Mujer,44377,2009,46511
+2009,30,Entre Ríos,30-34 años,30-39 años,Varón,43447,2009,45663
+2009,30,Entre Ríos,35-39 años,30-39 años,Mujer,40112,2009,41003
+2009,30,Entre Ríos,35-39 años,30-39 años,Varón,39390,2009,40292
+2009,30,Entre Ríos,40-44 años,40-49 años,Mujer,35937,2009,36228
+2009,30,Entre Ríos,40-44 años,40-49 años,Varón,35024,2009,35416
+2009,30,Entre Ríos,45-49 años,40-49 años,Mujer,34626,2009,35263
+2009,30,Entre Ríos,45-49 años,40-49 años,Varón,33324,2009,33736
+2009,30,Entre Ríos,50-54 años,50-59 años,Mujer,32382,2009,32974
+2009,30,Entre Ríos,50-54 años,50-59 años,Varón,30743,2009,31042
+2009,30,Entre Ríos,55-59 años,50-59 años,Mujer,28876,2009,30073
+2009,30,Entre Ríos,55-59 años,50-59 años,Varón,27513,2009,28519
+2009,30,Entre Ríos,60-64 años,60-69 años,Mujer,25661,2009,26636
+2009,30,Entre Ríos,60-64 años,60-69 años,Varón,23236,2009,24227
+2009,30,Entre Ríos,65-69 años,60-69 años,Mujer,21799,2009,22404
+2009,30,Entre Ríos,65-69 años,60-69 años,Varón,18317,2009,19065
+2009,30,Entre Ríos,70-74 años,70-79 años,Mujer,18536,2009,18668
+2009,30,Entre Ríos,70-74 años,70-79 años,Varón,13777,2009,14002
+2009,30,Entre Ríos,75-79 años,70-79 años,Mujer,14977,2009,15372
+2009,30,Entre Ríos,75-79 años,70-79 años,Varón,9368,2009,9656
+2009,30,Entre Ríos,80+ años,80+ años,Mujer,19528,2009,20414
+2009,30,Entre Ríos,80+ años,80+ años,Varón,8857,2009,9110
+2009,34,Formosa,20-24 años,20-29 años,Mujer,22321,2009,22662
+2009,34,Formosa,20-24 años,20-29 años,Varón,21844,2009,22066
+2009,34,Formosa,25-29 años,20-29 años,Mujer,19225,2009,19825
+2009,34,Formosa,25-29 años,20-29 años,Varón,18094,2009,18677
+2009,34,Formosa,30-34 años,30-39 años,Mujer,18323,2009,19240
+2009,34,Formosa,30-34 años,30-39 años,Varón,17141,2009,18044
+2009,34,Formosa,35-39 años,30-39 años,Mujer,16491,2009,16890
+2009,34,Formosa,35-39 años,30-39 años,Varón,15581,2009,15819
+2009,34,Formosa,40-44 años,40-49 años,Mujer,14948,2009,15281
+2009,34,Formosa,40-44 años,40-49 años,Varón,14431,2009,14641
+2009,34,Formosa,45-49 años,40-49 años,Mujer,13461,2009,14004
+2009,34,Formosa,45-49 años,40-49 años,Varón,13642,2009,14093
+2009,34,Formosa,50-54 años,50-59 años,Mujer,12078,2009,12937
+2009,34,Formosa,50-54 años,50-59 años,Varón,12159,2009,12769
+2009,34,Formosa,55-59 años,50-59 años,Mujer,9748,2009,10887
+2009,34,Formosa,55-59 años,50-59 años,Varón,9944,2009,10984
+2009,34,Formosa,60-64 años,60-69 años,Mujer,7872,2009,8503
+2009,34,Formosa,60-64 años,60-69 años,Varón,7912,2009,8488
+2009,34,Formosa,65-69 años,60-69 años,Mujer,6235,2009,6726
+2009,34,Formosa,65-69 años,60-69 años,Varón,6064,2009,6517
+2009,34,Formosa,70-74 años,70-79 años,Mujer,4921,2009,5272
+2009,34,Formosa,70-74 años,70-79 años,Varón,4660,2009,4933
+2009,34,Formosa,75-79 años,70-79 años,Mujer,3537,2009,3832
+2009,34,Formosa,75-79 años,70-79 años,Varón,3110,2009,3344
+2009,34,Formosa,80+ años,80+ años,Mujer,3891,2009,4395
+2009,34,Formosa,80+ años,80+ años,Varón,2916,2009,3182
+2009,38,Jujuy,20-24 años,20-29 años,Mujer,28623,2009,28580
+2009,38,Jujuy,20-24 años,20-29 años,Varón,28236,2009,28189
+2009,38,Jujuy,25-29 años,20-29 años,Mujer,26604,2009,27218
+2009,38,Jujuy,25-29 años,20-29 años,Varón,25684,2009,26443
+2009,38,Jujuy,30-34 años,30-39 años,Mujer,25220,2009,27103
+2009,38,Jujuy,30-34 años,30-39 años,Varón,24303,2009,26298
+2009,38,Jujuy,35-39 años,30-39 años,Mujer,22167,2009,23173
+2009,38,Jujuy,35-39 años,30-39 años,Varón,20885,2009,22146
+2009,38,Jujuy,40-44 años,40-49 años,Mujer,18821,2009,19220
+2009,38,Jujuy,40-44 años,40-49 años,Varón,17486,2009,17942
+2009,38,Jujuy,45-49 años,40-49 años,Mujer,17043,2009,17442
+2009,38,Jujuy,45-49 años,40-49 años,Varón,15707,2009,16015
+2009,38,Jujuy,50-54 años,50-59 años,Mujer,15490,2009,16061
+2009,38,Jujuy,50-54 años,50-59 años,Varón,14167,2009,14511
+2009,38,Jujuy,55-59 años,50-59 años,Mujer,13255,2009,14244
+2009,38,Jujuy,55-59 años,50-59 años,Varón,12222,2009,13061
+2009,38,Jujuy,60-64 años,60-69 años,Mujer,10965,2009,11770
+2009,38,Jujuy,60-64 años,60-69 años,Varón,10038,2009,10601
+2009,38,Jujuy,65-69 años,60-69 años,Mujer,8584,2009,9134
+2009,38,Jujuy,65-69 años,60-69 años,Varón,7677,2009,8100
+2009,38,Jujuy,70-74 años,70-79 años,Mujer,6657,2009,6983
+2009,38,Jujuy,70-74 años,70-79 años,Varón,5782,2009,6011
+2009,38,Jujuy,75-79 años,70-79 años,Mujer,4785,2009,5166
+2009,38,Jujuy,75-79 años,70-79 años,Varón,3906,2009,4154
+2009,38,Jujuy,80+ años,80+ años,Mujer,5212,2009,5755
+2009,38,Jujuy,80+ años,80+ años,Varón,3266,2009,3646
+2009,42,La Pampa,20-24 años,20-29 años,Mujer,12179,2009,12275
+2009,42,La Pampa,20-24 años,20-29 años,Varón,12632,2009,12709
+2009,42,La Pampa,25-29 años,20-29 años,Mujer,11619,2009,11835
+2009,42,La Pampa,25-29 años,20-29 años,Varón,11777,2009,12017
+2009,42,La Pampa,30-34 años,30-39 años,Mujer,11461,2009,11899
+2009,42,La Pampa,30-34 años,30-39 años,Varón,11455,2009,11985
+2009,42,La Pampa,35-39 años,30-39 años,Mujer,10694,2009,10860
+2009,42,La Pampa,35-39 años,30-39 años,Varón,10538,2009,10705
+2009,42,La Pampa,40-44 años,40-49 años,Mujer,9720,2009,9892
+2009,42,La Pampa,40-44 años,40-49 años,Varón,9629,2009,9719
+2009,42,La Pampa,45-49 años,40-49 años,Mujer,9318,2009,9530
+2009,42,La Pampa,45-49 años,40-49 años,Varón,9371,2009,9499
+2009,42,La Pampa,50-54 años,50-59 años,Mujer,8534,2009,8666
+2009,42,La Pampa,50-54 años,50-59 años,Varón,8603,2009,8724
+2009,42,La Pampa,55-59 años,50-59 años,Mujer,7678,2009,7928
+2009,42,La Pampa,55-59 años,50-59 años,Varón,7801,2009,7997
+2009,42,La Pampa,60-64 años,60-69 años,Mujer,6899,2009,7223
+2009,42,La Pampa,60-64 años,60-69 años,Varón,6711,2009,7001
+2009,42,La Pampa,65-69 años,60-69 años,Mujer,5825,2009,6110
+2009,42,La Pampa,65-69 años,60-69 años,Varón,5477,2009,5708
+2009,42,La Pampa,70-74 años,70-79 años,Mujer,4885,2009,5012
+2009,42,La Pampa,70-74 años,70-79 años,Varón,4096,2009,4202
+2009,42,La Pampa,75-79 años,70-79 años,Mujer,3895,2009,3988
+2009,42,La Pampa,75-79 años,70-79 años,Varón,2899,2009,3017
+2009,42,La Pampa,80+ años,80+ años,Mujer,5280,2009,5636
+2009,42,La Pampa,80+ años,80+ años,Varón,2836,2009,2983
+2009,46,La Rioja,20-24 años,20-29 años,Mujer,15204,2009,15396
+2009,46,La Rioja,20-24 años,20-29 años,Varón,15082,2009,15233
+2009,46,La Rioja,25-29 años,20-29 años,Mujer,13365,2009,13927
+2009,46,La Rioja,25-29 años,20-29 años,Varón,13266,2009,13844
+2009,46,La Rioja,30-34 años,30-39 años,Mujer,12613,2009,13778
+2009,46,La Rioja,30-34 años,30-39 años,Varón,12451,2009,13535
+2009,46,La Rioja,35-39 años,30-39 años,Mujer,10905,2009,11438
+2009,46,La Rioja,35-39 años,30-39 años,Varón,10729,2009,11235
+2009,46,La Rioja,40-44 años,40-49 años,Mujer,9277,2009,9565
+2009,46,La Rioja,40-44 años,40-49 años,Varón,9272,2009,9507
+2009,46,La Rioja,45-49 años,40-49 años,Mujer,8453,2009,8845
+2009,46,La Rioja,45-49 años,40-49 años,Varón,8554,2009,8858
+2009,46,La Rioja,50-54 años,50-59 años,Mujer,7476,2009,7848
+2009,46,La Rioja,50-54 años,50-59 años,Varón,7638,2009,7973
+2009,46,La Rioja,55-59 años,50-59 años,Mujer,6299,2009,6940
+2009,46,La Rioja,55-59 años,50-59 años,Varón,6370,2009,7019
+2009,46,La Rioja,60-64 años,60-69 años,Mujer,5192,2009,5602
+2009,46,La Rioja,60-64 años,60-69 años,Varón,5026,2009,5531
+2009,46,La Rioja,65-69 años,60-69 años,Mujer,4074,2009,4296
+2009,46,La Rioja,65-69 años,60-69 años,Varón,3761,2009,4058
+2009,46,La Rioja,70-74 años,70-79 años,Mujer,3299,2009,3428
+2009,46,La Rioja,70-74 años,70-79 años,Varón,2744,2009,2793
+2009,46,La Rioja,75-79 años,70-79 años,Mujer,2533,2009,2666
+2009,46,La Rioja,75-79 años,70-79 años,Varón,1894,2009,1988
+2009,46,La Rioja,80+ años,80+ años,Mujer,3088,2009,3380
+2009,46,La Rioja,80+ años,80+ años,Varón,1840,2009,1961
+2009,50,Mendoza,20-24 años,20-29 años,Mujer,73997,2009,74634
+2009,50,Mendoza,20-24 años,20-29 años,Varón,75186,2009,75959
+2009,50,Mendoza,25-29 años,20-29 años,Mujer,67059,2009,68614
+2009,50,Mendoza,25-29 años,20-29 años,Varón,66958,2009,69161
+2009,50,Mendoza,30-34 años,30-39 años,Mujer,63381,2009,66688
+2009,50,Mendoza,30-34 años,30-39 años,Varón,61124,2009,65347
+2009,50,Mendoza,35-39 años,30-39 años,Mujer,56575,2009,58722
+2009,50,Mendoza,35-39 años,30-39 años,Varón,53565,2009,56270
+2009,50,Mendoza,40-44 años,40-49 años,Mujer,50102,2009,50641
+2009,50,Mendoza,40-44 años,40-49 años,Varón,46965,2009,47655
+2009,50,Mendoza,45-49 años,40-49 años,Mujer,47377,2009,47710
+2009,50,Mendoza,45-49 años,40-49 años,Varón,43760,2009,44110
+2009,50,Mendoza,50-54 años,50-59 años,Mujer,45304,2009,45616
+2009,50,Mendoza,50-54 años,50-59 años,Varón,41417,2009,41781
+2009,50,Mendoza,55-59 años,50-59 años,Mujer,42086,2009,43908
+2009,50,Mendoza,55-59 años,50-59 años,Varón,37708,2009,39383
+2009,50,Mendoza,60-64 años,60-69 años,Mujer,37048,2009,39318
+2009,50,Mendoza,60-64 años,60-69 años,Varón,32404,2009,34473
+2009,50,Mendoza,65-69 años,60-69 años,Mujer,30688,2009,32053
+2009,50,Mendoza,65-69 años,60-69 años,Varón,25908,2009,26982
+2009,50,Mendoza,70-74 años,70-79 años,Mujer,25222,2009,25403
+2009,50,Mendoza,70-74 años,70-79 años,Varón,19761,2009,19972
+2009,50,Mendoza,75-79 años,70-79 años,Mujer,19958,2009,20597
+2009,50,Mendoza,75-79 años,70-79 años,Varón,14304,2009,14705
+2009,50,Mendoza,80+ años,80+ años,Mujer,24629,2009,26795
+2009,50,Mendoza,80+ años,80+ años,Varón,13636,2009,14861
+2009,54,Misiones,20-24 años,20-29 años,Mujer,46495,2009,47602
+2009,54,Misiones,20-24 años,20-29 años,Varón,45521,2009,46576
+2009,54,Misiones,25-29 años,20-29 años,Mujer,40229,2009,41976
+2009,54,Misiones,25-29 años,20-29 años,Varón,38825,2009,40583
+2009,54,Misiones,30-34 años,30-39 años,Mujer,37239,2009,39332
+2009,54,Misiones,30-34 años,30-39 años,Varón,35812,2009,38075
+2009,54,Misiones,35-39 años,30-39 años,Mujer,33056,2009,33867
+2009,54,Misiones,35-39 años,30-39 años,Varón,32068,2009,32837
+2009,54,Misiones,40-44 años,40-49 años,Mujer,29263,2009,29813
+2009,54,Misiones,40-44 años,40-49 años,Varón,28676,2009,28980
+2009,54,Misiones,45-49 años,40-49 años,Mujer,26642,2009,28037
+2009,54,Misiones,45-49 años,40-49 años,Varón,27002,2009,28019
+2009,54,Misiones,50-54 años,50-59 años,Mujer,22896,2009,24634
+2009,54,Misiones,50-54 años,50-59 años,Varón,23694,2009,25147
+2009,54,Misiones,55-59 años,50-59 años,Mujer,18546,2009,20437
+2009,54,Misiones,55-59 años,50-59 años,Varón,19039,2009,20976
+2009,54,Misiones,60-64 años,60-69 años,Mujer,15025,2009,15965
+2009,54,Misiones,60-64 años,60-69 años,Varón,15064,2009,16032
+2009,54,Misiones,65-69 años,60-69 años,Mujer,11735,2009,12375
+2009,54,Misiones,65-69 años,60-69 años,Varón,11468,2009,12022
+2009,54,Misiones,70-74 años,70-79 años,Mujer,9327,2009,9829
+2009,54,Misiones,70-74 años,70-79 años,Varón,8546,2009,8902
+2009,54,Misiones,75-79 años,70-79 años,Mujer,6691,2009,7278
+2009,54,Misiones,75-79 años,70-79 años,Varón,5606,2009,5988
+2009,54,Misiones,80+ años,80+ años,Mujer,7267,2009,7965
+2009,54,Misiones,80+ años,80+ años,Varón,4996,2009,5466
+2009,58,Neuquén,20-24 años,20-29 años,Mujer,23393,2009,23866
+2009,58,Neuquén,20-24 años,20-29 años,Varón,23933,2009,24515
+2009,58,Neuquén,25-29 años,20-29 años,Mujer,22656,2009,23455
+2009,58,Neuquén,25-29 años,20-29 años,Varón,22207,2009,23213
+2009,58,Neuquén,30-34 años,30-39 años,Mujer,22376,2009,23875
+2009,58,Neuquén,30-34 años,30-39 años,Varón,21763,2009,23343
+2009,58,Neuquén,35-39 años,30-39 años,Mujer,20285,2009,21166
+2009,58,Neuquén,35-39 años,30-39 años,Varón,19558,2009,20596
+2009,58,Neuquén,40-44 años,40-49 años,Mujer,17530,2009,18186
+2009,58,Neuquén,40-44 años,40-49 años,Varón,16970,2009,17436
+2009,58,Neuquén,45-49 años,40-49 años,Mujer,15787,2009,16661
+2009,58,Neuquén,45-49 años,40-49 años,Varón,15228,2009,15864
+2009,58,Neuquén,50-54 años,50-59 años,Mujer,13562,2009,14482
+2009,58,Neuquén,50-54 años,50-59 años,Varón,13344,2009,14066
+2009,58,Neuquén,55-59 años,50-59 años,Mujer,10787,2009,12195
+2009,58,Neuquén,55-59 años,50-59 años,Varón,10735,2009,11923
+2009,58,Neuquén,60-64 años,60-69 años,Mujer,8480,2009,9631
+2009,58,Neuquén,60-64 años,60-69 años,Varón,8305,2009,9340
+2009,58,Neuquén,65-69 años,60-69 años,Mujer,6336,2009,7025
+2009,58,Neuquén,65-69 años,60-69 años,Varón,5938,2009,6597
+2009,58,Neuquén,70-74 años,70-79 años,Mujer,4831,2009,5186
+2009,58,Neuquén,70-74 años,70-79 años,Varón,4119,2009,4476
+2009,58,Neuquén,75-79 años,70-79 años,Mujer,3474,2009,3816
+2009,58,Neuquén,75-79 años,70-79 años,Varón,2637,2009,2895
+2009,58,Neuquén,80+ años,80+ años,Mujer,4126,2009,4648
+2009,58,Neuquén,80+ años,80+ años,Varón,2334,2009,2663
+2009,62,Río Negro,20-24 años,20-29 años,Mujer,25229,2009,25729
+2009,62,Río Negro,20-24 años,20-29 años,Varón,25784,2009,26465
+2009,62,Río Negro,25-29 años,20-29 años,Mujer,24145,2009,25138
+2009,62,Río Negro,25-29 años,20-29 años,Varón,23900,2009,25193
+2009,62,Río Negro,30-34 años,30-39 años,Mujer,23963,2009,25590
+2009,62,Río Negro,30-34 años,30-39 años,Varón,23128,2009,24917
+2009,62,Río Negro,35-39 años,30-39 años,Mujer,21943,2009,22681
+2009,62,Río Negro,35-39 años,30-39 años,Varón,21229,2009,22159
+2009,62,Río Negro,40-44 años,40-49 años,Mujer,19514,2009,19952
+2009,62,Río Negro,40-44 años,40-49 años,Varón,18933,2009,19326
+2009,62,Río Negro,45-49 años,40-49 años,Mujer,18076,2009,18768
+2009,62,Río Negro,45-49 años,40-49 años,Varón,17565,2009,18110
+2009,62,Río Negro,50-54 años,50-59 años,Mujer,16178,2009,16863
+2009,62,Río Negro,50-54 años,50-59 años,Varón,15916,2009,16395
+2009,62,Río Negro,55-59 años,50-59 años,Mujer,13716,2009,14820
+2009,62,Río Negro,55-59 años,50-59 años,Varón,13575,2009,14518
+2009,62,Río Negro,60-64 años,60-69 años,Mujer,11459,2009,12516
+2009,62,Río Negro,60-64 años,60-69 años,Varón,11261,2009,12167
+2009,62,Río Negro,65-69 años,60-69 años,Mujer,9101,2009,9783
+2009,62,Río Negro,65-69 años,60-69 años,Varón,8475,2009,9159
+2009,62,Río Negro,70-74 años,70-79 años,Mujer,7119,2009,7441
+2009,62,Río Negro,70-74 años,70-79 años,Varón,6262,2009,6554
+2009,62,Río Negro,75-79 años,70-79 años,Mujer,5329,2009,5708
+2009,62,Río Negro,75-79 años,70-79 años,Varón,4228,2009,4502
+2009,62,Río Negro,80+ años,80+ años,Mujer,6548,2009,7326
+2009,62,Río Negro,80+ años,80+ años,Varón,3889,2009,4361
+2009,66,Salta,20-24 años,20-29 años,Mujer,52300,2009,52827
+2009,66,Salta,20-24 años,20-29 años,Varón,51422,2009,52103
+2009,66,Salta,25-29 años,20-29 años,Mujer,46931,2009,48278
+2009,66,Salta,25-29 años,20-29 años,Varón,44821,2009,46417
+2009,66,Salta,30-34 años,30-39 años,Mujer,43705,2009,46497
+2009,66,Salta,30-34 años,30-39 años,Varón,41461,2009,44096
+2009,66,Salta,35-39 años,30-39 años,Mujer,38275,2009,39959
+2009,66,Salta,35-39 años,30-39 años,Varón,36203,2009,37727
+2009,66,Salta,40-44 años,40-49 años,Mujer,32652,2009,33619
+2009,66,Salta,40-44 años,40-49 años,Varón,31227,2009,32052
+2009,66,Salta,45-49 años,40-49 años,Mujer,29326,2009,30202
+2009,66,Salta,45-49 años,40-49 años,Varón,28300,2009,29026
+2009,66,Salta,50-54 años,50-59 años,Mujer,26259,2009,27088
+2009,66,Salta,50-54 años,50-59 años,Varón,24996,2009,25723
+2009,66,Salta,55-59 años,50-59 años,Mujer,22299,2009,24053
+2009,66,Salta,55-59 años,50-59 años,Varón,21080,2009,22580
+2009,66,Salta,60-64 años,60-69 años,Mujer,18531,2009,19909
+2009,66,Salta,60-64 años,60-69 años,Varón,17209,2009,18287
+2009,66,Salta,65-69 años,60-69 años,Mujer,14562,2009,15434
+2009,66,Salta,65-69 años,60-69 años,Varón,13312,2009,14016
+2009,66,Salta,70-74 años,70-79 años,Mujer,11543,2009,11980
+2009,66,Salta,70-74 años,70-79 años,Varón,10103,2009,10462
+2009,66,Salta,75-79 años,70-79 años,Mujer,8537,2009,9155
+2009,66,Salta,75-79 años,70-79 años,Varón,6932,2009,7382
+2009,66,Salta,80+ años,80+ años,Mujer,9820,2009,10795
+2009,66,Salta,80+ años,80+ años,Varón,6245,2009,6793
+2009,70,San Juan,20-24 años,20-29 años,Mujer,27780,2009,27803
+2009,70,San Juan,20-24 años,20-29 años,Varón,28499,2009,28599
+2009,70,San Juan,25-29 años,20-29 años,Mujer,25883,2009,26169
+2009,70,San Juan,25-29 años,20-29 años,Varón,25907,2009,26426
+2009,70,San Juan,30-34 años,30-39 años,Mujer,24557,2009,25612
+2009,70,San Juan,30-34 años,30-39 años,Varón,24040,2009,25663
+2009,70,San Juan,35-39 años,30-39 años,Mujer,22148,2009,23094
+2009,70,San Juan,35-39 años,30-39 años,Varón,21278,2009,22494
+2009,70,San Juan,40-44 años,40-49 años,Mujer,19355,2009,19546
+2009,70,San Juan,40-44 años,40-49 años,Varón,18172,2009,18564
+2009,70,San Juan,45-49 años,40-49 años,Mujer,18041,2009,18185
+2009,70,San Juan,45-49 años,40-49 años,Varón,16686,2009,16890
+2009,70,San Juan,50-54 años,50-59 años,Mujer,17180,2009,17291
+2009,70,San Juan,50-54 años,50-59 años,Varón,15460,2009,15530
+2009,70,San Juan,55-59 años,50-59 años,Mujer,15620,2009,16329
+2009,70,San Juan,55-59 años,50-59 años,Varón,13958,2009,14534
+2009,70,San Juan,60-64 años,60-69 años,Mujer,13552,2009,14407
+2009,70,San Juan,60-64 años,60-69 años,Varón,11723,2009,12586
+2009,70,San Juan,65-69 años,60-69 años,Mujer,10971,2009,11545
+2009,70,San Juan,65-69 años,60-69 años,Varón,9201,2009,9676
+2009,70,San Juan,70-74 años,70-79 años,Mujer,8609,2009,8699
+2009,70,San Juan,70-74 años,70-79 años,Varón,6662,2009,6710
+2009,70,San Juan,75-79 años,70-79 años,Mujer,6459,2009,6691
+2009,70,San Juan,75-79 años,70-79 años,Varón,4698,2009,4800
+2009,70,San Juan,80+ años,80+ años,Mujer,7218,2009,7860
+2009,70,San Juan,80+ años,80+ años,Varón,4141,2009,4512
+2009,74,San Luis,20-24 años,20-29 años,Mujer,17328,2009,17510
+2009,74,San Luis,20-24 años,20-29 años,Varón,17318,2009,17490
+2009,74,San Luis,25-29 años,20-29 años,Mujer,16241,2009,16955
+2009,74,San Luis,25-29 años,20-29 años,Varón,15951,2009,16581
+2009,74,San Luis,30-34 años,30-39 años,Mujer,15899,2009,17206
+2009,74,San Luis,30-34 años,30-39 años,Varón,15848,2009,16967
+2009,74,San Luis,35-39 años,30-39 años,Mujer,14129,2009,14823
+2009,74,San Luis,35-39 años,30-39 años,Varón,14138,2009,14825
+2009,74,San Luis,40-44 años,40-49 años,Mujer,12444,2009,12867
+2009,74,San Luis,40-44 años,40-49 años,Varón,12542,2009,12993
+2009,74,San Luis,45-49 años,40-49 años,Mujer,11532,2009,11996
+2009,74,San Luis,45-49 años,40-49 años,Varón,11538,2009,11983
+2009,74,San Luis,50-54 años,50-59 años,Mujer,10537,2009,10991
+2009,74,San Luis,50-54 años,50-59 años,Varón,10484,2009,10792
+2009,74,San Luis,55-59 años,50-59 años,Mujer,9343,2009,9999
+2009,74,San Luis,55-59 años,50-59 años,Varón,9101,2009,9720
+2009,74,San Luis,60-64 años,60-69 años,Mujer,7957,2009,8686
+2009,74,San Luis,60-64 años,60-69 años,Varón,7576,2009,8248
+2009,74,San Luis,65-69 años,60-69 años,Mujer,6527,2009,7089
+2009,74,San Luis,65-69 años,60-69 años,Varón,5915,2009,6342
+2009,74,San Luis,70-74 años,70-79 años,Mujer,5178,2009,5361
+2009,74,San Luis,70-74 años,70-79 años,Varón,4246,2009,4428
+2009,74,San Luis,75-79 años,70-79 años,Mujer,3889,2009,4146
+2009,74,San Luis,75-79 años,70-79 años,Varón,2900,2009,3125
+2009,74,San Luis,80+ años,80+ años,Mujer,4882,2009,5366
+2009,74,San Luis,80+ años,80+ años,Varón,2615,2009,2829
+2009,78,Santa Cruz,20-24 años,20-29 años,Mujer,10272,2009,11255
+2009,78,Santa Cruz,20-24 años,20-29 años,Varón,11220,2009,12416
+2009,78,Santa Cruz,25-29 años,20-29 años,Mujer,10698,2009,11885
+2009,78,Santa Cruz,25-29 años,20-29 años,Varón,11432,2009,13062
+2009,78,Santa Cruz,30-34 años,30-39 años,Mujer,10499,2009,11848
+2009,78,Santa Cruz,30-34 años,30-39 años,Varón,11085,2009,12985
+2009,78,Santa Cruz,35-39 años,30-39 años,Mujer,9190,2009,9799
+2009,78,Santa Cruz,35-39 años,30-39 años,Varón,9748,2009,10603
+2009,78,Santa Cruz,40-44 años,40-49 años,Mujer,7672,2009,8053
+2009,78,Santa Cruz,40-44 años,40-49 años,Varón,8330,2009,8657
+2009,78,Santa Cruz,45-49 años,40-49 años,Mujer,6747,2009,7244
+2009,78,Santa Cruz,45-49 años,40-49 años,Varón,7418,2009,7945
+2009,78,Santa Cruz,50-54 años,50-59 años,Mujer,5554,2009,6095
+2009,78,Santa Cruz,50-54 años,50-59 años,Varón,6242,2009,6795
+2009,78,Santa Cruz,55-59 años,50-59 años,Mujer,4347,2009,4900
+2009,78,Santa Cruz,55-59 años,50-59 años,Varón,4751,2009,5336
+2009,78,Santa Cruz,60-64 años,60-69 años,Mujer,3414,2009,3756
+2009,78,Santa Cruz,60-64 años,60-69 años,Varón,3592,2009,3829
+2009,78,Santa Cruz,65-69 años,60-69 años,Mujer,2613,2009,2844
+2009,78,Santa Cruz,65-69 años,60-69 años,Varón,2495,2009,2629
+2009,78,Santa Cruz,70-74 años,70-79 años,Mujer,1887,2009,2049
+2009,78,Santa Cruz,70-74 años,70-79 años,Varón,1786,2009,1870
+2009,78,Santa Cruz,75-79 años,70-79 años,Mujer,1302,2009,1463
+2009,78,Santa Cruz,75-79 años,70-79 años,Varón,1077,2009,1191
+2009,78,Santa Cruz,80+ años,80+ años,Mujer,1330,2009,1495
+2009,78,Santa Cruz,80+ años,80+ años,Varón,853,2009,984
+2009,82,Santa Fe,20-24 años,20-29 años,Mujer,134946,2009,135228
+2009,82,Santa Fe,20-24 años,20-29 años,Varón,135589,2009,135868
+2009,82,Santa Fe,25-29 años,20-29 años,Mujer,126497,2009,131404
+2009,82,Santa Fe,25-29 años,20-29 años,Varón,126021,2009,131552
+2009,82,Santa Fe,30-34 años,30-39 años,Mujer,119308,2009,127131
+2009,82,Santa Fe,30-34 años,30-39 años,Varón,117075,2009,125448
+2009,82,Santa Fe,35-39 años,30-39 años,Mujer,104469,2009,106784
+2009,82,Santa Fe,35-39 años,30-39 años,Varón,101634,2009,104200
+2009,82,Santa Fe,40-44 años,40-49 años,Mujer,93848,2009,94373
+2009,82,Santa Fe,40-44 años,40-49 años,Varón,90682,2009,91312
+2009,82,Santa Fe,45-49 años,40-49 años,Mujer,91506,2009,92785
+2009,82,Santa Fe,45-49 años,40-49 años,Varón,87292,2009,88330
+2009,82,Santa Fe,50-54 años,50-59 años,Mujer,87024,2009,88072
+2009,82,Santa Fe,50-54 años,50-59 años,Varón,81837,2009,82833
+2009,82,Santa Fe,55-59 años,50-59 años,Mujer,79712,2009,82277
+2009,82,Santa Fe,55-59 años,50-59 años,Varón,73400,2009,75919
+2009,82,Santa Fe,60-64 años,60-69 años,Mujer,72035,2009,74102
+2009,82,Santa Fe,60-64 años,60-69 años,Varón,63070,2009,64976
+2009,82,Santa Fe,65-69 años,60-69 años,Mujer,62067,2009,62846
+2009,82,Santa Fe,65-69 años,60-69 años,Varón,50855,2009,51678
+2009,82,Santa Fe,70-74 años,70-79 años,Mujer,54462,2009,54369
+2009,82,Santa Fe,70-74 años,70-79 años,Varón,40161,2009,40250
+2009,82,Santa Fe,75-79 años,70-79 años,Mujer,46168,2009,46489
+2009,82,Santa Fe,75-79 años,70-79 años,Varón,29426,2009,29661
+2009,82,Santa Fe,80+ años,80+ años,Mujer,63876,2009,67309
+2009,82,Santa Fe,80+ años,80+ años,Varón,29393,2009,30934
+2009,86,Santiago del Estero,20-24 años,20-29 años,Mujer,36070,2009,36039
+2009,86,Santiago del Estero,20-24 años,20-29 años,Varón,35902,2009,35768
+2009,86,Santiago del Estero,25-29 años,20-29 años,Mujer,32711,2009,33652
+2009,86,Santiago del Estero,25-29 años,20-29 años,Varón,31847,2009,32587
+2009,86,Santiago del Estero,30-34 años,30-39 años,Mujer,30338,2009,32713
+2009,86,Santiago del Estero,30-34 años,30-39 años,Varón,29643,2009,31550
+2009,86,Santiago del Estero,35-39 años,30-39 años,Mujer,25985,2009,27236
+2009,86,Santiago del Estero,35-39 años,30-39 años,Varón,25623,2009,26810
+2009,86,Santiago del Estero,40-44 años,40-49 años,Mujer,21991,2009,22255
+2009,86,Santiago del Estero,40-44 años,40-49 años,Varón,22295,2009,22630
+2009,86,Santiago del Estero,45-49 años,40-49 años,Mujer,19986,2009,20371
+2009,86,Santiago del Estero,45-49 años,40-49 años,Varón,20415,2009,20669
+2009,86,Santiago del Estero,50-54 años,50-59 años,Mujer,18619,2009,19147
+2009,86,Santiago del Estero,50-54 años,50-59 años,Varón,18983,2009,19275
+2009,86,Santiago del Estero,55-59 años,50-59 años,Mujer,16154,2009,17131
+2009,86,Santiago del Estero,55-59 años,50-59 años,Varón,16470,2009,17632
+2009,86,Santiago del Estero,60-64 años,60-69 años,Mujer,13740,2009,14221
+2009,86,Santiago del Estero,60-64 años,60-69 años,Varón,13514,2009,14217
+2009,86,Santiago del Estero,65-69 años,60-69 años,Mujer,11188,2009,11560
+2009,86,Santiago del Estero,65-69 años,60-69 años,Varón,10382,2009,10823
+2009,86,Santiago del Estero,70-74 años,70-79 años,Mujer,9325,2009,9447
+2009,86,Santiago del Estero,70-74 años,70-79 años,Varón,7881,2009,8010
+2009,86,Santiago del Estero,75-79 años,70-79 años,Mujer,7097,2009,7322
+2009,86,Santiago del Estero,75-79 años,70-79 años,Varón,5358,2009,5538
+2009,86,Santiago del Estero,80+ años,80+ años,Mujer,8978,2009,9462
+2009,86,Santiago del Estero,80+ años,80+ años,Varón,5325,2009,5468
+2009,90,Tucumán,20-24 años,20-29 años,Mujer,64450,2009,64145
+2009,90,Tucumán,20-24 años,20-29 años,Varón,64109,2009,63837
+2009,90,Tucumán,25-29 años,20-29 años,Mujer,58036,2009,59743
+2009,90,Tucumán,25-29 años,20-29 años,Varón,56833,2009,58760
+2009,90,Tucumán,30-34 años,30-39 años,Mujer,54432,2009,58606
+2009,90,Tucumán,30-34 años,30-39 años,Varón,52682,2009,57210
+2009,90,Tucumán,35-39 años,30-39 años,Mujer,46103,2009,47632
+2009,90,Tucumán,35-39 años,30-39 años,Varón,44078,2009,45885
+2009,90,Tucumán,40-44 años,40-49 años,Mujer,39683,2009,39744
+2009,90,Tucumán,40-44 años,40-49 años,Varón,37819,2009,37992
+2009,90,Tucumán,45-49 años,40-49 años,Mujer,37924,2009,38087
+2009,90,Tucumán,45-49 años,40-49 años,Varón,35627,2009,35635
+2009,90,Tucumán,50-54 años,50-59 años,Mujer,36555,2009,37567
+2009,90,Tucumán,50-54 años,50-59 años,Varón,34362,2009,34879
+2009,90,Tucumán,55-59 años,50-59 años,Mujer,31176,2009,34092
+2009,90,Tucumán,55-59 años,50-59 años,Varón,29579,2009,32454
+2009,90,Tucumán,60-64 años,60-69 años,Mujer,25988,2009,27793
+2009,90,Tucumán,60-64 años,60-69 años,Varón,23783,2009,25794
+2009,90,Tucumán,65-69 años,60-69 años,Mujer,20584,2009,21092
+2009,90,Tucumán,65-69 años,60-69 años,Varón,17712,2009,18363
+2009,90,Tucumán,70-74 años,70-79 años,Mujer,16701,2009,16786
+2009,90,Tucumán,70-74 años,70-79 años,Varón,13032,2009,13076
+2009,90,Tucumán,75-79 años,70-79 años,Mujer,13359,2009,13914
+2009,90,Tucumán,75-79 años,70-79 años,Varón,9311,2009,9580
+2009,90,Tucumán,80+ años,80+ años,Mujer,15501,2009,16936
+2009,90,Tucumán,80+ años,80+ años,Varón,8753,2009,9437
+2009,94,Tierra del Fuego,20-24 años,20-29 años,Mujer,4905,2009,5334
+2009,94,Tierra del Fuego,20-24 años,20-29 años,Varón,5181,2009,5718
+2009,94,Tierra del Fuego,25-29 años,20-29 años,Mujer,5197,2009,5613
+2009,94,Tierra del Fuego,25-29 años,20-29 años,Varón,5262,2009,5861
+2009,94,Tierra del Fuego,30-34 años,30-39 años,Mujer,5261,2009,5685
+2009,94,Tierra del Fuego,30-34 años,30-39 años,Varón,5374,2009,5951
+2009,94,Tierra del Fuego,35-39 años,30-39 años,Mujer,4849,2009,4899
+2009,94,Tierra del Fuego,35-39 años,30-39 años,Varón,4991,2009,5032
+2009,94,Tierra del Fuego,40-44 años,40-49 años,Mujer,4247,2009,4322
+2009,94,Tierra del Fuego,40-44 años,40-49 años,Varón,4401,2009,4384
+2009,94,Tierra del Fuego,45-49 años,40-49 años,Mujer,3868,2009,4343
+2009,94,Tierra del Fuego,45-49 años,40-49 años,Varón,4162,2009,4548
+2009,94,Tierra del Fuego,50-54 años,50-59 años,Mujer,2898,2009,3463
+2009,94,Tierra del Fuego,50-54 años,50-59 años,Varón,3374,2009,3888
+2009,94,Tierra del Fuego,55-59 años,50-59 años,Mujer,1953,2009,2447
+2009,94,Tierra del Fuego,55-59 años,50-59 años,Varón,2170,2009,2689
+2009,94,Tierra del Fuego,60-64 años,60-69 años,Mujer,1373,2009,1631
+2009,94,Tierra del Fuego,60-64 años,60-69 años,Varón,1428,2009,1742
+2009,94,Tierra del Fuego,65-69 años,60-69 años,Mujer,911,2009,1046
+2009,94,Tierra del Fuego,65-69 años,60-69 años,Varón,890,2009,1024
+2009,94,Tierra del Fuego,70-74 años,70-79 años,Mujer,645,2009,713
+2009,94,Tierra del Fuego,70-74 años,70-79 años,Varón,558,2009,631
+2009,94,Tierra del Fuego,75-79 años,70-79 años,Mujer,420,2009,480
+2009,94,Tierra del Fuego,75-79 años,70-79 años,Varón,319,2009,358
+2009,94,Tierra del Fuego,80+ años,80+ años,Mujer,381,2009,532
+2009,94,Tierra del Fuego,80+ años,80+ años,Varón,217,2009,268
 2013,2,CABA,20-24 años,20-29 años,Mujer,107904,2013,116572
 2013,2,CABA,20-24 años,20-29 años,Varón,104110,2013,111726
 2013,2,CABA,25-29 años,20-29 años,Mujer,123291,2013,122615
@@ -1871,627 +2495,3 @@ anio,prov_id,prov_nombre,grupo_edad_5,grupo_edad_10,sexo,proy_pob,anio_enfr,pob_
 2018,94,Tierra del Fuego,75-79 años,70-79 años,Varón,584,2018,358
 2018,94,Tierra del Fuego,80+ años,80+ años,Mujer,847,2018,532
 2018,94,Tierra del Fuego,80+ años,80+ años,Varón,480,2018,268
-2009,2,CABA,20-24 años,20-29 años,Mujer,115780.4,2009,116572
-2009,2,CABA,20-24 años,20-29 años,Varón,110676.2,2009,111726
-2009,2,CABA,25-29 años,20-29 años,Mujer,124309.4,2009,122615
-2009,2,CABA,25-29 años,20-29 años,Varón,117560.8,2009,116490
-2009,2,CABA,30-34 años,30-39 años,Mujer,122610,2009,123148
-2009,2,CABA,30-34 años,30-39 años,Varón,116240.6,2009,117011
-2009,2,CABA,35-39 años,30-39 años,Mujer,111101.8,2009,112931
-2009,2,CABA,35-39 años,30-39 años,Varón,104393.6,2009,105455
-2009,2,CABA,40-44 años,40-49 años,Mujer,95632.6,2009,95002
-2009,2,CABA,40-44 años,40-49 años,Varón,86908.2,2009,85885
-2009,2,CABA,45-49 años,40-49 años,Mujer,92023.6,2009,90855
-2009,2,CABA,45-49 años,40-49 años,Varón,80029.2,2009,78726
-2009,2,CABA,50-54 años,50-59 años,Mujer,93123.8,2009,92557
-2009,2,CABA,50-54 años,50-59 años,Varón,77461.6,2009,76659
-2009,2,CABA,55-59 años,50-59 años,Mujer,89463.2,2009,88716
-2009,2,CABA,55-59 años,50-59 años,Varón,70845.4,2009,70233
-2009,2,CABA,60-64 años,60-69 años,Mujer,84814.2,2009,84016
-2009,2,CABA,60-64 años,60-69 años,Varón,63600.2,2009,63364
-2009,2,CABA,65-69 años,60-69 años,Mujer,76436.6,2009,75282
-2009,2,CABA,65-69 años,60-69 años,Varón,53675,2009,53532
-2009,2,CABA,70-74 años,70-79 años,Mujer,67480.6,2009,65286
-2009,2,CABA,70-74 años,70-79 años,Varón,43631.2,2009,42547
-2009,2,CABA,75-79 años,70-79 años,Mujer,59626.4,2009,56642
-2009,2,CABA,75-79 años,70-79 años,Varón,33781.8,2009,32679
-2009,2,CABA,80+ años,80+ años,Mujer,101411.8,2009,101710
-2009,2,CABA,80+ años,80+ años,Varón,42379.4,2009,43137
-2009,6,Buenos Aires,20-24 años,20-29 años,Mujer,627052.4,2009,637039
-2009,6,Buenos Aires,20-24 años,20-29 años,Varón,635064,2009,643442
-2009,6,Buenos Aires,25-29 años,20-29 años,Mujer,609088.6,2009,604955
-2009,6,Buenos Aires,25-29 años,20-29 años,Varón,611651,2009,604625
-2009,6,Buenos Aires,30-34 años,30-39 años,Mujer,593175.6,2009,607257
-2009,6,Buenos Aires,30-34 años,30-39 años,Varón,588012.6,2009,598679
-2009,6,Buenos Aires,35-39 años,30-39 años,Mujer,528061.8,2009,541631
-2009,6,Buenos Aires,35-39 años,30-39 años,Varón,516953.2,2009,528202
-2009,6,Buenos Aires,40-44 años,40-49 años,Mujer,470167.6,2009,477017
-2009,6,Buenos Aires,40-44 años,40-49 años,Varón,453622.2,2009,459666
-2009,6,Buenos Aires,45-49 años,40-49 años,Mujer,446366.2,2009,450322
-2009,6,Buenos Aires,45-49 años,40-49 años,Varón,421369.8,2009,427517
-2009,6,Buenos Aires,50-54 años,50-59 años,Mujer,418236.8,2009,421117
-2009,6,Buenos Aires,50-54 años,50-59 años,Varón,389460.6,2009,394748
-2009,6,Buenos Aires,55-59 años,50-59 años,Mujer,385127.2,2009,390329
-2009,6,Buenos Aires,55-59 años,50-59 años,Varón,349187.4,2009,354844
-2009,6,Buenos Aires,60-64 años,60-69 años,Mujer,341501.6,2009,349449
-2009,6,Buenos Aires,60-64 años,60-69 años,Varón,301730.2,2009,308412
-2009,6,Buenos Aires,65-69 años,60-69 años,Mujer,282723.2,2009,286506
-2009,6,Buenos Aires,65-69 años,60-69 años,Varón,234756.2,2009,238875
-2009,6,Buenos Aires,70-74 años,70-79 años,Mujer,238036.2,2009,236637
-2009,6,Buenos Aires,70-74 años,70-79 años,Varón,178368.6,2009,178795
-2009,6,Buenos Aires,75-79 años,70-79 años,Mujer,200479,2009,199627
-2009,6,Buenos Aires,75-79 años,70-79 años,Varón,132180.4,2009,132750
-2009,6,Buenos Aires,80+ años,80+ años,Mujer,260940.2,2009,273339
-2009,6,Buenos Aires,80+ años,80+ años,Varón,125759,2009,131209
-2009,10,Catamarca,20-24 años,20-29 años,Mujer,15248.6,2009,15210
-2009,10,Catamarca,20-24 años,20-29 años,Varón,15676.4,2009,15603
-2009,10,Catamarca,25-29 años,20-29 años,Mujer,14423.4,2009,14318
-2009,10,Catamarca,25-29 años,20-29 años,Varón,14667.2,2009,14479
-2009,10,Catamarca,30-34 años,30-39 años,Mujer,14192,2009,14626
-2009,10,Catamarca,30-34 años,30-39 años,Varón,14203.8,2009,14522
-2009,10,Catamarca,35-39 años,30-39 años,Mujer,12067.6,2009,12433
-2009,10,Catamarca,35-39 años,30-39 años,Varón,12162.4,2009,12457
-2009,10,Catamarca,40-44 años,40-49 años,Mujer,10268,2009,10434
-2009,10,Catamarca,40-44 años,40-49 años,Varón,10390.8,2009,10481
-2009,10,Catamarca,45-49 años,40-49 años,Mujer,9324.4,2009,9405
-2009,10,Catamarca,45-49 años,40-49 años,Varón,9404.8,2009,9436
-2009,10,Catamarca,50-54 años,50-59 años,Mujer,8646.6,2009,8752
-2009,10,Catamarca,50-54 años,50-59 años,Varón,8729,2009,8823
-2009,10,Catamarca,55-59 años,50-59 años,Mujer,7655.6,2009,7896
-2009,10,Catamarca,55-59 años,50-59 años,Varón,7683,2009,7911
-2009,10,Catamarca,60-64 años,60-69 años,Mujer,6292.8,2009,6511
-2009,10,Catamarca,60-64 años,60-69 años,Varón,6060.4,2009,6323
-2009,10,Catamarca,65-69 años,60-69 años,Mujer,5055.8,2009,5165
-2009,10,Catamarca,65-69 años,60-69 años,Varón,4529.6,2009,4671
-2009,10,Catamarca,70-74 años,70-79 años,Mujer,4024.4,2009,4029
-2009,10,Catamarca,70-74 años,70-79 años,Varón,3289.4,2009,3322
-2009,10,Catamarca,75-79 años,70-79 años,Mujer,3323,2009,3361
-2009,10,Catamarca,75-79 años,70-79 años,Varón,2344.2,2009,2371
-2009,10,Catamarca,80+ años,80+ años,Mujer,4131.4,2009,4389
-2009,10,Catamarca,80+ años,80+ años,Varón,2290.4,2009,2409
-2009,14,Córdoba,20-24 años,20-29 años,Mujer,138729.8,2009,139053
-2009,14,Córdoba,20-24 años,20-29 años,Varón,139545.8,2009,139319
-2009,14,Córdoba,25-29 años,20-29 años,Mujer,135787.4,2009,133465
-2009,14,Córdoba,25-29 años,20-29 años,Varón,135855.8,2009,133052
-2009,14,Córdoba,30-34 años,30-39 años,Mujer,126286.8,2009,129784
-2009,14,Córdoba,30-34 años,30-39 años,Varón,126098,2009,128954
-2009,14,Córdoba,35-39 años,30-39 años,Mujer,109338.6,2009,112102
-2009,14,Córdoba,35-39 años,30-39 años,Varón,107306.6,2009,109432
-2009,14,Córdoba,40-44 años,40-49 años,Mujer,98421,2009,98908
-2009,14,Córdoba,40-44 años,40-49 años,Varón,94396.2,2009,94385
-2009,14,Córdoba,45-49 años,40-49 años,Mujer,95051.4,2009,95658
-2009,14,Córdoba,45-49 años,40-49 años,Varón,89868,2009,90751
-2009,14,Córdoba,50-54 años,50-59 años,Mujer,89217.2,2009,89379
-2009,14,Córdoba,50-54 años,50-59 años,Varón,83078.8,2009,83303
-2009,14,Córdoba,55-59 años,50-59 años,Mujer,83840,2009,84417
-2009,14,Córdoba,55-59 años,50-59 años,Varón,75881,2009,76474
-2009,14,Córdoba,60-64 años,60-69 años,Mujer,76420,2009,77783
-2009,14,Córdoba,60-64 años,60-69 años,Varón,66688.2,2009,67874
-2009,14,Córdoba,65-69 años,60-69 años,Mujer,64482.6,2009,64960
-2009,14,Córdoba,65-69 años,60-69 años,Varón,53146.4,2009,53668
-2009,14,Córdoba,70-74 años,70-79 años,Mujer,53956.4,2009,53543
-2009,14,Córdoba,70-74 años,70-79 años,Varón,40660.6,2009,40548
-2009,14,Córdoba,75-79 años,70-79 años,Mujer,44615.6,2009,44385
-2009,14,Córdoba,75-79 años,70-79 años,Varón,29536.6,2009,29613
-2009,14,Córdoba,80+ años,80+ años,Mujer,58507,2009,60672
-2009,14,Córdoba,80+ años,80+ años,Varón,28019.8,2009,29155
-2009,18,Corrientes,20-24 años,20-29 años,Mujer,44469.4,2009,44791
-2009,18,Corrientes,20-24 años,20-29 años,Varón,43687,2009,43377
-2009,18,Corrientes,25-29 años,20-29 años,Mujer,39166.8,2009,38908
-2009,18,Corrientes,25-29 años,20-29 años,Varón,37742.2,2009,37356
-2009,18,Corrientes,30-34 años,30-39 años,Mujer,35489.2,2009,36594
-2009,18,Corrientes,30-34 años,30-39 años,Varón,33643.4,2009,34492
-2009,18,Corrientes,35-39 años,30-39 años,Mujer,31061.6,2009,31806
-2009,18,Corrientes,35-39 años,30-39 años,Varón,29190.2,2009,29613
-2009,18,Corrientes,40-44 años,40-49 años,Mujer,28400,2009,28521
-2009,18,Corrientes,40-44 años,40-49 años,Varón,26927.2,2009,26812
-2009,18,Corrientes,45-49 años,40-49 años,Mujer,27013.4,2009,27398
-2009,18,Corrientes,45-49 años,40-49 años,Varón,25827,2009,26148
-2009,18,Corrientes,50-54 años,50-59 años,Mujer,24460,2009,25011
-2009,18,Corrientes,50-54 años,50-59 años,Varón,23834,2009,24118
-2009,18,Corrientes,55-59 años,50-59 años,Mujer,21115.6,2009,21860
-2009,18,Corrientes,55-59 años,50-59 años,Varón,20989.8,2009,21690
-2009,18,Corrientes,60-64 años,60-69 años,Mujer,17254.8,2009,17803
-2009,18,Corrientes,60-64 años,60-69 años,Varón,16631.2,2009,17316
-2009,18,Corrientes,65-69 años,60-69 años,Mujer,14071.4,2009,14259
-2009,18,Corrientes,65-69 años,60-69 años,Varón,12461.4,2009,12833
-2009,18,Corrientes,70-74 años,70-79 años,Mujer,11408.6,2009,11572
-2009,18,Corrientes,70-74 años,70-79 años,Varón,9002.4,2009,9174
-2009,18,Corrientes,75-79 años,70-79 años,Mujer,8724.6,2009,8936
-2009,18,Corrientes,75-79 años,70-79 años,Varón,6180.2,2009,6299
-2009,18,Corrientes,80+ años,80+ años,Mujer,10444.4,2009,10929
-2009,18,Corrientes,80+ años,80+ años,Varón,5929.6,2009,6201
-2009,22,Chaco,20-24 años,20-29 años,Mujer,47012.4,2009,47229
-2009,22,Chaco,20-24 años,20-29 años,Varón,46399.4,2009,46125
-2009,22,Chaco,25-29 años,20-29 años,Mujer,42162,2009,42573
-2009,22,Chaco,25-29 años,20-29 años,Varón,40697.8,2009,40685
-2009,22,Chaco,30-34 años,30-39 años,Mujer,38102.8,2009,39599
-2009,22,Chaco,30-34 años,30-39 años,Varón,36578.6,2009,37852
-2009,22,Chaco,35-39 años,30-39 años,Mujer,32417.4,2009,33260
-2009,22,Chaco,35-39 años,30-39 años,Varón,30937.6,2009,31520
-2009,22,Chaco,40-44 años,40-49 años,Mujer,29164,2009,29298
-2009,22,Chaco,40-44 años,40-49 años,Varón,27991,2009,27830
-2009,22,Chaco,45-49 años,40-49 años,Mujer,27438.8,2009,27726
-2009,22,Chaco,45-49 años,40-49 años,Varón,26627.4,2009,26755
-2009,22,Chaco,50-54 años,50-59 años,Mujer,24787.8,2009,25393
-2009,22,Chaco,50-54 años,50-59 años,Varón,24639.8,2009,24995
-2009,22,Chaco,55-59 años,50-59 años,Mujer,20652.2,2009,21502
-2009,22,Chaco,55-59 años,50-59 años,Varón,20727.4,2009,21398
-2009,22,Chaco,60-64 años,60-69 años,Mujer,16305.4,2009,16768
-2009,22,Chaco,60-64 años,60-69 años,Varón,15759.6,2009,16294
-2009,22,Chaco,65-69 años,60-69 años,Mujer,13332.4,2009,13429
-2009,22,Chaco,65-69 años,60-69 años,Varón,11862.2,2009,12069
-2009,22,Chaco,70-74 años,70-79 años,Mujer,10936.8,2009,11069
-2009,22,Chaco,70-74 años,70-79 años,Varón,8722,2009,8837
-2009,22,Chaco,75-79 años,70-79 años,Mujer,8091.2,2009,8279
-2009,22,Chaco,75-79 años,70-79 años,Varón,5934.2,2009,6064
-2009,22,Chaco,80+ años,80+ años,Mujer,8814,2009,9522
-2009,22,Chaco,80+ años,80+ años,Varón,5076.2,2009,5387
-2009,26,Chubut,20-24 años,20-29 años,Mujer,20606.2,2009,21062
-2009,26,Chubut,20-24 años,20-29 años,Varón,21209.4,2009,21591
-2009,26,Chubut,25-29 años,20-29 años,Mujer,20652.4,2009,21327
-2009,26,Chubut,25-29 años,20-29 años,Varón,21340,2009,22019
-2009,26,Chubut,30-34 años,30-39 años,Mujer,20456.2,2009,21540
-2009,26,Chubut,30-34 años,30-39 años,Varón,20819.8,2009,21926
-2009,26,Chubut,35-39 años,30-39 años,Mujer,17564.6,2009,18300
-2009,26,Chubut,35-39 años,30-39 años,Varón,17637.6,2009,18341
-2009,26,Chubut,40-44 años,40-49 años,Mujer,15174,2009,15462
-2009,26,Chubut,40-44 años,40-49 años,Varón,15150.4,2009,15345
-2009,26,Chubut,45-49 años,40-49 años,Mujer,13979,2009,14310
-2009,26,Chubut,45-49 años,40-49 años,Varón,14019,2009,14327
-2009,26,Chubut,50-54 años,50-59 años,Mujer,12517.4,2009,12834
-2009,26,Chubut,50-54 años,50-59 años,Varón,12494.6,2009,12815
-2009,26,Chubut,55-59 años,50-59 años,Mujer,10619.2,2009,11048
-2009,26,Chubut,55-59 años,50-59 años,Varón,10477,2009,10849
-2009,26,Chubut,60-64 años,60-69 años,Mujer,8546.8,2009,8891
-2009,26,Chubut,60-64 años,60-69 años,Varón,8256.6,2009,8557
-2009,26,Chubut,65-69 años,60-69 años,Mujer,6747.8,2009,6935
-2009,26,Chubut,65-69 años,60-69 años,Varón,6130.6,2009,6261
-2009,26,Chubut,70-74 años,70-79 años,Mujer,5227.6,2009,5367
-2009,26,Chubut,70-74 años,70-79 años,Varón,4287.6,2009,4396
-2009,26,Chubut,75-79 años,70-79 años,Mujer,3955.4,2009,4083
-2009,26,Chubut,75-79 años,70-79 años,Varón,2898,2009,2975
-2009,26,Chubut,80+ años,80+ años,Mujer,4678.2,2009,5019
-2009,26,Chubut,80+ años,80+ años,Varón,2696.4,2009,2895
-2009,30,Entre Ríos,20-24 años,20-29 años,Mujer,49820,2009,49772
-2009,30,Entre Ríos,20-24 años,20-29 años,Varón,50438.4,2009,50176
-2009,30,Entre Ríos,25-29 años,20-29 años,Mujer,47067.6,2009,47137
-2009,30,Entre Ríos,25-29 años,20-29 años,Varón,47042.6,2009,46806
-2009,30,Entre Ríos,30-34 años,30-39 años,Mujer,45201.4,2009,46511
-2009,30,Entre Ríos,30-34 años,30-39 años,Varón,44715,2009,45663
-2009,30,Entre Ríos,35-39 años,30-39 años,Mujer,40108.4,2009,41003
-2009,30,Entre Ríos,35-39 años,30-39 años,Varón,39636.4,2009,40292
-2009,30,Entre Ríos,40-44 años,40-49 años,Mujer,36148.8,2009,36228
-2009,30,Entre Ríos,40-44 años,40-49 años,Varón,35541.6,2009,35416
-2009,30,Entre Ríos,45-49 años,40-49 años,Mujer,35025,2009,35263
-2009,30,Entre Ríos,45-49 años,40-49 años,Varón,33415.6,2009,33736
-2009,30,Entre Ríos,50-54 años,50-59 años,Mujer,32684.2,2009,32974
-2009,30,Entre Ríos,50-54 años,50-59 años,Varón,30990.6,2009,31042
-2009,30,Entre Ríos,55-59 años,50-59 años,Mujer,29577,2009,30073
-2009,30,Entre Ríos,55-59 años,50-59 años,Varón,28102.4,2009,28519
-2009,30,Entre Ríos,60-64 años,60-69 años,Mujer,26080.6,2009,26636
-2009,30,Entre Ríos,60-64 años,60-69 años,Varón,23785.2,2009,24227
-2009,30,Entre Ríos,65-69 años,60-69 años,Mujer,22195.8,2009,22404
-2009,30,Entre Ríos,65-69 años,60-69 años,Varón,18767.4,2009,19065
-2009,30,Entre Ríos,70-74 años,70-79 años,Mujer,18676,2009,18668
-2009,30,Entre Ríos,70-74 años,70-79 años,Varón,13849,2009,14002
-2009,30,Entre Ríos,75-79 años,70-79 años,Mujer,15321.2,2009,15372
-2009,30,Entre Ríos,75-79 años,70-79 años,Varón,9548.4,2009,9656
-2009,30,Entre Ríos,80+ años,80+ años,Mujer,19725,2009,20414
-2009,30,Entre Ríos,80+ años,80+ años,Varón,8862.8,2009,9110
-2009,34,Formosa,20-24 años,20-29 años,Mujer,22604.8,2009,22662
-2009,34,Formosa,20-24 años,20-29 años,Varón,22291.2,2009,22066
-2009,34,Formosa,25-29 años,20-29 años,Mujer,19668.2,2009,19825
-2009,34,Formosa,25-29 años,20-29 años,Varón,18739.2,2009,18677
-2009,34,Formosa,30-34 años,30-39 años,Mujer,18604.2,2009,19240
-2009,34,Formosa,30-34 años,30-39 años,Varón,17491.4,2009,18044
-2009,34,Formosa,35-39 años,30-39 años,Mujer,16494.4,2009,16890
-2009,34,Formosa,35-39 años,30-39 años,Varón,15574.6,2009,15819
-2009,34,Formosa,40-44 años,40-49 años,Mujer,15095.6,2009,15281
-2009,34,Formosa,40-44 años,40-49 años,Varón,14660.4,2009,14641
-2009,34,Formosa,45-49 años,40-49 años,Mujer,13775,2009,14004
-2009,34,Formosa,45-49 años,40-49 años,Varón,13848.4,2009,14093
-2009,34,Formosa,50-54 años,50-59 años,Mujer,12527.4,2009,12937
-2009,34,Formosa,50-54 años,50-59 años,Varón,12497.4,2009,12769
-2009,34,Formosa,55-59 años,50-59 años,Mujer,10390.8,2009,10887
-2009,34,Formosa,55-59 años,50-59 años,Varón,10559.4,2009,10984
-2009,34,Formosa,60-64 años,60-69 años,Mujer,8120.4,2009,8503
-2009,34,Formosa,60-64 años,60-69 años,Varón,8155.2,2009,8488
-2009,34,Formosa,65-69 años,60-69 años,Mujer,6522.8,2009,6726
-2009,34,Formosa,65-69 años,60-69 años,Varón,6342.8,2009,6517
-2009,34,Formosa,70-74 años,70-79 años,Mujer,5089,2009,5272
-2009,34,Formosa,70-74 años,70-79 años,Varón,4749.8,2009,4933
-2009,34,Formosa,75-79 años,70-79 años,Mujer,3679.2,2009,3832
-2009,34,Formosa,75-79 años,70-79 años,Varón,3227.4,2009,3344
-2009,34,Formosa,80+ años,80+ años,Mujer,4043,2009,4395
-2009,34,Formosa,80+ años,80+ años,Varón,2960.8,2009,3182
-2009,38,Jujuy,20-24 años,20-29 años,Mujer,28873,2009,28580
-2009,38,Jujuy,20-24 años,20-29 años,Varón,28647,2009,28189
-2009,38,Jujuy,25-29 años,20-29 años,Mujer,27285.6,2009,27218
-2009,38,Jujuy,25-29 años,20-29 años,Varón,26631,2009,26443
-2009,38,Jujuy,30-34 años,30-39 años,Mujer,26223.8,2009,27103
-2009,38,Jujuy,30-34 años,30-39 años,Varón,25484.2,2009,26298
-2009,38,Jujuy,35-39 años,30-39 años,Mujer,22373.2,2009,23173
-2009,38,Jujuy,35-39 años,30-39 años,Varón,21512,2009,22146
-2009,38,Jujuy,40-44 años,40-49 años,Mujer,18981.8,2009,19220
-2009,38,Jujuy,40-44 años,40-49 años,Varón,17735.6,2009,17942
-2009,38,Jujuy,45-49 años,40-49 años,Mujer,17234.2,2009,17442
-2009,38,Jujuy,45-49 años,40-49 años,Varón,15780,2009,16015
-2009,38,Jujuy,50-54 años,50-59 años,Mujer,15794,2009,16061
-2009,38,Jujuy,50-54 años,50-59 años,Varón,14355.2,2009,14511
-2009,38,Jujuy,55-59 años,50-59 años,Mujer,13783.2,2009,14244
-2009,38,Jujuy,55-59 años,50-59 años,Varón,12683.8,2009,13061
-2009,38,Jujuy,60-64 años,60-69 años,Mujer,11361,2009,11770
-2009,38,Jujuy,60-64 años,60-69 años,Varón,10279.6,2009,10601
-2009,38,Jujuy,65-69 años,60-69 años,Mujer,8911.4,2009,9134
-2009,38,Jujuy,65-69 años,60-69 años,Varón,7950.2,2009,8100
-2009,38,Jujuy,70-74 años,70-79 años,Mujer,6854.8,2009,6983
-2009,38,Jujuy,70-74 años,70-79 años,Varón,5877.8,2009,6011
-2009,38,Jujuy,75-79 años,70-79 años,Mujer,5038.2,2009,5166
-2009,38,Jujuy,75-79 años,70-79 años,Varón,4064.6,2009,4154
-2009,38,Jujuy,80+ años,80+ años,Mujer,5426,2009,5755
-2009,38,Jujuy,80+ años,80+ años,Varón,3452.6,2009,3646
-2009,42,La Pampa,20-24 años,20-29 años,Mujer,12359,2009,12275
-2009,42,La Pampa,20-24 años,20-29 años,Varón,12813,2009,12709
-2009,42,La Pampa,25-29 años,20-29 años,Mujer,11793.4,2009,11835
-2009,42,La Pampa,25-29 años,20-29 años,Varón,12111.4,2009,12017
-2009,42,La Pampa,30-34 años,30-39 años,Mujer,11700.2,2009,11899
-2009,42,La Pampa,30-34 años,30-39 años,Varón,11844.2,2009,11985
-2009,42,La Pampa,35-39 años,30-39 años,Mujer,10713.6,2009,10860
-2009,42,La Pampa,35-39 años,30-39 años,Varón,10618,2009,10705
-2009,42,La Pampa,40-44 años,40-49 años,Mujer,9902,2009,9892
-2009,42,La Pampa,40-44 años,40-49 años,Varón,9814.4,2009,9719
-2009,42,La Pampa,45-49 años,40-49 años,Mujer,9417.2,2009,9530
-2009,42,La Pampa,45-49 años,40-49 años,Varón,9440.4,2009,9499
-2009,42,La Pampa,50-54 años,50-59 años,Mujer,8634.8,2009,8666
-2009,42,La Pampa,50-54 años,50-59 años,Varón,8740.4,2009,8724
-2009,42,La Pampa,55-59 años,50-59 años,Mujer,7843.4,2009,7928
-2009,42,La Pampa,55-59 años,50-59 años,Varón,7894.8,2009,7997
-2009,42,La Pampa,60-64 años,60-69 años,Mujer,7101.4,2009,7223
-2009,42,La Pampa,60-64 años,60-69 años,Varón,6930.8,2009,7001
-2009,42,La Pampa,65-69 años,60-69 años,Mujer,6023.4,2009,6110
-2009,42,La Pampa,65-69 años,60-69 años,Varón,5610,2009,5708
-2009,42,La Pampa,70-74 años,70-79 años,Mujer,4964.4,2009,5012
-2009,42,La Pampa,70-74 años,70-79 años,Varón,4171,2009,4202
-2009,42,La Pampa,75-79 años,70-79 años,Mujer,3966.4,2009,3988
-2009,42,La Pampa,75-79 años,70-79 años,Varón,2959.8,2009,3017
-2009,42,La Pampa,80+ años,80+ años,Mujer,5396.8,2009,5636
-2009,42,La Pampa,80+ años,80+ años,Varón,2848.4,2009,2983
-2009,46,La Rioja,20-24 años,20-29 años,Mujer,15112.2,2009,15396
-2009,46,La Rioja,20-24 años,20-29 años,Varón,15080,2009,15233
-2009,46,La Rioja,25-29 años,20-29 años,Mujer,14061.2,2009,13927
-2009,46,La Rioja,25-29 años,20-29 años,Varón,14064.2,2009,13844
-2009,46,La Rioja,30-34 años,30-39 años,Mujer,13298.4,2009,13778
-2009,46,La Rioja,30-34 años,30-39 años,Varón,13171.4,2009,13535
-2009,46,La Rioja,35-39 años,30-39 años,Mujer,11094,2009,11438
-2009,46,La Rioja,35-39 años,30-39 años,Varón,11008,2009,11235
-2009,46,La Rioja,40-44 años,40-49 años,Mujer,9477.6,2009,9565
-2009,46,La Rioja,40-44 años,40-49 años,Varón,9480.8,2009,9507
-2009,46,La Rioja,45-49 años,40-49 años,Mujer,8686.2,2009,8845
-2009,46,La Rioja,45-49 años,40-49 años,Varón,8728,2009,8858
-2009,46,La Rioja,50-54 años,50-59 años,Mujer,7694.6,2009,7848
-2009,46,La Rioja,50-54 años,50-59 años,Varón,7853.2,2009,7973
-2009,46,La Rioja,55-59 años,50-59 años,Mujer,6701.8,2009,6940
-2009,46,La Rioja,55-59 años,50-59 años,Varón,6785.8,2009,7019
-2009,46,La Rioja,60-64 años,60-69 años,Mujer,5387.6,2009,5602
-2009,46,La Rioja,60-64 años,60-69 años,Varón,5313,2009,5531
-2009,46,La Rioja,65-69 años,60-69 años,Mujer,4213.4,2009,4296
-2009,46,La Rioja,65-69 años,60-69 años,Varón,3928.2,2009,4058
-2009,46,La Rioja,70-74 años,70-79 años,Mujer,3365.4,2009,3428
-2009,46,La Rioja,70-74 años,70-79 años,Varón,2746.8,2009,2793
-2009,46,La Rioja,75-79 años,70-79 años,Mujer,2590.8,2009,2666
-2009,46,La Rioja,75-79 años,70-79 años,Varón,1971.4,2009,1988
-2009,46,La Rioja,80+ años,80+ años,Mujer,3146,2009,3380
-2009,46,La Rioja,80+ años,80+ años,Varón,1856.2,2009,1961
-2009,50,Mendoza,20-24 años,20-29 años,Mujer,73781.2,2009,74634
-2009,50,Mendoza,20-24 años,20-29 años,Varón,75199.4,2009,75959
-2009,50,Mendoza,25-29 años,20-29 años,Mujer,68842.6,2009,68614
-2009,50,Mendoza,25-29 años,20-29 años,Varón,69519,2009,69161
-2009,50,Mendoza,30-34 años,30-39 años,Mujer,65009.6,2009,66688
-2009,50,Mendoza,30-34 años,30-39 años,Varón,63757.8,2009,65347
-2009,50,Mendoza,35-39 años,30-39 años,Mujer,57102,2009,58722
-2009,50,Mendoza,35-39 años,30-39 años,Varón,54645,2009,56270
-2009,50,Mendoza,40-44 años,40-49 años,Mujer,50051.4,2009,50641
-2009,50,Mendoza,40-44 años,40-49 años,Varón,47064.8,2009,47655
-2009,50,Mendoza,45-49 años,40-49 años,Mujer,47580.2,2009,47710
-2009,50,Mendoza,45-49 años,40-49 años,Varón,43804.8,2009,44110
-2009,50,Mendoza,50-54 años,50-59 años,Mujer,45616,2009,45616
-2009,50,Mendoza,50-54 años,50-59 años,Varón,41741,2009,41781
-2009,50,Mendoza,55-59 años,50-59 años,Mujer,43220.6,2009,43908
-2009,50,Mendoza,55-59 años,50-59 años,Varón,38733.4,2009,39383
-2009,50,Mendoza,60-64 años,60-69 años,Mujer,38221.2,2009,39318
-2009,50,Mendoza,60-64 años,60-69 años,Varón,33552.6,2009,34473
-2009,50,Mendoza,65-69 años,60-69 años,Mujer,31305.8,2009,32053
-2009,50,Mendoza,65-69 años,60-69 años,Varón,26366,2009,26982
-2009,50,Mendoza,70-74 años,70-79 años,Mujer,25239.8,2009,25403
-2009,50,Mendoza,70-74 años,70-79 años,Varón,19849.2,2009,19972
-2009,50,Mendoza,75-79 años,70-79 años,Mujer,20573.2,2009,20597
-2009,50,Mendoza,75-79 años,70-79 años,Varón,14636.8,2009,14705
-2009,50,Mendoza,80+ años,80+ años,Mujer,25542.2,2009,26795
-2009,50,Mendoza,80+ años,80+ años,Varón,14269.6,2009,14861
-2009,54,Misiones,20-24 años,20-29 años,Mujer,47076.4,2009,47602
-2009,54,Misiones,20-24 años,20-29 años,Varón,46477.4,2009,46576
-2009,54,Misiones,25-29 años,20-29 años,Mujer,41253.8,2009,41976
-2009,54,Misiones,25-29 años,20-29 años,Varón,40056.2,2009,40583
-2009,54,Misiones,30-34 años,30-39 años,Mujer,37909.8,2009,39332
-2009,54,Misiones,30-34 años,30-39 años,Varón,36857.4,2009,38075
-2009,54,Misiones,35-39 años,30-39 años,Mujer,33006.6,2009,33867
-2009,54,Misiones,35-39 años,30-39 años,Varón,32158.2,2009,32837
-2009,54,Misiones,40-44 años,40-49 años,Mujer,29546,2009,29813
-2009,54,Misiones,40-44 años,40-49 años,Varón,29006,2009,28980
-2009,54,Misiones,45-49 años,40-49 años,Mujer,27482.8,2009,28037
-2009,54,Misiones,45-49 años,40-49 años,Varón,27581.4,2009,28019
-2009,54,Misiones,50-54 años,50-59 años,Mujer,23833,2009,24634
-2009,54,Misiones,50-54 años,50-59 años,Varón,24513.2,2009,25147
-2009,54,Misiones,55-59 años,50-59 años,Mujer,19506.8,2009,20437
-2009,54,Misiones,55-59 años,50-59 años,Varón,20111.6,2009,20976
-2009,54,Misiones,60-64 años,60-69 años,Mujer,15362.4,2009,15965
-2009,54,Misiones,60-64 años,60-69 años,Varón,15428.2,2009,16032
-2009,54,Misiones,65-69 años,60-69 años,Mujer,12148.6,2009,12375
-2009,54,Misiones,65-69 años,60-69 años,Varón,11784.4,2009,12022
-2009,54,Misiones,70-74 años,70-79 años,Mujer,9620.8,2009,9829
-2009,54,Misiones,70-74 años,70-79 años,Varón,8736,2009,8902
-2009,54,Misiones,75-79 años,70-79 años,Mujer,7060.2,2009,7278
-2009,54,Misiones,75-79 años,70-79 años,Varón,5851.4,2009,5988
-2009,54,Misiones,80+ años,80+ años,Mujer,7485.6,2009,7965
-2009,54,Misiones,80+ años,80+ años,Varón,5161,2009,5466
-2009,58,Neuquén,20-24 años,20-29 años,Mujer,23552.4,2009,23866
-2009,58,Neuquén,20-24 años,20-29 años,Varón,24233.8,2009,24515
-2009,58,Neuquén,25-29 años,20-29 años,Mujer,23108,2009,23455
-2009,58,Neuquén,25-29 años,20-29 años,Varón,22946.2,2009,23213
-2009,58,Neuquén,30-34 años,30-39 años,Mujer,23150.6,2009,23875
-2009,58,Neuquén,30-34 años,30-39 años,Varón,22634.2,2009,23343
-2009,58,Neuquén,35-39 años,30-39 años,Mujer,20565.4,2009,21166
-2009,58,Neuquén,35-39 años,30-39 años,Varón,20087.8,2009,20596
-2009,58,Neuquén,40-44 años,40-49 años,Mujer,17943.2,2009,18186
-2009,58,Neuquén,40-44 años,40-49 años,Varón,17253.4,2009,17436
-2009,58,Neuquén,45-49 años,40-49 años,Mujer,16286.2,2009,16661
-2009,58,Neuquén,45-49 años,40-49 años,Varón,15597.4,2009,15864
-2009,58,Neuquén,50-54 años,50-59 años,Mujer,14138.8,2009,14482
-2009,58,Neuquén,50-54 años,50-59 años,Varón,13760.4,2009,14066
-2009,58,Neuquén,55-59 años,50-59 años,Mujer,11732.8,2009,12195
-2009,58,Neuquén,55-59 años,50-59 años,Varón,11496.8,2009,11923
-2009,58,Neuquén,60-64 años,60-69 años,Mujer,9178.2,2009,9631
-2009,58,Neuquén,60-64 años,60-69 años,Varón,8933.2,2009,9340
-2009,58,Neuquén,65-69 años,60-69 años,Mujer,6779.4,2009,7025
-2009,58,Neuquén,65-69 años,60-69 años,Varón,6355.6,2009,6597
-2009,58,Neuquén,70-74 años,70-79 años,Mujer,5049.4,2009,5186
-2009,58,Neuquén,70-74 años,70-79 años,Varón,4330.8,2009,4476
-2009,58,Neuquén,75-79 años,70-79 años,Mujer,3729.2,2009,3816
-2009,58,Neuquén,75-79 años,70-79 años,Varón,2803.6,2009,2895
-2009,58,Neuquén,80+ años,80+ años,Mujer,4400.4,2009,4648
-2009,58,Neuquén,80+ años,80+ años,Varón,2510.2,2009,2663
-2009,62,Río Negro,20-24 años,20-29 años,Mujer,25488.4,2009,25729
-2009,62,Río Negro,20-24 años,20-29 años,Varón,26260.8,2009,26465
-2009,62,Río Negro,25-29 años,20-29 años,Mujer,24505.2,2009,25138
-2009,62,Río Negro,25-29 años,20-29 años,Varón,24574.8,2009,25193
-2009,62,Río Negro,30-34 años,30-39 años,Mujer,24568.4,2009,25590
-2009,62,Río Negro,30-34 años,30-39 años,Varón,23969.2,2009,24917
-2009,62,Río Negro,35-39 años,30-39 años,Mujer,21964.2,2009,22681
-2009,62,Río Negro,35-39 años,30-39 años,Varón,21475.8,2009,22159
-2009,62,Río Negro,40-44 años,40-49 años,Mujer,19701.4,2009,19952
-2009,62,Río Negro,40-44 años,40-49 años,Varón,19099.2,2009,19326
-2009,62,Río Negro,45-49 años,40-49 años,Mujer,18422.6,2009,18768
-2009,62,Río Negro,45-49 años,40-49 años,Varón,17783.2,2009,18110
-2009,62,Río Negro,50-54 años,50-59 años,Mujer,16510.6,2009,16863
-2009,62,Río Negro,50-54 años,50-59 años,Varón,16103.4,2009,16395
-2009,62,Río Negro,55-59 años,50-59 años,Mujer,14362.4,2009,14820
-2009,62,Río Negro,55-59 años,50-59 años,Varón,14140.2,2009,14518
-2009,62,Río Negro,60-64 años,60-69 años,Mujer,12049.8,2009,12516
-2009,62,Río Negro,60-64 años,60-69 años,Varón,11773.4,2009,12167
-2009,62,Río Negro,65-69 años,60-69 años,Mujer,9504,2009,9783
-2009,62,Río Negro,65-69 años,60-69 años,Varón,8937.2,2009,9159
-2009,62,Río Negro,70-74 años,70-79 años,Mujer,7302.8,2009,7441
-2009,62,Río Negro,70-74 años,70-79 años,Varón,6402.8,2009,6554
-2009,62,Río Negro,75-79 años,70-79 años,Mujer,5567.4,2009,5708
-2009,62,Río Negro,75-79 años,70-79 años,Varón,4424.2,2009,4502
-2009,62,Río Negro,80+ años,80+ años,Mujer,6815.2,2009,7326
-2009,62,Río Negro,80+ años,80+ años,Varón,4148,2009,4361
-2009,66,Salta,20-24 años,20-29 años,Mujer,52708.4,2009,52827
-2009,66,Salta,20-24 años,20-29 años,Varón,52238.2,2009,52103
-2009,66,Salta,25-29 años,20-29 años,Mujer,48151.4,2009,48278
-2009,66,Salta,25-29 años,20-29 años,Varón,46377,2009,46417
-2009,66,Salta,30-34 años,30-39 años,Mujer,45134.8,2009,46497
-2009,66,Salta,30-34 años,30-39 años,Varón,42955.8,2009,44096
-2009,66,Salta,35-39 años,30-39 años,Mujer,38758.8,2009,39959
-2009,66,Salta,35-39 años,30-39 años,Varón,36931.6,2009,37727
-2009,66,Salta,40-44 años,40-49 años,Mujer,33121.4,2009,33619
-2009,66,Salta,40-44 años,40-49 años,Varón,31789,2009,32052
-2009,66,Salta,45-49 años,40-49 años,Mujer,29682.6,2009,30202
-2009,66,Salta,45-49 años,40-49 años,Varón,28537.2,2009,29026
-2009,66,Salta,50-54 años,50-59 años,Mujer,26674.8,2009,27088
-2009,66,Salta,50-54 años,50-59 años,Varón,25444,2009,25723
-2009,66,Salta,55-59 años,50-59 años,Mujer,23340.6,2009,24053
-2009,66,Salta,55-59 años,50-59 años,Varón,21940.6,2009,22580
-2009,66,Salta,60-64 años,60-69 años,Mujer,19122.2,2009,19909
-2009,66,Salta,60-64 años,60-69 años,Varón,17688.6,2009,18287
-2009,66,Salta,65-69 años,60-69 años,Mujer,15011.8,2009,15434
-2009,66,Salta,65-69 años,60-69 años,Varón,13697.4,2009,14016
-2009,66,Salta,70-74 años,70-79 años,Mujer,11706.6,2009,11980
-2009,66,Salta,70-74 años,70-79 años,Varón,10241.8,2009,10462
-2009,66,Salta,75-79 años,70-79 años,Mujer,8895.4,2009,9155
-2009,66,Salta,75-79 años,70-79 años,Varón,7209,2009,7382
-2009,66,Salta,80+ años,80+ años,Mujer,10095.2,2009,10795
-2009,66,Salta,80+ años,80+ años,Varón,6399.6,2009,6793
-2009,70,San Juan,20-24 años,20-29 años,Mujer,27839.6,2009,27803
-2009,70,San Juan,20-24 años,20-29 años,Varón,28601.4,2009,28599
-2009,70,San Juan,25-29 años,20-29 años,Mujer,26394.2,2009,26169
-2009,70,San Juan,25-29 años,20-29 años,Varón,26744,2009,26426
-2009,70,San Juan,30-34 años,30-39 años,Mujer,25240.8,2009,25612
-2009,70,San Juan,30-34 años,30-39 años,Varón,25262.2,2009,25663
-2009,70,San Juan,35-39 años,30-39 años,Mujer,22493.4,2009,23094
-2009,70,San Juan,35-39 años,30-39 años,Varón,21881.4,2009,22494
-2009,70,San Juan,40-44 años,40-49 años,Mujer,19335.2,2009,19546
-2009,70,San Juan,40-44 años,40-49 años,Varón,18406,2009,18564
-2009,70,San Juan,45-49 años,40-49 años,Mujer,18196.6,2009,18185
-2009,70,San Juan,45-49 años,40-49 años,Varón,16749.4,2009,16890
-2009,70,San Juan,50-54 años,50-59 años,Mujer,17284.8,2009,17291
-2009,70,San Juan,50-54 años,50-59 años,Varón,15560.6,2009,15530
-2009,70,San Juan,55-59 años,50-59 años,Mujer,16111.4,2009,16329
-2009,70,San Juan,55-59 años,50-59 años,Varón,14388.4,2009,14534
-2009,70,San Juan,60-64 años,60-69 años,Mujer,13996.8,2009,14407
-2009,70,San Juan,60-64 años,60-69 años,Varón,12260.4,2009,12586
-2009,70,San Juan,65-69 años,60-69 años,Mujer,11276.2,2009,11545
-2009,70,San Juan,65-69 años,60-69 años,Varón,9397.8,2009,9676
-2009,70,San Juan,70-74 años,70-79 años,Mujer,8627.6,2009,8699
-2009,70,San Juan,70-74 años,70-79 años,Varón,6680,2009,6710
-2009,70,San Juan,75-79 años,70-79 años,Mujer,6674.2,2009,6691
-2009,70,San Juan,75-79 años,70-79 años,Varón,4798.2,2009,4800
-2009,70,San Juan,80+ años,80+ años,Mujer,7500,2009,7860
-2009,70,San Juan,80+ años,80+ años,Varón,4358.6,2009,4512
-2009,74,San Luis,20-24 años,20-29 años,Mujer,17256.6,2009,17510
-2009,74,San Luis,20-24 años,20-29 años,Varón,17366.2,2009,17490
-2009,74,San Luis,25-29 años,20-29 años,Mujer,16947.2,2009,16955
-2009,74,San Luis,25-29 años,20-29 años,Varón,16718.6,2009,16581
-2009,74,San Luis,30-34 años,30-39 años,Mujer,16566,2009,17206
-2009,74,San Luis,30-34 años,30-39 años,Varón,16477.2,2009,16967
-2009,74,San Luis,35-39 años,30-39 años,Mujer,14364.2,2009,14823
-2009,74,San Luis,35-39 años,30-39 años,Varón,14517.6,2009,14825
-2009,74,San Luis,40-44 años,40-49 años,Mujer,12664,2009,12867
-2009,74,San Luis,40-44 años,40-49 años,Varón,12831,2009,12993
-2009,74,San Luis,45-49 años,40-49 años,Mujer,11772.2,2009,11996
-2009,74,San Luis,45-49 años,40-49 años,Varón,11733.4,2009,11983
-2009,74,San Luis,50-54 años,50-59 años,Mujer,10778.4,2009,10991
-2009,74,San Luis,50-54 años,50-59 años,Varón,10628.8,2009,10792
-2009,74,San Luis,55-59 años,50-59 años,Mujer,9686.8,2009,9999
-2009,74,San Luis,55-59 años,50-59 años,Varón,9485.6,2009,9720
-2009,74,San Luis,60-64 años,60-69 años,Mujer,8394,2009,8686
-2009,74,San Luis,60-64 años,60-69 años,Varón,7971.6,2009,8248
-2009,74,San Luis,65-69 años,60-69 años,Mujer,6836.2,2009,7089
-2009,74,San Luis,65-69 años,60-69 años,Varón,6141.8,2009,6342
-2009,74,San Luis,70-74 años,70-79 años,Mujer,5251.4,2009,5361
-2009,74,San Luis,70-74 años,70-79 años,Varón,4355.8,2009,4428
-2009,74,San Luis,75-79 años,70-79 años,Mujer,4056.4,2009,4146
-2009,74,San Luis,75-79 años,70-79 años,Varón,3028.4,2009,3125
-2009,74,San Luis,80+ años,80+ años,Mujer,5019.2,2009,5366
-2009,74,San Luis,80+ años,80+ años,Varón,2696.4,2009,2829
-2009,78,Santa Cruz,20-24 años,20-29 años,Mujer,10619.6,2009,11255
-2009,78,Santa Cruz,20-24 años,20-29 años,Varón,11665.8,2009,12416
-2009,78,Santa Cruz,25-29 años,20-29 años,Mujer,11117,2009,11885
-2009,78,Santa Cruz,25-29 años,20-29 años,Varón,12198,2009,13062
-2009,78,Santa Cruz,30-34 años,30-39 años,Mujer,11171.2,2009,11848
-2009,78,Santa Cruz,30-34 años,30-39 años,Varón,12120.6,2009,12985
-2009,78,Santa Cruz,35-39 años,30-39 años,Mujer,9387.4,2009,9799
-2009,78,Santa Cruz,35-39 años,30-39 años,Varón,10054.6,2009,10603
-2009,78,Santa Cruz,40-44 años,40-49 años,Mujer,7861,2009,8053
-2009,78,Santa Cruz,40-44 años,40-49 años,Varón,8434.6,2009,8657
-2009,78,Santa Cruz,45-49 años,40-49 años,Mujer,6995.2,2009,7244
-2009,78,Santa Cruz,45-49 años,40-49 años,Varón,7676.2,2009,7945
-2009,78,Santa Cruz,50-54 años,50-59 años,Mujer,5872.8,2009,6095
-2009,78,Santa Cruz,50-54 años,50-59 años,Varón,6516,2009,6795
-2009,78,Santa Cruz,55-59 años,50-59 años,Mujer,4652,2009,4900
-2009,78,Santa Cruz,55-59 años,50-59 años,Varón,5074.4,2009,5336
-2009,78,Santa Cruz,60-64 años,60-69 años,Mujer,3583.8,2009,3756
-2009,78,Santa Cruz,60-64 años,60-69 años,Varón,3670,2009,3829
-2009,78,Santa Cruz,65-69 años,60-69 años,Mujer,2751.4,2009,2844
-2009,78,Santa Cruz,65-69 años,60-69 años,Varón,2592.4,2009,2629
-2009,78,Santa Cruz,70-74 años,70-79 años,Mujer,1997.2,2009,2049
-2009,78,Santa Cruz,70-74 años,70-79 años,Varón,1823.6,2009,1870
-2009,78,Santa Cruz,75-79 años,70-79 años,Mujer,1399.4,2009,1463
-2009,78,Santa Cruz,75-79 años,70-79 años,Varón,1156.4,2009,1191
-2009,78,Santa Cruz,80+ años,80+ años,Mujer,1400.8,2009,1495
-2009,78,Santa Cruz,80+ años,80+ años,Varón,916.6,2009,984
-2009,82,Santa Fe,20-24 años,20-29 años,Mujer,135054.8,2009,135228
-2009,82,Santa Fe,20-24 años,20-29 años,Varón,136432.4,2009,135868
-2009,82,Santa Fe,25-29 años,20-29 años,Mujer,132014,2009,131404
-2009,82,Santa Fe,25-29 años,20-29 años,Varón,132698.8,2009,131552
-2009,82,Santa Fe,30-34 años,30-39 años,Mujer,122916.6,2009,127131
-2009,82,Santa Fe,30-34 años,30-39 años,Varón,121853.4,2009,125448
-2009,82,Santa Fe,35-39 años,30-39 años,Mujer,104358.2,2009,106784
-2009,82,Santa Fe,35-39 años,30-39 años,Varón,102335.4,2009,104200
-2009,82,Santa Fe,40-44 años,40-49 años,Mujer,94327.2,2009,94373
-2009,82,Santa Fe,40-44 años,40-49 años,Varón,91665.6,2009,91312
-2009,82,Santa Fe,45-49 años,40-49 años,Mujer,92499.2,2009,92785
-2009,82,Santa Fe,45-49 años,40-49 años,Varón,87866.2,2009,88330
-2009,82,Santa Fe,50-54 años,50-59 años,Mujer,87681.4,2009,88072
-2009,82,Santa Fe,50-54 años,50-59 años,Varón,82606.6,2009,82833
-2009,82,Santa Fe,55-59 años,50-59 años,Mujer,81298.8,2009,82277
-2009,82,Santa Fe,55-59 años,50-59 años,Varón,74908.6,2009,75919
-2009,82,Santa Fe,60-64 años,60-69 años,Mujer,72984.4,2009,74102
-2009,82,Santa Fe,60-64 años,60-69 años,Varón,64070.2,2009,64976
-2009,82,Santa Fe,65-69 años,60-69 años,Mujer,62810.2,2009,62846
-2009,82,Santa Fe,65-69 años,60-69 años,Varón,51506.2,2009,51678
-2009,82,Santa Fe,70-74 años,70-79 años,Mujer,54954.8,2009,54369
-2009,82,Santa Fe,70-74 años,70-79 años,Varón,40365.8,2009,40250
-2009,82,Santa Fe,75-79 años,70-79 años,Mujer,46862.8,2009,46489
-2009,82,Santa Fe,75-79 años,70-79 años,Varón,29613,2009,29661
-2009,82,Santa Fe,80+ años,80+ años,Mujer,64885,2009,67309
-2009,82,Santa Fe,80+ años,80+ años,Varón,29727.6,2009,30934
-2009,86,Santiago del Estero,20-24 años,20-29 años,Mujer,36223.6,2009,36039
-2009,86,Santiago del Estero,20-24 años,20-29 años,Varón,36508,2009,35768
-2009,86,Santiago del Estero,25-29 años,20-29 años,Mujer,33786.2,2009,33652
-2009,86,Santiago del Estero,25-29 años,20-29 años,Varón,33179.4,2009,32587
-2009,86,Santiago del Estero,30-34 años,30-39 años,Mujer,31635,2009,32713
-2009,86,Santiago del Estero,30-34 años,30-39 años,Varón,30832.8,2009,31550
-2009,86,Santiago del Estero,35-39 años,30-39 años,Mujer,26352.2,2009,27236
-2009,86,Santiago del Estero,35-39 años,30-39 años,Varón,26244.4,2009,26810
-2009,86,Santiago del Estero,40-44 años,40-49 años,Mujer,22036.6,2009,22255
-2009,86,Santiago del Estero,40-44 años,40-49 años,Varón,22461.2,2009,22630
-2009,86,Santiago del Estero,45-49 años,40-49 años,Mujer,20300.8,2009,20371
-2009,86,Santiago del Estero,45-49 años,40-49 años,Varón,20555.2,2009,20669
-2009,86,Santiago del Estero,50-54 años,50-59 años,Mujer,18854.8,2009,19147
-2009,86,Santiago del Estero,50-54 años,50-59 años,Varón,19190.6,2009,19275
-2009,86,Santiago del Estero,55-59 años,50-59 años,Mujer,16656,2009,17131
-2009,86,Santiago del Estero,55-59 años,50-59 años,Varón,17232.4,2009,17632
-2009,86,Santiago del Estero,60-64 años,60-69 años,Mujer,13823.4,2009,14221
-2009,86,Santiago del Estero,60-64 años,60-69 años,Varón,13768.6,2009,14217
-2009,86,Santiago del Estero,65-69 años,60-69 años,Mujer,11439.6,2009,11560
-2009,86,Santiago del Estero,65-69 años,60-69 años,Varón,10649.2,2009,10823
-2009,86,Santiago del Estero,70-74 años,70-79 años,Mujer,9306.4,2009,9447
-2009,86,Santiago del Estero,70-74 años,70-79 años,Varón,7888.6,2009,8010
-2009,86,Santiago del Estero,75-79 años,70-79 años,Mujer,7196.8,2009,7322
-2009,86,Santiago del Estero,75-79 años,70-79 años,Varón,5463,2009,5538
-2009,86,Santiago del Estero,80+ años,80+ años,Mujer,8819,2009,9462
-2009,86,Santiago del Estero,80+ años,80+ años,Varón,5201.8,2009,5468
-2009,90,Tucumán,20-24 años,20-29 años,Mujer,64019.2,2009,64145
-2009,90,Tucumán,20-24 años,20-29 años,Varón,63917,2009,63837
-2009,90,Tucumán,25-29 años,20-29 años,Mujer,61119.2,2009,59743
-2009,90,Tucumán,25-29 años,20-29 años,Varón,60417.4,2009,58760
-2009,90,Tucumán,30-34 años,30-39 años,Mujer,56376.6,2009,58606
-2009,90,Tucumán,30-34 años,30-39 años,Varón,55297.2,2009,57210
-2009,90,Tucumán,35-39 años,30-39 años,Mujer,46173.8,2009,47632
-2009,90,Tucumán,35-39 años,30-39 años,Varón,44716,2009,45885
-2009,90,Tucumán,40-44 años,40-49 años,Mujer,39599,2009,39744
-2009,90,Tucumán,40-44 años,40-49 años,Varón,37953,2009,37992
-2009,90,Tucumán,45-49 años,40-49 años,Mujer,38264.6,2009,38087
-2009,90,Tucumán,45-49 años,40-49 años,Varón,35744.8,2009,35635
-2009,90,Tucumán,50-54 años,50-59 años,Mujer,37349.8,2009,37567
-2009,90,Tucumán,50-54 años,50-59 años,Varón,34949.6,2009,34879
-2009,90,Tucumán,55-59 años,50-59 años,Mujer,33072,2009,34092
-2009,90,Tucumán,55-59 años,50-59 años,Varón,31580.2,2009,32454
-2009,90,Tucumán,60-64 años,60-69 años,Mujer,26657.6,2009,27793
-2009,90,Tucumán,60-64 años,60-69 años,Varón,24696.6,2009,25794
-2009,90,Tucumán,65-69 años,60-69 años,Mujer,20772.8,2009,21092
-2009,90,Tucumán,65-69 años,60-69 años,Varón,17972.8,2009,18363
-2009,90,Tucumán,70-74 años,70-79 años,Mujer,16854.6,2009,16786
-2009,90,Tucumán,70-74 años,70-79 años,Varón,13050.8,2009,13076
-2009,90,Tucumán,75-79 años,70-79 años,Mujer,13790.4,2009,13914
-2009,90,Tucumán,75-79 años,70-79 años,Varón,9530.2,2009,9580
-2009,90,Tucumán,80+ años,80+ años,Mujer,15965.2,2009,16936
-2009,90,Tucumán,80+ años,80+ años,Varón,8913,2009,9437
-2009,94,Tierra del Fuego,20-24 años,20-29 años,Mujer,5080.8,2009,5334
-2009,94,Tierra del Fuego,20-24 años,20-29 años,Varón,5464.6,2009,5718
-2009,94,Tierra del Fuego,25-29 años,20-29 años,Mujer,5346.8,2009,5613
-2009,94,Tierra del Fuego,25-29 años,20-29 años,Varón,5563.6,2009,5861
-2009,94,Tierra del Fuego,30-34 años,30-39 años,Mujer,5485.4,2009,5685
-2009,94,Tierra del Fuego,30-34 años,30-39 años,Varón,5668.6,2009,5951
-2009,94,Tierra del Fuego,35-39 años,30-39 años,Mujer,4816.8,2009,4899
-2009,94,Tierra del Fuego,35-39 años,30-39 años,Varón,4936.2,2009,5032
-2009,94,Tierra del Fuego,40-44 años,40-49 años,Mujer,4378.6,2009,4322
-2009,94,Tierra del Fuego,40-44 años,40-49 años,Varón,4524.8,2009,4384
-2009,94,Tierra del Fuego,45-49 años,40-49 años,Mujer,4211,2009,4343
-2009,94,Tierra del Fuego,45-49 años,40-49 años,Varón,4498.8,2009,4548
-2009,94,Tierra del Fuego,50-54 años,50-59 años,Mujer,3287.2,2009,3463
-2009,94,Tierra del Fuego,50-54 años,50-59 años,Varón,3685.4,2009,3888
-2009,94,Tierra del Fuego,55-59 años,50-59 años,Mujer,2288.4,2009,2447
-2009,94,Tierra del Fuego,55-59 años,50-59 años,Varón,2544.8,2009,2689
-2009,94,Tierra del Fuego,60-64 años,60-69 años,Mujer,1533.2,2009,1631
-2009,94,Tierra del Fuego,60-64 años,60-69 años,Varón,1631.2,2009,1742
-2009,94,Tierra del Fuego,65-69 años,60-69 años,Mujer,1008.8,2009,1046
-2009,94,Tierra del Fuego,65-69 años,60-69 años,Varón,977.4,2009,1024
-2009,94,Tierra del Fuego,70-74 años,70-79 años,Mujer,687.4,2009,713
-2009,94,Tierra del Fuego,70-74 años,70-79 años,Varón,606.8,2009,631
-2009,94,Tierra del Fuego,75-79 años,70-79 años,Mujer,464.2,2009,480
-2009,94,Tierra del Fuego,75-79 años,70-79 años,Varón,345.4,2009,358
-2009,94,Tierra del Fuego,80+ años,80+ años,Mujer,482.8,2009,532
-2009,94,Tierra del Fuego,80+ años,80+ años,Varón,253.2,2009,268
