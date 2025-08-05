@@ -26,7 +26,7 @@ id_provincias <- read_csv("Bases de datos/cod_pcias_arg.csv") |>
 datos05_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.txt",
                        col_select = c(
                          prov_id = PROV, 
-                         reg_id = REGION,
+                         # reg_id = REGION,
                          sexo = CHCH04, 
                          edad = CHCH05, 
                          dm_auto = CIDI01, 
@@ -36,7 +36,7 @@ datos05_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2005 - Base usuario.tx
 datos09_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.txt",
                        col_select = c(id = IDENTIFI, 
                                       prov_id = PRVNC,
-                                      reg_id = REGION,
+                                      # reg_id = REGION,
                                       sexo = BHCH04,
                                       edad = BHCH05,
                                       dm_auto = BIDI01,
@@ -46,7 +46,7 @@ datos09_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2009 - Base usuario.tx
 datos13_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.txt",
                        col_select = c(id = ID,
                                       prov_id = COD_PROVINCIA,
-                                      reg_id = REGION,
+                                      # reg_id = REGION,
                                       sexo = BHCH04,
                                       edad = BHCH05,
                                       dm_auto = BIDI01,
@@ -56,7 +56,7 @@ datos13_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2013 - Base usuario.tx
 datos18_raw <- read_delim("Bases de datos/ENFR_bases/ENFR 2018 - Base usuario.txt",
                        col_select = c(id,
                                       prov_id = cod_provincia,
-                                      reg_id = region,
+                                      # reg_id = region,
                                       sexo = bhch03,
                                       edad = bhch04,
                                       dm_auto = bidi01,
@@ -96,15 +96,15 @@ cleaning_enfr <- function(x){
     # Añadir etiquetas provincia
     left_join(id_provincias) |> 
     
-    # Añadir etiquetas región
-    mutate(reg_nombre = factor(reg_id,
-                                  labels = c("Gran Buenos Aires",
-                                             "Pampeana",
-                                             "Noroeste",
-                                             "Noreste",
-                                             "Cuyo",
-                                             "Patagónica")), 
-           .after = reg_id) |> 
+    # # Añadir etiquetas región
+    # mutate(reg_nombre = factor(reg_id,
+    #                               labels = c("Gran Buenos Aires",
+    #                                          "Pampeana",
+    #                                          "Noroeste",
+    #                                          "Noreste",
+    #                                          "Cuyo",
+    #                                          "Patagónica")), 
+    #        .after = reg_id) |> 
     
     # Crear grupos de edad
     mutate(
@@ -221,7 +221,7 @@ prev05_ge5 <- datos05 |>
   as_survey_design(weights = ponderacion) |> 
   
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_5, sexo) |> 
+  group_by(prov_id, prov_nombre, grupo_edad_5, sexo) |> 
   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
             .groups = "drop")
@@ -233,7 +233,7 @@ prev09_ge5 <- datos09 |>
   as_survey_design(weights = ponderacion) |> 
   
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_5, sexo) |> 
+  group_by(prov_id, prov_nombre, grupo_edad_5, sexo) |> 
   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
             .groups = "drop")
@@ -245,7 +245,7 @@ prev13_ge5 <- datos13 |>
   as_survey_design(weights = ponderacion) |> 
   
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_5, sexo) |> 
+  group_by(prov_id, prov_nombre, grupo_edad_5, sexo) |> 
   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
             .groups = "drop")
@@ -260,7 +260,7 @@ prev18_ge5 <- datos18 |>
                 ) |> 
   
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(prov_id, prov_nombre, reg_id, reg_nombre, grupo_edad_5, sexo) |> 
+  group_by(prov_id, prov_nombre, grupo_edad_5, sexo) |> 
   summarise(dm_total = survey_total(dm_auto_bin, vartype = c("se", "cv")),
             dm_prev = survey_mean(dm_auto_bin, vartype = c("se", "cv")),
             .groups = "drop")
@@ -376,8 +376,8 @@ data_dict <- tibble(
   variable = c("anio_enfr", 
                "prov_id", 
                "prov_nombre", 
-               "reg_id", 
-               "reg_nombre",
+               # "reg_id", 
+               # "reg_nombre",
                "grupo_edad_5", 
                # "grupo_edad_10", 
                "sexo",
@@ -393,8 +393,8 @@ data_dict <- tibble(
     "Año de realización ENFR",
     "Identificador numérico de provincia",
     "Identificador categórico de provincia",
-    "Identificador numérico de región estadística",
-    "Identificador categórico de región estadística",
+    # "Identificador numérico de región estadística",
+    # "Identificador categórico de región estadística",
     "Grupo de edad quinquenal",
     # "Grupo de edad decenal",
     "Sexo biológico",
@@ -411,8 +411,8 @@ data_dict <- tibble(
   niveles = list(c(2005, 2009, 2013, 2018),
                  levels(id_provincias$prov_id |>  factor()),
                  levels(id_provincias$prov_nombre),
-                 levels(prev_join_ge5$reg_id),
-                 levels(prev_join_ge5$reg_nombre),
+                 # levels(prev_join_ge5$reg_id),
+                 # levels(prev_join_ge5$reg_nombre),
                  levels(prev_join_ge5$grupo_edad_5),
                  # levels(grupos_etarios$grupo_edad_10),
                  c("Varón", "Mujer"),
