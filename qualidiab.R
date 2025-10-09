@@ -95,6 +95,28 @@ qualidiab_2014 <- qualidiab_2014 %>%
                            "15_70 a 74",
                            "16_75 a 79",
                            "17_80 y más")))
+
+# Identificación de personas con diabetes sin complicaciones
+
+qualidiab_2014 <- qualidiab_2014 %>% 
+  mutate(complic = # ausencia de cualquiera de las complicaciones referidas en la ficha (macro y microvasculares)
+           case_when( 
+    complicaciones_ceguera == "No" & complicaciones_dialisis_transplante == "No" & complicaciones_neuropatia_periferica == "No" &
+    complicaciones_nefropatia == "No" & complicaciones_hipo_ta_ortostatica == "No" & complicaciones_disfuncion_erectil == "No" & 
+    complicaciones_iam == "No" & complicaciones_acv == "No" & complicaciones_claudicacion_miembros_inferiores == "No" &
+    complicaciones_revascularizacion == "No" & complicaciones_hvi == "No" & complicaciones_ic == "No" & complicaciones_ait == "No" &
+    complicaciones_amputacion == "No" & complicaciones_crm == "No" & complicaciones_stent == "No" & 
+    ojos_retinopatia_no_proliferativa == "No" & ojos_retinopatia_proliferativa == "No" ~ "Sin complicaciones",
+    .default = "Alguna complicación"),
+    
+    complic_micro = # ausencia de complicaciones microvasculares seleccionadas en el estudio
+      case_when(
+      complicaciones_ceguera == "No" & complicaciones_dialisis_transplante == "No" & complicaciones_neuropatia_periferica == "No" &
+        complicaciones_nefropatia == "No" & complicaciones_disfuncion_erectil == "No" & 
+        complicaciones_amputacion == "No" & 
+        ojos_retinopatia_no_proliferativa == "No" & ojos_retinopatia_proliferativa == "No" ~ "Sin complicaciones micro",
+      .default = "Alguna complicación micro"))
+    
                            
 # Análisis exploratorio ---------------------------------------------------
 
@@ -110,6 +132,8 @@ qualidiab_2014 %>%
 ## Distribución de casos según sexo y edad ----
 qualidiab_2014 %>% 
   count(sexo, grupedad) %>% 
+  group_by(sexo) %>% 
+  mutate(perc = round(n/sum(n)*100, digits = 2)) %>% 
   view()
 
 qualidiab_2014 %>% 
@@ -134,7 +158,8 @@ qualidiab_2014 %>%
 qualidiab_2014 %>% 
   select(c(sexo, edad, ojos_retinopatia_no_proliferativa, ojos_retinopatia_proliferativa, complicaciones_ceguera,
            complicaciones_nefropatia, complicaciones_dialisis_transplante,
-           complicaciones_neuropatia_periferica, complicaciones_amputacion, complicaciones_disfuncion_erectil)) %>% 
+           complicaciones_neuropatia_periferica, complicaciones_amputacion, complicaciones_disfuncion_erectil,
+           complic, complic_micro)) %>% 
   tbl_summary(
     statistic = list(all_continuous() ~ "{median} ({p25}, {p75})",   
                      all_categorical() ~ "{n} / {N} ({p}%)"),               
@@ -151,7 +176,9 @@ qualidiab_2014 %>%
       complicaciones_dialisis_transplante ~ "Diálisis/Transplante",
       complicaciones_neuropatia_periferica ~ "Neuropatía periférica", 
       complicaciones_amputacion ~ "Amputación", 
-      complicaciones_disfuncion_erectil ~ "Disfrunción eréctil"),
+      complicaciones_disfuncion_erectil ~ "Disfunción eréctil",
+      complic ~ "Complicaciones",
+      complic_micro ~ "Complicaciones microvasculares"),
     missing_text = "Sin dato"                               
   ) %>% 
   modify_header(label ~ "**Variable**") %>% 
@@ -159,3 +186,140 @@ qualidiab_2014 %>%
   as_flex_table() 
   # flextable::autofit() %>%                      
   # flextable::save_as_docx(path = "tabla2.docx") 
+
+## Frecuencia de comorbilidades microvasculares según grupo de edad ----
+
+qualidiab_2014 %>%
+  select(id_udc, paciente_id, sexo, edad, grupedad, complicaciones_ceguera, complicaciones_dialisis_transplante, complicaciones_neuropatia_periferica,
+         complicaciones_nefropatia, complicaciones_disfuncion_erectil, complicaciones_amputacion,
+         ojos_retinopatia_no_proliferativa, ojos_retinopatia_proliferativa) %>% 
+ 
+  pivot_longer(cols = 6:13, names_to = "compli_micro", values_to = "presencia") %>% 
+  
+  filter(grupedad %in% c("08_35 a 39",
+                         "09_40 a 44",
+                         "10_45 a 49",
+                         "11_50 a 54",
+                         "12_55 a 59",
+                         "13_60 a 64",
+                         "14_65 a 69",
+                         "15_70 a 74",
+                         "16_75 a 79",
+                         "17_80 y más") & presencia != "Sin dato") %>%
+  
+  mutate(grupedad_gr = case_when(
+    edad < 65 ~ "35 a 64",
+    edad >= 65 ~ "65 o más"
+  )) %>% 
+  
+  ggplot(aes(x = grupedad_gr, fill = presencia)) +
+  geom_histogram(stat = "count", position = "fill") +
+  labs(x = "Grupos de edad",
+       y = "Recuento") +
+  theme(axis.text.x = element_text(angle = 90)) +
+  facet_grid(cols = vars(compli_micro),
+             rows = vars(sexo))
+
+### Diferencias entre frecuencias de complicaciones según edad pacientes de sexo femenino ----
+t1 <- qualidiab_2014 %>% 
+  filter(grupedad %in% c("08_35 a 39",
+                         "09_40 a 44",
+                         "10_45 a 49",
+                         "11_50 a 54",
+                         "12_55 a 59",
+                         "13_60 a 64",
+                         "14_65 a 69",
+                         "15_70 a 74",
+                         "16_75 a 79",
+                         "17_80 y más") & sexo == "Femenino") %>%
+  
+  mutate(grupedad_gr = case_when(
+    edad < 65 ~ "35 a 64",
+    edad >= 65 ~ "65 o más"
+  )) %>% 
+  
+  select(c(grupedad_gr, 
+           ojos_retinopatia_no_proliferativa, ojos_retinopatia_proliferativa, complicaciones_ceguera,
+           complicaciones_nefropatia, complicaciones_dialisis_transplante,
+           complicaciones_neuropatia_periferica, complicaciones_amputacion, complicaciones_disfuncion_erectil,
+           complic, complic_micro)) %>% 
+  
+  tbl_summary(
+    statistic = list(all_continuous() ~ "{median} ({p25}, {p75})",   
+                     all_categorical() ~ "{n} / {N} ({p}%)"),               
+    digits = all_continuous() ~ 1,                         
+    type   = all_categorical() ~ "categorical",
+    by = grupedad_gr, 
+    label  = list(
+      
+      ojos_retinopatia_no_proliferativa ~ "Retinopatía no proliferativa", 
+      ojos_retinopatia_proliferativa ~ "Retinopatía proliferativa", 
+      complicaciones_ceguera ~ "Ceguera",
+      complicaciones_nefropatia ~ "Nefropatía", 
+      complicaciones_dialisis_transplante ~ "Diálisis/Transplante",
+      complicaciones_neuropatia_periferica ~ "Neuropatía periférica", 
+      complicaciones_amputacion ~ "Amputación", 
+      complicaciones_disfuncion_erectil ~ "Disfunción eréctil",
+      complic ~ "Complicaciones",
+      complic_micro ~ "Complicaciones microvasculares"),
+    missing_text = "Sin dato"                               
+  ) %>% 
+  modify_header(label ~ "**Variable**") %>% 
+  add_p() %>% 
+  bold_p()
+  # as_flex_table() 
+
+### Diferencias entre frecuencias de complicaciones según edad pacientes de sexo masculino ----
+t2 <- qualidiab_2014 %>% 
+  filter(grupedad %in% c("08_35 a 39",
+                         "09_40 a 44",
+                         "10_45 a 49",
+                         "11_50 a 54",
+                         "12_55 a 59",
+                         "13_60 a 64",
+                         "14_65 a 69",
+                         "15_70 a 74",
+                         "16_75 a 79",
+                         "17_80 y más") & sexo == "Masculino") %>%
+  
+  mutate(grupedad_gr = case_when(
+    edad < 65 ~ "35 a 64",
+    edad >= 65 ~ "65 o más"
+  )) %>% 
+  
+  select(c(grupedad_gr, 
+           ojos_retinopatia_no_proliferativa, ojos_retinopatia_proliferativa, complicaciones_ceguera,
+           complicaciones_nefropatia, complicaciones_dialisis_transplante,
+           complicaciones_neuropatia_periferica, complicaciones_amputacion, complicaciones_disfuncion_erectil,
+           complic, complic_micro)) %>% 
+  
+  tbl_summary(
+    statistic = list(all_continuous() ~ "{median} ({p25}, {p75})",   
+                     all_categorical() ~ "{n} / {N} ({p}%)"),               
+    digits = all_continuous() ~ 1,                         
+    type   = all_categorical() ~ "categorical",
+    by = grupedad_gr, 
+    label  = list(
+      
+      ojos_retinopatia_no_proliferativa ~ "Retinopatía no proliferativa", 
+      ojos_retinopatia_proliferativa ~ "Retinopatía proliferativa", 
+      complicaciones_ceguera ~ "Ceguera",
+      complicaciones_nefropatia ~ "Nefropatía", 
+      complicaciones_dialisis_transplante ~ "Diálisis/Transplante",
+      complicaciones_neuropatia_periferica ~ "Neuropatía periférica", 
+      complicaciones_amputacion ~ "Amputación", 
+      complicaciones_disfuncion_erectil ~ "Disfunción eréctil",
+      complic ~ "Complicaciones",
+      complic_micro ~ "Complicaciones microvasculares"),
+    missing_text = "Sin dato"                               
+  ) %>% 
+  modify_header(label ~ "**Variable**") %>% 
+  add_p() %>% 
+  bold_p()
+  # as_flex_table() 
+
+### Tabla resumen ----
+tbl_merge(
+  tbls = list(t1, t2),
+  tab_spanner = c("**Femenino**", "**Masculino**")
+)
