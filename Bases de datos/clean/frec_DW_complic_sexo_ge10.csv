@@ -1,0 +1,122 @@
+sexo,grupo_edad_10,tipo_complicacion,complicacion,frec_compli,DW
+Mujer,20-29,NA,Sin complicaciones,0.3333333333333333,0.0490114147
+Mujer,20-29,microvascular,Retinopatía no proliferativa,0.5,0.10744530709999994
+Mujer,20-29,microvascular,Retinopatía proliferativa,0.16666666666666666,0.1840484878
+Mujer,20-29,microvascular,Nefropatía,0.3333333333333333,0.24289327507942718
+Mujer,20-29,microvascular,Neuropatía periférica,0.16666666666666666,0.133189991499999
+Mujer,30-39,NA,Sin complicaciones,0.7333333333333333,0.0490114147
+Mujer,30-39,macrovascular,Claudicación miembros inferiores,0.03333333333333333,0.0141852508
+Mujer,30-39,microvascular,Retinopatía no proliferativa,0.06666666666666667,0.10744530709999994
+Mujer,30-39,microvascular,Nefropatía,0.1,0.24289327507942718
+Mujer,30-39,microvascular,Neuropatía periférica,0.13333333333333333,0.133189991499999
+Mujer,40-49,NA,Sin complicaciones,0.7788461538461539,0.0490114147
+Mujer,40-49,macrovascular,IAM,0.009615384615384616,0.25318521504999997
+Mujer,40-49,macrovascular,IC,0.009615384615384616,0.08529585942499994
+Mujer,40-49,macrovascular,Claudicación miembros inferiores,0.019230769230769232,0.0141852508
+Mujer,40-49,microvascular,Retinopatía no proliferativa,0.11538461538461539,0.10744530709999994
+Mujer,40-49,microvascular,Retinopatía proliferativa,0.028846153846153848,0.1840484878
+Mujer,40-49,microvascular,Ceguera,0.009615384615384616,0.1873645834
+Mujer,40-49,microvascular,Nefropatía,0.038461538461538464,0.24289327507942718
+Mujer,40-49,microvascular,Neuropatía periférica,0.11538461538461539,0.133189991499999
+Mujer,40-49,microvascular,Amputación,0.009615384615384616,0.2246032550058965
+Mujer,50-59,NA,Sin complicaciones,0.6483050847457628,0.0490114147
+Mujer,50-59,macrovascular,IAM,0.012711864406779662,0.25318521504999997
+Mujer,50-59,macrovascular,IC,0.025423728813559324,0.08529585942499994
+Mujer,50-59,macrovascular,ACV,0.00847457627118644,0.40395263097524053
+Mujer,50-59,macrovascular,Claudicación miembros inferiores,0.046610169491525424,0.0141852508
+Mujer,50-59,microvascular,Retinopatía no proliferativa,0.1228813559322034,0.10744530709999994
+Mujer,50-59,microvascular,Retinopatía proliferativa,0.07627118644067797,0.1840484878
+Mujer,50-59,microvascular,Ceguera,0.00847457627118644,0.1873645834
+Mujer,50-59,microvascular,Nefropatía,0.05508474576271186,0.24289327507942718
+Mujer,50-59,microvascular,Neuropatía periférica,0.1864406779661017,0.133189991499999
+Mujer,50-59,microvascular,Amputación,0.00423728813559322,0.2246032550058965
+Mujer,60-69,NA,Sin complicaciones,0.5284552845528455,0.0490114147
+Mujer,60-69,macrovascular,IAM,0.016260162601626018,0.25318521504999997
+Mujer,60-69,macrovascular,IC,0.02032520325203252,0.08529585942499994
+Mujer,60-69,macrovascular,ACV,0.028455284552845527,0.40395263097524053
+Mujer,60-69,macrovascular,Claudicación miembros inferiores,0.044715447154471545,0.0141852508
+Mujer,60-69,microvascular,Retinopatía no proliferativa,0.18292682926829268,0.10744530709999994
+Mujer,60-69,microvascular,Retinopatía proliferativa,0.08536585365853659,0.1840484878
+Mujer,60-69,microvascular,Ceguera,0.012195121951219513,0.1873645834
+Mujer,60-69,microvascular,Nefropatía,0.1016260162601626,0.24289327507942718
+Mujer,60-69,microvascular,Neuropatía periférica,0.2682926829268293,0.133189991499999
+Mujer,60-69,microvascular,Amputación,0.0040650406504065045,0.2246032550058965
+Mujer,70-79,NA,Sin complicaciones,0.45,0.0490114147
+Mujer,70-79,macrovascular,IAM,0.03,0.25318521504999997
+Mujer,70-79,macrovascular,IC,0.01,0.08529585942499994
+Mujer,70-79,macrovascular,ACV,0.05,0.40395263097524053
+Mujer,70-79,macrovascular,Claudicación miembros inferiores,0.08,0.0141852508
+Mujer,70-79,microvascular,Retinopatía no proliferativa,0.17,0.10744530709999994
+Mujer,70-79,microvascular,Retinopatía proliferativa,0.09,0.1840484878
+Mujer,70-79,microvascular,Nefropatía,0.15,0.24289327507942718
+Mujer,70-79,microvascular,Neuropatía periférica,0.42,0.133189991499999
+Mujer,80+,NA,Sin complicaciones,0.4,0.0490114147
+Mujer,80+,macrovascular,IAM,0.15,0.25318521504999997
+Mujer,80+,macrovascular,Claudicación miembros inferiores,0.15,0.0141852508
+Mujer,80+,microvascular,Retinopatía no proliferativa,0.15,0.10744530709999994
+Mujer,80+,microvascular,Retinopatía proliferativa,0.1,0.1840484878
+Mujer,80+,microvascular,Nefropatía,0.1,0.24289327507942718
+Mujer,80+,microvascular,Neuropatía periférica,0.35,0.133189991499999
+Mujer,80+,microvascular,Amputación,0.1,0.2246032550058965
+Varón,0-9,NA,Sin complicaciones,1,0.0490114147
+Varón,10-19,NA,Sin complicaciones,1,0.0490114147
+Varón,20-29,NA,Sin complicaciones,1,0.0490114147
+Varón,30-39,NA,Sin complicaciones,0.92,0.0490114147
+Varón,30-39,macrovascular,IAM,0.04,0.25318521504999997
+Varón,30-39,macrovascular,Claudicación miembros inferiores,0.04,0.0141852508
+Varón,40-49,NA,Sin complicaciones,0.7083333333333334,0.0490114147
+Varón,40-49,macrovascular,IAM,0.027777777777777776,0.25318521504999997
+Varón,40-49,macrovascular,Claudicación miembros inferiores,0.013888888888888888,0.0141852508
+Varón,40-49,microvascular,Retinopatía no proliferativa,0.05555555555555555,0.10744530709999994
+Varón,40-49,microvascular,Retinopatía proliferativa,0.05555555555555555,0.1840484878
+Varón,40-49,microvascular,Nefropatía,0.05555555555555555,0.24289327507942718
+Varón,40-49,microvascular,Neuropatía periférica,0.1111111111111111,0.133189991499999
+Varón,40-49,microvascular,Amputación,0.08333333333333333,0.2246032550058965
+Varón,40-49,microvascular,Disfunción eréctil,0.013888888888888888,0.133189991499999
+Varón,50-59,NA,Sin complicaciones,0.6265060240963856,0.0490114147
+Varón,50-59,macrovascular,IAM,0.07228915662650602,0.25318521504999997
+Varón,50-59,macrovascular,IC,0.03614457831325301,0.08529585942499994
+Varón,50-59,macrovascular,ACV,0.024096385542168676,0.40395263097524053
+Varón,50-59,macrovascular,Claudicación miembros inferiores,0.030120481927710843,0.0141852508
+Varón,50-59,microvascular,Retinopatía no proliferativa,0.14457831325301204,0.10744530709999994
+Varón,50-59,microvascular,Retinopatía proliferativa,0.05421686746987952,0.1840484878
+Varón,50-59,microvascular,Ceguera,0.006024096385542169,0.1873645834
+Varón,50-59,microvascular,Nefropatía,0.1144578313253012,0.24289327507942718
+Varón,50-59,microvascular,Neuropatía periférica,0.1566265060240964,0.133189991499999
+Varón,50-59,microvascular,Amputación,0.060240963855421686,0.2246032550058965
+Varón,50-59,microvascular,Disfunción eréctil,0.07228915662650602,0.133189991499999
+Varón,60-69,NA,Sin complicaciones,0.46111111111111114,0.0490114147
+Varón,60-69,macrovascular,IAM,0.12777777777777777,0.25318521504999997
+Varón,60-69,macrovascular,IC,0.03888888888888889,0.08529585942499994
+Varón,60-69,macrovascular,ACV,0.03888888888888889,0.40395263097524053
+Varón,60-69,macrovascular,Claudicación miembros inferiores,0.08888888888888889,0.0141852508
+Varón,60-69,microvascular,Retinopatía no proliferativa,0.18333333333333332,0.10744530709999994
+Varón,60-69,microvascular,Retinopatía proliferativa,0.06111111111111111,0.1840484878
+Varón,60-69,microvascular,Ceguera,0.005555555555555556,0.1873645834
+Varón,60-69,microvascular,Nefropatía,0.1111111111111111,0.24289327507942718
+Varón,60-69,microvascular,Neuropatía periférica,0.25555555555555554,0.133189991499999
+Varón,60-69,microvascular,Amputación,0.08333333333333333,0.2246032550058965
+Varón,60-69,microvascular,Disfunción eréctil,0.09444444444444444,0.133189991499999
+Varón,70-79,NA,Sin complicaciones,0.35135135135135137,0.0490114147
+Varón,70-79,macrovascular,IAM,0.17567567567567569,0.25318521504999997
+Varón,70-79,macrovascular,IC,0.08108108108108109,0.08529585942499994
+Varón,70-79,macrovascular,ACV,0.02702702702702703,0.40395263097524053
+Varón,70-79,macrovascular,Claudicación miembros inferiores,0.17567567567567569,0.0141852508
+Varón,70-79,microvascular,Retinopatía no proliferativa,0.17567567567567569,0.10744530709999994
+Varón,70-79,microvascular,Retinopatía proliferativa,0.14864864864864866,0.1840484878
+Varón,70-79,microvascular,Ceguera,0.05405405405405406,0.1873645834
+Varón,70-79,microvascular,Nefropatía,0.2702702702702703,0.24289327507942718
+Varón,70-79,microvascular,Neuropatía periférica,0.32432432432432434,0.133189991499999
+Varón,70-79,microvascular,Amputación,0.05405405405405406,0.2246032550058965
+Varón,70-79,microvascular,Disfunción eréctil,0.12162162162162163,0.133189991499999
+Varón,80+,NA,Sin complicaciones,0.26666666666666666,0.0490114147
+Varón,80+,macrovascular,IAM,0.06666666666666667,0.25318521504999997
+Varón,80+,macrovascular,ACV,0.26666666666666666,0.40395263097524053
+Varón,80+,macrovascular,Claudicación miembros inferiores,0.2,0.0141852508
+Varón,80+,microvascular,Retinopatía no proliferativa,0.06666666666666667,0.10744530709999994
+Varón,80+,microvascular,Retinopatía proliferativa,0.2,0.1840484878
+Varón,80+,microvascular,Ceguera,0.06666666666666667,0.1873645834
+Varón,80+,microvascular,Nefropatía,0.4666666666666667,0.24289327507942718
+Varón,80+,microvascular,Neuropatía periférica,0.4666666666666667,0.133189991499999
+Varón,80+,microvascular,Amputación,0.13333333333333333,0.2246032550058965
+Varón,80+,microvascular,Disfunción eréctil,0.4,0.133189991499999

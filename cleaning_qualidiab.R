@@ -21,9 +21,14 @@
 #   - Nefropatía: si usamos esta complicación diferenciada de "Diálisis/Transplante" se debería usar el promedio de DW para los estadíos 3-4 de enf renal crónica, sumando el estadío 5 a "Diálisis/Transplante".
 #   Como alternativa, pueden combinarse ambas complicaciones y usar el promedio de los DW para estadíos 3-4-5 de ERC. Evaluar si hay diferencias para decidir.
 
+### Autora: Micaela Gauto
+### Fecha modificación:
+# 2025-12-29
+
 
 # Carga de paquetes -------------------------------------------------------
 pacman::p_load(
+  rio,
   readxl,
   tidyverse,
   skimr,
@@ -40,12 +45,9 @@ pacman::p_load(
 ## Base Qualidiab 2014
 qualidiab_2014 <- read_excel("Bases de datos/fichas_pacientes_QUALIDIAB_solo_ARG_2014.xlsx")
 
-glimpse(qualidiab_2014)
-
-skim(qualidiab_2014)
 
 ## Base de pesos de discapacidad para complicaciones de Qualidiab 
-# (corregida para "Retinopatía proliferativa", "Disfunción eréctil" y "Diálisis/Transplante" según criterios consensuados)
+# (corregida para "Retinopatía proliferativa", "Disfunción eréctil" y "Nefropatía" (combinada con diálisis/tx) según criterios consensuados)
 DW_GBD <- read_excel("Bases de datos/DW_GBD.xlsx")
 
 
@@ -58,10 +60,12 @@ qualidiab_2014 <- qualidiab_2014 %>%
                   .x == 0 ~ "No",
                   .x == 1 ~ "Sí",
                   .default = "Sin dato"))),
+         
          sexo = as_factor(case_when(
            sexo == 0 ~ "Mujer",
            sexo == 1 ~ "Varón"
            )),
+         
          obito = as_factor(obito),
          fecha_de_nacimiento = as_date(fecha_de_nacimiento),
          registro_fecha = as_date(registro_fecha),
@@ -99,23 +103,16 @@ qualidiab_2014 <- qualidiab_2014 %>%
            edad >= 80 ~ "80+",
            .default = NA)),
          
-         # grupo_edad_gr = as_factor(case_when(
-         #   edad >= 0 & edad < 40 ~ "01_0 a 39",
-         #   edad >= 40 & edad < 60 ~ "02_40 a 59",
-         #   edad >= 60 & edad < 80 ~ "03_60 a 80",
-         #   edad >= 80 ~ "04_80 y más",
-         #   .default = NA)),
-         
          tiempo_dx = (edad - edad_al_diagnostico_de_la_diabetes),
          tiempo_dx = case_when(
            tiempo_dx < 0 ~ NA,
            .default = tiempo_dx
          ))
 
-## Reordenamiento de niveles de la variable "grupedad" ----
+## Reordenamiento de niveles de la variable "grupo_edad" ----
 qualidiab_2014 <- qualidiab_2014 %>% 
   mutate(
-    # grupedad_5 = factor(grupedad_5, levels = c(
+    # grupo_edad_5 = factor(grupo_edad_5, levels = c(
     #   "01_0 a 4",
     #   "02_5 a 9",
     #   "03_10 a 14",
@@ -166,7 +163,7 @@ qualidiab_2014 <- qualidiab_2014 %>%
     ),
     
     #Nefropatía -> 2 opciones
-    #1. Diálisis/Transplante se usará como proxy de nefropatía (opción si usamos categoría combinada).
+    #1. Diálisis/Transplante se usará como proxy de nefropatía (opción si usamos categoría combinada) -> Avanzamos con esta
     complicaciones_nefropatia_c = case_when(
       complicaciones_dialisis_transplante == "Sí" & complicaciones_nefropatia == "No" ~ "Sí",
       complicaciones_dialisis_transplante == "Sí" & complicaciones_nefropatia == "Sin dato" ~ "Sí",
@@ -178,99 +175,30 @@ qualidiab_2014 <- qualidiab_2014 %>%
       .default = complicaciones_nefropatia
     ))
 
-### Comparación de complicaciones relacionadas a nefropatía ----
-
-# ## Definición de DW para cada opción
-# 
-# ### DW de nefropatía separada de diálisis/transplante (ERC sin estadío 5)
-# nefro <- DW_GBD %>% 
-#   filter(`complicación crónica_Qualidiab` == "Nefropatía" & 
-#            (str_detect(secuela_GBD, "Stage 3") | str_detect(secuela_GBD, "Stage 4"))) %>% 
-#   summarise(DW = sum(DW_secuela)/length(DW_secuela))
-# 
-# ### DW de diálisis/transplante (sumando estadío 5)
-# tx <- DW_GBD %>% 
-#   filter(`complicación crónica_Qualidiab` == "Diálisis / Transplante" | 
-#            (`complicación crónica_Qualidiab` == "Nefropatía" & str_detect(secuela_GBD, "Stage 5"))) %>% 
-#   summarise(DW = sum(DW_secuela)/length(DW_secuela))
-# 
-# ### DW de nefropatía combinada (sumando estadío 5)
-# nefro_c <- DW_GBD %>% 
-#   filter(`complicación crónica_Qualidiab` == "Nefropatía") %>% 
-#   summarise(DW = sum(DW_secuela)/length(DW_secuela))
-# 
-# ## Armado de tabla comparativa
-# t_comp <- qualidiab_2014 %>% 
-#   
-#   # Nefropatía corregida
-#   group_by(sexo, grupedad_10, complicaciones_nefropatia_c2) %>% 
-#   summarise(n_nefro = n()) %>% 
-#   group_by(sexo, grupedad_10) %>% 
-#   mutate(prop_nefro = n_nefro/sum(n_nefro)) %>% 
-#   filter(complicaciones_nefropatia_c2 == "Sí") %>% 
-#   mutate(DW_nefro = nefro$DW) %>% 
-#   
-#   # Diálisis/Transplante
-#   full_join(qualidiab_2014 %>% 
-#               group_by(sexo, grupedad_10, complicaciones_dialisis_transplante) %>% 
-#               summarise(n_tx = n()) %>% 
-#               group_by(sexo, grupedad_10) %>% 
-#               mutate(prop_tx = n_tx/sum(n_tx)) %>% 
-#               filter(complicaciones_dialisis_transplante == "Sí") %>% 
-#               mutate(DW_tx = tx$DW),
-#             by = join_by(sexo == sexo, grupedad_10 == grupedad_10)) %>% 
-#   
-#   # Nefropatía combinada
-#   full_join(qualidiab_2014 %>% 
-#               group_by(sexo, grupedad_10, complicaciones_nefropatia_c) %>% 
-#               summarise(n_nefro_c = n()) %>% 
-#               group_by(sexo, grupedad_10) %>% 
-#               mutate(prop_nefro_c = n_nefro_c/sum(n_nefro_c)) %>% 
-#               filter(complicaciones_nefropatia_c == "Sí") %>% 
-#               mutate(DW_nefro_c = nefro_c$DW),
-#             by = join_by(sexo == sexo, grupedad_10 == grupedad_10)) %>% 
-#   
-#   replace_na(list(DW_nefro = 0, prop_nefro = 0, DW_tx = 0, prop_tx = 0, DW_nefro_c = 0, prop_nefro_c = 0)) %>% 
-#   
-#   # Cálculo de YLD (faltaría multiplicar por prevalencia de DM2)
-#   mutate(YLD_agrup = prop_nefro_c * DW_nefro_c, #YLD de nefropatía combinada
-#          YLD_nefro = prop_nefro * DW_nefro,
-#          YLD_tx = prop_tx * DW_tx,
-#          YLD_sum = YLD_nefro + YLD_tx) #suma de YLD si se cuenta nefropatía y diálisis/transplante por separado
-# 
-# ## Gráfico comparativo
-# t_comp %>% 
-#   pivot_longer(cols = c(YLD_agrup, YLD_sum), names_to = "compli", values_to = "YLD") %>% 
-#   ggplot(aes(x = grupedad_10, y = YLD, fill = compli)) + 
-#   geom_bar(stat = "identity", position = "dodge") +
-#   theme(axis.text.x = element_text(angle = 90)) +
-#   facet_wrap(~sexo)
-# # En términos generales, usar la complicación nefropatía combinada aporta más YLD por grupo de edad y sexo
-
 
 ## Identificación de personas con diabetes sin complicaciones (usando complicaciones corregidas) ----
 
 qualidiab_2014 <- qualidiab_2014 %>% 
   mutate(complic = # ausencia de cualquiera de las complicaciones referidas en la ficha (macro y microvasculares)
            case_when( 
-             complicaciones_ceguera == "No" & 
+             (complicaciones_ceguera == "No" | complicaciones_ceguera == "Sin dato") & 
                #complicaciones_dialisis_transplante == "No" & 
-               complicaciones_neuropatia_periferica_c == "No" &
-               complicaciones_nefropatia_c == "No" & 
+               (complicaciones_neuropatia_periferica_c == "No" | complicaciones_neuropatia_periferica_c == "Sin dato") &
+               (complicaciones_nefropatia_c == "No" | complicaciones_nefropatia_c == "Sin dato") & 
                #complicaciones_hipo_ta_ortostatica == "No" & 
-               complicaciones_disfuncion_erectil == "No" & 
-               complicaciones_iam_c == "No" & 
-               complicaciones_acv == "No" & 
-               complicaciones_claudicacion_miembros_inferiores == "No" &
+               (complicaciones_disfuncion_erectil == "No" | complicaciones_disfuncion_erectil == "Sin dato") & 
+               (complicaciones_iam_c == "No" | complicaciones_iam_c == "Sin dato") & 
+               (complicaciones_acv == "No"  | complicaciones_acv == "Sin dato") & 
+               (complicaciones_claudicacion_miembros_inferiores == "No" | complicaciones_claudicacion_miembros_inferiores == "Sin dato") &
                #complicaciones_revascularizacion == "No" & 
                #complicaciones_hvi == "No" & 
-               complicaciones_ic == "No" & 
+               (complicaciones_ic == "No" | complicaciones_ic == "Sin dato") & 
                #complicaciones_ait == "No" &
-               complicaciones_amputacion == "No" & 
+               (complicaciones_amputacion == "No" | complicaciones_amputacion == "Sin dato") & 
                #complicaciones_crm == "No" & 
                #complicaciones_stent == "No" & 
-               ojos_retinopatia_no_proliferativa == "No" & 
-               ojos_retinopatia_proliferativa == "No" ~ "Sin complicaciones",
+               (ojos_retinopatia_no_proliferativa == "No" | ojos_retinopatia_no_proliferativa == "Sin dato") & 
+               (ojos_retinopatia_proliferativa == "No" | ojos_retinopatia_proliferativa == "Sin dato")  ~ "Sin complicaciones",
              
       
     complicaciones_ceguera == "Sí" | 
@@ -294,14 +222,14 @@ qualidiab_2014 <- qualidiab_2014 %>%
     
     complic_micro = # ausencia de complicaciones microvasculares en el estudio
       case_when(
-      complicaciones_ceguera == "No" & 
+      (complicaciones_ceguera == "No" | complicaciones_ceguera == "Sin dato") & 
         #complicaciones_dialisis_transplante == "No" & 
-        complicaciones_neuropatia_periferica_c == "No" &
-        complicaciones_nefropatia_c == "No" & 
-        complicaciones_disfuncion_erectil == "No" & 
-        complicaciones_amputacion == "No" & 
-        ojos_retinopatia_no_proliferativa == "No" & 
-        ojos_retinopatia_proliferativa == "No" ~ "Sin complicaciones",
+        (complicaciones_neuropatia_periferica_c == "No" | complicaciones_neuropatia_periferica_c == "Sin dato") &
+        (complicaciones_nefropatia_c == "No" | complicaciones_nefropatia_c == "Sin dato") & 
+        (complicaciones_disfuncion_erectil == "No"  | complicaciones_disfuncion_erectil == "Sin dato") & 
+        (complicaciones_amputacion == "No" | complicaciones_amputacion == "Sin dato") & 
+        (ojos_retinopatia_no_proliferativa == "No" | ojos_retinopatia_no_proliferativa == "Sin dato") & 
+        (ojos_retinopatia_proliferativa == "No" | ojos_retinopatia_proliferativa == "Sin dato") ~ "Sin complicaciones",
       
       complicaciones_ceguera == "Sí" | 
         #complicaciones_dialisis_transplante == "Sí" | 
@@ -315,15 +243,15 @@ qualidiab_2014 <- qualidiab_2014 %>%
     complic_macro = # ausencia de complicaciones macrovasculares en el estudio
       case_when( 
       #complicaciones_hipo_ta_ortostatica == "No" & 
-        complicaciones_iam_c == "No" & 
-        complicaciones_acv == "No" & 
-        complicaciones_claudicacion_miembros_inferiores == "No" &
+        (complicaciones_iam_c == "No" | complicaciones_iam_c == "Sin dato") & 
+        (complicaciones_acv == "No" | complicaciones_acv == "Sin dato") & 
+        (complicaciones_claudicacion_miembros_inferiores == "No" | complicaciones_claudicacion_miembros_inferiores == "Sin dato") &
         #complicaciones_revascularizacion == "No" & 
         #complicaciones_hvi == "No" & 
         #complicaciones_ait == "No" &
         #complicaciones_crm == "No" & 
         #complicaciones_stent == "No" &
-        complicaciones_ic == "No" ~ "Sin complicaciones",
+        (complicaciones_ic == "No" | complicaciones_ic == "Sin dato") ~ "Sin complicaciones",
       
       #complicaciones_hipo_ta_ortostatica == "Sí" | 
         complicaciones_iam_c == "Sí" | 
@@ -336,7 +264,6 @@ qualidiab_2014 <- qualidiab_2014 %>%
         #complicaciones_stent == "Sí" |
         complicaciones_ic == "Sí" ~ "Alguna complicación"))
     
-
 ## Corrección de diagnósticos y filtrado de DM2 ----
 qualidiab_2014 <- qualidiab_2014 %>% 
   
@@ -402,6 +329,12 @@ qualidiab_2014_dm2 <- qualidiab_2014 %>%
 
 ### Filtrado de base de DW según secuelas a utilizar ----
 
+DW_GBD_recorte <- DW_GBD %>% 
+  group_by(`tipo_complicación crónica`, `complicación crónica_Qualidiab`) %>% 
+  summarise(DW_promedio = sum(DW_secuela)/length(DW_secuela)) %>% 
+
+  filter(DW_promedio != is.na(DW_promedio))
+
 # ### Agrego nefropatía separada de diálisis/transplante
 # nefro_sep <- DW_GBD %>% 
 #   filter(`complicación crónica_Qualidiab` == "Nefropatía" & 
@@ -413,183 +346,8 @@ qualidiab_2014_dm2 <- qualidiab_2014 %>%
 #     .default = `complicación crónica_Qualidiab`
 #   ))
 
-# DW_GBD <- DW_GBD %>%
+# DW_GBD_recorte <- DW_GBD_recorte %>%
 #   bind_rows(nefro_sep)
-
-### Tabla de DW limpia
-DW_GBD_recorte <- DW_GBD %>% 
-  group_by(`tipo_complicación crónica`, `complicación crónica_Qualidiab`) %>% 
-  summarise(DW_promedio = sum(DW_secuela)/length(DW_secuela)) %>% 
-
-  filter(DW_promedio != is.na(DW_promedio))
-
-
-# Análisis exploratorio ---------------------------------------------------
-
-## Exploración grupos de edad ----
-
-# # 0-39; 40-59; 60-79; 80+
-# qualidiab_2014_dm2 %>%
-#   count(sexo, grupedad_gr) %>% 
-#   
-#   ggplot(aes(x = grupedad_gr, y = n)) +
-#   
-#   geom_histogram(stat = "identity") +
-#   geom_label(aes(label = n)) +
-#   theme(axis.text.x = element_text(angle = 90, size = 6)) +
-#   facet_wrap(~sexo)
-
-# Otros grupos de edad = 0-35; 35-49; 50-64; 65+ -> el problema es que no respeta cortes decenales, complica para el cálculo de YLD
-# qualidiab_2014_dm2 %>%
-#   mutate(grupedad_p = case_when(
-#     
-#       edad >= 0 & edad < 35 ~ "01_0 a 34",
-#       edad >= 35 & edad < 50 ~ "02_35 a 49",
-#       edad >= 50 & edad < 65 ~ "03_50 a 64",
-#       edad >= 65 ~ "04_65 y más",
-#       .default = NA),
-#   
-#   grupedad_p = factor(grupedad_p, levels = c(
-#     "01_0 a 34",
-#     "02_35 a 49",
-#     "03_50 a 64",
-#     "04_65 y más"))) %>% 
-# 
-#   count(sexo, grupedad_p) %>% 
-#   
-#   ggplot(aes(x = grupedad_p, y = n)) +
-#   
-#   geom_histogram(stat = "identity") +
-#   geom_label(aes(label = n)) +
-#   theme(axis.text.x = element_text(angle = 90, size = 6)) +
-#   facet_wrap(~sexo)
-
-
-## Frecuencia de complicaciones generales según grupo de edad ----
-
-### Histograma
-qualidiab_2014_dm2 %>%
-  select(sexo, edad, grupo_edad_10, 
-         complic,
-         complic_micro,
-         complic_macro) %>% 
-  
-  pivot_longer(cols = 4:6, names_to = "complic", values_to = "presencia") %>% 
-  mutate(complic = case_when(
-    complic == "complic" ~ "Alguna complic",
-    complic == "complic_micro" ~ "Alguna complic micro",
-    complic == "complic_macro" ~ "Alguna complic macro"),
-  complic = factor(complic, levels = c(
-    "Alguna complic", 
-    "Alguna complic micro",
-    "Alguna complic macro")),
-  presencia = factor(presencia, levels = c(
-    "Sin complicaciones",
-    "Alguna complicación"))) %>% 
-  
-  filter(presencia != is.na(presencia)) %>% 
-  
-  ggplot(aes(x = grupo_edad_10, fill = presencia)) +
-  geom_histogram(stat = "count", position = "fill") +
-  #geom_vline(xintercept = "13_60 a 64") +
-  
-  labs(x = "Grupos de edad",
-       y = "Frecuencia (%)",
-       fill = "") +
-  theme(axis.text.x = element_text(angle = 90, size = 6),
-        legend.position = "right") +
-  scale_fill_manual(values = c("grey", "#00746B")) +
-  facet_grid(cols = vars(complic),
-             rows = vars(sexo)) +
-  scale_y_continuous(labels = percent, limits = c(0, 1))
-
-
-## Frecuencia de complicaciones microvasculares según grupo de edad ----
-
-### Histograma
-qualidiab_2014_dm2 %>%
-  select(sexo, edad, grupo_edad_10, 
-         complicaciones_ceguera,
-         complicaciones_neuropatia_periferica_c,
-         complicaciones_nefropatia_c, 
-         complicaciones_disfuncion_erectil, 
-         complicaciones_amputacion,
-         ojos_retinopatia_no_proliferativa, ojos_retinopatia_proliferativa) %>% 
-  
-  pivot_longer(cols = 4:10, names_to = "compli_micro", values_to = "presencia") %>% 
-  mutate(compli_micro = case_when(
-    compli_micro == "complicaciones_ceguera" ~ "Ceguera",
-    compli_micro == "complicaciones_neuropatia_periferica_c" ~ "Neuropatía p.",
-    compli_micro == "complicaciones_nefropatia_c" ~ "Nefropatía", 
-    compli_micro == "complicaciones_disfuncion_erectil" ~ "Disf. eréctil", 
-    compli_micro == "complicaciones_amputacion" ~ "Amputación",
-    compli_micro == "ojos_retinopatia_no_proliferativa" ~ "Retinop. NP", 
-    compli_micro == "ojos_retinopatia_proliferativa" ~ "Retinop. P"
-  ),
-  compli_micro = factor(compli_micro, levels = c(
-    "Retinop. NP", 
-    "Retinop. P",
-    "Ceguera",
-    "Nefropatía", 
-    "Neuropatía p.",
-    "Amputación",
-    "Disf. eréctil"))) %>% 
-  
-  filter(presencia != "Sin dato") %>% 
-  
-  ggplot(aes(x = grupo_edad_10, fill = presencia)) +
-  geom_histogram(stat = "count", position = "fill") +
-  #geom_vline(xintercept = "13_60 a 64") +
-  
-  labs(x = "Grupos de edad",
-       y = "Frecuencia (%)") +
-  theme(axis.text.x = element_text(angle = 90, size = 6),
-        legend.position = "none") +
-  scale_fill_manual(values = c("grey", "#00746B")) +
-  facet_grid(cols = vars(compli_micro),
-             rows = vars(sexo)) +
-  scale_y_continuous(labels = percent, limits = c(0, 1))
-
-
-## Frecuencia de complicaciones macrovasculares según grupo de edad ----
-
-### Histograma
-qualidiab_2014_dm2 %>%   
-  
-  select(c(sexo, edad, grupo_edad_10, 
-           complicaciones_iam_c, 
-           complicaciones_ic, 
-           complicaciones_acv, 
-           complicaciones_claudicacion_miembros_inferiores)) %>% 
-  
-  pivot_longer(cols = 4:7, names_to = "compli_macro", values_to = "presencia") %>%    
-  
-  mutate(compli_macro = case_when(     
-    compli_macro == "complicaciones_iam_c" ~ "IAM", 
-    compli_macro == "complicaciones_ic" ~ "Insuf. cardíaca", 
-    compli_macro == "complicaciones_acv" ~ "ACV", 
-    compli_macro == "complicaciones_claudicacion_miembros_inferiores" ~ "Claudic. MMII"),   
-    
-    compli_macro = factor(compli_macro, levels = c(     
-      "IAM", 
-      "Insuf. cardíaca", 
-      "ACV", 
-      "Claudic. MMII"))) %>%       
-  
-  filter(presencia != "Sin dato") %>%       
-  
-  ggplot(aes(x = grupo_edad_10, fill = presencia)) +
-  geom_histogram(stat = "count", position = "fill") +
-  #geom_vline(xintercept = "13_60 a 64") +
-  
-  labs(x = "Grupos de edad",
-       y = "Frecuencia (%)") +
-  theme(axis.text.x = element_text(angle = 90, size = 6),
-        legend.position = "none") +
-  scale_fill_manual(values = c("grey", "#00746B")) +
-  facet_grid(cols = vars(compli_macro),
-             rows = vars(sexo)) +
-  scale_y_continuous(labels = percent, limits = c(0, 1))
 
 
 # Cálculo de frecuencias por sexo y grupos de edad ------------------------
@@ -625,7 +383,7 @@ complic_frecyDW_10 <- qualidiab_2014_dm2 %>%
     complicacion == "complicaciones_nefropatia_c" ~ "Nefropatía", 
     complicacion == "complicaciones_neuropatia_periferica_c" ~ "Neuropatía periférica",
     complicacion == "complicaciones_amputacion" ~ "Amputación",
-    complicacion == "complicacioncaciones_disfuncion_erectil" ~ "Disfunción eréctil"),   
+    complicacion == "complicaciones_disfuncion_erectil" ~ "Disfunción eréctil"),   
     
     complicacion = factor(complicacion, levels = c(     
       "Sin complicaciones",
@@ -645,7 +403,7 @@ complic_frecyDW_10 <- qualidiab_2014_dm2 %>%
   summarise(recuento = n()) %>% 
   ungroup() %>% 
   group_by(sexo, grupo_edad_10, complicacion) %>% 
-  mutate(frec_compli = round(recuento/sum(recuento)*100, digits = 1)) %>% 
+  mutate(frec_compli = recuento/sum(recuento)) %>% 
   
   filter(presencia == "Sí" | presencia == "Sin complicaciones") %>% 
   
@@ -655,7 +413,7 @@ complic_frecyDW_10 <- qualidiab_2014_dm2 %>%
             by = join_by(complicacion == `complicación crónica_Qualidiab`)) %>%
   
   mutate(DW_promedio = case_when(
-    complicacion == "Sin complicaciones" ~ 0.049,
+    complicacion == "Sin complicaciones" ~ 0.0490114147,
     .default = DW_promedio
   )) %>% 
   
@@ -664,9 +422,6 @@ complic_frecyDW_10 <- qualidiab_2014_dm2 %>%
   rename("tipo_complicacion" = "tipo_complicación crónica",
          "DW" = "DW_promedio") %>%
   ungroup()
-# gt(groupname_col = c("Sexo", "Grupo de edad"),
-#    row_group_as_column = TRUE)
-
 
 
 # Guardar datos limpios ---------------------------------------------------
