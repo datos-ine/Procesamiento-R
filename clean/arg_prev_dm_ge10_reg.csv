@@ -1,4 +1,4 @@
-anio_enfr,region_deis,grupo_edad_10,sexo,dm_total,dm_total_se,dm2_total,dm2_total_se,dm2_prev,dm2_prev_se,dm2_prev_cv,dm2_prev_cv_cat
+anio_enfr,region_deis,grupo_edad10,sexo,dm_total,dm_total_se,dm2_total,dm2_total_se,dm2_prev,dm2_prev_se,dm2_prev_cv,dm2_prev_cv_cat
 2005,Centro,30 a 39,Mujer,115928,21234.19,104335.2,19110.77,0.06,0.01,0.18,Moderada
 2005,Centro,30 a 39,Varón,56526,13194.76,50873.4,11875.28,0.04,0.01,0.23,Alta
 2005,Centro,40 a 49,Mujer,70617,14915.08,63555.3,13423.57,0.04,0.01,0.21,Alta

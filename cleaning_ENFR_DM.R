@@ -5,7 +5,7 @@
 ### total para obtener la prevalencia de DM2.
 ### Autoras: Tamara Ricardo y Micaela Gauto
 ### Fecha creación: # 2025-10-22 13:12:27
-# Última modificación: 19-01-2026 12:58
+# Última modificación: 19-01-2026 13:48
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -68,7 +68,7 @@ clean_enfr <- function(x) {
 
     # Crear grupo de edad decenal
     mutate(
-      grupo_edad_10 = age_categories(
+      grupo_edad10 = age_categories(
         edad,
         lower = 30,
         upper = 80,
@@ -179,13 +179,13 @@ tabyl(enfr13$sexo)
 tabyl(enfr18$sexo)
 
 # Frecuencias x grupo etario decenal
-tabyl(enfr05$grupo_edad_10)
+tabyl(enfr05$grupo_edad10)
 
-tabyl(enfr09$grupo_edad_10)
+tabyl(enfr09$grupo_edad10)
 
-tabyl(enfr13$grupo_edad_10)
+tabyl(enfr13$grupo_edad10)
 
-tabyl(enfr18$grupo_edad_10)
+tabyl(enfr18$grupo_edad10)
 
 # Frecuencias x presencia DM
 tabyl(enfr05$dm_auto)
@@ -214,7 +214,7 @@ enfr05_ge10 <- enfr05 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad_10, sexo) |>
+  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -229,7 +229,7 @@ enfr09_ge10 <- enfr09 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad_10, sexo) |>
+  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -244,7 +244,7 @@ enfr13_ge10 <- enfr13 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad_10, sexo) |>
+  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -263,7 +263,7 @@ enfr18_ge10 <- enfr18 |>
   ) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad_10, sexo) |>
+  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -309,7 +309,7 @@ enfr05_ge10_reg <- enfr05 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad_10, sexo) |>
+  group_by(region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -324,7 +324,7 @@ enfr09_ge10_reg <- enfr09 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad_10, sexo) |>
+  group_by(region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -339,7 +339,7 @@ enfr13_ge10_reg <- enfr13 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad_10, sexo) |>
+  group_by(region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -358,7 +358,7 @@ enfr18_ge10_reg <- enfr18 |>
   ) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad_10, sexo) |>
+  group_by(region_deis, grupo_edad10, sexo) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),

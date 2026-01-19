@@ -1,4 +1,4 @@
-anio_enfr,codprov_censo,region_deis,grupo_edad_10,sexo,dm_total,dm_total_se,dm2_total,dm2_total_se,dm2_prev,dm2_prev_se,dm2_prev_cv,dm2_prev_cv_cat
+anio_enfr,codprov_censo,region_deis,grupo_edad10,sexo,dm_total,dm_total_se,dm2_total,dm2_total_se,dm2_prev,dm2_prev_se,dm2_prev_cv,dm2_prev_cv_cat
 2005,02,Centro,30 a 39,Mujer,8244,4595.64,7419.6,4136.07,0.03,0.02,0.55,Muy alta
 2005,02,Centro,30 a 39,Varón,7239,3484.37,6515.1,3135.93,0.03,0.02,0.47,Muy alta
 2005,02,Centro,40 a 49,Mujer,8240,3738.24,7416,3364.42,0.04,0.02,0.45,Muy alta

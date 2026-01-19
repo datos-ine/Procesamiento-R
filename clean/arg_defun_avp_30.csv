@@ -1,4 +1,4 @@
-anio_enfr,codprov_censo,prov_nombre,region_deis,grupo_edad_10,sexo,defun_n,defun_mean,lx,Tx,ex,AVP
+anio_enfr,codprov_censo,prov_nombre,region_deis,grupo_edad10,sexo,defun_n,defun_mean,lx,Tx,ex,AVP
 2005,02,CABA,Centro,30 a 39,Mujer,1,0.3333333333333333,98257.61885,4983143.736,50.71508748453657,16.90502916151219
 2005,02,CABA,Centro,30 a 39,Varón,4,1.3333333333333333,96997.57994,4397739.3413,45.33865013972843,60.451533519637906
 2005,02,CABA,Centro,40 a 49,Mujer,5,1.6666666666666667,97340.83661,4492775.462499999,46.15509398692027,76.92515664486712
