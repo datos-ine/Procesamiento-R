@@ -29,19 +29,16 @@ prov <- show_arg_codes() |>
 
 
 ## Esperanza vida ----
-ex_raw <- read_csv2(
-  "Bases de datos/WHO_GHO/argentina_tabla de vida_GHO.csv",
-  skip = 1
-)
+ex_raw <- read_csv2("raw/argentina_tabla de vida_GHO.csv", skip = 1)
 
 
 ## Mortalidad 2004 ----
-def04_raw <- import("Bases de datos/DEIS/DE_2004.csv")
+def04_raw <- import("raw/DEIS/DE_2004.csv")
 
 
 ## Mortalidad 2005-2019 ----
 def05_19_raw <- list.files(
-  path = "Bases de datos/DEIS/",
+  path = "raw/DEIS/",
   pattern = "^defweb.",
   full.names = TRUE
 )
@@ -199,7 +196,7 @@ defun <- bind_rows(def04, def05_19) |>
 
 
 # Limpiar datos esperanza de vida ----------------------------------------
-ex_ge_10 <- ex_raw |>
+ex_ge10 <- ex_raw |>
   # Estandarizar nombres de columnas
   clean_names() |>
   select(
@@ -275,12 +272,12 @@ tabyl(defun$sexo)
 
 tabyl(defun$grupo_edad_10)
 
-tabyl(ex_ge_10$grupo_edad_10)
+tabyl(ex_ge10$grupo_edad_10)
 
 
 # Calcular AVP ------------------------------------------------------------
 ## Por provincia, sexo y grupo edad decenal ----
-AVP_ge_10 <- defun |>
+AVP_ge10 <- defun |>
   # Agrupar datos
   group_by(
     anio_enfr,
@@ -301,7 +298,7 @@ AVP_ge_10 <- defun |>
 
   # Añadir datos esperanza de vida
   left_join(
-    ex_ge_10 |>
+    ex_ge10 |>
       select(sexo:lx, Tx, ex)
   ) |>
 
@@ -313,7 +310,7 @@ AVP_ge_10 <- defun |>
 
 
 ## Por región, sexo y grupo edad decenal ----
-AVP_ge_10_reg <- defun |>
+AVP_ge10_reg <- defun |>
   # Agrupar datos
   group_by(
     anio_enfr,
@@ -330,37 +327,24 @@ AVP_ge_10_reg <- defun |>
   ) |>
 
   # Añadir datos esperanza de vida
-  left_join(ex_ge_10) |>
+  left_join(ex_ge10) |>
 
   # Calcular AVP por grupo decenal
   mutate(AVP = defun_mean * ex)
 
 
 # Guardar datos limpios ---------------------------------------------------
-write_csv(AVP_ge_10, file = "Bases de datos/clean/arg_defun_avp_30.csv")
+write_csv(AVP_ge10, file = "clean/arg_defun_avp_30.csv")
 
 write_csv(
-  AVP_ge_10_reg,
-  file = "Bases de datos/clean/arg_defun_avp_30_reg.csv"
+  AVP_ge10_reg,
+  file = "clean/arg_defun_avp_30_reg.csv"
 )
 
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
-  variable = c(
-    "anio_enfr",
-    "codprov_censo",
-    "prov_nombre",
-    "region_deis",
-    "grupo_edad_10",
-    "sexo",
-    "defun_n",
-    "defun_mean",
-    "lx",
-    "Tx",
-    "ex",
-    "AVP"
-  ),
+  variable = names(AVP_ge10),
 
   descripcion = c(
     "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
@@ -377,10 +361,10 @@ data_dict <- tibble(
     "Años de vida perdidos por muerte prematura por diabetes mellitus"
   ),
 
-  tipo_var = map_chr(AVP_ge_10, ~ paste(class(.x), collapse = ", ")),
+  tipo_var = map_chr(AVP_ge10, ~ paste(class(.x), collapse = ", ")),
 
   niveles = map_chr(
-    AVP_ge_10,
+    AVP_ge10,
     ~ if (is.factor(.x)) {
       paste(levels(.x), collapse = ", ")
     } else {
@@ -391,7 +375,7 @@ data_dict <- tibble(
 
 
 ## Guardar diccionario de datos
-export(data_dict, file = "Bases de datos/clean/dic_arg_defun_avp.xlsx")
+export(data_dict, file = "clean/dic_arg_defun_avp.xlsx")
 
 
 ## Limpiar environment y desactivar paquetes
