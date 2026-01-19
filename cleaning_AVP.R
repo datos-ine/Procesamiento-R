@@ -7,9 +7,7 @@
 ### el año 2019 por la GHO-WHO, considerando grupos de edad quinquenales y cada
 ### 10 años para población de 30 años y más según sexo.
 ### Autoras: Micaela Gauto y Tamara Ricardo
-### Última modificación:
-# 2025-12-30
-
+# Última modificación: 19-01-2026 11:12
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -21,377 +19,339 @@ pacman::p_load(
 
 
 # Cargar datos crudos -----------------------------------------------------
-## Etiquetas provincias INDEC
-id_provincias <- get_provincias() |>
-  # Renombrar columnas
-  select(
-    prov_id = id,
-    prov_nombre = nombre
-  ) |>
+## Etiquetas provincias ----
+prov <- show_arg_codes() |>
+  # Filtrar totales
+  filter(between(codprov, "01", "24")) |>
 
   # Cambiar etiqueta CABA
-  mutate(prov_nombre = case_when(
-    prov_id == "02" ~ "CABA",
-    prov_id == "94" ~ "Tierra del Fuego",
-    .default = prov_nombre
-  ))
-
-## Defunciones 2004
-def04_raw <- read_csv("Bases de datos/DEIS/DE_2004.csv")
-
-## Defunciones 2005, 2006, 2008-10, 2012-14 y 2017-19
-def05_19_raw <- # Crear lista de archivos csv de interés
-  list.files(
-    path = "Bases de datos/DEIS/",
-    pattern = "^defweb.",
-    full.names = TRUE
-  ) |>
-
-  # Crear columna para el año
-  set_names(nm = c(2005, 2006, 2008:2010, 2012:2014, 2017:2019)) |>
-
-  # Leer archivos csv
-  map(read_csv, locale = locale(encoding = "WINDOWS-1252"))
+  mutate(prov_nombre = if_else(codprov_censo == "02", id, name_iso))
 
 
-## Base esperanza de vida GHO-WHO para Argentina
-esp_vida_raw <- read_csv2(
+## Esperanza vida ----
+ex_raw <- read_csv2(
   "Bases de datos/WHO_GHO/argentina_tabla de vida_GHO.csv",
   skip = 1
 )
 
 
-# Limpiar serie defunciones -----------------------------------------------
-## Serie 2004
+## Mortalidad 2004 ----
+def04_raw <- import("Bases de datos/DEIS/DE_2004.csv")
+
+
+## Mortalidad 2005-2019 ----
+def05_19_raw <- list.files(
+  path = "Bases de datos/DEIS/",
+  pattern = "^defweb.",
+  full.names = TRUE
+)
+
+
+# Limpiar datos defunciones ----------------------------------------------
+## Defunciones 2004 ----
 def04 <- def04_raw |>
   # Estandarizar nombres de columnas
   clean_names() |>
   rename(
     prov_nombre = jurisdiccion,
-    grupo_edad = grupo_de_edad,
-    causa = causa_de_muerte_cie_10
+    grupo_edad_5 = grupo_de_edad,
+    cie10_causa = causa_de_muerte_cie_10
   ) |>
 
-  # Crear columna para el año
-  mutate(anio = "2004") |>
-
-  # Filtrar datos faltantes provincia
+  # Filtrar datos ausentes provincia defunción
   filter(!prov_nombre %in% c("Lugar no especificado", "Otro país")) |>
 
-  # Filtrar datos faltantes sexo
-  filter(sexo %in% c("Varón", "Mujer")) |>
+  # Filtrar datos ausentes sexo
+  filter(between(sexo, "Mujer", "Varón")) |>
 
-  # # Filtrar grupos de edad fuera del rango de interés(35-80+)
-  # filter(between(grupo_edad, "14.35", "24.85 y más")) |>
-  
-  # Filtrar grupos de edad fuera del rango de interés(30-80+)
-  filter(between(grupo_edad, "13.30", "24.85 y más")) |>
-  
+  # Filtrar menores de edad y datos ausentes
+  filter(between(grupo_edad_5, "13.30 a 34", "24.85 y más")) |>
+
   # Cambiar etiqueta CABA
-  mutate(prov_nombre = if_else(str_detect(prov_nombre, "Ciudad"), "CABA", prov_nombre)) |> 
-  
-# Añadir identificador numérico provincias
-  left_join(id_provincias)
+  mutate(
+    prov_nombre = if_else(
+      str_detect(prov_nombre, "Ciudad"),
+      "CABA",
+      prov_nombre
+    )
+  ) |>
+
+  # Añadir identificador numérico provincias
+  left_join(prov)
 
 
-## Serie 2005-2019
+## Defunciones 2005-2019 ----
 def05_19 <- def05_19_raw |>
-  # Unir archivos csv individuales
+  # Crear columna para el año
+  set_names(nm = c(2005, 2006, 2008:2010, 2012:2014, 2017:2019)) |>
+
+  # Leer archivos csv
+  map(read_csv, locale = locale(encoding = "WINDOWS-1252")) |>
+
+  # Unir datasets
   list_rbind(names_to = "anio") |>
 
   # Estandarizar nombres de columnas
   clean_names() |>
-  rename(prov_id = provres, 
-    grupo_edad = grupedad, 
-    total = cuenta) |>
+  rename(
+    codprov_censo = provres,
+    grupo_edad_5 = grupedad,
+    cie10_causa = causa,
+    total = cuenta
+  ) |>
 
-  # Filtrar datos faltantes provincia
-   filter(!between(prov_id, "98", "99")) |>
+  # Filtrar datos ausentes provincia
+  filter(between(codprov_censo, "02", "94")) |>
 
-  # Filtrar datos faltantes sexo
+  # Filtrar datos ausentes sexo
   filter(between(sexo, 1, 2)) |>
 
-  # Filtrar grupos de edad fuera del rango de interés (35-80+)
-  #filter(between(grupo_edad, "08_35 a 39", "17_80 y más")) |>
-  
-  # Filtrar grupos de edad fuera del rango de interés (30-80+)
-  filter(between(grupo_edad, "07_30 a 34", "17_80 y más")) |>
-  
-  # Modificar etiquetas sexo
+  # Filtrar menores de edad y datos ausentes
+  filter(between(grupo_edad_5, "07_30 a 34", "17_80 y más")) |>
+
+  # Cambiar niveles sexo
   mutate(sexo = if_else(sexo == 1, "Varón", "Mujer")) |>
 
-  # Añadir etiquetas provincia
-  left_join(id_provincias)
+  # Añadir identificador categórico provincias
+  left_join(prov)
 
 
-### Unir serie defunciones
-def_join <- bind_rows(def04, def05_19) |>
-  
-  # Filtrar causas de muerte por DM
-  # filter(causa %in% paste0("E", 10:14)) |> 
-  filter(causa == "E11" | causa == "E14") %>%  # Se toman las causas E11 (DM2) y los E14 de 30 o más (filtro de edad previo)
+## Unir datasets defunciones ----
+defun <- bind_rows(def04, def05_19) |>
 
-  # Crear etiqueta año ENFR
+  # Filtrar muertes por DM2 (E11 y E14)
+  filter(cie10_causa %in% c("E11", "E14")) |>
+
+  # Cambiar etiquetas grupo etario
+  mutate(grupo_edad_5 = str_sub(grupo_edad_5, 4)) |>
+
+  # Crear grupo edad decenal
+  mutate(
+    grupo_edad_10 = case_when(
+      between(grupo_edad_5, "30 a 34", "35 a 39") ~ "30 a 39",
+      between(grupo_edad_5, "40 a 44", "45 a 49") ~ "40 a 49",
+      between(grupo_edad_5, "50 a 54", "55 a 59") ~ "50 a 59",
+      between(grupo_edad_5, "60 a 64", "65 a 69") ~ "60 a 69",
+      between(grupo_edad_5, "70 a 74", "75 a 79") ~ "70 a 79",
+      .default = "80+"
+    )
+  ) |>
+
+  # Completar datos faltantes año defunción
+  mutate(anio = replace_na(anio, "2004")) |>
+
+  # Añadir año ENFR
   mutate(
     anio_enfr = case_when(
       between(anio, "2004", "2006") ~ "2005",
       between(anio, "2008", "2010") ~ "2009",
       between(anio, "2012", "2014") ~ "2013",
       between(anio, "2017", "2019") ~ "2018"
-    )) |>
+    ),
+    .after = anio
+  ) |>
 
-  # Añadir clasificaciones grupo etario
-  
-  ## Grupos quinquenales
-  mutate(grupo_edad_5 = case_when(
-    str_detect(grupo_edad, "30 a 34") ~ "30-34", #se agrega grupo 30-34 años
-    str_detect(grupo_edad, "35 a 39") ~ "35-39",
-    str_detect(grupo_edad, "40 a 44") ~ "40-44",
-    str_detect(grupo_edad, "45 a 49") ~ "45-49",
-    str_detect(grupo_edad, "50 a 54") ~ "50-54",
-    str_detect(grupo_edad, "55 a 59") ~ "55-59",
-    str_detect(grupo_edad, "60 a 64") ~ "60-64",
-    str_detect(grupo_edad, "65 a 69") ~ "65-69",
-    str_detect(grupo_edad, "70 a 74") ~ "70-74",
-    str_detect(grupo_edad, "75 a 79") ~ "75-79",
-    .default = "80+"
-  ),
-  
-  ## Grupos decenales
-  grupo_edad_10 = case_when(
-    str_detect(grupo_edad, "30 a 34") ~ "30-39", 
-    str_detect(grupo_edad, "35 a 39") ~ "30-39",
-    str_detect(grupo_edad, "40 a 44") ~ "40-49",
-    str_detect(grupo_edad, "45 a 49") ~ "40-49",
-    str_detect(grupo_edad, "50 a 54") ~ "50-59",
-    str_detect(grupo_edad, "55 a 59") ~ "50-59",
-    str_detect(grupo_edad, "60 a 64") ~ "60-69",
-    str_detect(grupo_edad, "65 a 69") ~ "60-69",
-    str_detect(grupo_edad, "70 a 74") ~ "70-79",
-    str_detect(grupo_edad, "75 a 79") ~ "70-79",
-    .default = "80+"
-  ),
-  
-  # Agrupamiento en regiones según ENFR 2018
-  region = case_when(
-    prov_nombre == "CABA" | prov_nombre == "Buenos Aires" | prov_nombre == "Santa Fe" |
-      prov_nombre == "Córdoba" | prov_nombre == "Entre Ríos" | prov_nombre == "La Pampa" ~ "Centro",
-    prov_nombre == "Jujuy" | prov_nombre == "Salta" | prov_nombre == "Tucumán" | prov_nombre == "Catamarca" |
-      prov_nombre == "La Rioja" | prov_nombre == "Santiago del Estero" ~ "Noroeste",
-    prov_nombre == "Chaco" | prov_nombre == "Formosa" | prov_nombre == "Misiones" |
-      prov_nombre == "Corrientes" ~ "Noreste",
-    prov_nombre == "San Luis" | prov_nombre == "San Juan" | prov_nombre == "Mendoza" ~ "Cuyo",
-    prov_nombre == "Neuquén" | prov_nombre == "Río Negro" | prov_nombre == "Chubut" |
-      prov_nombre == "Santa Cruz" | prov_nombre == "Tierra del Fuego" ~ "Patagonia",
-    .default = "Otro"
-  )) |> 
+  # Crear región geográfica ENFR
+  mutate(
+    region_enfr = case_when(
+      codprov_censo %in% c("02", "06", "14", "30", "42", "82") ~ "Centro",
+      codprov_censo %in% c("10", "38", "46", "66", "86", "90") ~ "Noroeste",
+      codprov_censo %in% c("18", "22", "34", "54") ~ "Noreste",
+      codprov_censo %in% c("50", "70", "74") ~ "Cuyo",
+      .default = "Patagonia"
+    )
+  ) |>
 
-  # Añadir filas faltantes (combinaciones sin defunciones)
+  # Crear región geográfica DEIS
+  mutate(
+    region_deis = case_when(
+      codprov_censo %in% c("02", "06", "14", "30", "82") ~ "Centro",
+      codprov_censo %in% c("18", "22", "34", "54") ~ "NEA",
+      codprov_censo %in% c("38", "66", "90") ~ "NOA1",
+      codprov_censo %in% c("10", "86") ~ "NOA2",
+      codprov_censo %in% c("46", "50", "70", "74") ~ "Cuyo",
+      codprov_censo %in% c("42", "58", "62") ~ "Patagonia Norte",
+      .default = "Patagonia Sur"
+    )
+  ) |>
+
+  # Añadir filas faltantes
   complete(
     nesting(anio, anio_enfr),
-    nesting(region, prov_id, prov_nombre),
+    nesting(codprov_censo, prov_nombre, region_enfr, region_deis),
     nesting(grupo_edad_5, grupo_edad_10),
     sexo,
     fill = list(total = 0)
-  )   
+  ) |>
 
-### Conteo defunciones por grupos decenales
-def_join_10 <- def_join %>% 
-  
-  # Conteo defunciones
+  # Agrupar datos por grupos decenales
   count(
     anio,
     anio_enfr,
-    prov_id,
+    codprov_censo,
     prov_nombre,
+    region_enfr,
+    region_deis,
     grupo_edad_10,
     sexo,
     wt = total
-  ) |>
-
-  # Calcular defunciones por trienio ENFR
-  group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo) |>
-  summarise(
-    defun_n = sum(n, na.rm = TRUE),
-    defun_mean = mean(n, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-### Conteo defunciones por grupos decenales y región
-def_join_10_region <- def_join %>% 
-  
-  # Conteo defunciones
-  count(
-    anio,
-    anio_enfr,
-    region,
-    grupo_edad_10,
-    sexo,
-    wt = total
-  ) |>
-  
-  # Calcular defunciones por trienio ENFR
-  group_by(anio_enfr, region, grupo_edad_10, sexo) |>
-  summarise(
-    defun_n = sum(n, na.rm = TRUE),
-    defun_mean = mean(n, na.rm = TRUE),
-    .groups = "drop"
   )
 
 
-# Limpiar base esperanza de vida ------------------------------------------
-
-## Esperanza de vida en grupos quinquenales
-# esp_vida_5 <- esp_vida_raw |>
-#   # Estandarizar nombres de columna
-#   clean_names() |>
-# 
-#   # Seleccionar datos para 2019
-#   select(
-#     indicator,
-#     grupo_edad = age_group,
-#     "Varón" = male_4,
-#     "Mujer" = female_5
-#   ) |>
-# 
-#   # Extraer primeras dos letras del estimador
-#   mutate(indicator = str_sub(indicator, start = 1, end = 2)) |>
-# 
-#   # Crear columna para sexo
-#   pivot_longer(cols = c("Varón", "Mujer"), names_to = "sexo") |>
-# 
-#   # Crear columnas para cada indicador
-#   pivot_wider(names_from = indicator, values_from = value) |>
-# 
-#   # # Filtrar menores de 35 años y mayores de 85 años
-#   # filter(
-#   #   !str_detect(grupo_edad, "<1|1-4|5-9|10-14|15-19|20-24|25-29|30-34|85")
-#   # ) |>
-#   
-#   # Filtrar menores de 30 años
-#   filter(
-#     !str_detect(grupo_edad, "<1|1-4|5-9|10-14|15-19|20-24|25-29|85")
-#   ) |>
-# 
-#   # Cambiar etiquetas grupo etario
-#   mutate(
-#     grupo_edad = fct_relabel(grupo_edad, ~ levels(factor(def_join$grupo_edad_5))) #corrección
-#   )
-
-## Esperanza de vida en grupos decenales
-esp_vida_10 <- esp_vida_raw |>
-  # Estandarizar nombres de columna
+# Limpiar datos esperanza de vida ----------------------------------------
+ex_ge_10 <- ex_raw |>
+  # Estandarizar nombres de columnas
   clean_names() |>
-  
-  # Seleccionar datos para 2019
   select(
     indicator,
-    grupo_edad = age_group,
+    grupo_edad_5 = age_group,
     "Varón" = male_4,
     "Mujer" = female_5
   ) |>
-  
-  # Extraer primeras dos letras del estimador
-  mutate(indicator = str_sub(indicator, start = 1, end = 2)) |>
-  
-  # Crear columna para sexo
-  pivot_longer(cols = c("Varón", "Mujer"), names_to = "sexo") |>
-  
-  # Crear columnas para cada indicador
-  pivot_wider(names_from = indicator, values_from = value) |>
-  
-  # # Filtrar menores de 35 años y mayores de 85 años
-  # filter(
-  #   !str_detect(grupo_edad, "<1|1-4|5-9|10-14|15-19|20-24|25-29|30-34|85")
-  # ) |>
-  
-  # Filtrar menores de 30 años y quedarme con grupos decenales
+
+  # Filtrar grupos edad no relevantes
   filter(
-    !str_detect(grupo_edad, "<1|1-4|5-9|10-14|15-19|20-24|25-29|35-39|45-49|55-59|65-69|75-79|85")
+    between(grupo_edad_5, "30-34 years", "45-49 years") |
+      between(grupo_edad_5, "50-54 years", "85+ years")
   ) |>
-  
-  # Cambiar etiquetas grupo etario
+
+  # Cambiar niveles indicador
+  mutate(indicator = str_extract(indicator, '^[^ ]+')) |>
+
+  # Base long
+  pivot_longer(cols = c(Varón, Mujer), names_to = "sexo") |>
+
+  # Base wide
+  pivot_wider(names_from = indicator, values_from = value) |>
+
+  # Crear grupo edad decenal
   mutate(
-    grupo_edad = fct_relabel(grupo_edad, ~ levels(factor(def_join$grupo_edad_10))) #corrección
-  )
+    grupo_edad_10 = case_when(
+      between(grupo_edad_5, "30 a 34", "35 a 39") ~ "30 a 39",
+      between(grupo_edad_5, "40 a 44", "45 a 49") ~ "40 a 49",
+      between(grupo_edad_5, "50 a 54", "55 a 59") ~ "50 a 59",
+      between(grupo_edad_5, "60 a 64", "65 a 69") ~ "60 a 69",
+      between(grupo_edad_5, "70 a 74", "75 a 79") ~ "70 a 79",
+      .default = "80+"
+    )
+  ) |>
+
+  # Recalcular indicadores por grupo decenal
+  group_by(sexo, grupo_edad_10) |>
+  summarise(
+    lx = first(lx),
+    nLx = sum(nLx, na.rm = TRUE),
+    ndx = sum(ndx, na.rm = TRUE),
+    nMx = sum(nMx * nLx, na.rm = TRUE) / sum(nLx, na.rm = TRUE),
+    nqx = sum(nqx * nLx, na.rm = TRUE) / sum(nLx, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+
+  # Calcular Tx y ex
+  group_by(sexo) |>
+  mutate(
+    Tx = rev(cumsum(rev(nLx))),
+    ex = Tx / lx
+  ) |>
+  ungroup()
 
 
 # Explorar datos ----------------------------------------------------------
-### Explorar datos
 tabyl(def04$prov_nombre)
 
 tabyl(def04$sexo)
 
-tabyl(def04$grupo_edad)
+tabyl(def04$grupo_edad_5)
 
 tabyl(def05_19$prov_nombre)
 
 tabyl(def05_19$sexo)
 
-tabyl(def05_19$grupo_edad)
+tabyl(def05_19$grupo_edad_5)
 
-tabyl(def_join$prov_nombre)
+tabyl(defun$prov_nombre)
 
-tabyl(def_join$sexo)
+tabyl(defun$sexo)
 
-tabyl(def_join$grupo_edad_5)
+tabyl(defun$grupo_edad_10)
 
-tabyl(def_join$grupo_edad_10)
-
-
-tabyl(esp_vida_5$grupo_edad)
-
-tabyl(esp_vida_10$grupo_edad)
+tabyl(ex_ge_10$grupo_edad_10)
 
 
 # Calcular AVP ------------------------------------------------------------
-
-## AVP por grupos decenales
-AVP_ge10 <- def_join_10 |>
-
-  # Añadir esperanza de vida
-  left_join(
-    esp_vida_10 |>
-      # Descartar columnas innecesarias
-      select(grupo_edad, sexo, lx, Tx, ex),
-    by = join_by(grupo_edad_10 == grupo_edad, sexo == sexo)
+## Por provincia, sexo y grupo edad decenal ----
+AVP_ge_10 <- defun |>
+  # Agrupar datos
+  group_by(
+    anio_enfr,
+    codprov_censo,
+    prov_nombre,
+    # region_enfr,
+    region_deis,
+    grupo_edad_10,
+    sexo
   ) |>
 
-  # Calcular AVP
-  mutate(AVP = defun_mean * ex) |>
-
-  # Redondear variables numéricas
-  mutate(across(.cols = where(is.numeric), .fns = ~ round(.x, 2)))
-
-## AVP por grupos decenales y región
-AVP_ge10_region <- def_join_10_region |>
-  
-  # Añadir esperanza de vida
-  left_join(
-    esp_vida_10 |>
-      # Descartar columnas innecesarias
-      select(grupo_edad, sexo, lx, Tx, ex),
-    by = join_by(grupo_edad_10 == grupo_edad, sexo == sexo)
+  # Calcular defunciones por trienio ENFR
+  summarise(
+    defun_n = sum(n, na.rm = TRUE),
+    defun_mean = mean(n, na.rm = TRUE),
+    .groups = "drop"
   ) |>
-  
-  # Calcular AVP
+
+  # Añadir datos esperanza de vida
+  left_join(
+    ex_ge_10 |>
+      select(sexo:lx, Tx, ex)
+  ) |>
+
+  # Calcular AVP por grupo decenal
   mutate(AVP = defun_mean * ex) |>
-  
-  # Redondear variables numéricas
-  mutate(across(.cols = where(is.numeric), .fns = ~ round(.x, 2)))
+
+  # Variables caracter a factor
+  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+
+
+## Por región, sexo y grupo edad decenal ----
+AVP_ge_10_reg <- defun |>
+  # Agrupar datos
+  group_by(
+    anio_enfr,
+    region_deis,
+    grupo_edad_10,
+    sexo
+  ) |>
+
+  # Calcular defunciones por trienio ENFR
+  summarise(
+    defun_n = sum(n, na.rm = TRUE),
+    defun_mean = mean(n, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+
+  # Añadir datos esperanza de vida
+  left_join(ex_ge_10) |>
+
+  # Calcular AVP por grupo decenal
+  mutate(AVP = defun_mean * ex)
+
 
 # Guardar datos limpios ---------------------------------------------------
-write_csv(AVP_ge10, file = "Bases de datos/clean/arg_defun_avp_30.csv")
+write_csv(AVP_ge_10, file = "Bases de datos/clean/arg_defun_avp_30.csv")
 
-write_csv(AVP_ge10_region, file = "Bases de datos/clean/arg_defun_avp_30_reg.csv")
+write_csv(
+  AVP_ge_10_reg,
+  file = "Bases de datos/clean/arg_defun_avp_30_reg.csv"
+)
 
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
   variable = c(
     "anio_enfr",
-    "prov_id",
+    "codprov_censo",
     "prov_nombre",
+    "region_deis",
     "grupo_edad_10",
     "sexo",
     "defun_n",
@@ -403,9 +363,10 @@ data_dict <- tibble(
   ),
 
   descripcion = c(
-    "Año de realización ENFR",
-    "Identificador numérico de provincia",
+    "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
+    "Identificador numérico de provincia según clasificación INDEC",
     "Identificador categórico de provincia",
+    "Región geográfica según clasificación DEIS (2021)",
     "Grupo de edad decenal",
     "Sexo biológico",
     "Número de defunciones para el trienio correspondiente",
@@ -413,78 +374,24 @@ data_dict <- tibble(
     "Cantidad de personas vivas a la edad x",
     "Años-persona vividos por encima de la edad x",
     "Esperanza de vida a la edad x",
-    "Años de vida perdidos por muerte prematura"
+    "Años de vida perdidos por muerte prematura por diabetes mellitus"
   ),
 
-  tipo_var = c(rep("factor", 5), rep("numeric", 6)),
+  tipo_var = map_chr(AVP_ge_10, ~ paste(class(.x), collapse = ", ")),
 
-  valor = list(
-    c(2005, 2009, 2013, 2018),
-    levels(def_join_10$prov_id |> factor()),
-    levels(def_join_10$prov_nombre |> factor()),
-    levels(def_join_10$grupo_edad_10 |> factor()),
-    c("Varón", "Mujer"),
-    "0-Inf",
-    "0-Inf",
-    "0-Inf",
-    "0-Inf",
-    "0-Inf",
-    "0-Inf"
-  ) |>
-    as.character() |>
-    str_remove_all('^c\\(|\\)$|"')
-)
-
-data_dict_reg <- tibble(
-  variable = c(
-    "anio_enfr",
-    "region",
-    "grupo_edad_10",
-    "sexo",
-    "defun_n",
-    "defun_mean",
-    "lx",
-    "Tx",
-    "ex",
-    "AVP"
-  ),
-  
-  descripcion = c(
-    "Año de realización ENFR",
-    "Identificador categórico de región",
-    "Grupo de edad decenal",
-    "Sexo biológico",
-    "Número de defunciones para el trienio correspondiente",
-    "Promedio de defunciones para el trienio correspondiente",
-    "Cantidad de personas vivas a la edad x",
-    "Años-persona vividos por encima de la edad x",
-    "Esperanza de vida a la edad x",
-    "Años de vida perdidos por muerte prematura"
-  ),
-  
-  tipo_var = c(rep("factor", 4), rep("numeric", 6)),
-  
-  valor = list(
-    c(2005, 2009, 2013, 2018),
-    levels(def_join_10_region$region |> factor()),
-    levels(def_join_10$grupo_edad_10 |> factor()),
-    c("Varón", "Mujer"),
-    "0-Inf",
-    "0-Inf",
-    "0-Inf",
-    "0-Inf",
-    "0-Inf",
-    "0-Inf"
-  ) |>
-    as.character() |>
-    str_remove_all('^c\\(|\\)$|"')
+  niveles = map_chr(
+    AVP_ge_10,
+    ~ if (is.factor(.x)) {
+      paste(levels(.x), collapse = ", ")
+    } else {
+      "O-Inf"
+    }
+  )
 )
 
 
 ## Guardar diccionario de datos
 export(data_dict, file = "Bases de datos/clean/dic_arg_defun_avp.xlsx")
-
-export(data_dict_reg, file = "Bases de datos/clean/dic_arg_defun_avp_reg.xlsx")
 
 
 ## Limpiar environment y desactivar paquetes
