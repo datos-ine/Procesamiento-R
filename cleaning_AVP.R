@@ -7,7 +7,7 @@
 ### el año 2019 por la GHO-WHO, considerando grupos de edad quinquenales y cada
 ### 10 años para población de 30 años y más según sexo.
 ### Autoras: Micaela Gauto y Tamara Ricardo
-# Última modificación: 20-01-2026 12:54
+# Última modificación: 20-01-2026 13:23
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -348,13 +348,14 @@ data_dict <- tibble(
 
 # Guardar datos limpios ---------------------------------------------------
 ## Defunciones por provincia
-export(AVP_ge10, file = "clean/arg_defun_avp_30_prov.rds")
+export(AVP_ge10, file = "clean/arg_defun_avp_ge10_prov.rds")
 
 ## Defunciones por región
-export(AVP_ge10_reg, file = "clean/arg_defun_avp_30_reg.rds")
+export(AVP_ge10_reg, file = "clean/arg_defun_avp_ge10_reg.rds")
 
 ## Diccionario de datos
 export(data_dict, file = "clean/dic_arg_defun_avp.xlsx")
+
 
 # Limpiar environment y desactivar paquetes ------------------------------
 rm(list = ls())

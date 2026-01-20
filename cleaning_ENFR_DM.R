@@ -5,7 +5,7 @@
 ### total para obtener la prevalencia de DM2.
 ### Autoras: Tamara Ricardo y Micaela Gauto
 ### Fecha creación: # 2025-10-22 13:12:27
-# Última modificación: 19-01-2026 13:48
+# Última modificación: 20-01-2026 13:21
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -20,7 +20,7 @@ pacman::p_load(
 
 # Cargar datos crudos -----------------------------------------------------
 ## ENFR 2005 ----
-enfr05_raw <- read_delim("raw/ENFR 2005 - Base usuario.txt", )
+enfr05_raw <- read_delim("raw/ENFR 2005 - Base usuario.txt")
 
 
 ## ENFR 2009 ----
@@ -41,7 +41,7 @@ enfr18_rep <- read_delim("raw/ENFR2018_base_rep_filter.csv")
 # Función para limpiar datos ----------------------------------------------
 clean_enfr <- function(x) {
   x |>
-    # Filtrar menores de 20 años
+    # Filtrar menores de 30 años
     filter(edad >= 30) |>
 
     # Cambiar formato id de provincia
@@ -83,6 +83,8 @@ clean_enfr <- function(x) {
     # Convertir dm_auto a binomial
     mutate(
       dm_auto = if_else(dm_auto == 1, 1, 0),
+
+      # Calcular frecuencias DM2
       dm2_auto = dm_auto * 0.9
     )
 }
@@ -209,12 +211,12 @@ tabyl(enfr18$dm2_auto)
 
 # Prevalencias por provincia, sexo y grupo edad decenal ------------------
 ## ENFR 2005 ----
-enfr05_ge10 <- enfr05 |>
+enfr05_ge10_prov <- enfr05 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
+  group_by(codprov_censo, region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -224,12 +226,12 @@ enfr05_ge10 <- enfr05 |>
 
 
 ## ENFR 2009 ----
-enfr09_ge10 <- enfr09 |>
+enfr09_ge10_prov <- enfr09 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
+  group_by(codprov_censo, region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -239,12 +241,12 @@ enfr09_ge10 <- enfr09 |>
 
 
 ## ENFR 2013 ----
-enfr13_ge10 <- enfr13 |>
+enfr13_ge10_prov <- enfr13 |>
   # Generar objeto de diseño
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
+  group_by(codprov_censo, region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -254,7 +256,7 @@ enfr13_ge10 <- enfr13 |>
 
 
 ## ENFR 2018 (warning) ----
-enfr18_ge10 <- enfr18 |>
+enfr18_ge10_prov <- enfr18 |>
   # Crear objeto diseño
   as_survey_rep(
     weights = wf1p,
@@ -263,7 +265,7 @@ enfr18_ge10 <- enfr18 |>
   ) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(codprov_censo, region_deis, grupo_edad10, sexo) |>
+  group_by(codprov_censo, region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -273,11 +275,11 @@ enfr18_ge10 <- enfr18 |>
 
 
 ## Unir datasets ----
-enfr_ge10 <- bind_rows(
-  enfr05_ge10,
-  enfr09_ge10,
-  enfr13_ge10,
-  enfr18_ge10,
+enfr_ge10_prov <- bind_rows(
+  enfr05_ge10_prov,
+  enfr09_ge10_prov,
+  enfr13_ge10_prov,
+  enfr18_ge10_prov,
   .id = "anio_enfr"
 ) |>
 
@@ -309,7 +311,7 @@ enfr05_ge10_reg <- enfr05 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad10, sexo) |>
+  group_by(region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -324,7 +326,7 @@ enfr09_ge10_reg <- enfr09 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad10, sexo) |>
+  group_by(region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -339,7 +341,7 @@ enfr13_ge10_reg <- enfr13 |>
   as_survey_design(weights = ponderacion) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad10, sexo) |>
+  group_by(region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -358,7 +360,7 @@ enfr18_ge10_reg <- enfr18 |>
   ) |>
 
   # Estimar cantidad de personas con DM y prevalencia
-  group_by(region_deis, grupo_edad10, sexo) |>
+  group_by(region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
@@ -397,50 +399,51 @@ enfr_ge10_reg <- bind_rows(
   )
 
 
+  # Diccionario de datos ----------------------------------------------------
+  data_dict <- tibble(
+    names(enfr_ge10_prov),
+
+    descripcion = c(
+      "Año de realización ENFR",
+      "Identificador numérico de provincia según clasificación INDEC",
+      "Región geográfica según clasificación DEIS (2021)",
+      "Sexo biológico",
+      "Grupo de edad decenal",
+      "Total estimado de personas con diabetes mellitus por provincia, edad y sexo",
+      "Error estándar del total estimado de personas con diabetes mellitus por provincia, edad y sexo",
+      "Total estimado de personas con diabetes mellitus tipo 2 por provincia, edad y sexo",
+      "Error estándar del total estimado de personas con diabetes mellitus tipo 2 por provincia, edad y sexo",
+      "Prevalencia de diabetes mellitus tipo 2 por autorreporte",
+      "Error estándar del total de la prevalencia de personas con DM2",
+      "Coeficiente de variación de la prevalencia de personas con DM2",
+      "Categorización del coeficiente de variación de la prevalencia de personas con DM"
+    ),
+
+    tipo_var = map_chr(enfr_ge10_prov, ~ paste(class(.x), collapse = ", ")),
+
+    niveles = map_chr(
+      enfr_ge10_prov,
+      ~ if (is.factor(.x)) {
+        paste(levels(.x), collapse = ", ")
+      } else {
+        "O-Inf"
+      }
+    )
+  )
+
+
 # Guardar datos limpios ---------------------------------------------------
-## Grupos etarios decenales (30+ años)
-write_csv(enfr_ge10, file = "clean/arg_prev_dm_ge10.csv")
+## Grupos etarios decenales (30+ años) y provincia
+export(enfr_ge10_prov, file = "clean/arg_prev_dm2_ge10_prov.rds")
 
 ## Grupos etarios decenales (30+ años) y región
-write_csv(enfr_ge10_reg, file = "clean/arg_prev_dm_ge10_reg.csv")
+export(enfr_ge10_reg, file = "clean/arg_prev_dm2_ge10_reg.rds")
+
+## Diccionario de datos
+export(data_dict, file = "clean/dic_arg_prev_dm2.xlsx")
 
 
-# Diccionario de datos ----------------------------------------------------
-data_dict <- tibble(
-  names(enfr05_ge10),
-
-  descripcion = c(
-    "Año de realización ENFR",
-    "Identificador numérico de provincia según clasificación INDEC",
-    "Región geográfica según clasificación DEIS (2021)",
-    "Grupo de edad decenal",
-    "Sexo biológico",
-    "Total estimado de personas con diabetes mellitus por provincia, edad y sexo",
-    "Total estimado de personas con diabetes mellitus tipo 2por provincia, edad y sexo",
-    "Prevalencia de diabetes mellitus tipo 2 por autorreporte",
-    "Error estándar del total de la prevalencia de personas con DM2",
-    "Coeficiente de variación de la prevalencia de personas con DM2",
-    "Categorización del coeficiente de variación de la prevalencia de personas con DM"
-  ),
-
-  tipo_var = map_chr(enfr13_ge10, ~ paste(class(.x), collapse = ", ")),
-
-  niveles = map_chr(
-    enfr05_ge10,
-    ~ if (is.factor(.x)) {
-      paste(levels(.x), collapse = ", ")
-    } else {
-      "O-Inf"
-    }
-  )
-)
-
-
-## Guardar el diccionario de datos
-export(data_dict, file = "clean/dic_arg_prev_dm.xlsx")
-
-
-## Limpiar environment y desactivar paquetes
+# Limpiar environment y desactivar paquetes ------------------------------
 rm(list = ls())
 
 pacman::p_unload("all")

@@ -3,7 +3,7 @@
 ### Se suma el cálculo por grupo de edad decenal y por región.
 ### Autoras: Tamara Ricardo y Micaela Gauto
 ### Fecha modificación:
-# Última modificación: 20-01-2026 13:05
+# Última modificación: 20-01-2026 13:23
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -221,7 +221,7 @@ export(  proy_pob_prov,  file = "clean/arg_proy_2005_2018_ge10.rds")
 export(  proy_pob_reg,  file = "clean/arg_proy_2005_2018_ge10_reg.rds")
 
 ## Diccionario de datos
-export(data_dict, file = "Bases de datos/clean/dic_arg_proy_2005_2018.xlsx")
+export(data_dict, file = "clean/dic_arg_proy_2005_2018.xlsx")
 
 
 # Limpiar environment y desactivar paquetes ------------------------------
