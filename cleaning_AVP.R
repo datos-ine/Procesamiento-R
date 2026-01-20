@@ -7,7 +7,7 @@
 ### el año 2019 por la GHO-WHO, considerando grupos de edad quinquenales y cada
 ### 10 años para población de 30 años y más según sexo.
 ### Autoras: Micaela Gauto y Tamara Ricardo
-## Última modificación: 19-01-2026 13:47
+# Última modificación: 20-01-2026 12:54
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -20,23 +20,18 @@ pacman::p_load(
 
 # Cargar datos crudos -----------------------------------------------------
 ## Etiquetas provincias ----
-prov <- show_arg_codes() |>
-  # Filtrar totales
-  filter(between(codprov, "01", "24")) |>
-
-  # Cambiar etiqueta CABA
-  mutate(prov_nombre = if_else(codprov_censo == "02", id, name_iso))
+prov <- import("clean/cod_prov_arg.rds")
 
 
 ## Esperanza vida ----
 ex_raw <- read_csv2("raw/argentina_tabla de vida_GHO.csv", skip = 1)
 
 
-## Mortalidad 2004 ----
+## Defunciones 2004 ----
 def04_raw <- import("raw/DEIS/DE_2004.csv")
 
 
-## Mortalidad 2005-2019 ----
+## Defunciones 2005-2019 ----
 def05_19_raw <- list.files(
   path = "raw/DEIS/",
   pattern = "^defweb.",
@@ -51,7 +46,7 @@ def04 <- def04_raw |>
   clean_names() |>
   rename(
     prov_nombre = jurisdiccion,
-    grupo_edad5 = grupo_de_edad,
+    grupo_edad = grupo_de_edad,
     cie10_causa = causa_de_muerte_cie_10
   ) |>
 
@@ -62,7 +57,7 @@ def04 <- def04_raw |>
   filter(between(sexo, "Mujer", "Varón")) |>
 
   # Filtrar menores de edad y datos ausentes
-  filter(between(grupo_edad5, "13.30 a 34", "24.85 y más")) |>
+  filter(between(grupo_edad, "13.30 a 34", "24.85 y más")) |>
 
   # Cambiar etiqueta CABA
   mutate(
@@ -80,7 +75,7 @@ def04 <- def04_raw |>
 ## Defunciones 2005-2019 ----
 def05_19 <- def05_19_raw |>
   # Crear columna para el año
-  set_names(nm = c(2005, 2006, 2008:2010, 2012:2014, 2017:2019)) |>
+  set_names(nm = paste0("20", str_sub(def05_19_raw, 16, 17))) |>
 
   # Leer archivos csv
   map(read_csv, locale = locale(encoding = "WINDOWS-1252")) |>
@@ -92,7 +87,7 @@ def05_19 <- def05_19_raw |>
   clean_names() |>
   rename(
     codprov_censo = provres,
-    grupo_edad5 = grupedad,
+    grupo_edad = grupedad,
     cie10_causa = causa,
     total = cuenta
   ) |>
@@ -104,7 +99,7 @@ def05_19 <- def05_19_raw |>
   filter(between(sexo, 1, 2)) |>
 
   # Filtrar menores de edad y datos ausentes
-  filter(between(grupo_edad5, "07_30 a 34", "17_80 y más")) |>
+  filter(between(grupo_edad, "07_30 a 34", "17_80 y más")) |>
 
   # Cambiar niveles sexo
   mutate(sexo = if_else(sexo == 1, "Varón", "Mujer")) |>
@@ -120,16 +115,16 @@ defun <- bind_rows(def04, def05_19) |>
   filter(cie10_causa %in% c("E11", "E14")) |>
 
   # Cambiar etiquetas grupo etario
-  mutate(grupo_edad5 = str_sub(grupo_edad5, 4)) |>
+  mutate(grupo_edad = str_sub(grupo_edad, 4)) |>
 
   # Crear grupo edad decenal
   mutate(
     grupo_edad10 = case_when(
-      between(grupo_edad5, "30 a 34", "35 a 39") ~ "30 a 39",
-      between(grupo_edad5, "40 a 44", "45 a 49") ~ "40 a 49",
-      between(grupo_edad5, "50 a 54", "55 a 59") ~ "50 a 59",
-      between(grupo_edad5, "60 a 64", "65 a 69") ~ "60 a 69",
-      between(grupo_edad5, "70 a 74", "75 a 79") ~ "70 a 79",
+      between(grupo_edad, "30 a 34", "35 a 39") ~ "30 a 39",
+      between(grupo_edad, "40 a 44", "45 a 49") ~ "40 a 49",
+      between(grupo_edad, "50 a 54", "55 a 59") ~ "50 a 59",
+      between(grupo_edad, "60 a 64", "65 a 69") ~ "60 a 69",
+      between(grupo_edad, "70 a 74", "75 a 79") ~ "70 a 79",
       .default = "80+"
     )
   ) |>
@@ -144,20 +139,8 @@ defun <- bind_rows(def04, def05_19) |>
       between(anio, "2008", "2010") ~ "2009",
       between(anio, "2012", "2014") ~ "2013",
       between(anio, "2017", "2019") ~ "2018"
-    ),
-    .after = anio
+    )
   ) |>
-
-  # # Crear región geográfica ENFR
-  # mutate(
-  #   region_enfr = case_when(
-  #     codprov_censo %in% c("02", "06", "14", "30", "42", "82") ~ "Centro",
-  #     codprov_censo %in% c("10", "38", "46", "66", "86", "90") ~ "Noroeste",
-  #     codprov_censo %in% c("18", "22", "34", "54") ~ "Noreste",
-  #     codprov_censo %in% c("50", "70", "74") ~ "Cuyo",
-  #     .default = "Patagonia"
-  #   )
-  # ) |>
 
   # Crear región geográfica DEIS
   mutate(
@@ -176,7 +159,7 @@ defun <- bind_rows(def04, def05_19) |>
   complete(
     nesting(anio, anio_enfr),
     nesting(codprov_censo, prov_nombre, region_deis),
-    nesting(grupo_edad5, grupo_edad10),
+    nesting(grupo_edad, grupo_edad10),
     sexo,
     fill = list(total = 0)
   ) |>
@@ -200,15 +183,15 @@ ex_ge10 <- ex_raw |>
   clean_names() |>
   select(
     indicator,
-    grupo_edad5 = age_group,
+    age_group,
     "Varón" = male_4,
     "Mujer" = female_5
   ) |>
 
   # Filtrar grupos edad no relevantes
   filter(
-    between(grupo_edad5, "30-34 years", "45-49 years") |
-      between(grupo_edad5, "50-54 years", "85+ years")
+    between(age_group, "30-34 years", "45-49 years") |
+      between(age_group, "50-54 years", "85+ years")
   ) |>
 
   # Cambiar niveles indicador
@@ -223,11 +206,11 @@ ex_ge10 <- ex_raw |>
   # Crear grupo edad decenal
   mutate(
     grupo_edad10 = case_when(
-      between(grupo_edad5, "30 a 34", "35 a 39") ~ "30 a 39",
-      between(grupo_edad5, "40 a 44", "45 a 49") ~ "40 a 49",
-      between(grupo_edad5, "50 a 54", "55 a 59") ~ "50 a 59",
-      between(grupo_edad5, "60 a 64", "65 a 69") ~ "60 a 69",
-      between(grupo_edad5, "70 a 74", "75 a 79") ~ "70 a 79",
+      between(age_group, "30 a 34", "35 a 39") ~ "30 a 39",
+      between(age_group, "40 a 44", "45 a 49") ~ "40 a 49",
+      between(age_group, "50 a 54", "55 a 59") ~ "50 a 59",
+      between(age_group, "60 a 64", "65 a 69") ~ "60 a 69",
+      between(age_group, "70 a 74", "75 a 79") ~ "70 a 79",
       .default = "80+"
     )
   ) |>
@@ -257,13 +240,13 @@ tabyl(def04$prov_nombre)
 
 tabyl(def04$sexo)
 
-tabyl(def04$grupo_edad5)
+tabyl(def04$grupo_edad)
 
 tabyl(def05_19$prov_nombre)
 
 tabyl(def05_19$sexo)
 
-tabyl(def05_19$grupo_edad5)
+tabyl(def05_19$grupo_edad)
 
 tabyl(defun$prov_nombre)
 
@@ -282,7 +265,6 @@ AVP_ge10 <- defun |>
     anio_enfr,
     codprov_censo,
     prov_nombre,
-    # region_enfr,
     region_deis,
     grupo_edad10,
     sexo
@@ -332,15 +314,6 @@ AVP_ge10_reg <- defun |>
   mutate(AVP = defun_mean * ex)
 
 
-# Guardar datos limpios ---------------------------------------------------
-write_csv(AVP_ge10, file = "clean/arg_defun_avp_30.csv")
-
-write_csv(
-  AVP_ge10_reg,
-  file = "clean/arg_defun_avp_30_reg.csv"
-)
-
-
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
   variable = names(AVP_ge10),
@@ -373,11 +346,17 @@ data_dict <- tibble(
 )
 
 
-## Guardar diccionario de datos
+# Guardar datos limpios ---------------------------------------------------
+## Defunciones por provincia
+export(AVP_ge10, file = "clean/arg_defun_avp_30_prov.rds")
+
+## Defunciones por región
+export(AVP_ge10_reg, file = "clean/arg_defun_avp_30_reg.rds")
+
+## Diccionario de datos
 export(data_dict, file = "clean/dic_arg_defun_avp.xlsx")
 
+# Limpiar environment y desactivar paquetes ------------------------------
+rm(list = ls())
 
-# ## Limpiar environment y desactivar paquetes
-# rm(list = ls())
-
-# pacman::p_unload("all")
+pacman::p_unload("all")

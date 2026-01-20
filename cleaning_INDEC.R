@@ -3,13 +3,12 @@
 ### Se suma el cálculo por grupo de edad decenal y por región.
 ### Autoras: Tamara Ricardo y Micaela Gauto
 ### Fecha modificación:
+# Última modificación: 20-01-2026 13:05
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
   rio,
   janitor,
-  geoAr,
-  tabulapdf, # Extraer datos de PDF
   tidyverse,
   readxl
 )
@@ -17,82 +16,37 @@ pacman::p_load(
 
 # Cargar datos -----------------------------------------------------------
 ## Etiquetas provincias ----
-prov <- show_arg_codes() |>
-  # Filtrar totales
-  filter(between(codprov, "01", "24")) |>
-
-  # Cambiar etiqueta CABA
-  mutate(prov_nombre = if_else(codprov_censo == "02", id, name_iso))
+prov <- import("clean/cod_prov_arg.rds")
 
 
 ## Proyecciones 2001-2005 ----
-proy_01_05_raw <- extract_areas(
-  "raw/INDEC_proyec 2001-2015.pdf",
-  pages = c(22:24, 27:28, 25:26, 29:43, 45, 44)
-)
+proy_01_05 <- import("clean/arg_proy_2001_2005.rds")
 
 
 ## Proyecciones 2009-2018 ----
 proy_10_18_raw <- {
-  datos <- "raw/c2_proyecciones_prov_2010_2040.xls"
-  hojas <- excel_sheets(datos)[-c(1:2)]
-
   leer_filas <- function(rango) {
-    hojas |>
+    excel_sheets("raw/c2_proyecciones_prov_2010_2040.xls")[-c(1:2)] |>
       set_names() |>
-      map(~ read_excel(datos, sheet = .x, range = rango)) |>
+      map(
+        ~ read_excel(
+          "raw/c2_proyecciones_prov_2010_2040.xls",
+          sheet = .x,
+          range = rango
+        )
+      ) |>
       list_rbind(names_to = "prov")
   }
 
   bind_cols(
-    leer_filas("A3:X28"), # 2010–2015
-    leer_filas("A31:X56") # 2016–2021
+    leer_filas(rango = "A3:X28"), # 2010–2015
+    leer_filas(rango = "A31:X56") # 2016–2021
   )
 }
 
 
 # Limpieza de datos ------------------------------------------------------
-## Proyecciones 2001-2005 ----
-proy_01_05 <- proy_01_05_raw |>
-  # Asignar identificador numérico a cada provincia
-  set_names(unique(prov$codprov_censo)) |>
-
-  # Unir tablas de provincias
-  list_rbind(names_to = "codprov_censo") |>
-
-  # Estandarizar nombres de columnas
-  clean_names() |>
-
-  # Seleccionar columnas
-  select(
-    codprov_censo,
-    grupo_edad5 = x1,
-    Varón_2001 = x2001,
-    Mujer_2001 = x4,
-    Varón_2005 = x2005,
-    Mujer_2005 = x7
-  ) |>
-
-  # Filtrar grupos etarios no revelantes
-  filter(
-    between(grupo_edad5, "30-34", "45-49") |
-      between(grupo_edad5, "50-54", "80 y más")
-  ) |>
-
-  # Añadir identificador categórico de provincia
-  left_join(prov) |>
-
-  # Base long
-  pivot_longer(cols = c(Varón_2001:Mujer_2005), values_to = "pob_proy") |>
-
-  # Separar sexo y año
-  separate_wider_delim(name, delim = "_", names = c("sexo", "anio")) |>
-
-  # Población a numérico
-  mutate(pob_proy = parse_number(pob_proy, locale = locale(decimal_mark = ",")))
-
-
-## Proyecciones 2010-2018 ----
+## Proyecciones 2010-2018
 proy_10_18 <- proy_10_18_raw |>
   # Estandarizar nombres de columnas
   clean_names() |>
@@ -100,7 +54,7 @@ proy_10_18 <- proy_10_18_raw |>
   # Seleccionar columnas relevantes
   select(
     codprov_censo = prov_1,
-    grupo_edad5 = edad_2,
+    grupo_edad = edad_2,
     Varón_2010 = x4,
     Mujer_2010 = x5,
     Varón_2013 = x16,
@@ -111,9 +65,9 @@ proy_10_18 <- proy_10_18_raw |>
 
   # Filtrar grupos etarios no revelantes
   filter(
-    between(grupo_edad5, "30-34", "45-49") |
-      between(grupo_edad5, "50-54", "95-99") |
-      grupo_edad5 == "100 y más"
+    between(grupo_edad, "30-34", "45-49") |
+      between(grupo_edad, "50-54", "95-99") |
+      grupo_edad == "100 y más"
   ) |>
 
   # Modificar identificador numérico de provincia
@@ -137,24 +91,22 @@ proy_10_18 <- proy_10_18_raw |>
     codprov_censo,
     prov_nombre,
     sexo,
-    grupo_edad5,
+    grupo_edad,
     wt = pob,
     name = "pob_proy"
   )
 
 
-# Proyecciones por año, provincia, sexo y grupo etario -------------------
-# Unir datasets proyecciones ----
-proy_pob <- bind_rows(proy_01_05, proy_10_18) |>
-
-  # Crear grupo edad decenal
+# Calcular proyecciones por provincia, sexo y grupo etario ---------------
+proy_pob_prov <- bind_rows(proy_01_05, proy_10_18) |>
+  # Crear grupo etario decenal
   mutate(
     grupo_edad10 = case_when(
-      between(grupo_edad5, "30-34", "35-39") ~ "30 a 39",
-      between(grupo_edad5, "40-44", "45-49") ~ "40 a 49",
-      between(grupo_edad5, "50-54", "55-59") ~ "50 a 59",
-      between(grupo_edad5, "60-64", "65-69") ~ "60 a 69",
-      between(grupo_edad5, "70-74", "75-79") ~ "70 a 79",
+      between(grupo_edad, "30-34", "35-39") ~ "30 a 39",
+      between(grupo_edad, "40-44", "45-49") ~ "40 a 49",
+      between(grupo_edad, "50-54", "55-59") ~ "50 a 59",
+      between(grupo_edad, "60-64", "65-69") ~ "60 a 69",
+      between(grupo_edad, "70-74", "75-79") ~ "70 a 79",
       .default = "80+"
     )
   ) |>
@@ -182,207 +134,97 @@ proy_pob <- bind_rows(proy_01_05, proy_10_18) |>
     grupo_edad10,
     wt = pob_proy,
     name = "pob_proy"
-  )
-
-
-## Proyección para 2009 por interpolación lineal ----
-proy_09 <- proy_pob |>
-  # Filtrar proyecciones 2010
-  filter(anio %in% c("2001", "2010")) |>
-
-  # Formato wide
-  pivot_wider(
-    names_from = anio,
-    values_from = pob_proy,
-    names_prefix = "pob_"
   ) |>
 
-  # Interpolación lineal
-  mutate(
-    anio = "2009",
-    tasa_anual = log(pob_2010 / pob_2001) / 9,
-    proy_pob = round((pob_2001 * tasa_anual * 8) + pob_2001)
-  ) |>
+  # Añadir población estimada para 2009 (interpolación lineal)
+  (\(x){
+    bind_rows(
+      x,
+      x |>
+        filter(anio %in% c("2001", "2010")) |>
+        pivot_wider(
+          names_from = anio,
+          values_from = pob_proy,
+          names_prefix = "pob_"
+        ) |>
 
-  # Seleccionar columnas
-  select(
-    anio,
-    codprov_censo,
-    prov_nombre,
-    region_deis,
-    sexo,
-    grupo_edad10,
-    proy_pob
-  )
+        mutate(
+          anio = "2009",
+          tasa_anual = log(pob_2010 / pob_2001) / 9,
+          pob_proy = round(pob_2001 * (1 + tasa_anual * 8))
+        )
+    )
+  })() |> 
 
-
-## Crear población estándar 2010 ----
-pob_est_2010 <- proy_pob |>
-
-  # Filtrar datos 2010
-  filter(anio == 2010) |>
-
+  # Añadir población estándar 2010
+  (\(x){
+    left_join(
+      x,
+      x |> 
+        filter(anio == "2010") |> 
+        count(sexo, grupo_edad10, wt = pob_proy, name = "pob_est_2010")
+    )
+  }) () |> 
+  
   # Descartar columnas innecesarias
-  select(-anio) |>
-
-  # Recalcular proyección
-  count(
-    sexo,
-    grupo_edad10,
-    wt = pob_proy,
-    name = "pob_est_2010"
-  )
-
-
-## Unir datos ----
-proy_pob_prov <- bind_rows(proy_pob, proy_09) |>
-  # Añadir población estándar 2010
-  left_join(pob_est_2010) |>
-
+  select(anio:pob_proy, pob_est_2010) |> 
+  
   # Ordenar filas
-  arrange(anio, codprov_censo, sexo, grupo_edad10)
+  arrange(anio, codprov_censo, sexo, grupo_edad10) |> 
+  
+  # Variables caracter a factor
+  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+  
 
-
-# Proyecciones por año, región, sexo y grupo etario ----------------------
-## Dataset proyecciones x región----
-proy_pob_reg <- proy_pob |>
+# Calcular proyecciones por región, sexo y grupo etario ------------------
+proy_pob_reg <- proy_pob_prov |> 
   # Agrupar por región
-  count(anio, region_deis, sexo, grupo_edad10, wt = pob_proy, name = "pob_proy")
-
-
-## Proyección para 2009 por interpolación lineal x región----
-proy_09_reg <- proy_pob_reg |>
-  # Filtrar proyecciones 2010
-  filter(anio %in% c("2001", "2010")) |>
-
-  # Formato wide
-  pivot_wider(
-    names_from = anio,
-    values_from = pob_proy,
-    names_prefix = "pob_"
-  ) |>
-
-  # Interpolación lineal
-  mutate(
-    anio = "2009",
-    tasa_anual = log(pob_2010 / pob_2001) / 9,
-    proy_pob = round((pob_2001 * tasa_anual * 8) + pob_2001)
-  ) |>
-
-  # Seleccionar columnas
-  select(
-    anio,
-    region_deis,
-    sexo,
-    grupo_edad10,
-    proy_pob
+  group_by(anio, region_deis, sexo, grupo_edad10) |> 
+  summarise(
+    pob_proy = sum(pob_proy, na.rm = TRUE),
+    pob_est_2010 = sum(pob_est_2010, na.rm = TRUE),
+    .groups = "drop"
   )
 
 
-## Unir datos ----
-proy_pob_reg <- bind_rows(proy_pob_reg, proy_09_reg) |>
-  # Añadir población estándar 2010
-  left_join(pob_est_2010) |>
+# Diccionario de datos ----------------------------------------------------
+data_dict <- tibble(
+  variable = names(proy_pob_prov),
+  descripcion = c(
+    "Año de realización ENFR",
+    "Año para la proyección poblacional (para 2009 se interpoló linealmente a partir de 2005 y 2010)",
+    "Identificador numérico de provincia",
+    "Identificador categórico de provincia",
+    "Grupo de edad decenal",
+    "Sexo biológico",
+    "Proyección poblacional",
+    "Población estándar Censo 2010"
+  ),
+  tipo_var = map_chr(proy_pob_prov, ~ paste(class(.x), collapse = ", ")),
 
-  # Ordenar filas
-  arrange(anio, region_deis, sexo, grupo_edad10)
-
+  niveles = map_chr(
+    proy_pob_prov,
+    ~ if (is.factor(.x)) {
+      paste(levels(.x), collapse = ", ")
+    } else {
+      "O-Inf"
+    }
+  )
+)
 
 # Guardar datos limpios ---------------------------------------------------
 ## Proyecciones por año, provincia, sexo y grupo etario decenal
-write_csv(
-  proy_pob_prov,
-  file = "clean/arg_proy_2005_2018_ge10.csv"
-)
+export(  proy_pob_prov,  file = "clean/arg_proy_2005_2018_ge10.rds")
 
 
 ## Proyecciones por año, región, sexo y grupo etario decenal
-write_csv(
-  proy_pob_reg,
-  file = "clean/arg_proy_2005_2018_ge10_reg.csv"
-)
+export(  proy_pob_reg,  file = "clean/arg_proy_2005_2018_ge10_reg.rds")
+
+## Diccionario de datos
+export(data_dict, file = "Bases de datos/clean/dic_arg_proy_2005_2018.xlsx")
 
 
-# # Diccionario de datos ----------------------------------------------------
-# data_dict <- tibble(
-#   variable = names(proy_pob_prov),
+# Limpiar environment y desactivar paquetes ------------------------------
+rm(list = ls())
 
-#   descripcion = c(
-#     "Año de realización ENFR",
-#     "Año para la proyección poblacional (para 2009 se interpoló linealmente a partir de 2005 y 2010)",
-#     "Identificador numérico de provincia",
-#     "Identificador categórico de provincia",
-#     # "Grupo de edad quinquenal",
-#     "Grupo de edad decenal",
-#     "Sexo biológico",
-#     "Proyección poblacional",
-#     "Población estándar Censo 2010"
-#   ),
-
-#   tipo_var = c(rep("factor", 6), rep("numeric", 2)),
-
-#   valores = list(
-#     c(2005, 2009, 2013, 2018),
-#     c(2005, 2010, 2013, 2018),
-#     levels(id_provincias$prov_id |> factor()),
-#     levels(id_provincias$prov_nombre),
-#     # levels(grupos_etarios$grupo_edad5),
-#     levels(grupos_etarios$grupo_edad10),
-#     c("Varón", "Mujer"),
-#     "0-Inf",
-#     "0-Inf"
-#   ) |>
-#     as.character() |>
-#     str_remove_all('^c\\(|\\)$|"')
-# )
-
-# data_dict_reg <- tibble(
-#   variable = c(
-#     "anio_enfr",
-#     "anio",
-#     "region",
-#     "grupo_edad10",
-#     "sexo",
-#     "proy_pob",
-#     "pob_est_2010"
-#   ),
-
-#   descripcion = c(
-#     "Año de realización ENFR",
-#     "Año para la proyección poblacional (para 2009 se interpoló linealmente a partir de 2005 y 2010)",
-#     "Identificador categórico de región",
-#     "Grupo de edad decenal",
-#     "Sexo biológico",
-#     "Proyección poblacional",
-#     "Población estándar Censo 2010"
-#   ),
-
-#   tipo_var = c(rep("factor", 5), rep("numeric", 2)),
-
-#   valores = list(
-#     c(2005, 2009, 2013, 2018),
-#     c(2005, 2010, 2013, 2018),
-#     levels(proy_join_10_reg$region |> factor()),
-#     levels(grupos_etarios$grupo_edad10),
-#     c("Varón", "Mujer"),
-#     "0-Inf",
-#     "0-Inf"
-#   ) |>
-#     as.character() |>
-#     str_remove_all('^c\\(|\\)$|"')
-# )
-
-
-# ## Guardar diccionario de datos
-# export(data_dict, file = "Bases de datos/clean/dic_arg_proy_2005_2018.xlsx")
-
-# export(
-#   data_dict_reg,
-#   file = "Bases de datos/clean/dic_arg_proy_2005_2018_reg.xlsx"
-# )
-
-
-# ## Limpiar environment y desactivar paquetes
-# rm(list = ls())
-
-# pacman::p_unload("all")
+pacman::p_unload("all")
