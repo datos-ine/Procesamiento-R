@@ -4,8 +4,7 @@
 ### Se suma el cálculo de prevalencias por región y corrección del 90% sobre el
 ### total para obtener la prevalencia de DM2.
 ### Autoras: Tamara Ricardo y Micaela Gauto
-### Fecha creación: # 2025-10-22 13:12:27
-# Última modificación: 20-01-2026 13:21
+# Última modificación: 21-01-2026 08:44
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -20,22 +19,22 @@ pacman::p_load(
 
 # Cargar datos crudos -----------------------------------------------------
 ## ENFR 2005 ----
-enfr05_raw <- read_delim("raw/ENFR 2005 - Base usuario.txt")
+enfr05_raw <- read_delim("bases_de_datos/ENFR 2005 - Base usuario.txt")
 
 
 ## ENFR 2009 ----
-enfr09_raw <- read_delim("raw/ENFR 2009 - Base usuario.txt")
+enfr09_raw <- read_delim("bases_de_datos/ENFR 2009 - Base usuario.txt")
 
 
 ## ENFR 2013 ----
-enfr13_raw <- import("raw/ENFR 2013 - Base usuario.txt")
+enfr13_raw <- import("bases_de_datos/ENFR 2013 - Base usuario.txt")
 
 
 ## ENFR 2018 ----
-enfr18_raw <- read_delim("raw/ENFR 2018 - Base usuario.txt")
+enfr18_raw <- read_delim("bases_de_datos/ENFR 2018 - Base usuario.txt")
 
 # Réplicas ENFR 2018
-enfr18_rep <- read_delim("raw/ENFR2018_base_rep_filter.csv")
+enfr18_rep <- read_delim("bases_de_datos/ENFR2018_base_rep_filter.csv")
 
 
 # Función para limpiar datos ----------------------------------------------
@@ -350,7 +349,7 @@ enfr13_ge10_reg <- enfr13 |>
   )
 
 
-## ENFR 2018 (warning) ----
+## ENFR 2018 ----
 enfr18_ge10_reg <- enfr18 |>
   # Crear objeto diseño
   as_survey_rep(
@@ -399,48 +398,52 @@ enfr_ge10_reg <- bind_rows(
   )
 
 
-  # Diccionario de datos ----------------------------------------------------
-  data_dict <- tibble(
-    names(enfr_ge10_prov),
+# Diccionario de datos ----------------------------------------------------
+data_dict <- tibble(
+  variable = names(enfr_ge10_prov),
 
-    descripcion = c(
-      "Año de realización ENFR",
-      "Identificador numérico de provincia según clasificación INDEC",
-      "Región geográfica según clasificación DEIS (2021)",
-      "Sexo biológico",
-      "Grupo de edad decenal",
-      "Total estimado de personas con diabetes mellitus por provincia, edad y sexo",
-      "Error estándar del total estimado de personas con diabetes mellitus por provincia, edad y sexo",
-      "Total estimado de personas con diabetes mellitus tipo 2 por provincia, edad y sexo",
-      "Error estándar del total estimado de personas con diabetes mellitus tipo 2 por provincia, edad y sexo",
-      "Prevalencia de diabetes mellitus tipo 2 por autorreporte",
-      "Error estándar del total de la prevalencia de personas con DM2",
-      "Coeficiente de variación de la prevalencia de personas con DM2",
-      "Categorización del coeficiente de variación de la prevalencia de personas con DM"
-    ),
+  descripcion = c(
+    "Año de realización ENFR",
+    "Identificador numérico de provincia según clasificación INDEC",
+    "Región geográfica según clasificación DEIS (2021)",
+    "Sexo biológico",
+    "Grupo de edad decenal",
+    "Total estimado de personas con diabetes mellitus por provincia, edad y sexo",
+    "Error estándar del total estimado de personas con diabetes mellitus por provincia, edad y sexo",
+    "Total estimado de personas con diabetes mellitus tipo 2 por provincia, edad y sexo",
+    "Error estándar del total estimado de personas con diabetes mellitus tipo 2 por provincia, edad y sexo",
+    "Prevalencia de diabetes mellitus tipo 2 por autorreporte",
+    "Error estándar del total de la prevalencia de personas con DM2",
+    "Coeficiente de variación de la prevalencia de personas con DM2",
+    "Categorización del coeficiente de variación de la prevalencia de personas con DM"
+  ),
 
-    tipo_var = map_chr(enfr_ge10_prov, ~ paste(class(.x), collapse = ", ")),
+  tipo_var = map_chr(enfr_ge10_prov, ~ paste(class(.x), collapse = ", ")),
 
-    niveles = map_chr(
-      enfr_ge10_prov,
-      ~ if (is.factor(.x)) {
-        paste(levels(.x), collapse = ", ")
-      } else {
-        "O-Inf"
-      }
-    )
+  niveles = map_chr(
+    enfr_ge10_prov,
+    ~ if (is.factor(.x)) {
+      paste(levels(.x), collapse = ", ")
+    } else {
+      "0-Inf"
+    }
   )
+)
 
 
 # Guardar datos limpios ---------------------------------------------------
 ## Grupos etarios decenales (30+ años) y provincia
-export(enfr_ge10_prov, file = "clean/arg_prev_dm2_ge10_prov.rds")
+export(enfr_ge10_prov, file = "datos_limpios/arg_prev_dm2_ge10_prov.rds")
 
 ## Grupos etarios decenales (30+ años) y región
-export(enfr_ge10_reg, file = "clean/arg_prev_dm2_ge10_reg.rds")
+export(enfr_ge10_reg, file = "datos_limpios/arg_prev_dm2_ge10_reg.rds")
 
 ## Diccionario de datos
-export(data_dict, file = "clean/dic_arg_prev_dm2.xlsx")
+export(
+  data_dict,
+  file = "datos_limpios/dic_arg_prev_dm2.xlsx",
+  format_headers = FALSE
+)
 
 
 # Limpiar environment y desactivar paquetes ------------------------------

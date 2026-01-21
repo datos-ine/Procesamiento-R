@@ -7,7 +7,7 @@
 ### el año 2019 por la GHO-WHO, considerando grupos de edad quinquenales y cada
 ### 10 años para población de 30 años y más según sexo.
 ### Autoras: Micaela Gauto y Tamara Ricardo
-# Última modificación: 20-01-2026 13:23
+# Última modificación: 21-01-2026 08:52
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -20,20 +20,20 @@ pacman::p_load(
 
 # Cargar datos crudos -----------------------------------------------------
 ## Etiquetas provincias ----
-prov <- import("clean/cod_prov_arg.rds")
+prov <- import("bases_de_datos/cod_prov_arg.rds")
 
 
 ## Esperanza vida ----
-ex_raw <- read_csv2("raw/argentina_tabla de vida_GHO.csv", skip = 1)
+ex_raw <- read_csv2("bases_de_datos/argentina_tabla de vida_GHO.csv", skip = 1)
 
 
 ## Defunciones 2004 ----
-def04_raw <- import("raw/DEIS/DE_2004.csv")
+def04_raw <- import("bases_de_datos/DEIS/DE_2004.csv")
 
 
 ## Defunciones 2005-2019 ----
 def05_19_raw <- list.files(
-  path = "raw/DEIS/",
+  path = "bases_de_datos/DEIS/",
   pattern = "^defweb.",
   full.names = TRUE
 )
@@ -75,7 +75,7 @@ def04 <- def04_raw |>
 ## Defunciones 2005-2019 ----
 def05_19 <- def05_19_raw |>
   # Crear columna para el año
-  set_names(nm = paste0("20", str_sub(def05_19_raw, 16, 17))) |>
+  set_names(nm = paste0("20", str_sub(def05_19_raw, 27, 28))) |>
 
   # Leer archivos csv
   map(read_csv, locale = locale(encoding = "WINDOWS-1252")) |>
@@ -259,7 +259,7 @@ tabyl(ex_ge10$grupo_edad10)
 
 # Calcular AVP ------------------------------------------------------------
 ## Por provincia, sexo y grupo edad decenal ----
-AVP_ge10 <- defun |>
+AVP_ge10_prov <- defun |>
   # Agrupar datos
   group_by(
     anio_enfr,
@@ -316,7 +316,7 @@ AVP_ge10_reg <- defun |>
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
-  variable = names(AVP_ge10),
+  variable = names(AVP_ge10_prov),
 
   descripcion = c(
     "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
@@ -333,14 +333,14 @@ data_dict <- tibble(
     "Años de vida perdidos por muerte prematura por diabetes mellitus"
   ),
 
-  tipo_var = map_chr(AVP_ge10, ~ paste(class(.x), collapse = ", ")),
+  tipo_var = map_chr(AVP_ge10_prov, ~ paste(class(.x), collapse = ", ")),
 
   niveles = map_chr(
-    AVP_ge10,
+    AVP_ge10_prov,
     ~ if (is.factor(.x)) {
       paste(levels(.x), collapse = ", ")
     } else {
-      "O-Inf"
+      "0-Inf"
     }
   )
 )
@@ -348,14 +348,17 @@ data_dict <- tibble(
 
 # Guardar datos limpios ---------------------------------------------------
 ## Defunciones por provincia
-export(AVP_ge10, file = "clean/arg_defun_avp_ge10_prov.rds")
+export(AVP_ge10_prov, file = "datos_limpios/arg_defun_avp_ge10_prov.rds")
 
 ## Defunciones por región
-export(AVP_ge10_reg, file = "clean/arg_defun_avp_ge10_reg.rds")
+export(AVP_ge10_reg, file = "datos_limpios/arg_defun_avp_ge10_reg.rds")
 
 ## Diccionario de datos
-export(data_dict, file = "clean/dic_arg_defun_avp.xlsx")
-
+export(
+  data_dict,
+  file = "datos_limpios/dic_arg_defun_avp.xlsx",
+  format_headers = FALSE
+)
 
 # Limpiar environment y desactivar paquetes ------------------------------
 rm(list = ls())

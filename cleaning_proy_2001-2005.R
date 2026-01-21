@@ -1,8 +1,7 @@
 ### Proyecciones poblacionales 2005: Extracción de datos a partir de archivo PDF
 ### Autora: Tamara Ricardo
 ### Fecha creación: 08-07-2025
-# Última modificación: 20-01-2026 12:59
-
+# Última modificación: 21-01-2026 08:55
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -15,12 +14,12 @@ pacman::p_load(
 
 # Cargar datos -----------------------------------------------------------
 ## Etiquetas provincias ----
-prov <- import("clean/cod_prov_arg.rds")
+prov <- import("bases_de_datos/cod_prov_arg.rds")
 
 
 ## Proyecciones 2001-2005 ----
 proy_01_05_raw <- extract_areas(
-  "raw/INDEC_proyec 2001-2015.pdf",
+  "bases_de_datos/INDEC_proyec 2001-2015.pdf",
   pages = c(22:24, 27:28, 25:26, 29:43, 45, 44)
 )
 
@@ -66,7 +65,7 @@ proy_01_05 <- proy_01_05_raw |>
 
 
 # Exportar datos limpios -------------------------------------------------
-export(proy_01_05, file = "clean/arg_proy_2001_2005.rds")
+export(proy_01_05, file = "bases_de_datos/arg_proy_2001_2005.rds")
 
 
 # Limpiar environment y desactivar paquetes ------------------------------

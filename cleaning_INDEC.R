@@ -2,8 +2,7 @@
 ### años 2010-2021 según provincia, sexo y grupo edad quinquenal.
 ### Se suma el cálculo por grupo de edad decenal y por región.
 ### Autoras: Tamara Ricardo y Micaela Gauto
-### Fecha modificación:
-# Última modificación: 20-01-2026 13:23
+# Última modificación: 21-01-2026 08:53
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -16,21 +15,23 @@ pacman::p_load(
 
 # Cargar datos -----------------------------------------------------------
 ## Etiquetas provincias ----
-prov <- import("clean/cod_prov_arg.rds")
+prov <- import("bases_de_datos/cod_prov_arg.rds")
 
 
 ## Proyecciones 2001-2005 ----
-proy_01_05 <- import("clean/arg_proy_2001_2005.rds")
+proy_01_05 <- import("bases_de_datos/arg_proy_2001_2005.rds")
 
 
 ## Proyecciones 2009-2018 ----
 proy_10_18_raw <- {
   leer_filas <- function(rango) {
-    excel_sheets("raw/c2_proyecciones_prov_2010_2040.xls")[-c(1:2)] |>
+    excel_sheets("bases_de_datos/c2_proyecciones_prov_2010_2040.xls")[
+      -c(1:2)
+    ] |>
       set_names() |>
       map(
         ~ read_excel(
-          "raw/c2_proyecciones_prov_2010_2040.xls",
+          "bases_de_datos/c2_proyecciones_prov_2010_2040.xls",
           sheet = .x,
           range = rango
         )
@@ -137,7 +138,7 @@ proy_pob_prov <- bind_rows(proy_01_05, proy_10_18) |>
   ) |>
 
   # Añadir población estimada para 2009 (interpolación lineal)
-  (\(x){
+  (\(x) {
     bind_rows(
       x,
       x |>
@@ -154,32 +155,32 @@ proy_pob_prov <- bind_rows(proy_01_05, proy_10_18) |>
           pob_proy = round(pob_2001 * (1 + tasa_anual * 8))
         )
     )
-  })() |> 
+  })() |>
 
   # Añadir población estándar 2010
-  (\(x){
+  (\(x) {
     left_join(
       x,
-      x |> 
-        filter(anio == "2010") |> 
+      x |>
+        filter(anio == "2010") |>
         count(sexo, grupo_edad10, wt = pob_proy, name = "pob_est_2010")
     )
-  }) () |> 
-  
+  })() |>
+
   # Descartar columnas innecesarias
-  select(anio:pob_proy, pob_est_2010) |> 
-  
+  select(anio:pob_proy, pob_est_2010) |>
+
   # Ordenar filas
-  arrange(anio, codprov_censo, sexo, grupo_edad10) |> 
-  
+  arrange(anio, codprov_censo, sexo, grupo_edad10) |>
+
   # Variables caracter a factor
   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
-  
+
 
 # Calcular proyecciones por región, sexo y grupo etario ------------------
-proy_pob_reg <- proy_pob_prov |> 
+proy_pob_reg <- proy_pob_prov |>
   # Agrupar por región
-  group_by(anio, region_deis, sexo, grupo_edad10) |> 
+  group_by(anio, region_deis, sexo, grupo_edad10) |>
   summarise(
     pob_proy = sum(pob_proy, na.rm = TRUE),
     pob_est_2010 = sum(pob_est_2010, na.rm = TRUE),
@@ -207,21 +208,25 @@ data_dict <- tibble(
     ~ if (is.factor(.x)) {
       paste(levels(.x), collapse = ", ")
     } else {
-      "O-Inf"
+      "0-Inf"
     }
   )
 )
 
 # Guardar datos limpios ---------------------------------------------------
 ## Proyecciones por año, provincia, sexo y grupo etario decenal
-export(  proy_pob_prov,  file = "clean/arg_proy_2005_2018_ge10.rds")
+export(proy_pob_prov, file = "datos_limpios/arg_proy_2005_2018_ge10.rds")
 
 
 ## Proyecciones por año, región, sexo y grupo etario decenal
-export(  proy_pob_reg,  file = "clean/arg_proy_2005_2018_ge10_reg.rds")
+export(proy_pob_reg, file = "datos_limpios/arg_proy_2005_2018_ge10_reg.rds")
 
 ## Diccionario de datos
-export(data_dict, file = "clean/dic_arg_proy_2005_2018.xlsx")
+export(
+  data_dict,
+  file = "datos_limpios/dic_arg_proy_2005_2018.xlsx",
+  format_headers = FALSE
+)
 
 
 # Limpiar environment y desactivar paquetes ------------------------------
