@@ -151,3 +151,10 @@ Se utilizó el mismo archivo mencionado previamente, filtrando por el año 2010.
 Proyecciones provinciales de población por sexo y grupo de edad, 2010-2040. Ciudad Autónoma de Buenos Aires: Instituto Nacional de Estadística y Censos - INDEC, 2013. E-Book. Disponible en: https://www.indec.gob.ar/indec/web/Nivel4-Tema-2-24-85 
 Archivo: proyec_2010_2018 (recorte del archivo original “c2_proyecciones_prov_2010_2040”)
 
+
+
+Update 21-01-2026: 
+- Actualizados scripts limpieza defunciones, ENFR e INDEC; 
+- Creado script "cleaning_qualidiab_dw" con modificaciones al código de "cleaning_qualidiab";
+- Modificado nombre carpeta "Bases de datos" ("bases_de_datos")
+- Movida carpeta "clean" a la carpeta principal y renombrada como "datos_limpios"
