@@ -6,7 +6,6 @@
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
-# Última modificación: 22-01-2026 12:34
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -29,15 +28,6 @@ AVP_dm2_prov <- import("datos_limpios/arg_avp_ge10_prov.rds")
 
 ## AVP por grupos decenales de edad y región ----
 AVP_dm2_reg <- import("datos_limpios/arg_avp_ge10_reg.rds")
-
-
-## Proyecciones INDEC 2005-2018 por grupos decenales de edad y provincia ----
-proy_ge10_prov <- import("datos_limpios/arg_proy_2005_2018_ge10_prov.csv") |>
-  rename(anio_enfr = anio)
-
-## Proyecciones INDEC 2005-2018 por grupos decenales de edad y región ----
-proy_ge10_reg <- import("datos_limpios/arg_proy_2005_2018_ge10_reg.csv") |>
-  rename(anio_enfr = anio)
 
 
 ## Secuelas DM2 (datos temporales 2014) ----

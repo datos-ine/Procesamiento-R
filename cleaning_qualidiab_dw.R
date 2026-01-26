@@ -400,3 +400,9 @@ export(qualidiab_dm2_dw, file = "datos_limpios/fr_comp_DW_ge10.csv")
 
 ## Guardar diccionario de datos
 export(data_dict, file = "datos_limpios/dic_fr_comp_DW.xlsx")
+
+
+# Limpiar environment y desactivar paquetes ------------------------------
+rm(list = ls())
+
+pacman::p_unload("all")
