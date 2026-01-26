@@ -1,71 +1,49 @@
-# Complicaciones de DM ----------------------------------------------------
-
-# Cálculo de frecuencias de complicaciones asociadas a DM y sus pesos de discapacidad (DW)
-# correspondientes, en función de lo acordado con referentes de la Red Qualidiab.
-
-# Resumen de criterios consensuados:
-# * Se utilizarán los registros de DM2. Para esto hay que corregir aquellos sin dato en
-#  función del tratamiento: si tiene un antidiabético oral es DM2, si sólo tiene insulina
-#  y es mayor de 70, DM2, sino DM1.
-# * Esto implica corregir las prevalencias de DM de la ENFR asumiendo que el 90% de las
-# personas tienen DM2.
-# * Se utilizarán todas las complicaciones registradas, salvo las aclaraciones detalladas
-# a continuación.
-# * En caso de existir más de un DW para la complicación se utilizará el promedio, salvo
-# para el caso de retinopatías detallado a continuación.
-# * Se calcularán frecuencias por sexo y grupos de edad. Jorge sugiere probar con grupos
-# decenales o 4-5 grandes grupos.
-# * Las frecuencias se calcularán a nivel nacional y se asumirá la misma distribución de
-# frecuencias para cada región geográfica.
-# * Complicaciones macrovasculares:
-#   - Se desestiman las siguientes complicaciones registradas: HVI, AIT e hipotensión
-# ortostática.
-#   - Stent se usará como proxy de IAM en caso de que el paciente no lo registre.
-#   - Revascularización de miembros inferiores se usará como proxy de neuropatía periférica
-# en caso de que el paciente no lo registre.
-#   - CRM (cirugía de revascularización miocárdica) a confirmar por Jorge Elgart si se usará
-#  como proxy de IAM en caso de que el paciente no lo registre.
-# * Complicaciones microvasculares:
-#   - Disfunción eréctil: no tiene DW propio pero es una complicación de neuropatía
-# periférica, se puede asumir el mismo DW.
-#   - Retinopatía: para diferenciar la no proliferativa (más leve) de la proliferativa
-# se opta por usar el promedio de DW para la "Retinopatía No proliferativa" y el DW severo
-#  para "Retinopatía proliferativa".
-#   - Nefropatía: si usamos esta complicación diferenciada de "Diálisis/Transplante" se
-# debería usar el promedio de DW para los estadíos 3-4 de enf renal crónica, sumando el
-#  estadío 5 a "Diálisis/Transplante".
-#   Como alternativa, pueden combinarse ambas complicaciones y usar el promedio de los DW
-#  para estadíos 3-4-5 de ERC. Evaluar si hay diferencias para decidir.
-
-### Autoras: Micaela Gauto y Tamara Ricardo
-# Última modificación: 21-01-2026 13:41
+### Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus
+###  en Argentina, período 2005-2018
+### Limpieza y procesamiento de los datasets:
+## - Complicaciones asociadas a DM en Argentina, según datos provistos por la red
+## QUALIDIAB correspondientes al año 2014.
+## - Pesos de discapacidad (DW) asociados a DM según tablas publicadas por el GBD
+### Corrección de los registros sin datos:
+## - DM2: antidiabético oral y/o mayor de 70 años con tratamiento de insulina
+## - DM1: menor de 70 años con tratamiento de insulina
+## - IAM: se usará como proxy si el paciente recibió stent o CRM (cirugía de revascularización miocárdica)
+#  a confirmar por Jorge Elgart
+## - Neuropatía periférica: se usará como proxy si el paciente fue revascularizado.
+## - No se considerarán en el análisis: HVI, AIT e hipotensión ortostática.
+### Corrección de DW:
+## - Si existe más de un DW para la complicación se utilizará el promedio.
+## - Retinopatía no proliferativa: se usará el promedio de DW para retinopatías np.
+## - Retinopatía proliferativa: se usará el DW correspondiente a retinopatía severa.
+## - Disfunción eréctil: se asumirá el mismo DW que para neuropatía periférica.
+## - Nefropatía: se evaluará usar los DW promedio de estadíos 3-5 (incluye diálisis/
+## transplante) o evaluar por separado nefropatía (DW promedio estadíos 3-4) y
+## diálisis/transplante (DW estadío 5).
+### Autoras:
+## - Micaela Gauto
+## - Tamara Ricardo
+# Última modificación: 26-01-2026 09:07
 
 # Carga de paquetes -------------------------------------------------------
 pacman::p_load(
   rio,
-  readxl,
+  janitor,
   epikit,
-  tidyverse,
-  skimr,
-  gtsummary, # resumen estadístico y tests
-  rstatix, # resumen estadístico y pruebas estadísticas
-  janitor, # añadir totales y porcentajes a las tablas
-  scales, # convertir fácilmente proporciones en porcentajes
-  flextable, # convertir tablas en imágenes bonitas
-  writexl
+  flextable,
+  tidyverse
 )
 
 # Carga de datos ----------------------------------------------------------
 ## Qualidiab 2014 ----
-qualidiab_2014_raw <- read_excel(
-  "bases_de_datos/fichas_pacientes_QUALIDIAB_solo_ARG_2014.xlsx"
+qualidiab_2014_raw <- import(
+  "bases_datos/fichas_pacientes_QUALIDIAB_solo_ARG_2014.xlsx"
 )
 
 
 ## Pesos de discapacidad para complicaciones de Qualidiab ----
 # (corregida para "Retinopatía proliferativa", "Disfunción eréctil" y "Nefropatía"
 #  (combinada con diálisis/tx) según criterios consensuados)
-DW_GBD_raw <- read_excel("bases_de_datos/DW_GBD.xlsx")
+DW_GBD_raw <- import("bases_datos/DW_GBD.xlsx")
 
 
 # Limpiar datos ----------------------------------------------------------
@@ -418,7 +396,7 @@ data_dict <- tibble(
 
 # Guardar datos limpios ---------------------------------------------------
 ## Frecuencias complicaciones y DW
-export(qualidiab_dm2_dw, file = "datos_limpios/fr_DW_comp_sexo_ge10.rds")
+export(qualidiab_dm2_dw, file = "datos_limpios/fr_comp_DW_ge10.csv")
 
 ## Guardar diccionario de datos
-export(data_dict, file = "datos_limpios/dic_frec_DW_complic.xlsx")
+export(data_dict, file = "datos_limpios/dic_fr_comp_DW.xlsx")

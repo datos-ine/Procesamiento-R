@@ -1,13 +1,16 @@
-### Limpieza y procesamiento de las bases de datos de mortalidad publicadas por
-### la Dirección de Estadísticas e Información de Salud (DEIS), considerando
-### como causa básica de muerte los códigos E10 a E14 de la Décima Revisión de
-### la Clasificación Estadística Internacional de Enfermedades y Problemas
-### Relacionados con la Salud (CIE-10).
-### Limpieza y procesamiento de las tablas de vida publicadas para Argentina en
-### el año 2019 por la GHO-WHO, considerando grupos de edad quinquenales y cada
-### 10 años para población de 30 años y más según sexo.
-### Autoras: Micaela Gauto y Tamara Ricardo
-# Última modificación: 21-01-2026 08:52
+### Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus
+###  en Argentina, período 2005-2018
+### Limpieza y procesamiento de los datasets:
+## - Defunciones ocurridas y registradas en la República Argentina (2004-2019),
+## publicadas por la Dirección de Estadísticas e Información de Salud (DEIS).
+## Se consideraron como muerte por DM2 los códigos E11 y E14 de la CIE10.
+## - Tablas de vida para Argentina (2019), publicadas por la WHO-GHO, por grupos de
+## edad decenales y sexo para población de 30 años y más.
+## Cálculo de los años de vida perdidos por muerte prematura (AVP) debido a DM2
+### Autoras:
+## - Micaela Gauto
+## - Tamara Ricardo
+# Última modificación: 26-01-2026 09:06
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -19,21 +22,38 @@ pacman::p_load(
 
 
 # Cargar datos crudos -----------------------------------------------------
-## Etiquetas provincias ----
-prov <- import("bases_de_datos/cod_prov_arg.rds")
+# Códigos de provincias ----
+prov <- show_arg_codes() |>
+  # Filtrar totales país
+  filter(between(codprov_censo, "02", "94")) |>
+
+  # Cambiar etiqueta CABA
+  mutate(prov_nombre = if_else(codprov_censo == "02", id, name_iso)) |>
+
+  # Crear región geográfica DEIS
+  mutate(
+    region_deis = case_when(
+      codprov_censo %in% c("02", "06", "14", "30", "82") ~ "Centro",
+      codprov_censo %in% c("18", "22", "34", "54") ~ "NEA",
+      codprov_censo %in% c("38", "66") ~ "NOA1",
+      codprov_censo %in% c("10", "86", "90") ~ "NOA2",
+      codprov_censo %in% c("46", "50", "70", "74") ~ "Cuyo",
+      .default = "Patagonia"
+    )
+  )
 
 
 ## Esperanza vida ----
-ex_raw <- read_csv2("bases_de_datos/argentina_tabla de vida_GHO.csv", skip = 1)
+ex_raw <- read_csv2("bases_datos/argentina_tabla de vida_GHO.csv", skip = 1)
 
 
 ## Defunciones 2004 ----
-def04_raw <- import("bases_de_datos/DEIS/DE_2004.csv")
+def04_raw <- import("bases_datos/DEIS/DE_2004.csv")
 
 
 ## Defunciones 2005-2019 ----
 def05_19_raw <- list.files(
-  path = "bases_de_datos/DEIS/",
+  path = "bases_datos/DEIS/",
   pattern = "^defweb.",
   full.names = TRUE
 )
@@ -147,11 +167,10 @@ defun <- bind_rows(def04, def05_19) |>
     region_deis = case_when(
       codprov_censo %in% c("02", "06", "14", "30", "82") ~ "Centro",
       codprov_censo %in% c("18", "22", "34", "54") ~ "NEA",
-      codprov_censo %in% c("38", "66", "90") ~ "NOA1",
-      codprov_censo %in% c("10", "86") ~ "NOA2",
+      codprov_censo %in% c("38", "66") ~ "NOA1",
+      codprov_censo %in% c("10", "86", "90") ~ "NOA2",
       codprov_censo %in% c("46", "50", "70", "74") ~ "Cuyo",
-      codprov_censo %in% c("42", "58", "62") ~ "Patagonia Norte",
-      .default = "Patagonia Sur"
+      .default = "Patagonia"
     )
   ) |>
 
@@ -235,28 +254,6 @@ ex_ge10 <- ex_raw |>
   ungroup()
 
 
-# Explorar datos ----------------------------------------------------------
-tabyl(def04$prov_nombre)
-
-tabyl(def04$sexo)
-
-tabyl(def04$grupo_edad)
-
-tabyl(def05_19$prov_nombre)
-
-tabyl(def05_19$sexo)
-
-tabyl(def05_19$grupo_edad)
-
-tabyl(defun$prov_nombre)
-
-tabyl(defun$sexo)
-
-tabyl(defun$grupo_edad10)
-
-tabyl(ex_ge10$grupo_edad10)
-
-
 # Calcular AVP ------------------------------------------------------------
 ## Por provincia, sexo y grupo edad decenal ----
 AVP_ge10_prov <- defun |>
@@ -314,6 +311,28 @@ AVP_ge10_reg <- defun |>
   mutate(AVP = defun_mean * ex)
 
 
+# Explorar datos ----------------------------------------------------------
+tabyl(def04$prov_nombre)
+
+tabyl(def04$sexo)
+
+tabyl(def04$grupo_edad)
+
+tabyl(def05_19$prov_nombre)
+
+tabyl(def05_19$sexo)
+
+tabyl(def05_19$grupo_edad)
+
+tabyl(defun$prov_nombre)
+
+tabyl(defun$sexo)
+
+tabyl(defun$grupo_edad10)
+
+tabyl(ex_ge10$grupo_edad10)
+
+
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
   variable = names(AVP_ge10_prov),
@@ -348,15 +367,15 @@ data_dict <- tibble(
 
 # Guardar datos limpios ---------------------------------------------------
 ## Defunciones por provincia
-export(AVP_ge10_prov, file = "datos_limpios/arg_defun_avp_ge10_prov.rds")
+export(AVP_ge10_prov, file = "datos_limpios/arg_avp_ge10_prov.rds")
 
 ## Defunciones por región
-export(AVP_ge10_reg, file = "datos_limpios/arg_defun_avp_ge10_reg.rds")
+export(AVP_ge10_reg, file = "datos_limpios/arg_avp_ge10_reg.rds")
 
 ## Diccionario de datos
 export(
   data_dict,
-  file = "datos_limpios/dic_arg_defun_avp.xlsx",
+  file = "datos_limpios/dic_arg_defun_avp_ge10.xlsx",
   format_headers = FALSE
 )
 
