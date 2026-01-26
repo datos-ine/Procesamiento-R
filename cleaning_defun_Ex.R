@@ -6,13 +6,12 @@
 ## Se consideraron como muerte por DM2 los códigos E11 y E14 de la CIE10.
 ## - Tablas de vida para Argentina (2019), publicadas por la WHO-GHO, por grupos de
 ## edad decenales y sexo para población de 30 años y más.
-## Cálculo de los años de vida perdidos por muerte prematura (AVP) debido a DM2
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
-# Última modificación: 26-01-2026 09:06
+# Última modificación: 26-01-2026 11:34
 
-# Cargar paquetes ---------------------------------------------------------
+#  Cargar paquetes --------------------------------------------------------
 pacman::p_load(
   rio,
   janitor,
@@ -21,8 +20,8 @@ pacman::p_load(
 )
 
 
-# Cargar datos crudos -----------------------------------------------------
-# Códigos de provincias ----
+# Cargar datos -----------------------------------------------------------
+## Códigos de provincias ----
 prov <- show_arg_codes() |>
   # Filtrar totales país
   filter(between(codprov_censo, "02", "94")) |>
@@ -43,15 +42,15 @@ prov <- show_arg_codes() |>
   )
 
 
-## Esperanza vida ----
+## Tabla esperanza de vida (ex) Argentina 2018 ----
 ex_raw <- read_csv2("bases_datos/argentina_tabla de vida_GHO.csv", skip = 1)
 
 
-## Defunciones 2004 ----
+## Defunciones anuales por provincia ----
+# Defunciones 2004
 def04_raw <- import("bases_datos/DEIS/DE_2004.csv")
 
-
-## Defunciones 2005-2019 ----
+# Defunciones 2005-2019
 def05_19_raw <- list.files(
   path = "bases_datos/DEIS/",
   pattern = "^defweb.",
@@ -95,7 +94,7 @@ def04 <- def04_raw |>
 ## Defunciones 2005-2019 ----
 def05_19 <- def05_19_raw |>
   # Crear columna para el año
-  set_names(nm = paste0("20", str_sub(def05_19_raw, 27, 28))) |>
+  set_names(nm = paste0("20", str_sub(def05_19_raw, 24, 25))) |>
 
   # Leer archivos csv
   map(read_csv, locale = locale(encoding = "WINDOWS-1252")) |>
@@ -126,74 +125,6 @@ def05_19 <- def05_19_raw |>
 
   # Añadir identificador categórico provincias
   left_join(prov)
-
-
-## Unir datasets defunciones ----
-defun <- bind_rows(def04, def05_19) |>
-
-  # Filtrar muertes por DM2 (E11 y E14)
-  filter(cie10_causa %in% c("E11", "E14")) |>
-
-  # Cambiar etiquetas grupo etario
-  mutate(grupo_edad = str_sub(grupo_edad, 4)) |>
-
-  # Crear grupo edad decenal
-  mutate(
-    grupo_edad10 = case_when(
-      between(grupo_edad, "30 a 34", "35 a 39") ~ "30 a 39",
-      between(grupo_edad, "40 a 44", "45 a 49") ~ "40 a 49",
-      between(grupo_edad, "50 a 54", "55 a 59") ~ "50 a 59",
-      between(grupo_edad, "60 a 64", "65 a 69") ~ "60 a 69",
-      between(grupo_edad, "70 a 74", "75 a 79") ~ "70 a 79",
-      .default = "80+"
-    )
-  ) |>
-
-  # Completar datos faltantes año defunción
-  mutate(anio = replace_na(anio, "2004")) |>
-
-  # Añadir año ENFR
-  mutate(
-    anio_enfr = case_when(
-      between(anio, "2004", "2006") ~ "2005",
-      between(anio, "2008", "2010") ~ "2009",
-      between(anio, "2012", "2014") ~ "2013",
-      between(anio, "2017", "2019") ~ "2018"
-    )
-  ) |>
-
-  # Crear región geográfica DEIS
-  mutate(
-    region_deis = case_when(
-      codprov_censo %in% c("02", "06", "14", "30", "82") ~ "Centro",
-      codprov_censo %in% c("18", "22", "34", "54") ~ "NEA",
-      codprov_censo %in% c("38", "66") ~ "NOA1",
-      codprov_censo %in% c("10", "86", "90") ~ "NOA2",
-      codprov_censo %in% c("46", "50", "70", "74") ~ "Cuyo",
-      .default = "Patagonia"
-    )
-  ) |>
-
-  # Añadir filas faltantes
-  complete(
-    nesting(anio, anio_enfr),
-    nesting(codprov_censo, prov_nombre, region_deis),
-    nesting(grupo_edad, grupo_edad10),
-    sexo,
-    fill = list(total = 0)
-  ) |>
-
-  # Agrupar datos por grupos decenales
-  count(
-    anio,
-    anio_enfr,
-    codprov_censo,
-    prov_nombre,
-    region_deis,
-    grupo_edad10,
-    sexo,
-    wt = total
-  )
 
 
 # Limpiar datos esperanza de vida ----------------------------------------
@@ -254,10 +185,64 @@ ex_ge10 <- ex_raw |>
   ungroup()
 
 
-# Calcular AVP ------------------------------------------------------------
-## Por provincia, sexo y grupo edad decenal ----
-AVP_ge10_prov <- defun |>
-  # Agrupar datos
+# Unir datos por provincia, sexo y grupo etario --------------------------
+defun_ge10_prov <- bind_rows(def04, def05_19) |>
+  # Filtrar muertes por DM2 (E11 y E14)
+  filter(cie10_causa %in% c("E11", "E14")) |>
+
+  # Cambiar etiquetas grupo etario
+  mutate(grupo_edad = str_sub(grupo_edad, 4)) |>
+
+  # Crear grupo edad decenal
+  mutate(
+    grupo_edad10 = case_when(
+      between(grupo_edad, "30 a 34", "35 a 39") ~ "30 a 39",
+      between(grupo_edad, "40 a 44", "45 a 49") ~ "40 a 49",
+      between(grupo_edad, "50 a 54", "55 a 59") ~ "50 a 59",
+      between(grupo_edad, "60 a 64", "65 a 69") ~ "60 a 69",
+      between(grupo_edad, "70 a 74", "75 a 79") ~ "70 a 79",
+      .default = "80+"
+    )
+  ) |>
+
+  # Completar datos faltantes año defunción
+  mutate(anio = replace_na(anio, "2004")) |>
+
+  # Añadir año ENFR
+  mutate(
+    anio_enfr = case_when(
+      between(anio, "2004", "2006") ~ "2005",
+      between(anio, "2008", "2010") ~ "2009",
+      between(anio, "2012", "2014") ~ "2013",
+      between(anio, "2017", "2019") ~ "2018"
+    )
+  ) |>
+
+  # Añadir región geográfica DEIS
+  left_join(prov) |>
+
+  # Añadir filas faltantes
+  complete(
+    nesting(anio, anio_enfr),
+    nesting(codprov_censo, prov_nombre, region_deis),
+    nesting(grupo_edad, grupo_edad10),
+    sexo,
+    fill = list(total = 0)
+  ) |>
+
+  # Agrupar datos por grupos decenales
+  count(
+    anio,
+    anio_enfr,
+    codprov_censo,
+    prov_nombre,
+    region_deis,
+    grupo_edad10,
+    sexo,
+    wt = total
+  ) |>
+
+  # Calcular defunciones por trienio ENFR
   group_by(
     anio_enfr,
     codprov_censo,
@@ -267,7 +252,6 @@ AVP_ge10_prov <- defun |>
     sexo
   ) |>
 
-  # Calcular defunciones por trienio ENFR
   summarise(
     defun_n = sum(n, na.rm = TRUE),
     defun_mean = mean(n, na.rm = TRUE),
@@ -280,16 +264,66 @@ AVP_ge10_prov <- defun |>
       select(sexo:lx, Tx, ex)
   ) |>
 
-  # Calcular AVP por grupo decenal
-  mutate(AVP = defun_mean * ex) |>
-
   # Variables caracter a factor
   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
 
 
-## Por región, sexo y grupo edad decenal ----
-AVP_ge10_reg <- defun |>
-  # Agrupar datos
+# Unir datos por región, sexo y grupo etario -----------------------------
+defun_ge10_reg <- bind_rows(def04, def05_19) |>
+  # Filtrar muertes por DM2 (E11 y E14)
+  filter(cie10_causa %in% c("E11", "E14")) |>
+
+  # Cambiar etiquetas grupo etario
+  mutate(grupo_edad = str_sub(grupo_edad, 4)) |>
+
+  # Crear grupo edad decenal
+  mutate(
+    grupo_edad10 = case_when(
+      between(grupo_edad, "30 a 34", "35 a 39") ~ "30 a 39",
+      between(grupo_edad, "40 a 44", "45 a 49") ~ "40 a 49",
+      between(grupo_edad, "50 a 54", "55 a 59") ~ "50 a 59",
+      between(grupo_edad, "60 a 64", "65 a 69") ~ "60 a 69",
+      between(grupo_edad, "70 a 74", "75 a 79") ~ "70 a 79",
+      .default = "80+"
+    )
+  ) |>
+
+  # Completar datos faltantes año defunción
+  mutate(anio = replace_na(anio, "2004")) |>
+
+  # Añadir año ENFR
+  mutate(
+    anio_enfr = case_when(
+      between(anio, "2004", "2006") ~ "2005",
+      between(anio, "2008", "2010") ~ "2009",
+      between(anio, "2012", "2014") ~ "2013",
+      between(anio, "2017", "2019") ~ "2018"
+    )
+  ) |>
+
+  # Añadir región geográfica DEIS
+  left_join(prov) |>
+
+  # Añadir filas faltantes
+  complete(
+    nesting(anio, anio_enfr),
+    nesting(codprov_censo, prov_nombre, region_deis),
+    nesting(grupo_edad, grupo_edad10),
+    sexo,
+    fill = list(total = 0)
+  ) |>
+
+  # Agrupar datos por grupos decenales
+  count(
+    anio,
+    anio_enfr,
+    region_deis,
+    grupo_edad10,
+    sexo,
+    wt = total
+  ) |>
+
+  # Calcular defunciones por trienio ENFR
   group_by(
     anio_enfr,
     region_deis,
@@ -297,7 +331,6 @@ AVP_ge10_reg <- defun |>
     sexo
   ) |>
 
-  # Calcular defunciones por trienio ENFR
   summarise(
     defun_n = sum(n, na.rm = TRUE),
     defun_mean = mean(n, na.rm = TRUE),
@@ -305,37 +338,18 @@ AVP_ge10_reg <- defun |>
   ) |>
 
   # Añadir datos esperanza de vida
-  left_join(ex_ge10) |>
+  left_join(
+    ex_ge10 |>
+      select(sexo:lx, Tx, ex)
+  ) |>
 
-  # Calcular AVP por grupo decenal
-  mutate(AVP = defun_mean * ex)
-
-
-# Explorar datos ----------------------------------------------------------
-tabyl(def04$prov_nombre)
-
-tabyl(def04$sexo)
-
-tabyl(def04$grupo_edad)
-
-tabyl(def05_19$prov_nombre)
-
-tabyl(def05_19$sexo)
-
-tabyl(def05_19$grupo_edad)
-
-tabyl(defun$prov_nombre)
-
-tabyl(defun$sexo)
-
-tabyl(defun$grupo_edad10)
-
-tabyl(ex_ge10$grupo_edad10)
+  # Variables caracter a factor
+  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
 
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(
-  variable = names(AVP_ge10_prov),
+  variable = names(defun_ge10_prov),
 
   descripcion = c(
     "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
@@ -348,14 +362,13 @@ data_dict <- tibble(
     "Promedio de defunciones para el trienio correspondiente",
     "Cantidad de personas vivas a la edad x",
     "Años-persona vividos por encima de la edad x",
-    "Esperanza de vida a la edad x",
-    "Años de vida perdidos por muerte prematura por diabetes mellitus"
+    "Esperanza de vida a la edad x"
   ),
 
-  tipo_var = map_chr(AVP_ge10_prov, ~ paste(class(.x), collapse = ", ")),
+  tipo_var = map_chr(defun_ge10_prov, ~ paste(class(.x), collapse = ", ")),
 
   niveles = map_chr(
-    AVP_ge10_prov,
+    defun_ge10_prov,
     ~ if (is.factor(.x)) {
       paste(levels(.x), collapse = ", ")
     } else {
@@ -364,18 +377,17 @@ data_dict <- tibble(
   )
 )
 
-
 # Guardar datos limpios ---------------------------------------------------
 ## Defunciones por provincia
-export(AVP_ge10_prov, file = "datos_limpios/arg_avp_ge10_prov.rds")
+export(defun_ge10_prov, file = "datos_limpios/arg_defun_ge10_prov.rds")
 
 ## Defunciones por región
-export(AVP_ge10_reg, file = "datos_limpios/arg_avp_ge10_reg.rds")
+export(defun_ge10_reg, file = "datos_limpios/arg_defun_ge10_reg.rds")
 
 ## Diccionario de datos
 export(
   data_dict,
-  file = "datos_limpios/dic_arg_defun_avp_ge10.xlsx",
+  file = "datos_limpios/dic_arg_defun_ge10.xlsx",
   format_headers = FALSE
 )
 

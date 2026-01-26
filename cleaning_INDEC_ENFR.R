@@ -14,7 +14,7 @@
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
-# Última modificación: 26-01-2026 09:02
+# Última modificación: 26-01-2026 12:36
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -84,18 +84,60 @@ proy_10_18_raw <- {
 
 # Resultados ENFR ----
 ## ENFR 2005
-enfr05 <- read_delim("bases_datos/ENFR/ENFR 2005 - Base usuario.txt")
+enfr05 <- read_delim(
+  "bases_datos/ENFR/ENFR 2005 - Base usuario.txt",
+  col_select = c(
+    id = IDENTIFI,
+    codprov_censo = PROV,
+    sexo = CHCH04,
+    edad = CHCH05,
+    dm_auto = CIDI01,
+    PONDERACION
+  )
+)
 
 # ENFR 2009
-enfr09 <- read_delim("bases_datos/ENFR/ENFR 2009 - Base usuario.txt")
+enfr09 <- read_delim(
+  "bases_datos/ENFR/ENFR 2009 - Base usuario.txt",
+  col_select = c(
+    id = IDENTIFI,
+    codprov_censo = PRVNC,
+    sexo = BHCH04,
+    edad = BHCH05,
+    dm_auto = BIDI01,
+    PONDERACION
+  )
+)
 
 # ENFR 2013
-enfr13 <- import("bases_datos/ENFR/ENFR 2013 - Base usuario.txt")
+enfr13 <- read_delim(
+  "bases_datos/ENFR/ENFR 2013 - Base usuario.txt",
+  col_select = c(
+    ID,
+    codprov_censo = COD_PROVINCIA,
+    sexo = BHCH04,
+    edad = BHCH05,
+    dm_auto = BIDI01,
+    PONDERACION
+  )
+)
 
 # ENFR 2018
-enfr18 <- read_delim("bases_datos/ENFR/ENFR 2018 - Base usuario.txt") |>
-  # Añadir base de réplicas
-  left_join(read_delim("bases_datos/ENFR/ENFR2018_base_rep_filter.csv"))
+enfr18 <- read_delim(
+  "bases_datos/ENFR/ENFR 2018 - Base usuario.txt",
+  col_select = c(
+    id,
+    codprov_censo = cod_provincia,
+    sexo = bhch03,
+    edad = bhch04,
+    dm_auto = bidi01,
+    wf1p
+  )
+) |>
+  # Añadir réplicas
+  left_join(read_delim(
+    "bases_datos/ENFR/ENFR2018_base_rep_filter.csv"
+  ))
 
 
 # Limpiar datasets proyecciones poblacionales ----------------------------
@@ -288,79 +330,26 @@ clean_enfr <- function(x) {
     )
 }
 
-# Limpiar datos ENFR -----------------------------------------------------
 # ENFR 2005 ----
 enfr05 <- enfr05 |>
-  # Estandarizar nombres columnas
-  clean_names() |>
-
-  # Seleccionar columnas
-  select(
-    id = identifi,
-    codprov_censo = prov,
-    sexo = chch04,
-    edad = chch05,
-    dm_auto = cidi01,
-    ponderacion
-  ) |>
-
   # Aplicar función de limpieza
   clean_enfr()
 
 
 # ENFR 2009 ----
 enfr09 <- enfr09 |>
-  # Estandarizar nombres columnas
-  clean_names() |>
-
-  # Seleccionar columnas
-  select(
-    id = identifi,
-    codprov_censo = prvnc,
-    sexo = bhch04,
-    edad = bhch05,
-    dm_auto = bidi01,
-    ponderacion
-  ) |>
-
   # Aplicar función de limpieza
   clean_enfr()
 
 
 # ENFR 2013 ----
 enfr13 <- enfr13 |>
-  # Estandarizar nombres columnas
-  clean_names() |>
-
-  # Seleccionar columnas
-  select(
-    id,
-    codprov_censo = cod_provincia,
-    sexo = bhch04,
-    edad = bhch05,
-    dm_auto = bidi01,
-    ponderacion
-  ) |>
-
   # Aplicar función de limpieza
   clean_enfr()
 
 
 # ENFR 2018 ----
 enfr18 <- enfr18 |>
-  # Estandarizar nombres columnas
-  clean_names() |>
-
-  # Seleccionar columnas
-  select(
-    id,
-    codprov_censo = cod_provincia,
-    sexo = bhch03,
-    edad = bhch04,
-    dm_auto = bidi01,
-    wf1p
-  ) |>
-
   # Aplicar función de limpieza
   clean_enfr()
 
@@ -369,14 +358,15 @@ enfr18 <- enfr18 |>
 ## ENFR 2005 ----
 enfr05_prov <- enfr05 |>
   # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |>
+  as_survey_design(weights = PONDERACION) |>
 
   # Estimar cantidad de personas con DM y prevalencia
   group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -384,14 +374,15 @@ enfr05_prov <- enfr05 |>
 ## ENFR 2009 ----
 enfr09_prov <- enfr09 |>
   # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |>
+  as_survey_design(weights = PONDERACION) |>
 
   # Estimar cantidad de personas con DM y prevalencia
   group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -399,14 +390,15 @@ enfr09_prov <- enfr09 |>
 ## ENFR 2013 ----
 enfr13_prov <- enfr13 |>
   # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |>
+  as_survey_design(weights = PONDERACION) |>
 
   # Estimar cantidad de personas con DM y prevalencia
   group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -425,7 +417,8 @@ enfr18_prov <- enfr18 |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -434,14 +427,15 @@ enfr18_prov <- enfr18 |>
 ## ENFR 2005 ----
 enfr05_reg <- enfr05 |>
   # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |>
+  as_survey_design(weights = PONDERACION) |>
 
   # Estimar cantidad de personas con DM y prevalencia
   group_by(region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -449,14 +443,15 @@ enfr05_reg <- enfr05 |>
 ## ENFR 2009 ----
 enfr09_reg <- enfr09 |>
   # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |>
+  as_survey_design(weights = PONDERACION) |>
 
   # Estimar cantidad de personas con DM y prevalencia
   group_by(region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -464,14 +459,15 @@ enfr09_reg <- enfr09 |>
 ## ENFR 2013 ----
 enfr13_reg <- enfr13 |>
   # Generar objeto de diseño
-  as_survey_design(weights = ponderacion) |>
+  as_survey_design(weights = PONDERACION) |>
 
   # Estimar cantidad de personas con DM y prevalencia
   group_by(region_deis, sexo, grupo_edad10) |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -490,7 +486,8 @@ enfr18_reg <- enfr18 |>
   summarise(
     dm_total = survey_total(dm_auto),
     dm2_total = survey_total(dm2_auto),
-    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv")),
+    dm_prev = survey_mean(dm_auto, vartype = c("se", "cv"), na.rm = TRUE),
+    dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -577,6 +574,9 @@ data_dict <- tibble(
     "Error estándar del total estimado de personas con DM por provincia, grupo etario y sexo",
     "Total estimado de personas con DM2 por provincia, grupo etario y sexo",
     "Error estándar del total estimado de personas con DM2 por provincia, grupo etario y sexo",
+    "Prevalencia de DM por provincia, grupo etario y sexo",
+    "Error estándar del total de la prevalencia de personas con DM",
+    "Coeficiente de variación de la prevalencia de personas con DM",
     "Prevalencia de DM2 por provincia, grupo etario y sexo",
     "Error estándar del total de la prevalencia de personas con DM2",
     "Coeficiente de variación de la prevalencia de personas con DM2"
