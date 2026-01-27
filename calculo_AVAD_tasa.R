@@ -29,23 +29,25 @@ pacman::p_load(
 
 # Cargar datos ------------------------------------------------------------
 ## Prevalencia DM2 y población por provincia, sexo y grupo etario ----
-prev_dm2_prov <- import("datos_limpios/arg_dm2_ge10_prov.rds") |>
-  rename(proy_pob = prov_proy_pob)
+prev_dm2_prov <- import("datos_limpios/arg_dm2_ge10_prov.rds")
 
 ## Prevalencia DM2 y población por región, sexo y grupo etario ----
-prev_dm2_reg <- import("datos_limpios/arg_dm2_ge10_reg.rds") |>
-  rename(proy_pob = reg_proy_pob)
+prev_dm2_reg <- import("datos_limpios/arg_dm2_ge10_reg.rds")
 
 
 ## Defunciones por provincia, sexo y grupo etario ----
 defun_dm2_prov <- import("datos_limpios/arg_defun_ge10_prov.rds")
 
-## AVP por región, sexo y grupo etario ----
+## Defunciones por región, sexo y grupo etario ----
 defun_dm2_reg <- import("datos_limpios/arg_defun_ge10_reg.rds")
 
 
 ## Secuelas DM2 por sexo y grupo etario (Qualidiab 2014) ----
 comp_dm2 <- import("datos_limpios/fr_comp_DW_ge10.csv")
+
+
+## Población estándar 2010 ----
+pob_est_2010 <- import("datos_limpios/arg_pob_est_2010.rds")
 
 
 # Explorar datos ---------------------------------------------------------
@@ -349,10 +351,7 @@ export(AVAD_dm2_prov, file = "datos_limpios/arg_AVAD_ge10_prov.xlsx")
 export(AVAD_dm2_reg, file = "datos_limpios/arg_AVAD_ge10_reg.xlsx")
 
 ## Diccionario de datos
-export(
-  data_dict,
-  file = "datos_limpios/dic_arg_AVAD_ge10.xlsx"
-)
+export(data_dict, file = "datos_limpios/dic_arg_AVAD_ge10.xlsx")
 
 # Limpiar environment y desactivar paquetes ------------------------------
 rm(list = ls())
