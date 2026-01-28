@@ -14,6 +14,7 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
+# Última modificación: 28-01-2026 10:38
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
