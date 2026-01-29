@@ -58,7 +58,7 @@ proy_01_05_raw <- extract_tables(
 ## Proyecciones poblacionales 2010, 2013 y 2018 ----
 proy_10_18_raw <- bind_cols(
   ## 2010-2015 ##
-  excel_sheets("bases_datos/c2_proyecciones_prov_2010_2040.xls")[-c(1:2)] |>
+  excel_sheets("bases_datos/c2_proyecciones_prov_2010_2040.xls")[3:26] |>
     set_names() |>
     map(
       ~ read_excel(
@@ -70,7 +70,7 @@ proy_10_18_raw <- bind_cols(
     list_rbind(names_to = "prov"),
 
   ## 2018-2021 ##
-  excel_sheets("bases_datos/c2_proyecciones_prov_2010_2040.xls")[-c(1:2)] |>
+  excel_sheets("bases_datos/c2_proyecciones_prov_2010_2040.xls")[3:26] |>
     set_names() |>
     map(
       ~ read_excel(
@@ -158,7 +158,8 @@ def05_19_raw <- list.files(
 ## Población estándar Censo 2010 ----
 pob_est_2010 <- import(
   "bases_datos/c2_proyecciones_prov_2010_2040.xls",
-  sheet = 2
+  sheet = 2,
+  range = "A3:D28"
 )
 
 
@@ -297,34 +298,48 @@ clean_enfr <- function(x) {
 
 ## Simulaciones de Monte-Carlo para AVP, AVD y AVAD ----
 sim_IU_DALYs <- function(
-  def_mean,
-  def_se,
-  n_dm2,
-  n_dm2_se,
+  defun_mean,
+  defun_se,
+  dm2_total,
+  dm2_total_se,
   ex,
-  dw,
+  fwd,
+  # pob,
   nsim = 10000
 ) {
-  # Modificar SD cuando no hay casos/defunciones
-  n_sd <- if_else(n_dm2 > 0, n_dm2_se, 1e-6)
-  def_sd <- if_else(def_mean > 0, def_se, 1e-6)
+  # SDs robustos cuando no hay casos / defunciones
+  defun_sd <- if_else(defun_mean > 0, defun_se, 1e-6)
+  dm2_sd <- if_else(dm2_total > 0, dm2_total_se, 1e-6)
 
   # Simular defunciones (truncadas en 0)
-  def_sim <- rtruncnorm(n = nsim, a = 0, mean = def_mean, sd = def_sd)
+  defun_sim <- rtruncnorm(
+    n = nsim,
+    a = 0,
+    mean = defun_mean,
+    sd = defun_sd
+  )
 
-  # Simular AVP
-  AVP_sim <- def_sim * ex
+  # AVP
+  AVP_sim <- defun_sim * ex
 
-  # Simular prevalencia (truncada en [0,1])
-  prev_sim <- rtruncnorm(n = nsim, a = 0, b = 1, mean = n_dm2, sd = n_dm2_se)
+  # Simular total de casos DM2 (truncado en 0)
+  dm2_sim <- rtruncnorm(
+    n = nsim,
+    a = 0,
+    mean = dm2_total,
+    sd = dm2_sd
+  )
 
-  # Simular AVD
-  AVD_sim <- prev_sim * dw
+  # # Evitar casos mayores a la población del estrato
+  # dm2_sim <- pmin(dm2_sim, pob)
 
-  # Simular AVAD
+  # AVD (enfoque prevalente)
+  AVD_sim <- dm2_sim * fwd
+
+  # AVAD
   AVAD_sim <- AVP_sim + AVD_sim
 
-  # Crear columnas AVP, AVD y AVAD
+  # Resumen (mediana e IC95%)
   tibble(
     AVP = quantile(AVP_sim, 0.5, na.rm = TRUE),
     AVP_inf = quantile(AVP_sim, 0.025, na.rm = TRUE),
@@ -349,8 +364,8 @@ ex_ge10 <- ex_ge10 |>
   select(
     indicator,
     age_group,
-    "Varón" = male_4,
-    "Mujer" = female_5
+    "Varón" = 4,
+    "Mujer" = 5
   ) |>
 
   # Filtrar menores de 30 años y totales
@@ -401,14 +416,11 @@ ex_ge10 <- ex_ge10 |>
 
 ## Población estándar Censo 2010 ----
 pob_est_2010 <- pob_est_2010 |>
-  # Estandarizar nombres de columnas
-  clean_names() |>
-
   # Seleccionar columnas relevantes
   select(
     grupo_edad = 1,
-    Varón = x3,
-    Mujer = x4
+    Varón = 3,
+    Mujer = 4
   ) |>
 
   # Aplicar función de limpieza
@@ -812,18 +824,18 @@ datos_dm2_arg <- list(
 
 
 # Simular AVP, AVD y AVAD ------------------------------------------------
-# Provincia, sexo y grupo etario ----
+## Provincia, sexo y grupo etario ----
 set.seed(123)
 sim_avad_prov <- datos_dm2_prov |>
   mutate(
     sim = pmap(
       list(
-        def_mean = defun_mean,
-        def_se = defun_se,
-        n_dm2 = dm2_total,
-        n_dm2_se = dm2_total_se,
-        ex = ex,
-        dw = fwd
+        defun_mean,
+        defun_se,
+        dm2_total,
+        dm2_total_se,
+        ex,
+        fwd
       ),
       sim_IU_DALYs
     )
@@ -848,12 +860,12 @@ sim_avad_reg <- datos_dm2_reg |>
   mutate(
     sim = pmap(
       list(
-        def_mean = defun_mean,
-        def_se = defun_se,
-        n_dm2 = dm2_total,
-        n_dm2_se = dm2_total_se,
-        ex = ex,
-        dw = fwd
+        defun_mean,
+        defun_se,
+        dm2_total,
+        dm2_total_se,
+        ex,
+        fwd
       ),
       sim_IU_DALYs
     )
@@ -865,6 +877,7 @@ sim_avad_reg <- datos_dm2_reg |>
     anio_enfr:grupo_edad_10,
     contains(c("pob", "dm", "defun")),
     ex,
+    fwd,
     AVP:AVAD_sup
   ) |>
 
@@ -877,12 +890,12 @@ sim_avad_arg <- datos_dm2_arg |>
   mutate(
     sim = pmap(
       list(
-        def_mean = defun_mean,
-        def_se = defun_se,
-        n_dm2 = dm2_total,
-        n_dm2_se = dm2_total_se,
-        ex = ex,
-        dw = fwd
+        defun_mean,
+        defun_se,
+        dm2_total,
+        dm2_total_se,
+        ex,
+        fwd
       ),
       sim_IU_DALYs
     )
