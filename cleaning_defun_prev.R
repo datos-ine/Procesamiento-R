@@ -10,19 +10,28 @@
 ## muerte para los códigos E11 y E14 de la CIE-10.
 ## - WHO - GHO: Tablas de vida para Argentina por sexo y grupo etario quinquenal para
 ## el año 2019.
+### Cálculo de AVP, AVD y AVAD e intervalos de incertidumbre mediante simulaciones de
+### Monte-Carlo con 10.000 réplicas
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 28-01-2026 10:38
+# Última modificación: 29-01-2026 11:29
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
-  rio,
-  srvyr,
+  # Grupos etarios
   epikit,
+  # Etiquetas geográficas
   geoAr,
+  # Extraer datos de PDF
   tabulapdf,
+  # Diseño muestral y prevalencia
+  srvyr,
+  # Simulaciones de Monte-Carlo
+  truncnorm,
+  # Manejo de datos
+  rio,
   janitor,
   tidyverse,
   readxl
@@ -67,13 +76,6 @@ proy_10_18_raw <- bind_cols(
       )
     ) |>
     list_rbind(names_to = "prov")
-)
-
-
-## Población estándar 2010 ----
-pob_est_2010 <- import(
-  "bases_datos/c2_proyecciones_prov_2010_2040.xls",
-  sheet = 2
 )
 
 
@@ -137,11 +139,11 @@ enfr18 <- read_delim(
   ))
 
 
-## Defunciones 2004 por provincia ----
+## Defunciones 2004 ----
 def04_raw <- import("bases_datos/DEIS/DE_2004.csv")
 
 
-## Defunciones 2005-2019 por provincia ----
+## Defunciones 2005-2019 ----
 def05_19_raw <- list.files(
   path = "bases_datos/DEIS/",
   pattern = "^defweb.",
@@ -149,8 +151,19 @@ def05_19_raw <- list.files(
 )
 
 
+## Población estándar Censo 2010 ----
+pob_est_2010 <- import(
+  "bases_datos/c2_proyecciones_prov_2010_2040.xls",
+  sheet = 2
+)
+
+
 ## Tabla de vida Argentina (2019) ----
 ex_ge10 <- read_csv2("bases_datos/argentina_tabla de vida_GHO.csv", skip = 1)
+
+
+## Complicaciones DM2 por sexo y grupo etario (Qualidiab 2014) ----
+comp_dm2 <- import("datos_limpios/fr_comp_DW_ge10.csv")
 
 
 # Crear etiquetas provincias ---------------------------------------------
@@ -177,14 +190,24 @@ prov <- show_arg_codes() |>
   select(codprov_censo, prov_nombre, region_deis)
 
 
-# Funciones auxiliares de limpieza ---------------------------------------
-## Proyecciones poblacionales ----
+# Funciones auxiliares ---------------------------------------------------
+## Limpieza de proyecciones poblacionales ----
 clean_indec <- function(x) {
   x |>
     # Filtrar menores de 30 años y totales
     filter(
       !grupo_edad %in%
-        c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "Edad", "Total", NA)
+        c(
+          "0-4",
+          "5-9",
+          "10-14",
+          "15-19",
+          "20-24",
+          "25-29",
+          "Edad",
+          "Total",
+          NA
+        )
     ) |>
 
     # Crear grupo etario decenal
@@ -215,7 +238,7 @@ clean_indec <- function(x) {
 }
 
 
-## Datos ENFR ----
+## Limpieza de datos ENFR ----
 clean_enfr <- function(x) {
   x_clean <- x |>
     # Filtrar menores de 30 años
@@ -247,7 +270,7 @@ clean_enfr <- function(x) {
     # Cambiar etiquetas sexo
     mutate(sexo = if_else(sexo == 1, "Varón", "Mujer")) |>
 
-    # Convertir DM y DM2
+    # Convertir DM a binomial y calcular frecuencia DM2
     mutate(
       dm_auto = if_else(dm_auto == 1, 1, 0),
       dm2_auto = dm_auto * 0.9
@@ -265,6 +288,53 @@ clean_enfr <- function(x) {
         type = "bootstrap"
       )
   }
+}
+
+
+## Simulaciones de Monte-Carlo para AVP, AVD y AVAD ----
+sim_IU_DALYs <- function(
+  def_mean,
+  def_se,
+  prev,
+  prev_se,
+  ex,
+  dw,
+  pob,
+  nsim = 10000
+) {
+  # Modificar SD cuando no hay casos/defunciones
+  prev_sd <- if_else(prev > 0, prev_se, 1e-6)
+  def_sd <- if_else(def_mean > 0, def_se, 1e-6)
+
+  # Simular defunciones (truncadas en 0)
+  def_sim <- rtruncnorm(n = nsim, a = 0, mean = def_mean, sd = def_sd)
+
+  # Simular AVP
+  AVP_sim <- def_sim * ex
+
+  # Simular prevalencia (truncada en [0,1])
+  prev_sim <- rtruncnorm(n = nsim, a = 0, b = 1, mean = prev, sd = prev_sd)
+
+  # Simular AVD
+  AVD_sim <- prev_sim * dw * pob
+
+  # Simular AVAD
+  AVAD_sim <- AVP_sim + AVD_sim
+
+  # Crear columnas AVP, AVD y AVAD
+  tibble(
+    AVP = quantile(AVP_sim, 0.5, na.rm = TRUE),
+    AVP_inf = quantile(AVP_sim, 0.025, na.rm = TRUE),
+    AVP_sup = quantile(AVP_sim, 0.975, na.rm = TRUE),
+
+    AVD = quantile(AVD_sim, 0.5, na.rm = TRUE),
+    AVD_inf = quantile(AVD_sim, 0.025, na.rm = TRUE),
+    AVD_sup = quantile(AVD_sim, 0.975, na.rm = TRUE),
+
+    AVAD = quantile(AVAD_sim, 0.5, na.rm = TRUE),
+    AVAD_inf = quantile(AVAD_sim, 0.025, na.rm = TRUE),
+    AVAD_sup = quantile(AVAD_sim, 0.975, na.rm = TRUE)
+  )
 }
 
 
@@ -286,7 +356,7 @@ ex_ge10 <- ex_ge10 |>
       between(age_group, "50-54 years", "85+ years")
   ) |>
 
-  # Cambiar niveles indicador
+  # Cambiar etiquetas indicadores
   mutate(indicator = str_extract(indicator, '^[^ ]+')) |>
 
   # Pasar a formato long
@@ -343,6 +413,16 @@ pob_est_2010 <- pob_est_2010 |>
 
   # Calcular proyecciones por sexo y grupo etario decenal
   count(sexo, grupo_edad_10, wt = value, name = "pob_est_2010")
+
+
+## Complicaciones DM2 ----
+comp_dm2 <- comp_dm2 |>
+  # Calcular promedio ponderado de discapacidad (fwd)
+  group_by(sexo, grupo_edad_10) |>
+  summarise(
+    fwd = sum(comp_frec * dw, na.rm = TRUE),
+    .groups = "drop"
+  )
 
 
 ## Proyecciones poblacionales ----
@@ -520,7 +600,7 @@ defun_dm2 <- bind_rows(
   # Completar datos faltantes año defunción
   mutate(anio = replace_na(anio, "2004")) |>
 
-  # Añadir año ENFR
+  # Crear columna para año ENFR
   mutate(
     anio_enfr = case_when(
       between(anio, "2004", "2006") ~ "2005",
@@ -539,7 +619,7 @@ defun_dm2 <- bind_rows(
     fill = list(total = 0)
   ) |>
 
-  # Agrupar datos por grupos decenales
+  # Agrupar datos por grupo etario decenal
   count(
     anio,
     anio_enfr,
@@ -552,57 +632,19 @@ defun_dm2 <- bind_rows(
   )
 
 
-# Calcular prevalencia y defunciones DM2 por provincia -------------------
-datos_dm2_prov <- bind_rows(
-  list(
-    ## ENFR 2005 ##
-    "2005" = enfr05 |>
+# Calcular prevalencia y defunciones por DM2 -----------------------------
+## Provincia, sexo y grupo etario ----
+datos_dm2_prov <- list(
+  "2005" = enfr05,
+  "2009" = enfr09,
+  "2013" = enfr13,
+  "2018" = enfr18
+) |>
+  map(\(x) {
+    x |>
       # Aplicar función de limpieza
       clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2009 ##
-    "2009" = enfr09 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2013 ##
-    "2013" = enfr13 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2018 (Warning) ##
-    "2018" = enfr18 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
+      # Calcular total personas con DM y prevalencia
       group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad_10) |>
       summarise(
         dm_total = survey_total(dm_auto),
@@ -610,11 +652,10 @@ datos_dm2_prov <- bind_rows(
         dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
         .groups = "drop"
       )
-  ),
-  .id = "anio_enfr"
-) |>
+  }) |>
+  bind_rows(.id = "anio_enfr") |>
 
-  # Añadir defunciones por DM2
+  # Combinar con defunciones por DM2
   left_join(
     defun_dm2 |>
       # Calcular defunciones por trienio ENFR
@@ -635,75 +676,31 @@ datos_dm2_prov <- bind_rows(
       )
   ) |>
 
-  # Añadir proyecciones poblacionales
+  # Combinar con proyecciones poblacionales
   left_join(proy_pob) |>
 
-  # Añadir esperanza de vida
+  # Combinar con pesos discapacidad DM2
+  left_join(comp_dm2) |>
+
+  # Combinar con esperanza de vida
   left_join(ex_ge10) |>
 
-  # Reordenar columnas
-  select(
-    anio_enfr:grupo_edad_10,
-    proy_pob,
-    starts_with(c("dm", "def")),
-    ex
-  ) |>
-
-  # Columnas caracter a factor
-  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+  # Combinar con población estándar 2010
+  left_join(pob_est_2010)
 
 
-# Calcular prevalencia y defunciones DM por región -----------------------
-datos_dm2_reg <- bind_rows(
-  list(
-    ## ENFR 2005 ##
-    "2005" = enfr05 |>
+## Región DEIS, sexo y grupo etario ----
+datos_dm2_reg <- list(
+  "2005" = enfr05,
+  "2009" = enfr09,
+  "2013" = enfr13,
+  "2018" = enfr18
+) |>
+  map(\(x) {
+    x |>
       # Aplicar función de limpieza
       clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(region_deis, sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2009 ##
-    "2009" = enfr09 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(region_deis, sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2013 ##
-    "2013" = enfr13 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(region_deis, sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2018 (Warning) ##
-    "2018" = enfr18 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
+      # Calcular total personas con DM y prevalencia
       group_by(region_deis, sexo, grupo_edad_10) |>
       summarise(
         dm_total = survey_total(dm_auto),
@@ -711,11 +708,10 @@ datos_dm2_reg <- bind_rows(
         dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
         .groups = "drop"
       )
-  ),
-  .id = "anio_enfr"
-) |>
+  }) |>
+  bind_rows(.id = "anio_enfr") |>
 
-  # Añadir defunciones por DM2
+  # Combinar con defunciones por DM2
   left_join(
     defun_dm2 |>
       # Calcular defunciones por trienio ENFR
@@ -729,10 +725,10 @@ datos_dm2_reg <- bind_rows(
       )
   ) |>
 
-  # Añadir proyecciones poblacionales
+  # Combinar con proyecciones poblacionales
   left_join(
     proy_pob |>
-      # Agrupar datos por región DEIS
+      # Calcular proyecciones por región
       count(
         anio_enfr,
         region_deis,
@@ -743,72 +739,28 @@ datos_dm2_reg <- bind_rows(
       )
   ) |>
 
-  # Añadir esperanza de vida
+  # Combinar con pesos discapacidad DM2
+  left_join(comp_dm2) |>
+
+  # Combinar con esperanza de vida
   left_join(ex_ge10) |>
 
-  # Reordenar columnas
-  select(
-    anio_enfr:grupo_edad_10,
-    proy_pob,
-    starts_with(c("dm", "def")),
-    ex
-  ) |>
-
-  # Columnas caracter a factor
-  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+  # Combinar con población estándar 2010
+  left_join(pob_est_2010)
 
 
-# Calcular prevalencia y defunciones DM para Argentina -------------------
-datos_dm2_arg <- bind_rows(
-  list(
-    ## ENFR 2005 ##
-    "2005" = enfr05 |>
+## Total país por sexo y grupo etario ----
+datos_dm2_arg <- list(
+  "2005" = enfr05,
+  "2009" = enfr09,
+  "2013" = enfr13,
+  "2018" = enfr18
+) |>
+  map(\(x) {
+    x |>
       # Aplicar función de limpieza
       clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2009 ##
-    "2009" = enfr09 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2013 ##
-    "2013" = enfr13 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
-      group_by(sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
-        .groups = "drop"
-      ),
-
-    ## ENFR 2018 ##
-    "2018" = enfr18 |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-
-      # Estimar cantidad de personas con DM y prevalencia
+      # Calcular total personas con DM y prevalencia
       group_by(sexo, grupo_edad_10) |>
       summarise(
         dm_total = survey_total(dm_auto),
@@ -816,15 +768,14 @@ datos_dm2_arg <- bind_rows(
         dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
         .groups = "drop"
       )
-  ),
-  .id = "anio_enfr"
-) |>
+  }) |>
+  bind_rows(.id = "anio_enfr") |>
 
-  # Añadir defunciones por DM2
+  # Combinar con defunciones por DM2
   left_join(
     defun_dm2 |>
       # Calcular defunciones por trienio ENFR
-      group_by(anio_enfr, sexo, grupo_edad_10) |>
+      group_by(anio_enfr, grupo_edad_10, sexo) |>
 
       summarise(
         defun_n = sum(n, na.rm = TRUE),
@@ -834,10 +785,10 @@ datos_dm2_arg <- bind_rows(
       )
   ) |>
 
-  # Añadir proyecciones poblacionales
+  # Combinar con proyecciones poblacionales
   left_join(
     proy_pob |>
-      # Agrupar datos por región DEIS
+      # Calcular proyecciones por región
       count(
         anio_enfr,
         sexo,
@@ -847,18 +798,105 @@ datos_dm2_arg <- bind_rows(
       )
   ) |>
 
-  # Añadir esperanza de vida
+  # Combinar con pesos discapacidad DM2
+  left_join(comp_dm2) |>
+
+  # Combinar con esperanza de vida
   left_join(ex_ge10) |>
 
-  # Añadir población estándar 2010
-  left_join(pob_est_2010) |>
+  # Combinar con población estándar 2010
+  left_join(pob_est_2010)
+
+
+# Simular AVP, AVD y AVAD ------------------------------------------------
+set.seed(123)
+
+# Provincia, sexo y grupo etario ----
+sim_avad_prov <- datos_dm2_prov |>
+  mutate(
+    sim = pmap(
+      list(
+        def_mean = defun_mean,
+        def_se = defun_se,
+        prev = dm2_prev,
+        prev_se = dm2_prev_se,
+        ex = ex,
+        dw = fwd,
+        pob = proy_pob
+      ),
+      sim_IU_DALYs
+    )
+  ) |>
+  unnest_wider(sim) |>
 
   # Reordenar columnas
   select(
     anio_enfr:grupo_edad_10,
-    contains("pob"),
-    starts_with(c("dm", "def")),
-    ex
+    contains(c("pob", "dm", "defun")),
+    ex,
+    fwd,
+    AVP:AVAD_sup
+  ) |>
+
+  # Columnas caracter a factor
+  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+
+
+# Región, sexo y grupo etario ----
+sim_avad_reg <- datos_dm2_reg |>
+  mutate(
+    sim = pmap(
+      list(
+        def_mean = defun_mean,
+        def_se = defun_se,
+        prev = dm2_prev,
+        prev_se = dm2_prev_se,
+        ex = ex,
+        dw = fwd,
+        pob = proy_pob
+      ),
+      sim_IU_DALYs
+    )
+  ) |>
+  unnest_wider(sim) |>
+
+  # Reordenar columnas
+  select(
+    anio_enfr:grupo_edad_10,
+    contains(c("pob", "dm", "defun")),
+    ex,
+    AVP:AVAD_sup
+  ) |>
+
+  # Columnas caracter a factor
+  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+
+
+# Sexo y grupo etario ----
+sim_avad_arg <- datos_dm2_arg |>
+  mutate(
+    sim = pmap(
+      list(
+        def_mean = defun_mean,
+        def_se = defun_se,
+        prev = dm2_prev,
+        prev_se = dm2_prev_se,
+        ex = ex,
+        dw = fwd,
+        pob = proy_pob
+      ),
+      sim_IU_DALYs
+    )
+  ) |>
+  unnest_wider(sim) |>
+
+  # Reordenar columnas
+  select(
+    anio_enfr:grupo_edad_10,
+    contains(c("pob", "dm", "defun")),
+    ex,
+    fwd,
+    AVP:AVAD_sup
   ) |>
 
   # Columnas caracter a factor
@@ -866,52 +904,66 @@ datos_dm2_arg <- bind_rows(
 
 
 # Diccionario de datos ---------------------------------------------------
-data_dic <- tibble(
-  variable = names(datos_dm2_prov),
-  tipo_var = map_chr(datos_dm2_prov, ~ paste(class(.x), collapse = ", ")),
+data_dicc <- tibble(
+  variable = names(sim_avad_prov),
+
+  descripción = c(
+    "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
+    "Código numérico de provincia según Censo Nacional 2010",
+    "Nombre de la provincia",
+    "Región geográfica según clasificación de la DEIS (2021)",
+    "Sexo asignado al nacer",
+    "Grupo etario decenal",
+    "Proyección poblacional por provincia, sexo y grupo etario decenal según Censo Nacional 2010",
+    "Población estándar por sexo y grupo etario decenal según Censo Nacional 2010",
+    "Total estimado de personas con diabetes mellitus (DM) por autorreporte según resultados ENFR",
+    "Error estándar del total estimado de personas con DM por autorreporte según resultados ENFR",
+    "Total estimado de personas con DM tipo 2 (DM2) por autorreporte según resultados ENFR",
+    "Error estándar del total estimado de personas con DM2 por autorreporte según resultados ENFR",
+    "Prevalencia de personas con DM2 por autorreporte según resultados ENFR",
+    "Error estándar de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
+    "Coeficiente de variación de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
+    "Defunciones por DM2 para el trienio correspondiente a la ENFR",
+    "Defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
+    "Error estándar de las defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
+    "Esperanza de vida a la edad X según sexo y grupo etario decenal",
+    "Peso de discapacidad ponderado para secuelas de DM2",
+    "Años de vida perdidos (AVP) por muerte prematura por DM2",
+    "Límite inferior del intervalo de incertidumbre (IU) de los AVP por muerte prematura por DM2",
+    "Límite superior del IU de los AVP por muerte prematura por DM2",
+    "Años vividos con discapacidad (AVD) por DM2",
+    "Límite inferior del intervalo de incertidumbre (IU) de los AVD por DM2",
+    "Límite superior del IU de los AVD por DM2",
+    "Años de vida ajustados por discapacidad (AVAD) para DM2",
+    "Límite inferior del intervalo de incertidumbre (IU) de los AVAD por DM2",
+    "Límite superior del IU de los AVAD por DM2"
+  ),
+
+  tipo_var = map_chr(sim_avad_prov, ~ paste(class(.x), collapse = ", ")),
+
   niveles = map_chr(
-    datos_dm2_prov,
+    sim_avad_prov,
     ~ if (is.factor(.x)) {
       paste(levels(.x), collapse = ", ")
     } else {
       "0-Inf"
     }
-  ),
-  descripcion = c(
-    "Año de realización de la Encuesta Nacional de Factores de riesgo (ENFR)",
-    "Identificador numérico de provincia según Censo Nacional 2010",
-    "Identificador categórico de provincia",
-    "Región geográfica según clasificación DEIS 2021",
-    "Sexo asignado al nacer",
-    "Grupo etario decenal (mayores de 30 años)",
-    "Proyección poblacional estimada por año, provincia, sexo y grupo etario decenal",
-    "Cantidad de personas con diabetes mellitus (DM) por autorreporte según la ENFR",
-    "Error estándar de la cantidad de personas con DM por autorreporte",
-    "Cantidad de personas con DM tipo 2 (DM2) por autorreporte",
-    "Error estándar de la cantidad de personas con DM2 por autorreporte",
-    "Prevalencia de DM2 por autorreporte",
-    "Error estándar de la prevalencia de DM2 por autorreporte",
-    "Coeficiente de variación de la prevalencia de DM2 por autorreporte",
-    "Esperanza de vida a la edad X, según sexo y grupo etario decenal",
-    "Número de defunciones por DM2 en el trienio correspondiente a la ENFR",
-    "Promedio de defunciones por DM2 en el trienio correspondiente a la ENFR",
-    "Error estándar del promedio de defunciones por DM2 en el trienio correspondiente a la ENFR"
   )
 )
 
 
 # Exportar datos limpios -------------------------------------------------
-## Prevalencia, población y mortalidad por provincia, sexo y grupo etario decenal
-export(datos_dm2_prov, file = "datos_limpios/arg_dm2_prev_defun_prov.xlsx")
+# Por provincia, sexo y grupo etario
+export(sim_avad_prov, file = "datos_limpios/arg_sim_avad_dm2_prov.csv")
 
-## Prevalencia, población y mortalidad por región, sexo y grupo etario decenal
-export(datos_dm2_reg, file = "datos_limpios/arg_dm2_prev_defun_reg.xlsx")
+# Por región, sexo y grupo etario
+export(sim_avad_reg, file = "datos_limpios/arg_sim_avad_dm2_reg.csv")
 
-## Prevalencia, población y mortalidad por total país, sexo y grupo etario decenal
-export(datos_dm2_arg, file = "datos_limpios/arg_dm2_prev_defun_arg.xlsx")
+# Total país por sexo y grupo etario
+export(sim_avad_arg, file = "datos_limpios/arg_sim_avad_dm2.csv")
 
-## Diccionario de datos
-export(data_dic, file = "datos_limpios/dic_rg_dm2_prev_defun_prov.xlsx")
+# Diccionario de datos
+export(data_dicc, file = "datos_limpios/dic_arg_sim_avad_dm2.xlsx")
 
 
 # Limpiar environment y desactivar paquetes ------------------------------

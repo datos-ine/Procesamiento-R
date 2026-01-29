@@ -92,7 +92,7 @@ qualidiab_2014 <- qualidiab_2014_raw |>
 
   # Crear variable para grupo etario decenal
   mutate(
-    grupo_edad10 = age_categories(
+    grupo_edad_10 = age_categories(
       edad,
       lower = 0,
       upper = 80,
@@ -303,7 +303,7 @@ qualidiab_dm2_dw <- qualidiab_2014 |>
   # Seleccionar columnas relevantes
   select(
     sexo,
-    grupo_edad10,
+    grupo_edad_10,
     comp_alguna,
     comp_iam_c,
     comp_ic,
@@ -343,10 +343,13 @@ qualidiab_dm2_dw <- qualidiab_2014 |>
   ) |>
 
   # Reagrupar datos
-  count(sexo, grupo_edad10, comp_qualidiab, value) |>
+  count(sexo, grupo_edad_10, comp_qualidiab, value) |>
 
   # Calcular frecuencias
-  mutate(comp_frec = n / sum(n), .by = c(sexo, grupo_edad10, comp_qualidiab)) |>
+  mutate(
+    comp_frec = n / sum(n),
+    .by = c(sexo, grupo_edad_10, comp_qualidiab)
+  ) |>
 
   # Filtrar datos
   filter(
@@ -364,7 +367,7 @@ qualidiab_dm2_dw <- qualidiab_2014 |>
   mutate(across(.cols = where(is.character), .fns = ~ factor(.x))) |>
 
   # Reordenar columnas
-  select(sexo, grupo_edad10, comp_tipo, comp_qualidiab, comp_frec, dw)
+  select(sexo, grupo_edad_10, comp_tipo, comp_qualidiab, comp_frec, dw)
 
 
 # Diccionario de datos ----------------------------------------------------
