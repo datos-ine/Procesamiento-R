@@ -21,7 +21,6 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 29-01-2026 11:29
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -300,15 +299,14 @@ clean_enfr <- function(x) {
 sim_IU_DALYs <- function(
   def_mean,
   def_se,
-  prev,
-  prev_se,
+  n_dm2,
+  n_dm2_se,
   ex,
   dw,
-  pob,
   nsim = 10000
 ) {
   # Modificar SD cuando no hay casos/defunciones
-  prev_sd <- if_else(prev > 0, prev_se, 1e-6)
+  n_sd <- if_else(n_dm2 > 0, n_dm2_se, 1e-6)
   def_sd <- if_else(def_mean > 0, def_se, 1e-6)
 
   # Simular defunciones (truncadas en 0)
@@ -318,10 +316,10 @@ sim_IU_DALYs <- function(
   AVP_sim <- def_sim * ex
 
   # Simular prevalencia (truncada en [0,1])
-  prev_sim <- rtruncnorm(n = nsim, a = 0, b = 1, mean = prev, sd = prev_sd)
+  prev_sim <- rtruncnorm(n = nsim, a = 0, b = 1, mean = n_dm2, sd = n_dm2_se)
 
   # Simular AVD
-  AVD_sim <- prev_sim * dw * pob
+  AVD_sim <- prev_sim * dw
 
   # Simular AVAD
   AVAD_sim <- AVP_sim + AVD_sim
@@ -814,20 +812,18 @@ datos_dm2_arg <- list(
 
 
 # Simular AVP, AVD y AVAD ------------------------------------------------
-set.seed(123)
-
 # Provincia, sexo y grupo etario ----
+set.seed(123)
 sim_avad_prov <- datos_dm2_prov |>
   mutate(
     sim = pmap(
       list(
         def_mean = defun_mean,
         def_se = defun_se,
-        prev = dm2_prev,
-        prev_se = dm2_prev_se,
+        n_dm2 = dm2_total,
+        n_dm2_se = dm2_total_se,
         ex = ex,
-        dw = fwd,
-        pob = proy_pob
+        dw = fwd
       ),
       sim_IU_DALYs
     )
@@ -854,11 +850,10 @@ sim_avad_reg <- datos_dm2_reg |>
       list(
         def_mean = defun_mean,
         def_se = defun_se,
-        prev = dm2_prev,
-        prev_se = dm2_prev_se,
+        n_dm2 = dm2_total,
+        n_dm2_se = dm2_total_se,
         ex = ex,
-        dw = fwd,
-        pob = proy_pob
+        dw = fwd
       ),
       sim_IU_DALYs
     )
@@ -884,11 +879,10 @@ sim_avad_arg <- datos_dm2_arg |>
       list(
         def_mean = defun_mean,
         def_se = defun_se,
-        prev = dm2_prev,
-        prev_se = dm2_prev_se,
+        n_dm2 = dm2_total,
+        n_dm2_se = dm2_total_se,
         ex = ex,
-        dw = fwd,
-        pob = proy_pob
+        dw = fwd
       ),
       sim_IU_DALYs
     )
