@@ -10,8 +10,13 @@
 ## muerte para los códigos E11 y E14 de la CIE-10.
 ## - WHO - GHO: Tablas de vida para Argentina por sexo y grupo etario quinquenal para
 ## el año 2019.
-### Cálculo de AVP, AVD y AVAD e intervalos de incertidumbre mediante simulaciones de
-### Monte-Carlo con 10.000 réplicas
+### Cálculo de AVP, AVD y AVAD e intervalos de incertidumbre mediante cadenas de
+### Monte-Carlo con 10.000 réplicas. Se usaron las siguientes simulaciones:
+## - Defunciones: distribución normal truncada en cero, con media igual al
+## valor estimado y SD aproximada por sqrt(mu/3).
+## - Prevalencia DM2: se simularon con una normal truncada en [0,1], con media
+## igual a la estimación puntual y desviación estándar igual a su error estándar.
+## - Pesos de discapacidad: se consideraron fijos (Qualidiab 2014).
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
