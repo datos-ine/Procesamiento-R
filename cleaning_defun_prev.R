@@ -21,6 +21,7 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
+# Última modificación: 30-01-2026 10:03
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -304,7 +305,7 @@ sim_IU_DALYs <- function(
   dm2_total_se,
   ex,
   fwd,
-  # pob,
+  proy_pob,
   nsim = 10000
 ) {
   # SDs robustos cuando no hay casos / defunciones
@@ -330,28 +331,52 @@ sim_IU_DALYs <- function(
     sd = dm2_sd
   )
 
-  # # Evitar casos mayores a la población del estrato
-  # dm2_sim <- pmin(dm2_sim, pob)
-
-  # AVD (enfoque prevalente)
+  # AVD
   AVD_sim <- dm2_sim * fwd
 
   # AVAD
   AVAD_sim <- AVP_sim + AVD_sim
 
-  # Resumen (mediana e IC95%)
+  # Tasa AVP
+  AVP_t_sim <- (AVP_sim / proy_pob) * 1e5
+
+  # Tasa AVD
+  AVD_t_sim <- (AVD_sim / proy_pob) * 1e5
+
+  # Tasa AVAD
+  AVAD_t_sim <- (AVAD_sim / proy_pob) * 1e5
+
+  # Resumen (mediana e IU)
   tibble(
+    # AVP (IU)
     AVP = quantile(AVP_sim, 0.5, na.rm = TRUE),
     AVP_inf = quantile(AVP_sim, 0.025, na.rm = TRUE),
     AVP_sup = quantile(AVP_sim, 0.975, na.rm = TRUE),
 
+    # AVD (IU)
     AVD = quantile(AVD_sim, 0.5, na.rm = TRUE),
     AVD_inf = quantile(AVD_sim, 0.025, na.rm = TRUE),
     AVD_sup = quantile(AVD_sim, 0.975, na.rm = TRUE),
 
+    # AVAD (IU)
     AVAD = quantile(AVAD_sim, 0.5, na.rm = TRUE),
     AVAD_inf = quantile(AVAD_sim, 0.025, na.rm = TRUE),
-    AVAD_sup = quantile(AVAD_sim, 0.975, na.rm = TRUE)
+    AVAD_sup = quantile(AVAD_sim, 0.975, na.rm = TRUE),
+
+    # Tasa AVP (IU)
+    AVP_tasa = quantile(AVP_t_sim, 0.5, na.rm = TRUE),
+    AVP_tasa_inf = quantile(AVP_t_sim, 0.025, na.rm = TRUE),
+    AVP_tasa_sup = quantile(AVP_t_sim, 0.975, na.rm = TRUE),
+
+    # Tasa AVD (IU)
+    AVD_tasa = quantile(AVD_t_sim, 0.5, na.rm = TRUE),
+    AVD_tasa_inf = quantile(AVD_t_sim, 0.025, na.rm = TRUE),
+    AVD_tasa_sup = quantile(AVD_t_sim, 0.975, na.rm = TRUE),
+
+    # Tasa AVAD (IU)
+    AVAD_tasa = quantile(AVAD_t_sim, 0.5, na.rm = TRUE),
+    AVAD_tasa_inf = quantile(AVAD_t_sim, 0.025, na.rm = TRUE),
+    AVAD_tasa_sup = quantile(AVAD_t_sim, 0.975, na.rm = TRUE)
   )
 }
 
@@ -698,10 +723,7 @@ datos_dm2_prov <- list(
   left_join(comp_dm2) |>
 
   # Combinar con esperanza de vida
-  left_join(ex_ge10) |>
-
-  # Combinar con población estándar 2010
-  left_join(pob_est_2010)
+  left_join(ex_ge10)
 
 
 ## Región DEIS, sexo y grupo etario ----
@@ -758,10 +780,7 @@ datos_dm2_reg <- list(
   left_join(comp_dm2) |>
 
   # Combinar con esperanza de vida
-  left_join(ex_ge10) |>
-
-  # Combinar con población estándar 2010
-  left_join(pob_est_2010)
+  left_join(ex_ge10)
 
 
 ## Total país por sexo y grupo etario ----
@@ -835,7 +854,8 @@ sim_avad_prov <- datos_dm2_prov |>
         dm2_total,
         dm2_total_se,
         ex,
-        fwd
+        fwd,
+        proy_pob
       ),
       sim_IU_DALYs
     )
@@ -848,7 +868,7 @@ sim_avad_prov <- datos_dm2_prov |>
     contains(c("pob", "dm", "defun")),
     ex,
     fwd,
-    AVP:AVAD_sup
+    AVP:AVAD_tasa_sup
   ) |>
 
   # Columnas caracter a factor
@@ -856,6 +876,7 @@ sim_avad_prov <- datos_dm2_prov |>
 
 
 # Región, sexo y grupo etario ----
+set.seed(123)
 sim_avad_reg <- datos_dm2_reg |>
   mutate(
     sim = pmap(
@@ -865,7 +886,8 @@ sim_avad_reg <- datos_dm2_reg |>
         dm2_total,
         dm2_total_se,
         ex,
-        fwd
+        fwd,
+        proy_pob
       ),
       sim_IU_DALYs
     )
@@ -878,7 +900,7 @@ sim_avad_reg <- datos_dm2_reg |>
     contains(c("pob", "dm", "defun")),
     ex,
     fwd,
-    AVP:AVAD_sup
+    AVP:AVAD_tasa_sup
   ) |>
 
   # Columnas caracter a factor
@@ -886,6 +908,7 @@ sim_avad_reg <- datos_dm2_reg |>
 
 
 # Sexo y grupo etario ----
+set.seed(123)
 sim_avad_arg <- datos_dm2_arg |>
   mutate(
     sim = pmap(
@@ -895,7 +918,8 @@ sim_avad_arg <- datos_dm2_arg |>
         dm2_total,
         dm2_total_se,
         ex,
-        fwd
+        fwd,
+        proy_pob
       ),
       sim_IU_DALYs
     )
@@ -908,7 +932,7 @@ sim_avad_arg <- datos_dm2_arg |>
     contains(c("pob", "dm", "defun")),
     ex,
     fwd,
-    AVP:AVAD_sup
+    AVP:AVAD_tasa_sup
   ) |>
 
   # Columnas caracter a factor
@@ -926,8 +950,8 @@ data_dicc <- tibble(
     "Región geográfica según clasificación de la DEIS (2021)",
     "Sexo asignado al nacer",
     "Grupo etario decenal",
-    "Proyección poblacional por provincia, sexo y grupo etario decenal según Censo Nacional 2010",
-    "Población estándar por sexo y grupo etario decenal según Censo Nacional 2010",
+    "Proyección poblacional por sexo y grupo etario decenal según Censo Nacional 2010",
+    # "Población estándar por sexo y grupo etario decenal según Censo Nacional 2010",
     "Total estimado de personas con diabetes mellitus (DM) por autorreporte según resultados ENFR",
     "Error estándar del total estimado de personas con DM por autorreporte según resultados ENFR",
     "Total estimado de personas con DM tipo 2 (DM2) por autorreporte según resultados ENFR",
@@ -948,7 +972,16 @@ data_dicc <- tibble(
     "Límite superior del IU de los AVD por DM2",
     "Años de vida ajustados por discapacidad (AVAD) para DM2",
     "Límite inferior del intervalo de incertidumbre (IU) de los AVAD por DM2",
-    "Límite superior del IU de los AVAD por DM2"
+    "Límite superior del IU de los AVAD por DM2",
+    "Tasa específica de AVP por DM2",
+    "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVP por DM2",
+    "Límite superior del IU de la tasa de AVP por DM2",
+    "Tasa específica de AVD por DM2",
+    "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVD por DM2",
+    "Límite superior del IU de la tasa de AVD por DM2",
+    "Tasa específica de AVAD por DM2",
+    "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVAD por DM2",
+    "Límite superior del IU de la tasa de AVAD por DM2"
   ),
 
   tipo_var = map_chr(sim_avad_prov, ~ paste(class(.x), collapse = ", ")),
