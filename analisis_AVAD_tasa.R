@@ -28,155 +28,19 @@ pacman::p_load(
 
 # Cargar datos ------------------------------------------------------------
 ## Por provincia, sexo y grupo etario
-AVAD_prov <- import("datos_limpios/arg_sim_avad_dm2_prov.csv")
+AVAD_prov <- import("datos_limpios/arg_sim_avad_dm2_prov.rds")
 
 ## Por región, sexo y grupo etario
-AVAD_reg <- import("datos_limpios/arg_sim_avad_dm2_reg.csv")
+AVAD_reg <- import("datos_limpios/arg_sim_avad_dm2_reg.rds")
 
 ## Por sexo y grupo etario
-AVAD_arg <- import("datos_limpios/arg_sim_avad_dm2.csv")
+AVAD_arg <- import("datos_limpios/arg_sim_avad_dm2.rds")
 
 
-# Limpieza de bases -------------------------------------------------------
-
-## Cambio de formato de prov_id para posterior join
-AVP_ge10 <- AVP_ge10 %>%
-  mutate(prov_id = as.double(prov_id))
-
-# Calcular AVP y proyecciones por grupo decenal ---------------------------
-# ## AVP
-# AVP_ge10 <- AVP_ge5 |>
-#   # Estimar esperanza vida y AVP por grupo decenal de edad
-#     group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo) |>
-#     summarise(defun_n = sum(defun_n, na.rm = TRUE),
-#               defun_mean = mean(defun_n, na.rm = TRUE),
-#               ex = weighted.mean(ex, lx, na.rm = TRUE),
-#               AVP = defun_mean * ex,
-#               .groups = "drop")
-#
-#
-# # Proyección poblacional
-# proy_ge10 <- proy_ge5 |>
-#   # Estimar población por provincia, sexo y grupo decenal de edad
-#   group_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo) |>
-#   summarise(proy_pob = sum(proy_pob, na.rm = TRUE),
-#          pob_est_2010 = sum(pob_est_2010, na.rm = TRUE),
-#          .groups = "drop")
-
-# Calcular AVAD -----------------------------------------------------------
-
-# ## Por provincia, sexo y grupos quinquenales de edad
-# AVAD_ge5 <- cross_join(prev_dm_ge5, comp_dm) |>
-#   # Calcular AVD por cada secuela
-#   mutate(AVD_ind = dm_total * frec_wandurranga/100 * dw) |>
-#
-#   # Calcular AVD totales
-#   group_by(across(-c(sequela:AVD_ind))) |>
-#   summarise(AVD = sum(AVD_ind, na.rm = TRUE),
-#             .groups = "drop") |>
-#
-#   # Añadir datos defunciones, esperanza de vida y AVP
-#   left_join(AVP_ge5) |>
-#
-#   # Añadir proyecciones poblacionales INDEC
-#   left_join(proy_ge5, by =
-#               join_by("anio_enfr" == "anio",
-#                       prov_id, prov_nombre, grupo_edad_5, sexo)) %>%
-#
-#   # Calcular AVAD
-#   mutate(AVAD = AVD + AVP) |>
-#
-#   # Calcular tasas específicas AVP, AVD y AVAD (100000 hab.)
-#   mutate(across(.cols = c(AVD, AVP, AVAD),
-#                 .fns = list(
-#                   tasa = ~round(.x/proy_pob * 100000, 2)
-#                   # tasa_est = ~round(.x/pob_est_2010 * 100000, 2) # Tasas ajustadas se pueden calcular por provincia o sexo
-#                 ))) |>
-#
-#   # Variables caracter a factor
-#   mutate(across(.cols = where(is.character),
-#                 .fn = ~ factor(.x)))
-
-# Por provincia, sexo y grupos decenales de edad
-AVAD_ge10 <- prev_dm_ge10 %>%
-  left_join(
-    comp_dm,
-    by = join_by(sexo == sexo, grupo_edad_10 == grupo_edad_10)
-  ) |>
-
-  # Calcular AVD por cada secuela
-  mutate(AVD_ind = dm2_total * frec_compli * DW) |>
-
-  # Calcular AVD totales
-  group_by(across(-c(tipo_complicacion:AVD_ind))) |>
-  summarise(AVD = sum(AVD_ind, na.rm = TRUE), .groups = "drop") |>
-
-  # Añadir datos defunciones, esperanza de vida y AVP
-  left_join(
-    AVP_ge10,
-    by = join_by(anio_enfr, prov_id, prov_nombre, grupo_edad_10, sexo)
-  ) |>
-
-  # Añadir proyecciones poblacionales INDEC
-  left_join(
-    proy_ge10,
-    by = join_by(anio_enfr == anio, prov_id, prov_nombre, grupo_edad_10, sexo)
-  ) |>
-
-  # Calcular AVAD
-  mutate(AVAD = AVD + AVP) |>
-
-  # Calcular tasas específicas AVP, AVD y AVAD (100000 hab.)
-  mutate(across(
-    .cols = c(AVD, AVP, AVAD),
-    .fns = list(
-      tasa = ~ round(.x / proy_pob * 100000, 2) # tasas específicas
-    )
-  )) |>
-
-  # Variables caracter a factor
-  mutate(across(.cols = where(is.character), .fn = ~ factor(.x)))
-
-
-# Por región, sexo y grupos decenales de edad
-AVAD_ge10_reg <- prev_dm_ge10_reg %>%
-  left_join(
-    comp_dm,
-    by = join_by(sexo == sexo, grupo_edad_10 == grupo_edad_10)
-  ) |>
-
-  # Calcular AVD por cada secuela
-  mutate(AVD_ind = dm2_total * frec_compli * DW) |>
-
-  # Calcular AVD totales
-  group_by(across(-c(tipo_complicacion:AVD_ind))) |>
-  summarise(AVD = sum(AVD_ind, na.rm = TRUE), .groups = "drop") |>
-
-  # Añadir datos defunciones, esperanza de vida y AVP
-  left_join(
-    AVP_ge10_reg,
-    by = join_by(anio_enfr, region, grupo_edad_10, sexo)
-  ) |>
-
-  # Añadir proyecciones poblacionales INDEC
-  left_join(
-    proy_ge10_reg,
-    by = join_by(anio_enfr == anio, region, grupo_edad_10, sexo)
-  ) |>
-
-  # Calcular AVAD
-  mutate(AVAD = AVD + AVP) |>
-
-  # Calcular tasas específicas AVP, AVD y AVAD (100000 hab.)
-  mutate(across(
-    .cols = c(AVD, AVP, AVAD),
-    .fns = list(
-      tasa = ~ round(.x / proy_pob * 100000, 2) # tasas específicas
-    )
-  )) |>
-
-  # Variables caracter a factor
-  mutate(across(.cols = where(is.character), .fn = ~ factor(.x)))
+# Gráficos exploratorios -------------------------------------------------
+## AVP y tasa específica por provincia, sexo y grupo etario decenal
+AVAD_prov |>
+  age_pyramid(age_group = grupo_edad_10, split_by = sexo, count = AVP)
 
 
 # Cálculo de tasas --------------------------------------------------------

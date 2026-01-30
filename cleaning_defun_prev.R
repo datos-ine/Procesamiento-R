@@ -21,7 +21,6 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 30-01-2026 10:03
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -999,13 +998,13 @@ data_dicc <- tibble(
 
 # Exportar datos limpios -------------------------------------------------
 # Por provincia, sexo y grupo etario
-export(sim_avad_prov, file = "datos_limpios/arg_sim_avad_dm2_prov.csv")
+export(sim_avad_prov, file = "datos_limpios/arg_sim_avad_dm2_prov.rds")
 
 # Por región, sexo y grupo etario
-export(sim_avad_reg, file = "datos_limpios/arg_sim_avad_dm2_reg.csv")
+export(sim_avad_reg, file = "datos_limpios/arg_sim_avad_dm2_reg.rds")
 
 # Total país por sexo y grupo etario
-export(sim_avad_arg, file = "datos_limpios/arg_sim_avad_dm2.csv")
+export(sim_avad_arg, file = "datos_limpios/arg_sim_avad_dm2.rds")
 
 # Diccionario de datos
 export(data_dicc, file = "datos_limpios/dic_arg_sim_avad_dm2.xlsx")
