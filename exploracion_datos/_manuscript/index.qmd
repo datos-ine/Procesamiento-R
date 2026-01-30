@@ -1,0 +1,37 @@
+---
+title: "Análiss exploratorio"
+authors:
+  - name: Micaela Gauto
+    affiliation: Instituto Nacional de Epidemiología
+  - name: Tamara Ricardo
+    affiliation: Instituto Nacional de Epidemiología
+---
+
+
+```{r}
+#| echo: false
+#| id: Configuración global
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center"
+)
+```
+
+
+```{r}
+#| id: Cargar paquetes
+pacman::p_load(
+  rio,
+  janitor,
+  geoAr,
+  sf,
+  tmap,
+  flextable,
+  tidyverse
+)
+```
+
+## Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus en Argentina, período 2005-2018
+This is a simple placeholder for the manuscript's main document

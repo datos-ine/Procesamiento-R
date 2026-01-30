@@ -1,0 +1,15 @@
+{
+  "hash": "71b4407fc8db6be3ea5c6c1284c09d47",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Análiss exploratorio\"\nauthors:\n  - name: Micaela Gauto\n    affiliation: Instituto Nacional de Epidemiología\n  - name: Tamara Ricardo\n    affiliation: Instituto Nacional de Epidemiología\n---\n\n\n\n::: {.cell}\n\n```{.r .cell-code .hidden}\nknitr::opts_chunk$set(\n  echo = FALSE,\n  message = FALSE,\n  warning = FALSE,\n  fig.align = \"center\"\n)\n```\n:::\n\n\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code .hidden}\npacman::p_load(\n  rio,\n  janitor,\n  geoAr,\n  sf,\n  tmap,\n  flextable,\n  tidyverse\n)\n```\n:::\n\n\n## Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus en Argentina, período 2005-2018\nThis is a simple placeholder for the manuscript's main document\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

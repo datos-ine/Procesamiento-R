@@ -21,6 +21,7 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
+# Última modificación: 30-01-2026 12:46
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -349,33 +350,33 @@ sim_IU_DALYs <- function(
   tibble(
     # AVP (IU)
     AVP = quantile(AVP_sim, 0.5, na.rm = TRUE),
-    AVP_inf = quantile(AVP_sim, 0.025, na.rm = TRUE),
-    AVP_sup = quantile(AVP_sim, 0.975, na.rm = TRUE),
+    AVP_low = quantile(AVP_sim, 0.025, na.rm = TRUE),
+    AVP_upp = quantile(AVP_sim, 0.975, na.rm = TRUE),
 
     # AVD (IU)
     AVD = quantile(AVD_sim, 0.5, na.rm = TRUE),
-    AVD_inf = quantile(AVD_sim, 0.025, na.rm = TRUE),
-    AVD_sup = quantile(AVD_sim, 0.975, na.rm = TRUE),
+    AVD_low = quantile(AVD_sim, 0.025, na.rm = TRUE),
+    AVD_upp = quantile(AVD_sim, 0.975, na.rm = TRUE),
 
     # AVAD (IU)
     AVAD = quantile(AVAD_sim, 0.5, na.rm = TRUE),
-    AVAD_inf = quantile(AVAD_sim, 0.025, na.rm = TRUE),
-    AVAD_sup = quantile(AVAD_sim, 0.975, na.rm = TRUE),
+    AVAD_low = quantile(AVAD_sim, 0.025, na.rm = TRUE),
+    AVAD_upp = quantile(AVAD_sim, 0.975, na.rm = TRUE),
 
     # Tasa AVP (IU)
     AVP_tasa = quantile(AVP_t_sim, 0.5, na.rm = TRUE),
-    AVP_tasa_inf = quantile(AVP_t_sim, 0.025, na.rm = TRUE),
-    AVP_tasa_sup = quantile(AVP_t_sim, 0.975, na.rm = TRUE),
+    AVP_tasa_low = quantile(AVP_t_sim, 0.025, na.rm = TRUE),
+    AVP_tasa_upp = quantile(AVP_t_sim, 0.975, na.rm = TRUE),
 
     # Tasa AVD (IU)
     AVD_tasa = quantile(AVD_t_sim, 0.5, na.rm = TRUE),
-    AVD_tasa_inf = quantile(AVD_t_sim, 0.025, na.rm = TRUE),
-    AVD_tasa_sup = quantile(AVD_t_sim, 0.975, na.rm = TRUE),
+    AVD_tasa_low = quantile(AVD_t_sim, 0.025, na.rm = TRUE),
+    AVD_tasa_upp = quantile(AVD_t_sim, 0.975, na.rm = TRUE),
 
     # Tasa AVAD (IU)
     AVAD_tasa = quantile(AVAD_t_sim, 0.5, na.rm = TRUE),
-    AVAD_tasa_inf = quantile(AVAD_t_sim, 0.025, na.rm = TRUE),
-    AVAD_tasa_sup = quantile(AVAD_t_sim, 0.975, na.rm = TRUE)
+    AVAD_tasa_low = quantile(AVAD_t_sim, 0.025, na.rm = TRUE),
+    AVAD_tasa_upp = quantile(AVAD_t_sim, 0.975, na.rm = TRUE)
   )
 }
 
@@ -688,7 +689,7 @@ datos_dm2_prov <- list(
       summarise(
         dm_total = survey_total(dm_auto),
         dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
+        dm2_prev = survey_mean(dm2_auto, vartype = c("ci", "cv"), na.rm = TRUE),
         .groups = "drop"
       )
   }) |>
@@ -741,7 +742,7 @@ datos_dm2_reg <- list(
       summarise(
         dm_total = survey_total(dm_auto),
         dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
+        dm2_prev = survey_mean(dm2_auto, vartype = c("ci", "cv"), na.rm = TRUE),
         .groups = "drop"
       )
   }) |>
@@ -798,7 +799,7 @@ datos_dm2_arg <- list(
       summarise(
         dm_total = survey_total(dm_auto),
         dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("se", "cv"), na.rm = TRUE),
+        dm2_prev = survey_mean(dm2_auto, vartype = c("ci", "cv"), na.rm = TRUE),
         .groups = "drop"
       )
   }) |>
@@ -861,13 +862,16 @@ sim_avad_prov <- datos_dm2_prov |>
   ) |>
   unnest_wider(sim) |>
 
+  # Añadir población estándar 2010
+  left_join(pob_est_2010) |>
+
   # Reordenar columnas
   select(
     anio_enfr:grupo_edad_10,
     contains(c("pob", "dm", "defun")),
     ex,
     fwd,
-    AVP:AVAD_tasa_sup
+    AVP:AVAD_tasa_upp
   ) |>
 
   # Columnas caracter a factor
@@ -893,13 +897,16 @@ sim_avad_reg <- datos_dm2_reg |>
   ) |>
   unnest_wider(sim) |>
 
+  # Añadir población estándar 2010
+  left_join(pob_est_2010) |>
+
   # Reordenar columnas
   select(
     anio_enfr:grupo_edad_10,
     contains(c("pob", "dm", "defun")),
     ex,
     fwd,
-    AVP:AVAD_tasa_sup
+    AVP:AVAD_tasa_upp
   ) |>
 
   # Columnas caracter a factor
@@ -925,13 +932,16 @@ sim_avad_arg <- datos_dm2_arg |>
   ) |>
   unnest_wider(sim) |>
 
+  # Añadir población estándar 2010
+  left_join(pob_est_2010) |>
+
   # Reordenar columnas
   select(
     anio_enfr:grupo_edad_10,
     contains(c("pob", "dm", "defun")),
     ex,
     fwd,
-    AVP:AVAD_tasa_sup
+    AVP:AVAD_tasa_upp
   ) |>
 
   # Columnas caracter a factor
@@ -950,13 +960,14 @@ data_dicc <- tibble(
     "Sexo asignado al nacer",
     "Grupo etario decenal",
     "Proyección poblacional por sexo y grupo etario decenal según Censo Nacional 2010",
-    # "Población estándar por sexo y grupo etario decenal según Censo Nacional 2010",
+    "Población estándar por sexo y grupo etario decenal según Censo Nacional 2010",
     "Total estimado de personas con diabetes mellitus (DM) por autorreporte según resultados ENFR",
     "Error estándar del total estimado de personas con DM por autorreporte según resultados ENFR",
     "Total estimado de personas con DM tipo 2 (DM2) por autorreporte según resultados ENFR",
     "Error estándar del total estimado de personas con DM2 por autorreporte según resultados ENFR",
     "Prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-    "Error estándar de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
+    "Límite inferior del intervalo de confianza (CI) de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
+    "Límite superior del intervalo de confianza (CI) de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
     "Coeficiente de variación de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
     "Defunciones por DM2 para el trienio correspondiente a la ENFR",
     "Defunciones promedio por DM2 para el trienio correspondiente a la ENFR",

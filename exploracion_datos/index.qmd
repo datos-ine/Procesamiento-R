@@ -1,0 +1,99 @@
+---
+title: "Análiss exploratorio"
+authors:
+  - name: Micaela Gauto
+    affiliation: Instituto Nacional de Epidemiología
+  - name: Tamara Ricardo
+    affiliation: Instituto Nacional de Epidemiología
+---
+
+
+```{r}
+#| echo: false
+#| id: Configuración global
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center"
+)
+```
+
+
+```{r}
+#| id: Cargar paquetes
+pacman::p_load(
+  rio,
+  janitor,
+  geoAr,
+  sf,
+  tmap,
+  flextable,
+  tidyverse
+)
+```
+
+```{r}
+#| id: Cargar datos
+## Por provincia, sexo y grupo etario
+AVAD_prov <- import("datos_limpios/arg_sim_avad_dm2_prov.rds")
+
+## Por región, sexo y grupo etario
+AVAD_reg <- import("datos_limpios/arg_sim_avad_dm2_reg.rds")
+
+## Por sexo y grupo etario
+AVAD_arg <- import("datos_limpios/arg_sim_avad_dm2.rds")
+```
+
+
+## Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus en Argentina, período 2005-2018
+
+```{r}
+## AVP, AVD y AVAD por año, sexo y grupo etario
+tab <- AVAD_arg |>
+  # Redondear cifras
+  mutate(across(.cols = where(is.numeric), .fns = ~ round(.x, 2))) |>
+
+  # Crear columna UI
+  mutate(
+    AVP_tasa_ui = paste0(AVP_tasa, " (", AVP_tasa_inf, "-", AVP_tasa_sup, ")"),
+    AVD_tasa_ui = paste0(AVD_tasa, " (", AVD_tasa_inf, "-", AVD_tasa_sup, ")"),
+    AVAD_tasa_ui = paste0(
+      AVAD_tasa,
+      " (",
+      AVAD_tasa_inf,
+      "-",
+      AVAD_tasa_sup,
+      ")"
+    )
+  ) |>
+
+  # Seleccionar columnas
+  select(
+    anio_enfr,
+    sexo,
+    grupo_edad_10,
+    AVP_tasa_ui,
+    AVD_tasa_ui,
+    AVAD_tasa_ui
+  ) |>
+
+  # Ordenar filas
+  arrange(anio_enfr) |>
+
+  pivot_wider(names_from = sexo, values_from = AVP_tasa_ui:AVAD_tasa_ui)
+
+tab |>
+  rename(Año = anio_enfr, "Grupo etario" = grupo_edad_10) |>
+  flextable() |>
+
+  separate_header(split = "_tasa_ui_") |>
+
+  merge_v(j = 1) |>
+
+  font(fontname = "Calibri", part = "all") |>
+
+  autofit() |>
+
+  set_caption(caption = "Tasas específicas por 100.000 habitantes (95% IU)")
+```
