@@ -1,0 +1,423 @@
+---
+title: "Análisis exploratorio"
+authors:
+  - name: Micaela Gauto
+    affiliation: Instituto Nacional de Epidemiología
+  - name: Tamara Ricardo
+    affiliation: Instituto Nacional de Epidemiología
+---
+
+
+```{r}
+#| echo: false
+#| id: Configuración global
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center"
+)
+```
+
+
+```{r}
+#| id: Cargar paquetes
+pacman::p_load(
+  epikit,
+  geoAr,
+  sf,
+  tmap,
+  apyramid,
+  flextable,
+  rio,
+  janitor,
+  tidyverse
+)
+```
+
+```{r}
+#| id: Cargar datos
+## AVAD por provincia, sexo y grupo etario
+AVAD_prov <- import("../datos_limpios/arg_sim_avad_dm2_prov.rds")
+
+## AVAD por región, sexo y grupo etario
+AVAD_reg <- import("../datos_limpios/arg_sim_avad_dm2_reg.rds")
+
+## AVAD por sexo y grupo etario
+AVAD_arg <- import("../datos_limpios/arg_sim_avad_dm2.rds")
+
+# Tasas estandarizadas por provincia, sexo y año
+AVAD_te_prov <- import("../datos_limpios/arg_tasas_est_prov.rds")
+
+# Tasas estandarizadas por provincia, sexo y año
+AVAD_te_reg <- import("../datos_limpios/arg_tasas_est_reg.rds")
+
+# Tasas estandarizadas por sexo y año
+AVAD_te_arg <- import("../datos_limpios/arg_tasas_est.rds")
+```
+
+```{r}
+#| id: Capa GIS
+## Capas GIS provincias
+shp_arg <- get_geo(geo = "ARGENTINA") |>
+  # Añadir ids de provincia
+  add_geo_codes() |>
+
+  # Quitar filas vacías
+  drop_na() |>
+
+  # Cambiar etiqueta CABA
+  mutate(prov_nombre = if_else(codprov_censo == "02", name_prov, name_iso)) |>
+
+  # Crear región geográfica DEIS
+  mutate(
+    region_deis = case_when(
+      codprov_censo %in% c("02", "06", "14", "30", "82") ~ "Centro",
+      codprov_censo %in% c("18", "22", "34", "54") ~ "NEA",
+      codprov_censo %in% c("38", "66") ~ "NOA1",
+      codprov_censo %in% c("10", "86", "90") ~ "NOA2",
+      codprov_censo %in% c("46", "50", "70", "74") ~ "Cuyo",
+      .default = "Patagonia"
+    )
+  ) |>
+
+  # Agrupar por provincia
+  count(codprov_censo, prov_nombre, region_deis) |>
+
+  # Validar geometría
+  st_make_valid()
+```
+
+
+## Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus en Argentina, período 2005-2018
+
+### Prevalencia DM2 y tasas específicas AVP, AVD y AVAD por sexo y grupo etario decenal, Argentina (2005-2018)
+
+```{r}
+#| id: Tabla 1
+## Datos AVP, AVD y AVAD por año, sexo y grupo etario
+tab <- AVAD_arg |>
+  # Seleccionar columnas
+  select(
+    Año = anio_enfr,
+    "Grupo etario" = grupo_edad_10,
+    sexo,
+    dm2_prev:dm2_prev_upp,
+    contains(c("AVP", "AVD", "AVAD"))
+  ) |>
+
+  # Crear columna prevalencia (IC)
+  unite_ci(
+    col = "Prev. (CI)",
+    e = dm2_prev,
+    l = dm2_prev_low,
+    u = dm2_prev_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna AVP (UI)
+  unite_ci(
+    col = "AVP (UI)",
+    e = AVP,
+    l = AVP_low,
+    u = AVP_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna AVD (UI)
+  unite_ci(
+    col = "AVD (UI)",
+    e = AVD,
+    l = AVD_low,
+    u = AVD_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna AVAD (UI)
+  unite_ci(
+    col = "AVAD (UI)",
+    e = AVAD,
+    l = AVAD_low,
+    u = AVAD_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVP (UI)
+  unite_ci(
+    col = "Tasa AVP (UI)",
+    e = AVP_tasa,
+    l = AVP_tasa_low,
+    u = AVP_tasa_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVD (UI)
+  unite_ci(
+    col = "Tasa AVD (UI)",
+    e = AVD_tasa,
+    l = AVD_tasa_low,
+    u = AVD_tasa_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVAD (UI)
+  unite_ci(
+    col = "Tasa AVAD (UI)",
+    e = AVAD_tasa,
+    l = AVAD_tasa_low,
+    u = AVAD_tasa_upp,
+    m100 = FALSE
+  ) |>
+
+  # Pasar a formato wide
+  pivot_wider(names_from = sexo, values_from = 4:10)
+
+
+## Generar tabla
+tab |>
+  flextable() |>
+
+  separate_header(split = "_") |>
+
+  merge_v(j = 1) |>
+
+  autofit() |>
+
+  font(fontname = "Calibri", part = "all")
+```
+
+### Tasas estandarizadas AVP, AVD y AVAD por año y sexo
+
+```{r}
+#| id: Tabla 2
+## Datos para la tabla
+AVAD_te_arg |>
+  # Renombrar columnas
+  rename(Año = anio_enfr) |>
+
+  # Crear columna tasa AVP (UI)
+  unite_ci(
+    col = "Tasa AVP (UI)",
+    e = AVP_tasa_std,
+    l = AVP_tasa_std_low,
+    u = AVP_tasa_std_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVD (UI)
+  unite_ci(
+    col = "Tasa AVD (UI)",
+    e = AVD_tasa_std,
+    l = AVD_tasa_std_low,
+    u = AVD_tasa_std_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVAD (UI)
+  unite_ci(
+    col = "Tasa AVAD (UI)",
+    e = AVAD_tasa_std,
+    l = AVAD_tasa_std_low,
+    u = AVAD_tasa_std_upp,
+    m100 = FALSE
+  ) |>
+
+  # Pasar a formato wide
+  pivot_wider(names_from = sexo, values_from = c(3:5)) |>
+
+  ## Generar tabla
+  flextable() |>
+
+  # Formato de tabla
+  merge_v(j = 1) |>
+
+  autofit() |>
+
+  separate_header(split = "_") |>
+
+  font(fontname = "Calibri", part = "all")
+```
+
+### Pirámide AVAD por sexo y grupo etario decenal, Argentina (2005-2018)
+
+```{r}
+#| id: Figura 1
+## Datos para el gráfico
+tab <- AVAD_arg |>
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = where(is.numeric),
+    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
+  ))
+
+
+## Pirámide poblacional con barras de error
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
+  geom_col(color = "black") +
+  geom_linerange(aes(ymin = AVAD_low, ymax = AVAD_upp)) +
+
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  labs(x = "Grupo etario", fill = "Sexo") +
+  coord_flip() +
+  facet_wrap(~anio_enfr) +
+  theme_minimal()
+```
+
+### Pirámide tasa AVAD por sexo y grupo etario decenal, Argentina (2005-2018)
+
+```{r}
+#| id: Figura 2
+## Pirámide poblacional con barras de error
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD_tasa, fill = sexo)) +
+  geom_col(color = "black") +
+  geom_linerange(aes(ymin = AVAD_tasa_low, ymax = AVAD_tasa_upp)) +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs) +
+  coord_flip() +
+  labs(x = "Grupo etario", y = "Tasa AVAD (100.000 hab)", fill = "Sexo") +
+  facet_wrap(~anio_enfr) +
+  theme_minimal()
+```
+
+
+### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2005-2018)
+```{r}
+#| id: Figura 3
+## Datos para el gráfico
+tab <- AVAD_reg |>
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = contains(c("_low", "_upp")),
+    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
+  ))
+
+
+## Pirámide poblacional
+tab |>
+  age_pyramid(
+    age_group = grupo_edad_10,
+    split_by = sexo,
+    stack_by = anio_enfr,
+    count = AVAD,
+    show_midpoint = FALSE
+  ) +
+  geom_linerange(aes(ymin = AVAD_tasa_low, ymax = AVAD_tasa_upp)) +
+  facet_wrap(~region_deis, scales = "free", ncol = 2) +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.75) +
+  labs(x = "Grupo etario", fill = "Año") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90), legend.position = "bottom")
+```
+
+### Mapa tasa estandarizada AVP por año y provincia, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 1
+## Crear objeto espacial
+shp_avad <- shp_arg |>
+  left_join(AVAD_te_prov)
+
+
+## Mapa
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVP_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+### Mapa tasa estandarizada AVD por año y provincia, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 2
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+### Mapa tasa estandarizada AVAD por año y provincia, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 3
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVAD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+### Mapa tasa estandarizada AVP por año y región DEIS, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 4
+## Crear objeto espacial
+shp_avad <- shp_arg |>
+  count(region_deis) |>
+  left_join(AVAD_te_reg)
+
+
+## Mapa
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVP_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+
+### Mapa tasa estandarizada AVD por año y región DEIS, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 5
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+
+### Mapa tasa estandarizada AVAD por año y región DEIS, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 6
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVAD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```

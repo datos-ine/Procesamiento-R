@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving
+and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
+
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+
+<front>
+
+
+<article-meta>
+
+
+<title-group>
+<article-title>Análisis exploratorio</article-title>
+</title-group>
+
+<contrib-group>
+<contrib contrib-type="author">
+<name>
+<surname>Gauto</surname>
+<given-names>Micaela</given-names>
+</name>
+<string-name>Micaela Gauto</string-name>
+
+<xref ref-type="aff" rid="aff-1">a</xref>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Ricardo</surname>
+<given-names>Tamara</given-names>
+</name>
+<string-name>Tamara Ricardo</string-name>
+
+<xref ref-type="aff" rid="aff-1">a</xref>
+</contrib>
+</contrib-group>
+<aff id="aff-1">
+<institution-wrap>
+<institution>Instituto Nacional de Epidemiología</institution>
+</institution-wrap>
+
+
+
+
+
+
+
+</aff>
+
+
+
+
+
+
+
+
+
+<history></history>
+
+
+
+
+
+
+</article-meta>
+
+</front>
+
+<body>
+<sec id="análisis-espacial-y-tendencia-de-la-carga-de-enfermedad-por-diabetes-mellitus-en-argentina-período-2005-2018">
+  <title>Análisis espacial y tendencia de la carga de enfermedad por
+  diabetes mellitus en Argentina, período 2005-2018</title>
+  <sec id="prevalencia-dm2-y-tasas-específicas-avp-avd-y-avad-por-sexo-y-grupo-etario-decenal-argentina-2005-2018">
+    <title>Prevalencia DM2 y tasas específicas AVP, AVD y AVAD por sexo
+    y grupo etario decenal, Argentina (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Tabla%201-1.png" />
+  </sec>
+  <sec id="tasas-estandarizadas-avp-avd-y-avad-por-año-y-sexo">
+    <title>Tasas estandarizadas AVP, AVD y AVAD por año y sexo</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Tabla%202-1.png" />
+  </sec>
+  <sec id="pirámide-avad-por-sexo-y-grupo-etario-decenal-argentina-2005-2018">
+    <title>Pirámide AVAD por sexo y grupo etario decenal, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Figura%201-1.png" />
+  </sec>
+  <sec id="pirámide-tasa-avad-por-sexo-y-grupo-etario-decenal-argentina-2005-2018">
+    <title>Pirámide tasa AVAD por sexo y grupo etario decenal, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Figura%202-1.png" />
+  </sec>
+  <sec id="pirámide-avad-por-región-sexo-y-grupo-etario-decenal-argentina-2005-2018">
+    <title>Pirámide AVAD por región, sexo y grupo etario decenal,
+    Argentina (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Figura%203-1.png" />
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avp-por-año-y-provincia-argentina-2005-2018">
+    <title>Mapa tasa estandarizada AVP por año y provincia, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%201-1.png" />
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avd-por-año-y-provincia-argentina-2005-2018">
+    <title>Mapa tasa estandarizada AVD por año y provincia, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%202-1.png" />
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avad-por-año-y-provincia-argentina-2005-2018">
+    <title>Mapa tasa estandarizada AVAD por año y provincia, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%203-1.png" />
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avp-por-año-y-región-deis-argentina-2005-2018">
+    <title>Mapa tasa estandarizada AVP por año y región DEIS, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%204-1.png" />
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avd-por-año-y-región-deis-argentina-2005-2018">
+    <title>Mapa tasa estandarizada AVD por año y región DEIS, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%205-1.png" />
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avad-por-año-y-región-deis-argentina-2005-2018">
+    <title>Mapa tasa estandarizada AVAD por año y región DEIS, Argentina
+    (2005-2018)</title>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%206-1.png" />
+  </sec>
+</sec>
+</body>
+
+<back>
+</back>
+
+<sub-article article-type="notebook" id="nb-4-nb-article">
+<front-stub>
+<title-group>
+<article-title>Análisis exploratorio</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author">
+<name>
+<surname>Gauto</surname>
+<given-names>Micaela</given-names>
+</name>
+<string-name>Micaela Gauto</string-name>
+
+<xref ref-type="aff" rid="aff-1-nb-article">a</xref>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Ricardo</surname>
+<given-names>Tamara</given-names>
+</name>
+<string-name>Tamara Ricardo</string-name>
+
+<xref ref-type="aff" rid="aff-1-nb-article">a</xref>
+</contrib>
+</contrib-group>
+<aff id="aff-1-nb-article">
+<institution-wrap>
+<institution>Instituto Nacional de Epidemiología</institution>
+</institution-wrap>
+
+
+
+
+
+
+
+</aff>
+</front-stub>
+
+<body>
+<sec specific-use="notebook-content">
+<code language="r script">knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = &quot;center&quot;
+)</code>
+</sec>
+<sec specific-use="notebook-content">
+<code language="r script">pacman::p_load(
+  epikit,
+  geoAr,
+  sf,
+  tmap,
+  apyramid,
+  flextable,
+  rio,
+  janitor,
+  tidyverse
+)</code>
+</sec>
+<sec specific-use="notebook-content">
+<code language="r script">## AVAD por provincia, sexo y grupo etario
+AVAD_prov &lt;- import(&quot;../datos_limpios/arg_sim_avad_dm2_prov.rds&quot;)</code>
+<boxed-text>
+  <preformat>Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</preformat>
+</boxed-text>
+<code language="r script">## AVAD por región, sexo y grupo etario
+AVAD_reg &lt;- import(&quot;../datos_limpios/arg_sim_avad_dm2_reg.rds&quot;)</code>
+<boxed-text>
+  <preformat>Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</preformat>
+</boxed-text>
+<code language="r script">## AVAD por sexo y grupo etario
+AVAD_arg &lt;- import(&quot;../datos_limpios/arg_sim_avad_dm2.rds&quot;)</code>
+<boxed-text>
+  <preformat>Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</preformat>
+</boxed-text>
+<code language="r script"># Tasas estandarizadas por provincia, sexo y año
+AVAD_te_prov &lt;- import(&quot;../datos_limpios/arg_tasas_est_prov.rds&quot;)</code>
+<boxed-text>
+  <preformat>Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</preformat>
+</boxed-text>
+<code language="r script"># Tasas estandarizadas por provincia, sexo y año
+AVAD_te_reg &lt;- import(&quot;../datos_limpios/arg_tasas_est_reg.rds&quot;)</code>
+<boxed-text>
+  <preformat>Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</preformat>
+</boxed-text>
+<code language="r script"># Tasas estandarizadas por sexo y año
+AVAD_te_arg &lt;- import(&quot;../datos_limpios/arg_tasas_est.rds&quot;)</code>
+<boxed-text>
+  <preformat>Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</preformat>
+</boxed-text>
+</sec>
+<sec specific-use="notebook-content">
+<code language="r script">## Capas GIS provincias
+shp_arg &lt;- get_geo(geo = &quot;ARGENTINA&quot;) |&gt;
+  # Añadir ids de provincia
+  add_geo_codes() |&gt;
+
+  # Quitar filas vacías
+  drop_na() |&gt;
+
+  # Cambiar etiqueta CABA
+  mutate(prov_nombre = if_else(codprov_censo == &quot;02&quot;, name_prov, name_iso)) |&gt;
+
+  # Crear región geográfica DEIS
+  mutate(
+    region_deis = case_when(
+      codprov_censo %in% c(&quot;02&quot;, &quot;06&quot;, &quot;14&quot;, &quot;30&quot;, &quot;82&quot;) ~ &quot;Centro&quot;,
+      codprov_censo %in% c(&quot;18&quot;, &quot;22&quot;, &quot;34&quot;, &quot;54&quot;) ~ &quot;NEA&quot;,
+      codprov_censo %in% c(&quot;38&quot;, &quot;66&quot;) ~ &quot;NOA1&quot;,
+      codprov_censo %in% c(&quot;10&quot;, &quot;86&quot;, &quot;90&quot;) ~ &quot;NOA2&quot;,
+      codprov_censo %in% c(&quot;46&quot;, &quot;50&quot;, &quot;70&quot;, &quot;74&quot;) ~ &quot;Cuyo&quot;,
+      .default = &quot;Patagonia&quot;
+    )
+  ) |&gt;
+
+  # Agrupar por provincia
+  count(codprov_censo, prov_nombre, region_deis) |&gt;
+
+  # Validar geometría
+  st_make_valid()</code>
+</sec>
+<sec id="análisis-espacial-y-tendencia-de-la-carga-de-enfermedad-por-diabetes-mellitus-en-argentina-período-2005-2018-nb-article">
+  <title>Análisis espacial y tendencia de la carga de enfermedad por
+  diabetes mellitus en Argentina, período 2005-2018</title>
+  <sec id="prevalencia-dm2-y-tasas-específicas-avp-avd-y-avad-por-sexo-y-grupo-etario-decenal-argentina-2005-2018-nb-article">
+    <title>Prevalencia DM2 y tasas específicas AVP, AVD y AVAD por sexo
+    y grupo etario decenal, Argentina (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">## Datos AVP, AVD y AVAD por año, sexo y grupo etario
+tab &lt;- AVAD_arg |&gt;
+  # Seleccionar columnas
+  select(
+    Año = anio_enfr,
+    &quot;Grupo etario&quot; = grupo_edad_10,
+    sexo,
+    dm2_prev:dm2_prev_upp,
+    contains(c(&quot;AVP&quot;, &quot;AVD&quot;, &quot;AVAD&quot;))
+  ) |&gt;
+
+  # Crear columna prevalencia (IC)
+  unite_ci(
+    col = &quot;Prev. (CI)&quot;,
+    e = dm2_prev,
+    l = dm2_prev_low,
+    u = dm2_prev_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna AVP (UI)
+  unite_ci(
+    col = &quot;AVP (UI)&quot;,
+    e = AVP,
+    l = AVP_low,
+    u = AVP_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna AVD (UI)
+  unite_ci(
+    col = &quot;AVD (UI)&quot;,
+    e = AVD,
+    l = AVD_low,
+    u = AVD_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna AVAD (UI)
+  unite_ci(
+    col = &quot;AVAD (UI)&quot;,
+    e = AVAD,
+    l = AVAD_low,
+    u = AVAD_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna tasa AVP (UI)
+  unite_ci(
+    col = &quot;Tasa AVP (UI)&quot;,
+    e = AVP_tasa,
+    l = AVP_tasa_low,
+    u = AVP_tasa_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna tasa AVD (UI)
+  unite_ci(
+    col = &quot;Tasa AVD (UI)&quot;,
+    e = AVD_tasa,
+    l = AVD_tasa_low,
+    u = AVD_tasa_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna tasa AVAD (UI)
+  unite_ci(
+    col = &quot;Tasa AVAD (UI)&quot;,
+    e = AVAD_tasa,
+    l = AVAD_tasa_low,
+    u = AVAD_tasa_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Pasar a formato wide
+  pivot_wider(names_from = sexo, values_from = 4:10)
+
+
+## Generar tabla
+tab |&gt;
+  flextable() |&gt;
+
+  separate_header(split = &quot;_&quot;) |&gt;
+
+  merge_v(j = 1) |&gt;
+
+  autofit() |&gt;
+
+  font(fontname = &quot;Calibri&quot;, part = &quot;all&quot;)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Tabla%201-1.png" />
+    </sec>
+  </sec>
+  <sec id="tasas-estandarizadas-avp-avd-y-avad-por-año-y-sexo-nb-article">
+    <title>Tasas estandarizadas AVP, AVD y AVAD por año y sexo</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">## Datos para la tabla
+AVAD_te_arg |&gt;
+  # Renombrar columnas
+  rename(Año = anio_enfr) |&gt;
+
+  # Crear columna tasa AVP (UI)
+  unite_ci(
+    col = &quot;Tasa AVP (UI)&quot;,
+    e = AVP_tasa_std,
+    l = AVP_tasa_std_low,
+    u = AVP_tasa_std_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna tasa AVD (UI)
+  unite_ci(
+    col = &quot;Tasa AVD (UI)&quot;,
+    e = AVD_tasa_std,
+    l = AVD_tasa_std_low,
+    u = AVD_tasa_std_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Crear columna tasa AVAD (UI)
+  unite_ci(
+    col = &quot;Tasa AVAD (UI)&quot;,
+    e = AVAD_tasa_std,
+    l = AVAD_tasa_std_low,
+    u = AVAD_tasa_std_upp,
+    m100 = FALSE
+  ) |&gt;
+
+  # Pasar a formato wide
+  pivot_wider(names_from = sexo, values_from = c(3:5)) |&gt;
+
+  ## Generar tabla
+  flextable() |&gt;
+
+  # Formato de tabla
+  merge_v(j = 1) |&gt;
+
+  autofit() |&gt;
+
+  separate_header(split = &quot;_&quot;) |&gt;
+
+  font(fontname = &quot;Calibri&quot;, part = &quot;all&quot;)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Tabla%202-1.png" />
+    </sec>
+  </sec>
+  <sec id="pirámide-avad-por-sexo-y-grupo-etario-decenal-argentina-2005-2018-nb-article">
+    <title>Pirámide AVAD por sexo y grupo etario decenal, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">## Datos para el gráfico
+tab &lt;- AVAD_arg |&gt;
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains(&quot;AVAD&quot;)) |&gt;
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = where(is.numeric),
+    .fns = ~ if_else(sexo == &quot;Mujer&quot;, .x, -.x)
+  ))
+
+
+## Pirámide poblacional con barras de error
+tab |&gt;
+  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
+  geom_col(color = &quot;black&quot;) +
+  geom_linerange(aes(ymin = AVAD_low, ymax = AVAD_upp)) +
+
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  labs(x = &quot;Grupo etario&quot;, fill = &quot;Sexo&quot;) +
+  coord_flip() +
+  facet_wrap(~anio_enfr) +
+  theme_minimal()</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Figura%201-1.png" />
+    </sec>
+  </sec>
+  <sec id="pirámide-tasa-avad-por-sexo-y-grupo-etario-decenal-argentina-2005-2018-nb-article">
+    <title>Pirámide tasa AVAD por sexo y grupo etario decenal, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">## Pirámide poblacional con barras de error
+tab |&gt;
+  ggplot(aes(x = grupo_edad_10, y = AVAD_tasa, fill = sexo)) +
+  geom_col(color = &quot;black&quot;) +
+  geom_linerange(aes(ymin = AVAD_tasa_low, ymax = AVAD_tasa_upp)) +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs) +
+  coord_flip() +
+  labs(x = &quot;Grupo etario&quot;, y = &quot;Tasa AVAD (100.000 hab)&quot;, fill = &quot;Sexo&quot;) +
+  facet_wrap(~anio_enfr) +
+  theme_minimal()</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Figura%202-1.png" />
+    </sec>
+  </sec>
+  <sec id="pirámide-avad-por-región-sexo-y-grupo-etario-decenal-argentina-2005-2018-nb-article">
+    <title>Pirámide AVAD por región, sexo y grupo etario decenal,
+    Argentina (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">## Datos para el gráfico
+tab &lt;- AVAD_reg |&gt;
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains(&quot;AVAD&quot;)) |&gt;
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = contains(c(&quot;_low&quot;, &quot;_upp&quot;)),
+    .fns = ~ if_else(sexo == &quot;Mujer&quot;, .x, -.x)
+  ))
+
+
+## Pirámide poblacional
+tab |&gt;
+  age_pyramid(
+    age_group = grupo_edad_10,
+    split_by = sexo,
+    stack_by = anio_enfr,
+    count = AVAD,
+    show_midpoint = FALSE
+  ) +
+  geom_linerange(aes(ymin = AVAD_tasa_low, ymax = AVAD_tasa_upp)) +
+  facet_wrap(~region_deis, scales = &quot;free&quot;, ncol = 2) +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.75) +
+  labs(x = &quot;Grupo etario&quot;, fill = &quot;Año&quot;) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90), legend.position = &quot;bottom&quot;)</code>
+    <boxed-text>
+      <preformat>Scale for fill is already present.
+Adding another scale for fill, which will replace the existing scale.</preformat>
+    </boxed-text>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Figura%203-1.png" />
+    </sec>
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avp-por-año-y-provincia-argentina-2005-2018-nb-article">
+    <title>Mapa tasa estandarizada AVP por año y provincia, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">## Crear objeto espacial
+shp_avad &lt;- shp_arg |&gt;
+  left_join(AVAD_te_prov)</code>
+    <boxed-text>
+      <preformat>Joining with `by = join_by(codprov_censo, prov_nombre)`</preformat>
+    </boxed-text>
+    <code language="r script">## Mapa
+tm_basemap(server = &quot;OpenStreetMap&quot;) +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = &quot;AVP_tasa_std&quot;,
+    fill.scale = tm_scale(values = &quot;-viridis&quot;),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = &quot;Tasa estandarizada&quot;)
+  ) +
+  tm_facets(by = &quot;anio_enfr&quot;, ncol = 2)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%201-1.png" />
+    </sec>
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avd-por-año-y-provincia-argentina-2005-2018-nb-article">
+    <title>Mapa tasa estandarizada AVD por año y provincia, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">tm_basemap(server = &quot;OpenStreetMap&quot;) +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = &quot;AVD_tasa_std&quot;,
+    fill.scale = tm_scale(values = &quot;-viridis&quot;),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = &quot;Tasa estandarizada&quot;)
+  ) +
+  tm_facets(by = &quot;anio_enfr&quot;, ncol = 2)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%202-1.png" />
+    </sec>
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avad-por-año-y-provincia-argentina-2005-2018-nb-article">
+    <title>Mapa tasa estandarizada AVAD por año y provincia, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">tm_basemap(server = &quot;OpenStreetMap&quot;) +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = &quot;AVAD_tasa_std&quot;,
+    fill.scale = tm_scale(values = &quot;-viridis&quot;),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = &quot;Tasa estandarizada&quot;)
+  ) +
+  tm_facets(by = &quot;anio_enfr&quot;, ncol = 2)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%203-1.png" />
+    </sec>
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avp-por-año-y-región-deis-argentina-2005-2018-nb-article">
+    <title>Mapa tasa estandarizada AVP por año y región DEIS, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">## Crear objeto espacial
+shp_avad &lt;- shp_arg |&gt;
+  count(region_deis) |&gt;
+  left_join(AVAD_te_reg)</code>
+    <boxed-text>
+      <preformat>Joining with `by = join_by(region_deis)`</preformat>
+    </boxed-text>
+    <code language="r script">## Mapa
+tm_basemap(server = &quot;OpenStreetMap&quot;) +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = &quot;AVP_tasa_std&quot;,
+    fill.scale = tm_scale(values = &quot;-viridis&quot;),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = &quot;Tasa estandarizada&quot;)
+  ) +
+  tm_facets(by = &quot;anio_enfr&quot;, ncol = 2)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%204-1.png" />
+    </sec>
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avd-por-año-y-región-deis-argentina-2005-2018-nb-article">
+    <title>Mapa tasa estandarizada AVD por año y región DEIS, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">tm_basemap(server = &quot;OpenStreetMap&quot;) +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = &quot;AVD_tasa_std&quot;,
+    fill.scale = tm_scale(values = &quot;-viridis&quot;),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = &quot;Tasa estandarizada&quot;)
+  ) +
+  tm_facets(by = &quot;anio_enfr&quot;, ncol = 2)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%205-1.png" />
+    </sec>
+  </sec>
+  <sec id="mapa-tasa-estandarizada-avad-por-año-y-región-deis-argentina-2005-2018-nb-article">
+    <title>Mapa tasa estandarizada AVAD por año y región DEIS, Argentina
+    (2005-2018)</title>
+    <sec specific-use="notebook-content">
+    <code language="r script">tm_basemap(server = &quot;OpenStreetMap&quot;) +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = &quot;AVAD_tasa_std&quot;,
+    fill.scale = tm_scale(values = &quot;-viridis&quot;),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = &quot;Tasa estandarizada&quot;)
+  ) +
+  tm_facets(by = &quot;anio_enfr&quot;, ncol = 2)</code>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/Mapa%206-1.png" />
+    </sec>
+  </sec>
+</sec>
+</body>
+
+
+
+<back>
+</back>
+
+
+</sub-article>
+
+</article>
