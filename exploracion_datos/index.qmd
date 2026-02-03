@@ -1,5 +1,5 @@
 ---
-title: "Análiss exploratorio"
+title: "Análisis exploratorio"
 authors:
   - name: Micaela Gauto
     affiliation: Instituto Nacional de Epidemiología
@@ -28,6 +28,7 @@ pacman::p_load(
   geoAr,
   sf,
   tmap,
+  gghighlight,
   flextable,
   tidyverse
 )
@@ -35,35 +36,72 @@ pacman::p_load(
 
 ```{r}
 #| id: Cargar datos
-## Por provincia, sexo y grupo etario
-AVAD_prov <- import("datos_limpios/arg_sim_avad_dm2_prov.rds")
+## AVAD por provincia, sexo y grupo etario
+AVAD_prov <- import("../datos_limpios/arg_sim_avad_dm2_prov.rds")
 
-## Por región, sexo y grupo etario
-AVAD_reg <- import("datos_limpios/arg_sim_avad_dm2_reg.rds")
+## AVAD por región, sexo y grupo etario
+AVAD_reg <- import("../datos_limpios/arg_sim_avad_dm2_reg.rds")
 
-## Por sexo y grupo etario
-AVAD_arg <- import("datos_limpios/arg_sim_avad_dm2.rds")
+## AVAD por sexo y grupo etario
+AVAD_arg <- import("../datos_limpios/arg_sim_avad_dm2.rds")
+
 ```
 
+```{r}
+#| id: Capa GIS
+## Capas GIS provincias
+shp_arg <- get_geo(geo = "ARGENTINA") |>
+  # Añadir ids de provincia
+  add_geo_codes() |>
+
+  # Quitar filas vacías
+  drop_na() |>
+
+  # Cambiar etiqueta CABA
+  mutate(prov_nombre = if_else(codprov_censo == "02", name_prov, name_iso)) |>
+
+  # Crear región geográfica DEIS
+  # Crear región geográfica DEIS
+  mutate(
+    region_deis = case_when(
+      codprov_censo %in% c("02", "06", "14", "30", "82") ~ "Centro",
+      codprov_censo %in% c("18", "22", "34", "54") ~ "NEA",
+      codprov_censo %in% c("38", "66") ~ "NOA1",
+      codprov_censo %in% c("10", "86", "90") ~ "NOA2",
+      codprov_censo %in% c("46", "50", "70", "74") ~ "Cuyo",
+      .default = "Patagonia"
+    )
+  ) |>
+
+  # Agrupar por provincia
+  count(codprov_censo, prov_nombre, region_deis) |>
+
+  # Validar geometría
+  st_make_valid()
+```
 
 ## Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus en Argentina, período 2005-2018
 
+### Prevalencia DM2 y tasas específicas AVP, AVD y AVAD por sexo y grupo etario decenal, Argentina (2005-2018)
+
 ```{r}
-## AVP, AVD y AVAD por año, sexo y grupo etario
+#| id: Tabla 1
+## Datos AVP, AVD y AVAD por año, sexo y grupo etario
 tab <- AVAD_arg |>
   # Redondear cifras
   mutate(across(.cols = where(is.numeric), .fns = ~ round(.x, 2))) |>
 
   # Crear columna UI
   mutate(
-    AVP_tasa_ui = paste0(AVP_tasa, " (", AVP_tasa_inf, "-", AVP_tasa_sup, ")"),
-    AVD_tasa_ui = paste0(AVD_tasa, " (", AVD_tasa_inf, "-", AVD_tasa_sup, ")"),
-    AVAD_tasa_ui = paste0(
+    Prev = paste0(dm2_prev, " (", dm2_prev_low, "-", dm2_prev_upp, ")"),
+    AVP = paste0(AVP_tasa, " (", AVP_tasa_low, "-", AVP_tasa_upp, ")"),
+    AVD = paste0(AVD_tasa, " (", AVD_tasa_low, "-", AVD_tasa_upp, ")"),
+    AVAD = paste0(
       AVAD_tasa,
       " (",
-      AVAD_tasa_inf,
+      AVAD_tasa_low,
       "-",
-      AVAD_tasa_sup,
+      AVAD_tasa_upp,
       ")"
     )
   ) |>
@@ -73,27 +111,241 @@ tab <- AVAD_arg |>
     anio_enfr,
     sexo,
     grupo_edad_10,
-    AVP_tasa_ui,
-    AVD_tasa_ui,
-    AVAD_tasa_ui
+    "Prev (95% CI)" = Prev,
+    "Tasa AVP (95% UI)" = AVP,
+    "Tasa AVD (95% UI)" = AVD,
+    "Tasa AVAD (95% UI)" = AVAD
   ) |>
 
   # Ordenar filas
   arrange(anio_enfr) |>
 
-  pivot_wider(names_from = sexo, values_from = AVP_tasa_ui:AVAD_tasa_ui)
+  # Pasar a formato wide
+  pivot_wider(names_from = sexo, values_from = 4:7)
 
+
+## Generar tabla
 tab |>
-  rename(Año = anio_enfr, "Grupo etario" = grupo_edad_10) |>
+  rename(
+    Año = anio_enfr,
+    "Grupo etario" = grupo_edad_10
+  ) |>
   flextable() |>
 
-  separate_header(split = "_tasa_ui_") |>
+  separate_header(split = "_") |>
 
   merge_v(j = 1) |>
 
-  font(fontname = "Calibri", part = "all") |>
-
   autofit() |>
 
-  set_caption(caption = "Tasas específicas por 100.000 habitantes (95% IU)")
+  font(fontname = "Calibri", part = "all")
+
 ```
+
+### Pirámide AVAD por sexo y grupo etario decenal, Argentina (2005-2018)
+
+```{r}
+#| id: Figura 1
+## Datos para el gráfico
+tab <- AVAD_arg |>
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = where(is.numeric),
+    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
+  ))
+
+
+## Pirámide poblacional con barras de error
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
+  geom_col(color = "black") +
+  geom_linerange(aes(ymin = AVAD_low, ymax = AVAD_upp)) +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs, n.breaks = 6) +
+  coord_flip() +
+  labs(x = "Grupo etario", fill = "Sexo") +
+  facet_wrap(~anio_enfr) +
+  theme_minimal()
+```
+
+### Pirámide tasa AVAD por sexo y grupo etario decenal, Argentina (2005-2018)
+
+```{r}
+#| id: Figura 2
+## Pirámide poblacional con barras de error
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD_tasa, fill = sexo)) +
+  geom_col(color = "black") +
+  geom_linerange(aes(ymin = AVAD_tasa_low, ymax = AVAD_tasa_upp)) +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs) +
+  coord_flip() +
+  labs(x = "Grupo etario", y = "Tasa AVAD (100.000 hab)", fill = "Sexo") +
+  facet_wrap(~anio_enfr) +
+  theme_minimal()
+```
+
+
+### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2005)
+```{r}
+#| id: Figura 3
+## Datos para el gráfico
+tab <- AVAD_reg |>
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = where(is.numeric),
+    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
+  ))
+
+
+## Pirámide poblacional
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
+  geom_col(color = "grey40") +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs, n.breaks = 6) +
+  coord_flip() +
+  labs(x = "Grupo etario", fill = "Sexo") +
+  gghighlight(anio_enfr == "2005") +
+  facet_wrap(~region_deis, scales = "free_x") +
+  theme_minimal()
+```
+
+### Pirámide tasa AVAD por región, sexo y grupo etario decenal, Argentina (2009)
+```{r}
+#| id: Figura 4
+## Datos para el gráfico
+tab <- AVAD_reg |>
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = where(is.numeric),
+    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
+  ))
+
+
+## Pirámide poblacional
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
+  geom_col(color = "grey40") +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs) +
+  coord_flip() +
+  labs(x = "Grupo etario", fill = "Sexo") +
+  gghighlight(anio_enfr == "2009") +
+  facet_wrap(~region_deis, scales = "free_x") +
+  theme_minimal()
+```
+
+### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2013)
+```{r}
+#| id: Figura 5
+## Datos para el gráfico
+tab <- AVAD_reg |>
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = where(is.numeric),
+    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
+  ))
+
+
+## Pirámide poblacional
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
+  geom_col(color = "grey40") +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs) +
+  coord_flip() +
+  labs(x = "Grupo etario", fill = "Sexo") +
+  gghighlight(anio_enfr == "2013") +
+  facet_wrap(~region_deis, scales = "free_x") +
+  theme_minimal()
+```
+
+### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2018)
+```{r}
+#| id: Figura 6
+## Datos para el gráfico
+tab <- AVAD_reg |>
+  # Seleccionar columnas
+  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
+
+  # Invertir valores para sexo masculino
+  mutate(across(
+    .cols = where(is.numeric),
+    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
+  ))
+
+
+## Pirámide poblacional
+tab |>
+  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
+  geom_col(color = "grey40") +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
+  scale_y_continuous(labels = abs) +
+  coord_flip() +
+  labs(x = "Grupo etario", fill = "Sexo") +
+  gghighlight(anio_enfr == "2018") +
+  facet_wrap(~region_deis, scales = "free_x") +
+  theme_minimal()
+```
+
+### Mapa tasa AVAD por año y provincia, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 1
+## Crear objeto espacial
+shp_avad <- shp_arg |>
+  left_join(
+    AVAD_prov |>
+      count(codprov_censo, anio_enfr, wt = AVAD_tasa, name = "AVAD_tasa")
+  )
+
+## Mapa
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVAD_tasa",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.9
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+### Mapa tasa AVAD por año y región DEIS, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 2
+## Crear objeto espacial
+shp_avad <- shp_arg |>
+  count(region_deis) |>
+  left_join(
+    AVAD_prov |>
+      count(region_deis, anio_enfr, wt = AVAD_tasa, name = "AVAD_tasa")
+  )
+
+
+## Mapa
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVAD_tasa",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.9
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+Estandarizar tasas para los mapas
+Revisar pirámides x región
