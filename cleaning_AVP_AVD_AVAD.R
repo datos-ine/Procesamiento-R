@@ -1193,3 +1193,9 @@ export(tasa_est_arg, file = "datos_limpios/arg_tasas_est.rds")
 
 # Diccionario de datos
 export(data_dicc, file = "datos_limpios/dic_arg_sim_avad_dm2.xlsx")
+
+
+# Limpiar environment ----------------------------------------------------
+rm(list = ls())
+
+pacman::p_unload("all")
