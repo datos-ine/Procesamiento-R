@@ -23,10 +23,11 @@ knitr::opts_chunk$set(
 ```{r}
 #| id: Cargar paquetes
 pacman::p_load(
+  epikit,
   geoAr,
   sf,
   tmap,
-  gghighlight,
+  apyramid,
   flextable,
   rio,
   janitor,
@@ -96,48 +97,84 @@ shp_arg <- get_geo(geo = "ARGENTINA") |>
 #| id: Tabla 1
 ## Datos AVP, AVD y AVAD por año, sexo y grupo etario
 tab <- AVAD_arg |>
-  # Redondear cifras
-  mutate(across(.cols = where(is.numeric), .fns = ~ round(.x, 2))) |>
-
-  # Crear columna UI
-  mutate(
-    Prev = paste0(dm2_prev, " (", dm2_prev_low, "-", dm2_prev_upp, ")"),
-    AVP = paste0(AVP_tasa, " (", AVP_tasa_low, "-", AVP_tasa_upp, ")"),
-    AVD = paste0(AVD_tasa, " (", AVD_tasa_low, "-", AVD_tasa_upp, ")"),
-    AVAD = paste0(
-      AVAD_tasa,
-      " (",
-      AVAD_tasa_low,
-      "-",
-      AVAD_tasa_upp,
-      ")"
-    )
-  ) |>
-
   # Seleccionar columnas
   select(
-    anio_enfr,
+    Año = anio_enfr,
+    "Grupo etario" = grupo_edad_10,
     sexo,
-    grupo_edad_10,
-    "Prev (95% CI)" = Prev,
-    "Tasa AVP (95% UI)" = AVP,
-    "Tasa AVD (95% UI)" = AVD,
-    "Tasa AVAD (95% UI)" = AVAD
+    dm2_prev:dm2_prev_upp,
+    contains(c("AVP", "AVD", "AVAD"))
   ) |>
 
-  # Ordenar filas
-  arrange(anio_enfr) |>
+  # Crear columna prevalencia (IC)
+  unite_ci(
+    col = "Prev. (CI)",
+    e = dm2_prev,
+    l = dm2_prev_low,
+    u = dm2_prev_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna AVP (UI)
+  unite_ci(
+    col = "AVP (UI)",
+    e = AVP,
+    l = AVP_low,
+    u = AVP_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna AVD (UI)
+  unite_ci(
+    col = "AVD (UI)",
+    e = AVD,
+    l = AVD_low,
+    u = AVD_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna AVAD (UI)
+  unite_ci(
+    col = "AVAD (UI)",
+    e = AVAD,
+    l = AVAD_low,
+    u = AVAD_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVP (UI)
+  unite_ci(
+    col = "Tasa AVP (UI)",
+    e = AVP_tasa,
+    l = AVP_tasa_low,
+    u = AVP_tasa_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVD (UI)
+  unite_ci(
+    col = "Tasa AVD (UI)",
+    e = AVD_tasa,
+    l = AVD_tasa_low,
+    u = AVD_tasa_upp,
+    m100 = FALSE
+  ) |>
+
+  # Crear columna tasa AVAD (UI)
+  unite_ci(
+    col = "Tasa AVAD (UI)",
+    e = AVAD_tasa,
+    l = AVAD_tasa_low,
+    u = AVAD_tasa_upp,
+    m100 = FALSE
+  ) |>
 
   # Pasar a formato wide
-  pivot_wider(names_from = sexo, values_from = 4:7)
+  pivot_wider(names_from = sexo, values_from = 4:10)
 
 
 ## Generar tabla
 tab |>
-  rename(
-    Año = anio_enfr,
-    "Grupo etario" = grupo_edad_10
-  ) |>
   flextable() |>
 
   separate_header(split = "_") |>
@@ -147,38 +184,56 @@ tab |>
   autofit() |>
 
   font(fontname = "Calibri", part = "all")
-
 ```
 
 ### Tasas estandarizadas AVP, AVD y AVAD por año y sexo
 
 ```{r}
+#| id: Tabla 2
 ## Datos para la tabla
-tab <- AVAD_te_arg |>
+AVAD_te_arg |>
   # Renombrar columnas
-  rename_with(
-    .cols = contains("tasa_std_"),
-    .fn = ~ str_remove(.x, "_tasa_std")
+  rename(Año = anio_enfr) |>
+
+  # Crear columna tasa AVP (UI)
+  unite_ci(
+    col = "Tasa AVP (UI)",
+    e = AVP_tasa_std,
+    l = AVP_tasa_std_low,
+    u = AVP_tasa_std_upp,
+    m100 = FALSE
   ) |>
-  # Redondear columnas numéricas
-  mutate(across(.cols = where(is.numeric), .fns = ~ round(.x, 2))) |>
 
-  # Seleccionar columnas
-  select(
-    Año = anio_enfr,
-    Sexo = sexo,
-    everything()
-  )
+  # Crear columna tasa AVD (UI)
+  unite_ci(
+    col = "Tasa AVD (UI)",
+    e = AVD_tasa_std,
+    l = AVD_tasa_std_low,
+    u = AVD_tasa_std_upp,
+    m100 = FALSE
+  ) |>
 
-## Generar tabla
-tab |>
+  # Crear columna tasa AVAD (UI)
+  unite_ci(
+    col = "Tasa AVAD (UI)",
+    e = AVAD_tasa_std,
+    l = AVAD_tasa_std_low,
+    u = AVAD_tasa_std_upp,
+    m100 = FALSE
+  ) |>
+
+  # Pasar a formato wide
+  pivot_wider(names_from = sexo, values_from = c(3:5)) |>
+
+  ## Generar tabla
   flextable() |>
 
-  separate_header(split = "_") |>
-
+  # Formato de tabla
   merge_v(j = 1) |>
 
   autofit() |>
+
+  separate_header(split = "_") |>
 
   font(fontname = "Calibri", part = "all")
 ```
@@ -203,11 +258,11 @@ tab <- AVAD_arg |>
 tab |>
   ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
   geom_col(color = "black") +
-  geom_errorbar(aes(ymin = AVAD_low, ymax = AVAD_upp)) +
+  geom_linerange(aes(ymin = AVAD_low, ymax = AVAD_upp)) +
+
   scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
-  scale_y_continuous(labels = abs, n.breaks = 6) +
-  coord_flip() +
   labs(x = "Grupo etario", fill = "Sexo") +
+  coord_flip() +
   facet_wrap(~anio_enfr) +
   theme_minimal()
 ```
@@ -230,7 +285,7 @@ tab |>
 ```
 
 
-### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2005)
+### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2005-2018)
 ```{r}
 #| id: Figura 3
 ## Datos para el gráfico
@@ -240,153 +295,129 @@ tab <- AVAD_reg |>
 
   # Invertir valores para sexo masculino
   mutate(across(
-    .cols = where(is.numeric),
+    .cols = contains(c("_low", "_upp")),
     .fns = ~ if_else(sexo == "Mujer", .x, -.x)
   ))
 
 
 ## Pirámide poblacional
 tab |>
-  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
-  geom_col(color = "grey40") +
-  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
-  scale_y_continuous(labels = abs, n.breaks = 6) +
-  coord_flip() +
-  labs(x = "Grupo etario", fill = "Sexo") +
-  gghighlight(anio_enfr == "2005") +
-  facet_wrap(~region_deis, scales = "free_x") +
-  theme_minimal()
+  age_pyramid(
+    age_group = grupo_edad_10,
+    split_by = sexo,
+    stack_by = anio_enfr,
+    count = AVAD,
+    show_midpoint = FALSE
+  ) +
+  geom_linerange(aes(ymin = AVAD_tasa_low, ymax = AVAD_tasa_upp)) +
+  facet_wrap(~region_deis, scales = "free", ncol = 2) +
+  scale_fill_viridis_d(end = 0.9, alpha = 0.75) +
+  labs(x = "Grupo etario", fill = "Año") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90), legend.position = "bottom")
 ```
 
-### Pirámide tasa AVAD por región, sexo y grupo etario decenal, Argentina (2009)
-```{r}
-#| id: Figura 4
-## Datos para el gráfico
-tab <- AVAD_reg |>
-  # Seleccionar columnas
-  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
-
-  # Invertir valores para sexo masculino
-  mutate(across(
-    .cols = where(is.numeric),
-    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
-  ))
-
-
-## Pirámide poblacional
-tab |>
-  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
-  geom_col(color = "grey40") +
-  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
-  scale_y_continuous(labels = abs) +
-  coord_flip() +
-  labs(x = "Grupo etario", fill = "Sexo") +
-  gghighlight(anio_enfr == "2009") +
-  facet_wrap(~region_deis, scales = "free_x") +
-  theme_minimal()
-```
-
-### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2013)
-```{r}
-#| id: Figura 5
-## Datos para el gráfico
-tab <- AVAD_reg |>
-  # Seleccionar columnas
-  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
-
-  # Invertir valores para sexo masculino
-  mutate(across(
-    .cols = where(is.numeric),
-    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
-  ))
-
-
-## Pirámide poblacional
-tab |>
-  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
-  geom_col(color = "grey40") +
-  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
-  scale_y_continuous(labels = abs) +
-  coord_flip() +
-  labs(x = "Grupo etario", fill = "Sexo") +
-  gghighlight(anio_enfr == "2013") +
-  facet_wrap(~region_deis, scales = "free_x") +
-  theme_minimal()
-```
-
-### Pirámide AVAD por región, sexo y grupo etario decenal, Argentina (2018)
-```{r}
-#| id: Figura 6
-## Datos para el gráfico
-tab <- AVAD_reg |>
-  # Seleccionar columnas
-  select(anio_enfr:grupo_edad_10, contains("AVAD")) |>
-
-  # Invertir valores para sexo masculino
-  mutate(across(
-    .cols = where(is.numeric),
-    .fns = ~ if_else(sexo == "Mujer", .x, -.x)
-  ))
-
-
-## Pirámide poblacional
-tab |>
-  ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
-  geom_col(color = "grey40") +
-  scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
-  scale_y_continuous(labels = abs) +
-  coord_flip() +
-  labs(x = "Grupo etario", fill = "Sexo") +
-  gghighlight(anio_enfr == "2018") +
-  facet_wrap(~region_deis, scales = "free_x") +
-  theme_minimal()
-```
-
-### Mapa tasa AVAD por año y provincia, Argentina (2005-2018)
+### Mapa tasa estandarizada AVP por año y provincia, Argentina (2005-2018)
 
 ```{r}
 #| id: Mapa 1
 ## Crear objeto espacial
 shp_avad <- shp_arg |>
-  left_join(
-    AVAD_prov |>
-      count(codprov_censo, anio_enfr, wt = AVAD_tasa, name = "AVAD_tasa")
-  )
+  left_join(AVAD_te_prov)
+
 
 ## Mapa
 tm_basemap(server = "OpenStreetMap") +
   tm_shape(shp = shp_avad) +
   tm_polygons(
-    fill = "AVAD_tasa",
+    fill = "AVP_tasa_std",
     fill.scale = tm_scale(values = "-viridis"),
-    fill_alpha = 0.9
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
   ) +
   tm_facets(by = "anio_enfr", ncol = 2)
 ```
 
-### Mapa tasa AVAD por año y región DEIS, Argentina (2005-2018)
+### Mapa tasa estandarizada AVD por año y provincia, Argentina (2005-2018)
 
 ```{r}
 #| id: Mapa 2
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+### Mapa tasa estandarizada AVAD por año y provincia, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 3
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVAD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+### Mapa tasa estandarizada AVP por año y región DEIS, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 4
 ## Crear objeto espacial
 shp_avad <- shp_arg |>
   count(region_deis) |>
-  left_join(
-    AVAD_prov |>
-      count(region_deis, anio_enfr, wt = AVAD_tasa, name = "AVAD_tasa")
-  )
+  left_join(AVAD_te_reg)
 
 
 ## Mapa
 tm_basemap(server = "OpenStreetMap") +
   tm_shape(shp = shp_avad) +
   tm_polygons(
-    fill = "AVAD_tasa",
+    fill = "AVP_tasa_std",
     fill.scale = tm_scale(values = "-viridis"),
-    fill_alpha = 0.9
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
   ) +
   tm_facets(by = "anio_enfr", ncol = 2)
 ```
 
-Estandarizar tasas para los mapas
-Revisar pirámides x región
+
+### Mapa tasa estandarizada AVD por año y región DEIS, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 5
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
+
+
+### Mapa tasa estandarizada AVAD por año y región DEIS, Argentina (2005-2018)
+
+```{r}
+#| id: Mapa 6
+tm_basemap(server = "OpenStreetMap") +
+  tm_shape(shp = shp_avad) +
+  tm_polygons(
+    fill = "AVAD_tasa_std",
+    fill.scale = tm_scale(values = "-viridis"),
+    fill_alpha = 0.75,
+    fill.legend = tm_legend(title = "Tasa estandarizada")
+  ) +
+  tm_facets(by = "anio_enfr", ncol = 2)
+```
