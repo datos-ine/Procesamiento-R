@@ -23,13 +23,14 @@ knitr::opts_chunk$set(
 ```{r}
 #| id: Cargar paquetes
 pacman::p_load(
-  rio,
-  janitor,
+  PHEindicatormethods,
   geoAr,
   sf,
   tmap,
   gghighlight,
   flextable,
+  rio,
+  janitor,
   tidyverse
 )
 ```
@@ -61,7 +62,6 @@ shp_arg <- get_geo(geo = "ARGENTINA") |>
   mutate(prov_nombre = if_else(codprov_censo == "02", name_prov, name_iso)) |>
 
   # Crear región geográfica DEIS
-  # Crear región geográfica DEIS
   mutate(
     region_deis = case_when(
       codprov_censo %in% c("02", "06", "14", "30", "82") ~ "Centro",
@@ -78,6 +78,50 @@ shp_arg <- get_geo(geo = "ARGENTINA") |>
 
   # Validar geometría
   st_make_valid()
+```
+
+
+
+```{r}
+#| id: Calcular tasas estandarizadas
+# Tasa estandarizada AVP por provincia
+avp_est_prov <- AVAD_prov |>
+  group_by(anio_enfr, codprov_censo, sexo) |>
+  calculate_dsr(
+    x = AVP,
+    n = proy_pob,
+    stdpop = pob_est_2010,
+    type = "standard"
+  )
+
+# Tasa estandarizada AVD por provincia
+avad_est_prov <- AVAD_prov |>
+  group_by(anio_enfr, codprov_censo, sexo) |>
+  calculate_dsr(
+    x = AVD,
+    n = proy_pob,
+    stdpop = pob_est_2010,
+    type = "standard"
+  )
+# Tasa estandarizada AVAD por provincia
+avad_est_prov <- AVAD_prov |>
+  group_by(anio_enfr, codprov_censo, sexo) |>
+  calculate_dsr(
+    x = AVAD,
+    n = proy_pob,
+    stdpop = pob_est_2010,
+    type = "standard"
+  )
+
+# Tasa estandarizada por región DEIS
+tasa_est_reg <- AVAD_reg |>
+  group_by(anio_enfr, region_deis, sexo) |>
+  calculate_dsr(
+    x = AVAD,
+    n = proy_pob,
+    stdpop = pob_est_2010,
+    type = "standard"
+  )
 ```
 
 ## Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus en Argentina, período 2005-2018

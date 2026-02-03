@@ -21,7 +21,7 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 30-01-2026 12:46
+# Última modificación: 03-02-2026 11:30
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -195,7 +195,6 @@ prov <- show_arg_codes() |>
   # Seleccionar columnas
   select(codprov_censo, prov_nombre, region_deis)
 
-
 # Funciones auxiliares ---------------------------------------------------
 ## Limpieza de proyecciones poblacionales ----
 clean_indec <- function(x) {
@@ -298,7 +297,7 @@ clean_enfr <- function(x) {
 
 
 ## Simulaciones de Monte-Carlo para AVP, AVD y AVAD ----
-sim_IU_DALYs <- function(
+sim_AVAD <- function(
   defun_mean,
   defun_se,
   dm2_total,
@@ -320,9 +319,6 @@ sim_IU_DALYs <- function(
     sd = defun_sd
   )
 
-  # AVP
-  AVP_sim <- defun_sim * ex
-
   # Simular total de casos DM2 (truncado en 0)
   dm2_sim <- rtruncnorm(
     n = nsim,
@@ -331,52 +327,110 @@ sim_IU_DALYs <- function(
     sd = dm2_sd
   )
 
-  # AVD
+  # Simular AVP, AVD y AVAD
+  AVP_sim <- defun_sim * ex
   AVD_sim <- dm2_sim * fwd
-
-  # AVAD
   AVAD_sim <- AVP_sim + AVD_sim
 
-  # Tasa AVP
-  AVP_t_sim <- (AVP_sim / proy_pob) * 1e5
+  list(
+    AVP_sim = AVP_sim,
+    AVD_sim = AVD_sim,
+    AVAD_sim = AVAD_sim,
+    AVP_t_sim = (AVP_sim / proy_pob) * 1e5,
+    AVD_t_sim = (AVD_sim / proy_pob) * 1e5,
+    AVAD_t_sim = (AVAD_sim / proy_pob) * 1e5
+  )
+}
 
-  # Tasa AVD
-  AVD_t_sim <- (AVD_sim / proy_pob) * 1e5
 
-  # Tasa AVAD
-  AVAD_t_sim <- (AVAD_sim / proy_pob) * 1e5
+## AVP, AVD, AVAD y tasas específicas con IU ----
+sim_AVAD_IU <- function(
+  defun_mean,
+  defun_se,
+  dm2_total,
+  dm2_total_se,
+  ex,
+  fwd,
+  proy_pob,
+  nsim = 10000
+) {
+  sims <- sim_AVAD(
+    defun_mean,
+    defun_se,
+    dm2_total,
+    dm2_total_se,
+    ex,
+    fwd,
+    proy_pob,
+    nsim
+  )
 
-  # Resumen (mediana e IU)
+  AVP_sim <- sims$AVP_sim[[1]]
+  AVD_sim <- sims$AVD_sim[[1]]
+  AVAD_sim <- sims$AVAD_sim[[1]]
+
+  AVP_t_sim <- sims$AVP_t_sim[[1]]
+  AVD_t_sim <- sims$AVD_t_sim[[1]]
+  AVAD_t_sim <- sims$AVAD_t_sim[[1]]
+
   tibble(
-    # AVP (IU)
-    AVP = quantile(AVP_sim, 0.5, na.rm = TRUE),
+    AVP = quantile(AVP_sim, 0.50, na.rm = TRUE),
     AVP_low = quantile(AVP_sim, 0.025, na.rm = TRUE),
     AVP_upp = quantile(AVP_sim, 0.975, na.rm = TRUE),
 
-    # AVD (IU)
-    AVD = quantile(AVD_sim, 0.5, na.rm = TRUE),
+    AVD = quantile(AVD_sim, 0.50, na.rm = TRUE),
     AVD_low = quantile(AVD_sim, 0.025, na.rm = TRUE),
     AVD_upp = quantile(AVD_sim, 0.975, na.rm = TRUE),
 
-    # AVAD (IU)
-    AVAD = quantile(AVAD_sim, 0.5, na.rm = TRUE),
+    AVAD = quantile(AVAD_sim, 0.50, na.rm = TRUE),
     AVAD_low = quantile(AVAD_sim, 0.025, na.rm = TRUE),
     AVAD_upp = quantile(AVAD_sim, 0.975, na.rm = TRUE),
 
-    # Tasa AVP (IU)
-    AVP_tasa = quantile(AVP_t_sim, 0.5, na.rm = TRUE),
+    AVP_tasa = quantile(AVP_t_sim, 0.50, na.rm = TRUE),
     AVP_tasa_low = quantile(AVP_t_sim, 0.025, na.rm = TRUE),
     AVP_tasa_upp = quantile(AVP_t_sim, 0.975, na.rm = TRUE),
 
-    # Tasa AVD (IU)
-    AVD_tasa = quantile(AVD_t_sim, 0.5, na.rm = TRUE),
+    AVD_tasa = quantile(AVD_t_sim, 0.50, na.rm = TRUE),
     AVD_tasa_low = quantile(AVD_t_sim, 0.025, na.rm = TRUE),
     AVD_tasa_upp = quantile(AVD_t_sim, 0.975, na.rm = TRUE),
 
-    # Tasa AVAD (IU)
-    AVAD_tasa = quantile(AVAD_t_sim, 0.5, na.rm = TRUE),
+    AVAD_tasa = quantile(AVAD_t_sim, 0.50, na.rm = TRUE),
     AVAD_tasa_low = quantile(AVAD_t_sim, 0.025, na.rm = TRUE),
     AVAD_tasa_upp = quantile(AVAD_t_sim, 0.975, na.rm = TRUE)
+  )
+}
+
+
+## Tasas estandarizadas con IU ----
+tasa_est_AVAD <- function(df) {
+  # df = una provincia-año-sexo con 6 filas (una por grupo_edad_10)
+  df <- df |> arrange(grupo_edad_10)
+
+  # pesos normalizados de la población estándar
+  w <- df$pob_est_2010 / sum(df$pob_est_2010, na.rm = TRUE)
+
+  # construir matrices nsim x nage a partir de sim_raw
+  AVP_t_mat <- do.call(cbind, lapply(df$sim_raw, \(s) s$AVP_t_sim))
+  AVD_t_mat <- do.call(cbind, lapply(df$sim_raw, \(s) s$AVD_t_sim))
+  AVAD_t_mat <- do.call(cbind, lapply(df$sim_raw, \(s) s$AVAD_t_sim))
+
+  # tasa estandarizada por réplica (producto matricial)
+  AVP_std <- as.numeric(AVP_t_mat %*% w)
+  AVD_std <- as.numeric(AVD_t_mat %*% w)
+  AVAD_std <- as.numeric(AVAD_t_mat %*% w)
+
+  tibble(
+    AVP_tasa_std = quantile(AVP_std, 0.50, na.rm = TRUE),
+    AVP_tasa_std_low = quantile(AVP_std, 0.025, na.rm = TRUE),
+    AVP_tasa_std_upp = quantile(AVP_std, 0.975, na.rm = TRUE),
+
+    AVD_tasa_std = quantile(AVD_std, 0.50, na.rm = TRUE),
+    AVD_tasa_std_low = quantile(AVD_std, 0.025, na.rm = TRUE),
+    AVD_tasa_std_upp = quantile(AVD_std, 0.975, na.rm = TRUE),
+
+    AVAD_tasa_std = quantile(AVAD_std, 0.50, na.rm = TRUE),
+    AVAD_tasa_std_low = quantile(AVAD_std, 0.025, na.rm = TRUE),
+    AVAD_tasa_std_upp = quantile(AVAD_std, 0.975, na.rm = TRUE)
   )
 }
 
@@ -685,11 +739,21 @@ datos_dm2_prov <- list(
       # Aplicar función de limpieza
       clean_enfr() |>
       # Calcular total personas con DM y prevalencia
-      group_by(codprov_censo, prov_nombre, region_deis, sexo, grupo_edad_10) |>
+      group_by(
+        codprov_censo,
+        prov_nombre,
+        region_deis,
+        sexo,
+        grupo_edad_10
+      ) |>
       summarise(
         dm_total = survey_total(dm_auto),
         dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("ci", "cv"), na.rm = TRUE),
+        dm2_prev = survey_mean(
+          dm2_auto,
+          vartype = c("ci", "cv"),
+          na.rm = TRUE
+        ),
         .groups = "drop"
       )
   }) |>
@@ -742,7 +806,11 @@ datos_dm2_reg <- list(
       summarise(
         dm_total = survey_total(dm_auto),
         dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("ci", "cv"), na.rm = TRUE),
+        dm2_prev = survey_mean(
+          dm2_auto,
+          vartype = c("ci", "cv"),
+          na.rm = TRUE
+        ),
         .groups = "drop"
       )
   }) |>
@@ -799,7 +867,11 @@ datos_dm2_arg <- list(
       summarise(
         dm_total = survey_total(dm_auto),
         dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(dm2_auto, vartype = c("ci", "cv"), na.rm = TRUE),
+        dm2_prev = survey_mean(
+          dm2_auto,
+          vartype = c("ci", "cv"),
+          na.rm = TRUE
+        ),
         .groups = "drop"
       )
   }) |>
@@ -836,19 +908,18 @@ datos_dm2_arg <- list(
   left_join(comp_dm2) |>
 
   # Combinar con esperanza de vida
-  left_join(ex_ge10) |>
-
-  # Combinar con población estándar 2010
-  left_join(pob_est_2010)
+  left_join(ex_ge10)
 
 
 # Simular AVP, AVD y AVAD ------------------------------------------------
 ## Provincia, sexo y grupo etario ----
 set.seed(123)
+
 sim_avad_prov <- datos_dm2_prov |>
+  # Crear columna para simulaciones
   mutate(
-    sim = pmap(
-      list(
+    sim_raw = pmap(
+      .l = list(
         defun_mean,
         defun_se,
         dm2_total,
@@ -857,33 +928,51 @@ sim_avad_prov <- datos_dm2_prov |>
         fwd,
         proy_pob
       ),
-      sim_IU_DALYs
+      .f = sim_AVAD
+    )
+  ) |>
+
+  # Simular indicadores y tasas específicas
+  mutate(
+    sim = pmap(
+      .l = list(
+        defun_mean,
+        defun_se,
+        dm2_total,
+        dm2_total_se,
+        ex,
+        fwd,
+        proy_pob
+      ),
+      .f = sim_AVAD_IU
     )
   ) |>
   unnest_wider(sim) |>
 
   # Añadir población estándar 2010
-  left_join(pob_est_2010) |>
+  left_join(pob_est_2010)
 
-  # Reordenar columnas
-  select(
-    anio_enfr:grupo_edad_10,
-    contains(c("pob", "dm", "defun")),
-    ex,
-    fwd,
-    AVP:AVAD_tasa_upp
-  ) |>
+# # Reordenar columnas
+# select(
+#   anio_enfr:grupo_edad_10,
+#   contains(c("pob", "dm", "defun")),
+#   ex,
+#   fwd,
+#   AVP:AVAD_tasa_upp,
+#   sim_avad
+# ) |>
 
-  # Columnas caracter a factor
-  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+# # Columnas caracter a factor
+# mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
 
-
-# Región, sexo y grupo etario ----
+## Región, sexo y grupo etario ----
 set.seed(123)
+
 sim_avad_reg <- datos_dm2_reg |>
+  # Crear columna para simulaciones
   mutate(
-    sim = pmap(
-      list(
+    sim_raw = pmap(
+      .l = list(
         defun_mean,
         defun_se,
         dm2_total,
@@ -892,14 +981,95 @@ sim_avad_reg <- datos_dm2_reg |>
         fwd,
         proy_pob
       ),
-      sim_IU_DALYs
+      .f = sim_AVAD
+    )
+  ) |>
+
+  # Simular indicadores y tasas específicas
+  mutate(
+    sim = pmap(
+      .l = list(
+        defun_mean,
+        defun_se,
+        dm2_total,
+        dm2_total_se,
+        ex,
+        fwd,
+        proy_pob
+      ),
+      .f = sim_AVAD_IU
     )
   ) |>
   unnest_wider(sim) |>
 
   # Añadir población estándar 2010
-  left_join(pob_est_2010) |>
+  left_join(pob_est_2010)
 
+
+## Sexo y grupo etario ----
+set.seed(123)
+
+sim_avad_arg <- datos_dm2_arg |>
+  # Crear columna para simulaciones
+  mutate(
+    sim_raw = pmap(
+      .l = list(
+        defun_mean,
+        defun_se,
+        dm2_total,
+        dm2_total_se,
+        ex,
+        fwd,
+        proy_pob
+      ),
+      .f = sim_AVAD
+    )
+  ) |>
+
+  # Simular indicadores y tasas específicas
+  mutate(
+    sim = pmap(
+      .l = list(
+        defun_mean,
+        defun_se,
+        dm2_total,
+        dm2_total_se,
+        ex,
+        fwd,
+        proy_pob
+      ),
+      .f = sim_AVAD_IU
+    )
+  ) |>
+  unnest_wider(sim) |>
+
+  # Añadir población estándar 2010
+  left_join(pob_est_2010)
+
+# Simular tasas estandarizadas -------------------------------------------
+## Año, provincia y sexo ----
+tasa_est_prov <- sim_avad_prov |>
+  group_by(anio_enfr, codprov_censo, prov_nombre, sexo) |>
+  group_modify(~ tasa_est_AVAD(.x)) |>
+  ungroup()
+
+## Año, región DEIS y sexo ----
+tasa_est_reg <- sim_avad_reg |>
+  group_by(anio_enfr, region_deis, sexo) |>
+  group_modify(~ tasa_est_AVAD(.x)) |>
+  ungroup()
+
+
+## Año y sexo ----
+tasa_est_arg <- sim_avad_arg |>
+  group_by(anio_enfr, sexo) |>
+  group_modify(~ tasa_est_AVAD(.x)) |>
+  ungroup()
+
+
+# Reordenar datos --------------------------------------------------------
+## Provincia, sexo y grupo etario ----
+sim_avad_prov <- sim_avad_prov |>
   # Reordenar columnas
   select(
     anio_enfr:grupo_edad_10,
@@ -913,28 +1083,23 @@ sim_avad_reg <- datos_dm2_reg |>
   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
 
 
-# Sexo y grupo etario ----
-set.seed(123)
-sim_avad_arg <- datos_dm2_arg |>
-  mutate(
-    sim = pmap(
-      list(
-        defun_mean,
-        defun_se,
-        dm2_total,
-        dm2_total_se,
-        ex,
-        fwd,
-        proy_pob
-      ),
-      sim_IU_DALYs
-    )
+## Región DEIS, sexo y grupo etario ----
+sim_avad_reg <- sim_avad_reg |>
+  # Reordenar columnas
+  select(
+    anio_enfr:grupo_edad_10,
+    contains(c("pob", "dm", "defun")),
+    ex,
+    fwd,
+    AVP:AVAD_tasa_upp
   ) |>
-  unnest_wider(sim) |>
 
-  # Añadir población estándar 2010
-  left_join(pob_est_2010) |>
+  # Columnas caracter a factor
+  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
 
+
+## Total país por sexo y grupo etario ----
+sim_avad_arg <- sim_avad_arg |>
   # Reordenar columnas
   select(
     anio_enfr:grupo_edad_10,
@@ -1008,20 +1173,23 @@ data_dicc <- tibble(
 
 
 # Exportar datos limpios -------------------------------------------------
-# Por provincia, sexo y grupo etario
+# AVP, AVD, AVAD y tasas específicas por provincia, sexo y grupo etario
 export(sim_avad_prov, file = "datos_limpios/arg_sim_avad_dm2_prov.rds")
 
-# Por región, sexo y grupo etario
+# AVP, AVD, AVAD y tasas específicas por región, sexo y grupo etario
 export(sim_avad_reg, file = "datos_limpios/arg_sim_avad_dm2_reg.rds")
 
-# Total país por sexo y grupo etario
+# AVP, AVD, AVAD y tasas específicas por sexo y grupo etario
 export(sim_avad_arg, file = "datos_limpios/arg_sim_avad_dm2.rds")
+
+# Tasas estandarizadas por provincia, año y sexo
+export(tasa_est_prov, file = "datos_limpios/arg_tasas_est_prov.rds")
+
+# Tasas estandarizadas por región, año y sexo
+export(tasa_est_reg, file = "datos_limpios/arg_tasas_est_reg.rds")
+
+# Tasas estandarizadas por provincia, año y sexo
+export(tasa_est_arg, file = "datos_limpios/arg_tasas_est.rds")
 
 # Diccionario de datos
 export(data_dicc, file = "datos_limpios/dic_arg_sim_avad_dm2.xlsx")
-
-
-# Limpiar environment y desactivar paquetes ------------------------------
-rm(list = ls())
-
-pacman::p_unload("all")
