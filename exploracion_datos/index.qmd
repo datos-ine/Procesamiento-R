@@ -23,7 +23,6 @@ knitr::opts_chunk$set(
 ```{r}
 #| id: Cargar paquetes
 pacman::p_load(
-  PHEindicatormethods,
   geoAr,
   sf,
   tmap,
@@ -46,6 +45,14 @@ AVAD_reg <- import("../datos_limpios/arg_sim_avad_dm2_reg.rds")
 ## AVAD por sexo y grupo etario
 AVAD_arg <- import("../datos_limpios/arg_sim_avad_dm2.rds")
 
+# Tasas estandarizadas por provincia, sexo y año
+AVAD_te_prov <- import("../datos_limpios/arg_tasas_est_prov.rds")
+
+# Tasas estandarizadas por provincia, sexo y año
+AVAD_te_reg <- import("../datos_limpios/arg_tasas_est_reg.rds")
+
+# Tasas estandarizadas por sexo y año
+AVAD_te_arg <- import("../datos_limpios/arg_tasas_est.rds")
 ```
 
 ```{r}
@@ -80,49 +87,6 @@ shp_arg <- get_geo(geo = "ARGENTINA") |>
   st_make_valid()
 ```
 
-
-
-```{r}
-#| id: Calcular tasas estandarizadas
-# Tasa estandarizada AVP por provincia
-avp_est_prov <- AVAD_prov |>
-  group_by(anio_enfr, codprov_censo, sexo) |>
-  calculate_dsr(
-    x = AVP,
-    n = proy_pob,
-    stdpop = pob_est_2010,
-    type = "standard"
-  )
-
-# Tasa estandarizada AVD por provincia
-avad_est_prov <- AVAD_prov |>
-  group_by(anio_enfr, codprov_censo, sexo) |>
-  calculate_dsr(
-    x = AVD,
-    n = proy_pob,
-    stdpop = pob_est_2010,
-    type = "standard"
-  )
-# Tasa estandarizada AVAD por provincia
-avad_est_prov <- AVAD_prov |>
-  group_by(anio_enfr, codprov_censo, sexo) |>
-  calculate_dsr(
-    x = AVAD,
-    n = proy_pob,
-    stdpop = pob_est_2010,
-    type = "standard"
-  )
-
-# Tasa estandarizada por región DEIS
-tasa_est_reg <- AVAD_reg |>
-  group_by(anio_enfr, region_deis, sexo) |>
-  calculate_dsr(
-    x = AVAD,
-    n = proy_pob,
-    stdpop = pob_est_2010,
-    type = "standard"
-  )
-```
 
 ## Análisis espacial y tendencia de la carga de enfermedad por diabetes mellitus en Argentina, período 2005-2018
 
@@ -186,6 +150,39 @@ tab |>
 
 ```
 
+### Tasas estandarizadas AVP, AVD y AVAD por año y sexo
+
+```{r}
+## Datos para la tabla
+tab <- AVAD_te_arg |>
+  # Renombrar columnas
+  rename_with(
+    .cols = contains("tasa_std_"),
+    .fn = ~ str_remove(.x, "_tasa_std")
+  ) |>
+  # Redondear columnas numéricas
+  mutate(across(.cols = where(is.numeric), .fns = ~ round(.x, 2))) |>
+
+  # Seleccionar columnas
+  select(
+    Año = anio_enfr,
+    Sexo = sexo,
+    everything()
+  )
+
+## Generar tabla
+tab |>
+  flextable() |>
+
+  separate_header(split = "_") |>
+
+  merge_v(j = 1) |>
+
+  autofit() |>
+
+  font(fontname = "Calibri", part = "all")
+```
+
 ### Pirámide AVAD por sexo y grupo etario decenal, Argentina (2005-2018)
 
 ```{r}
@@ -206,7 +203,7 @@ tab <- AVAD_arg |>
 tab |>
   ggplot(aes(x = grupo_edad_10, y = AVAD, fill = sexo)) +
   geom_col(color = "black") +
-  geom_linerange(aes(ymin = AVAD_low, ymax = AVAD_upp)) +
+  geom_errorbar(aes(ymin = AVAD_low, ymax = AVAD_upp)) +
   scale_fill_viridis_d(end = 0.9, alpha = 0.95) +
   scale_y_continuous(labels = abs, n.breaks = 6) +
   coord_flip() +

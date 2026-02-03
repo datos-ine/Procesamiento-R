@@ -17,11 +17,13 @@
 ## - Prevalencia DM2: se simularon con una normal truncada en [0,1], con media
 ## igual a la estimación puntual y desviación estándar igual a su error estándar.
 ## - Pesos de discapacidad: se consideraron fijos (Qualidiab 2014).
+### Cálculo de tasas estandarizadas AVP, AVD y AVAD e intervalos de incertidumbre
+### mediante cadenas de Monte-Carlo con 10.000 réplicas.
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 03-02-2026 11:30
+# Última modificación: 03-02-2026 12:07
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -311,15 +313,13 @@ sim_AVAD <- function(
   defun_sd <- if_else(defun_mean > 0, defun_se, 1e-6)
   dm2_sd <- if_else(dm2_total > 0, dm2_total_se, 1e-6)
 
-  # Simular defunciones (truncadas en 0)
+  # Simular defunciones y casos (truncados en 0)
   defun_sim <- rtruncnorm(
     n = nsim,
     a = 0,
     mean = defun_mean,
     sd = defun_sd
   )
-
-  # Simular total de casos DM2 (truncado en 0)
   dm2_sim <- rtruncnorm(
     n = nsim,
     a = 0,
@@ -327,18 +327,24 @@ sim_AVAD <- function(
     sd = dm2_sd
   )
 
-  # Simular AVP, AVD y AVAD
+  # AVP, AVD, AVAD
   AVP_sim <- defun_sim * ex
   AVD_sim <- dm2_sim * fwd
   AVAD_sim <- AVP_sim + AVD_sim
 
+  # Tasas específicas por 100.000
+  AVP_t_sim <- (AVP_sim / proy_pob) * 1e5
+  AVD_t_sim <- (AVD_sim / proy_pob) * 1e5
+  AVAD_t_sim <- (AVAD_sim / proy_pob) * 1e5
+
+  # devolver lista con nombres fijos
   list(
     AVP_sim = AVP_sim,
     AVD_sim = AVD_sim,
     AVAD_sim = AVAD_sim,
-    AVP_t_sim = (AVP_sim / proy_pob) * 1e5,
-    AVD_t_sim = (AVD_sim / proy_pob) * 1e5,
-    AVAD_t_sim = (AVAD_sim / proy_pob) * 1e5
+    AVP_t_sim = AVP_t_sim,
+    AVD_t_sim = AVD_t_sim,
+    AVAD_t_sim = AVAD_t_sim
   )
 }
 
@@ -365,38 +371,30 @@ sim_AVAD_IU <- function(
     nsim
   )
 
-  AVP_sim <- sims$AVP_sim[[1]]
-  AVD_sim <- sims$AVD_sim[[1]]
-  AVAD_sim <- sims$AVAD_sim[[1]]
-
-  AVP_t_sim <- sims$AVP_t_sim[[1]]
-  AVD_t_sim <- sims$AVD_t_sim[[1]]
-  AVAD_t_sim <- sims$AVAD_t_sim[[1]]
-
   tibble(
-    AVP = quantile(AVP_sim, 0.50, na.rm = TRUE),
-    AVP_low = quantile(AVP_sim, 0.025, na.rm = TRUE),
-    AVP_upp = quantile(AVP_sim, 0.975, na.rm = TRUE),
+    AVP = quantile(sims$AVP_sim, 0.50, na.rm = TRUE),
+    AVP_low = quantile(sims$AVP_sim, 0.025, na.rm = TRUE),
+    AVP_upp = quantile(sims$AVP_sim, 0.975, na.rm = TRUE),
 
-    AVD = quantile(AVD_sim, 0.50, na.rm = TRUE),
-    AVD_low = quantile(AVD_sim, 0.025, na.rm = TRUE),
-    AVD_upp = quantile(AVD_sim, 0.975, na.rm = TRUE),
+    AVD = quantile(sims$AVD_sim, 0.50, na.rm = TRUE),
+    AVD_low = quantile(sims$AVD_sim, 0.025, na.rm = TRUE),
+    AVD_upp = quantile(sims$AVD_sim, 0.975, na.rm = TRUE),
 
-    AVAD = quantile(AVAD_sim, 0.50, na.rm = TRUE),
-    AVAD_low = quantile(AVAD_sim, 0.025, na.rm = TRUE),
-    AVAD_upp = quantile(AVAD_sim, 0.975, na.rm = TRUE),
+    AVAD = quantile(sims$AVAD_sim, 0.50, na.rm = TRUE),
+    AVAD_low = quantile(sims$AVAD_sim, 0.025, na.rm = TRUE),
+    AVAD_upp = quantile(sims$AVAD_sim, 0.975, na.rm = TRUE),
 
-    AVP_tasa = quantile(AVP_t_sim, 0.50, na.rm = TRUE),
-    AVP_tasa_low = quantile(AVP_t_sim, 0.025, na.rm = TRUE),
-    AVP_tasa_upp = quantile(AVP_t_sim, 0.975, na.rm = TRUE),
+    AVP_tasa = quantile(sims$AVP_t_sim, 0.50, na.rm = TRUE),
+    AVP_tasa_low = quantile(sims$AVP_t_sim, 0.025, na.rm = TRUE),
+    AVP_tasa_upp = quantile(sims$AVP_t_sim, 0.975, na.rm = TRUE),
 
-    AVD_tasa = quantile(AVD_t_sim, 0.50, na.rm = TRUE),
-    AVD_tasa_low = quantile(AVD_t_sim, 0.025, na.rm = TRUE),
-    AVD_tasa_upp = quantile(AVD_t_sim, 0.975, na.rm = TRUE),
+    AVD_tasa = quantile(sims$AVD_t_sim, 0.50, na.rm = TRUE),
+    AVD_tasa_low = quantile(sims$AVD_t_sim, 0.025, na.rm = TRUE),
+    AVD_tasa_upp = quantile(sims$AVD_t_sim, 0.975, na.rm = TRUE),
 
-    AVAD_tasa = quantile(AVAD_t_sim, 0.50, na.rm = TRUE),
-    AVAD_tasa_low = quantile(AVAD_t_sim, 0.025, na.rm = TRUE),
-    AVAD_tasa_upp = quantile(AVAD_t_sim, 0.975, na.rm = TRUE)
+    AVAD_tasa = quantile(sims$AVAD_t_sim, 0.50, na.rm = TRUE),
+    AVAD_tasa_low = quantile(sims$AVAD_t_sim, 0.025, na.rm = TRUE),
+    AVAD_tasa_upp = quantile(sims$AVAD_t_sim, 0.975, na.rm = TRUE)
   )
 }
 
@@ -787,7 +785,10 @@ datos_dm2_prov <- list(
   left_join(comp_dm2) |>
 
   # Combinar con esperanza de vida
-  left_join(ex_ge10)
+  left_join(ex_ge10) |>
+
+  # Añadir población estándar 2010
+  left_join(pob_est_2010)
 
 
 ## Región DEIS, sexo y grupo etario ----
@@ -848,7 +849,10 @@ datos_dm2_reg <- list(
   left_join(comp_dm2) |>
 
   # Combinar con esperanza de vida
-  left_join(ex_ge10)
+  left_join(ex_ge10) |>
+
+  # Añadir población estándar 2010
+  left_join(pob_est_2010)
 
 
 ## Total país por sexo y grupo etario ----
@@ -908,7 +912,10 @@ datos_dm2_arg <- list(
   left_join(comp_dm2) |>
 
   # Combinar con esperanza de vida
-  left_join(ex_ge10)
+  left_join(ex_ge10) |>
+
+  # Añadir población estándar 2010
+  left_join(pob_est_2010)
 
 
 # Simular AVP, AVD y AVAD ------------------------------------------------
@@ -947,23 +954,8 @@ sim_avad_prov <- datos_dm2_prov |>
       .f = sim_AVAD_IU
     )
   ) |>
-  unnest_wider(sim) |>
+  unnest_wider(sim)
 
-  # Añadir población estándar 2010
-  left_join(pob_est_2010)
-
-# # Reordenar columnas
-# select(
-#   anio_enfr:grupo_edad_10,
-#   contains(c("pob", "dm", "defun")),
-#   ex,
-#   fwd,
-#   AVP:AVAD_tasa_upp,
-#   sim_avad
-# ) |>
-
-# # Columnas caracter a factor
-# mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
 
 ## Región, sexo y grupo etario ----
 set.seed(123)
