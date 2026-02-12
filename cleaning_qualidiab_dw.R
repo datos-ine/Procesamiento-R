@@ -140,12 +140,16 @@ qualidiab_2014 <- qualidiab_2014_raw |>
     )
   ) |>
 
+
+  
   # Crear variable para presencia/ausencia de complicaciones
   mutate(
     comp_alguna = if_else(
       # Si cualquiera de las columnas tiene un "Sí"
       if_all(
-        starts_with("comp_"),
+        .cols = contains(c("ceguera", "disfuncion", "amputacion", "retinopatia",
+                           "neurop_perif_c", "nefropatia_c1",
+                           "acv", "claud_mi", "comp_ic", "iam_c")),
         ~ .x != "Sí"
       ),
       "No",
@@ -158,7 +162,8 @@ qualidiab_2014 <- qualidiab_2014_raw |>
     comp_micro = if_else(
       # Si cualquiera de las columnas tiene un "Sí"
       if_all(
-        .cols = contains(c("ceg", "nefropatia_c1", "disf", "amp", "ret")),
+        .cols = contains(c("ceguera", "disfuncion", "amputacion", "retinopatia",
+                           "neurop_perif_c", "nefropatia_c1")),
         .fns = ~ .x != "Sí"
       ),
       "No",
@@ -172,16 +177,7 @@ qualidiab_2014 <- qualidiab_2014_raw |>
       # Si cualquiera de las columnas tiene un "Sí"
       if_all(
         .cols = contains(c(
-          "hipo",
-          "iam_c",
-          "acv",
-          "claud",
-          "rev",
-          "hvi",
-          "ait",
-          "crm",
-          "stent",
-          "comp_ic"
+          "acv", "claud_mi", "comp_ic", "iam_c"
         )),
         .fns = ~ .x != "Sí"
       ),
@@ -195,7 +191,7 @@ qualidiab_2014 <- qualidiab_2014_raw |>
     trat_oral = if_else(
       if_all(
         .cols = starts_with("trat") &
-          contains(c("sul", "met", "gli", "idpp4", "arglp1", "dm_")),
+          contains(c("sul", "met", "gli", "idpp4", "arglp1", "dm_otros")),
         .fns = ~ is.na(.x)
       ),
       "No",
@@ -208,7 +204,7 @@ qualidiab_2014 <- qualidiab_2014_raw |>
     trat_insu = if_else(
       if_all(
         .cols = starts_with("trat") &
-          contains(c("nph", "cris", "ana", "num")),
+          contains(c("nph", "cris", "analogos", "numero_inyecciones")),
         .fns = ~ is.na(.x)
       ),
       "No",
@@ -294,12 +290,15 @@ qualidiab_2014 |>
 # 16 registros nuevos por tratamiento y
 # 1 registro con doble antecedente que queda como DM2 por tratamiento.
 ## Los que en la recategorización son "otros" corresponden a personas con pre-diabetes.
+
 # Cálculo de frecuencias por sexo y grupos de edad ------------------------
 
 # Crear dataset DM2 y DW -------------------------------------------------
 qualidiab_dm2_dw <- qualidiab_2014 |>
   filter(tipo_dm == "DM2") |>
 
+  #write_csv2(qualidiab_dm2_dw, file = "quali_dm2_tama.csv")
+  
   # Seleccionar columnas relevantes
   select(
     sexo,
@@ -353,8 +352,8 @@ qualidiab_dm2_dw <- qualidiab_2014 |>
 
   # Filtrar datos
   filter(
-    (str_detect(comp_qualidiab, "alguna") & value == "No") |
-      (!str_detect(comp_qualidiab, "alguna") & value == "Sí")
+    (str_detect(comp_qualidiab, "complicaciones") & value == "No") |
+      (!str_detect(comp_qualidiab, "complicaciones") & value == "Sí")
   ) |>
 
   # Añadir pesos de discapacidad (DW)

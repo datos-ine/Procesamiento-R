@@ -23,7 +23,7 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 03-02-2026 12:07
+# Última modificación: 11-02-2026 12:07
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -41,9 +41,9 @@ pacman::p_load(
   rio,
   janitor,
   tidyverse,
-  readxl
+  readxl,
+  miniUI
 )
-
 
 # Cargar datos -----------------------------------------------------------
 ## Proyecciones poblacionales 2001 y 2005 ----
@@ -463,11 +463,11 @@ ex_ge10 <- ex_ge10 |>
   # Crear grupo etario decenal
   mutate(
     grupo_edad_10 = case_when(
-      between(age_group, "30 a 34", "35 a 39") ~ "30 a 39",
-      between(age_group, "40 a 44", "45 a 49") ~ "40 a 49",
-      between(age_group, "50 a 54", "55 a 59") ~ "50 a 59",
-      between(age_group, "60 a 64", "65 a 69") ~ "60 a 69",
-      between(age_group, "70 a 74", "75 a 79") ~ "70 a 79",
+      between(age_group, "30-34 years", "35-39 years") ~ "30 a 39",
+      between(age_group, "40-44 years", "45-49 years") ~ "40 a 49",
+      between(age_group, "50-54 years", "55-59 years") ~ "50 a 59",
+      between(age_group, "60-64 years", "65-69 years") ~ "60 a 69",
+      between(age_group, "70-74 years", "75-79 years") ~ "70 a 79",
       .default = "80+"
     )
   ) |>
@@ -824,8 +824,10 @@ datos_dm2_reg <- list(
       group_by(anio_enfr, region_deis, grupo_edad_10, sexo) |>
 
       summarise(
-        defun_n = sum(n, na.rm = TRUE),
-        defun_mean = mean(n, na.rm = TRUE),
+        defun_n = sum(n, na.rm = TRUE)) %>% # recuento de defunciones totales
+      
+      mutate(
+        defun_mean = (defun_n/3), # promedio de defunciones en 3 años
         defun_se = sqrt(defun_mean / 3),
         .groups = "drop"
       )
@@ -888,8 +890,10 @@ datos_dm2_arg <- list(
       group_by(anio_enfr, grupo_edad_10, sexo) |>
 
       summarise(
-        defun_n = sum(n, na.rm = TRUE),
-        defun_mean = mean(n, na.rm = TRUE),
+        defun_n = sum(n, na.rm = TRUE)) %>% # recuento de defunciones totales
+      
+      mutate(
+        defun_mean = (defun_n/3), # promedio de defunciones entre 3 años
         defun_se = sqrt(defun_mean / 3),
         .groups = "drop"
       )
@@ -916,6 +920,7 @@ datos_dm2_arg <- list(
 
   # Añadir población estándar 2010
   left_join(pob_est_2010)
+
 
 
 # Simular AVP, AVD y AVAD ------------------------------------------------
@@ -1038,12 +1043,14 @@ sim_avad_arg <- datos_dm2_arg |>
   # Añadir población estándar 2010
   left_join(pob_est_2010)
 
+
 # Simular tasas estandarizadas -------------------------------------------
 ## Año, provincia y sexo ----
 tasa_est_prov <- sim_avad_prov |>
   group_by(anio_enfr, codprov_censo, prov_nombre, sexo) |>
   group_modify(~ tasa_est_AVAD(.x)) |>
   ungroup()
+
 
 ## Año, región DEIS y sexo ----
 tasa_est_reg <- sim_avad_reg |>
@@ -1177,11 +1184,17 @@ export(sim_avad_arg, file = "datos_limpios/arg_sim_avad_dm2.rds")
 # Tasas estandarizadas por provincia, año y sexo
 export(tasa_est_prov, file = "datos_limpios/arg_tasas_est_prov.rds")
 
+export(tasa_est_prov, file = "datos_limpios/arg_tasas_est_prov.xlsx") # para Joinpoint
+
 # Tasas estandarizadas por región, año y sexo
 export(tasa_est_reg, file = "datos_limpios/arg_tasas_est_reg.rds")
 
+export(tasa_est_reg, file = "datos_limpios/arg_tasas_est_reg.xlsx") # para Joinpoint
+
 # Tasas estandarizadas por provincia, año y sexo
 export(tasa_est_arg, file = "datos_limpios/arg_tasas_est.rds")
+
+export(tasa_est_arg, file = "datos_limpios/arg_tasas_est.xlsx") # para Joinpoint
 
 # Diccionario de datos
 export(data_dicc, file = "datos_limpios/dic_arg_sim_avad_dm2.xlsx")
