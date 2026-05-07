@@ -5,7 +5,7 @@
 ### Autoras: Micaela Gauto y Tamara Ricardo
 
 ### Fecha de creación: 11-02-2026
-# Última modificación: 12-02-2026
+# Última modificación: 18-02-2026
 
 # Carga de paquetes -------------------------------------------------------
 
@@ -92,7 +92,7 @@ moran_avad_global <- provincias_sf %>%
     I > 0  & p_value < 0.05 ~ "positiva",
     I < 0 & p_value < 0.05 ~ "negativa"))
 
-## Sólo se observa una autocorrelación positiva en el año 2005 y 2009 para los varones.
+## Sólo se observa una autocorrelación positiva en el año 2009 en ambos sexos.
 ## En el resto de los casos, la tasa ajustada de AVAD no presenta autocorrelación espacial.
 
 ### Índice de Moran global para AVP ----
@@ -118,7 +118,7 @@ moran_avp_global <- provincias_sf %>%
     I < 0 & p_value < 0.05 ~ "negativa"))
 
 ## Se observa autocorrelación espacial positiva en el indicador AVP
-## en los años 2009 para ambos sexos.
+## en los años 2009 para ambos sexos y en 2018 para varones.
 
 ### Índice de Moran global para AVD ----
 moran_avd_global <- provincias_sf %>%
@@ -142,7 +142,7 @@ moran_avd_global <- provincias_sf %>%
     I > 0  & p_value < 0.05 ~ "positiva",
     I < 0 & p_value < 0.05 ~ "negativa"))
 
-## Se observa autocorrelación positiva para el indicador AVD entre varones en el 2005 y 2018
+## Se observa autocorrelación positiva para el indicador AVD entre varones en el 2005 y 2018.
 
 
 # Índice de Moral local (con permutaciones) -------------------------------

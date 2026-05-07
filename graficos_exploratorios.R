@@ -6,11 +6,12 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 11-02-2026
-# Última modificación: 12-02-2026
+# Última modificación: 19-02-2026
 
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
+  
   apyramid,
   gghighlight,
   scico,
@@ -22,8 +23,9 @@ pacman::p_load(
   rio,
   janitor,
   tidyverse,
-  readxl
-)
+  readxl,
+  ggridges # ridge plot
+  )
 
 
 # Cargar datos limpios ----------------------------------------------------
@@ -37,6 +39,9 @@ avad_reg <- import("datos_limpios/arg_sim_avad_dm2_reg.rds")
 ## Datos de AVAD, AVP y AVD por grupo decenal y sexo según provincias
 avad_prov <- import("datos_limpios/arg_sim_avad_dm2_prov.rds")
 
+## Datos de AVAD, AVP y AVD por grupo decenal y sexo según provincias
+avd_ind <- import("datos_limpios/arg_sim_avd_ind.rds")
+
 ## Tasas de AVAD, AVP y AVD ajustadas por edad según sexo a nivel nacional
 tasas_avad_arg <- import("datos_limpios/arg_tasas_est.rds")
 
@@ -45,6 +50,9 @@ tasas_avad_reg <- import("datos_limpios/arg_tasas_est_reg.rds")
 
 ## Tasas de AVAD, AVP y AVD ajustadas por edad según sexo y provincia
 tasas_avad_prov <- import("datos_limpios/arg_tasas_est_prov.rds")
+
+## Población estándar Censo 2010
+pob_est_2010 <- import("datos_limpios/pob_est_2010.rds")
 
 
 # Gráficos exploratorios --------------------------------------------------
@@ -57,11 +65,48 @@ tasas_avad_prov <- import("datos_limpios/arg_tasas_est_prov.rds")
 "#af9e1f" #AVP
 
 ## Recuento absoluto de AVAD, AVP y AVD a nivel nacional ----
+# avad_arg_est <- tasas_avad_arg %>% 
+#   
+#   # Uno población estándar por sexo
+#   left_join(pob_est_2010 %>% 
+#               group_by(sexo) %>% 
+#               summarise(pob_est_2010 = sum(pob_est_2010)), by = join_by(sexo)) %>% 
+#   
+#   # Calculo recuento absoluto de cada indicador a partir de la tasa estandarizada
+#   mutate(
+#     across(
+#       .cols = starts_with(c("AVAD", "AVD", "AVP")),
+#       .fns = ~ (.x * pob_est_2010 / 100000),
+#       .names = "{.col}_abs")
+#       ) %>% 
+#   
+#   select(c(1:2, 13:21))
+#       
+# export(avad_arg_est, file = "datos_limpios/arg_abs_est.xlsx")
+
 avad_arg %>% 
   group_by(anio_enfr) %>% 
-  summarise(n_AVAD = sum(AVAD),
-            n_AVP = sum(AVP),
-            n_AVD = sum(AVD))
+  summarise(AVAD_total = sum(AVAD))
+
+(583691*100/329547)-100
+
+avad_arg %>% 
+  group_by(anio_enfr, sexo) %>% 
+  summarise(AVAD_total = sum(AVAD))
+
+#mujeres
+(248489*100/155947)-100
+#varones
+(335202*100/173600)-100
+
+avd_ind %>% 
+  group_by(anio_enfr, sexo, comp_qualidiab) %>% 
+  summarise(AVD_ind = sum(AVD)) %>% view()
+  
+  ggplot(aes(x = anio_enfr, y = AVD_ind)) +
+  geom_bar(stat = "identity") +
+  
+  facet_wrap(~sexo + comp_qualidiab, ncol = 4)
 
 ## Tasas ajustadas: Tendencia nacional por año y sexo ----
 tasas_avad_arg |> 
@@ -234,7 +279,54 @@ avad_arg |>
   scale_y_continuous(expand = c(0.2, 0))
 
 ## Gráficos por región ----
-### Ranking de tasas ajustadas de AVAD por provincia y sexo ----
+
+### Ridge plot por región ----
+tasas_avad_reg %>% 
+  ggplot(aes(x = AVAD_tasa_std, 
+             y = factor(anio_enfr), 
+             fill = factor(anio_enfr))) +
+  
+  geom_density_ridges(alpha = 0.7, color = "white", scale = 1.2) +
+  labs(
+    title = "Distribución de tasas ajustadas de AVAD regionales por sexo y año",
+    x = "Tasa ajustada de AVAD (c/100.000 hab)",
+    y = "Año",
+    fill = "Año"
+  ) +
+  
+  facet_wrap(~ sexo) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
+### Decomposition plot ----
+tasas_avad_reg %>% 
+  ggplot(aes(x = AVP_tasa_std, 
+             y = AVD_tasa_std, 
+             size = AVAD_tasa_std, 
+             color = region_deis)) +
+  geom_point(alpha = 0.7) +
+  
+  geom_vline(data = tasas_avad_arg,
+             aes(xintercept = AVP_tasa_std), 
+             linetype = 2) +
+  geom_hline(data = tasas_avad_arg,
+             aes(yintercept = AVD_tasa_std), 
+             linetype = 2) +
+  
+  scale_size_continuous(name = "Tasa ajustada de AVAD") +
+  labs(
+    title = "Descomposición de AVAD por año",
+    x = "Tasa ajustada de AVP (c/100.000 hab)",
+    y = "Tasa ajustada de AVD (c/100.000 hab)",
+    color = "Región"
+  ) +
+  
+  facet_wrap(nrow = 2, ncol = 4, vars(sexo, anio_enfr)) 
+
+
+
+### Ranking de tasas ajustadas de AVAD por región y sexo ----
 
 # 1) Calcular ranking por año
 df_rank_reg <- tasas_avad_reg %>%
@@ -344,6 +436,7 @@ avad_reg %>%
   # scale_x_continuous(limits = c(2003, 2020), expand = c(0.01,0),
   #                    breaks = c(2005, 2009, 2013, 2018)) +
   # 
+  geom_hline(yintercept = 0.5) +
   scale_x_discrete() +
   scale_y_continuous(labels = scales::label_percent()) +
   
@@ -371,6 +464,26 @@ avad_reg %>%
         axis.text.y = element_text(size = 8))
 
 ## Gráficos por provincia ----
+
+### Ridge plot por provincia ----
+tasas_avad_prov %>% 
+  ggplot(aes(x = AVAD_tasa_std, 
+             y = factor(anio_enfr), 
+             fill = factor(anio_enfr))) +
+  
+  geom_density_ridges(alpha = 0.7, color = "white", scale = 1.2) +
+  labs(
+    title = "Distribución de tasas ajustadas de AVAD provinciales por sexo y año",
+    x = "Tasa ajustada de AVAD (c/100.000 hab)",
+    y = "Año",
+    fill = "Año"
+  ) +
+  
+  facet_wrap(~ sexo) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
 ### Ranking de tasas ajustadas de AVAD por provincia y sexo ----
 
 # 1) Calcular ranking por año
@@ -392,7 +505,10 @@ top_provs <- df_rank %>%
 df_rank <- df_rank %>%
   left_join(top_provs %>% mutate(destacar = TRUE),
             by = c("sexo", "prov_nombre")) %>%
-  mutate(destacar = if_else(is.na(destacar), FALSE, destacar))
+  mutate(destacar = if_else(is.na(destacar), FALSE, destacar),
+         sexo = case_when(sexo == "Mujer" ~ "Mujeres",
+                          sexo == "Varón" ~ "Varones")) 
+
 
 
 # 3) Gráfico estilo bump chart
@@ -771,7 +887,7 @@ tasas_avad_prov |>
       "AVP_tasa_std" = "AVP")) +
   
   # Etiquetas ejes
-  labs(x = "Provincia", 
+  labs(x = "Año", 
        y = "Tasa ajustada (c/100.000 hab)",
        color = "") +
   
