@@ -26,7 +26,6 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 23-04-2026 12:07
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -43,6 +42,9 @@ pacman::p_load(
   readxl
 )
 
+
+# Cargar funciones auxiliares --------------------------------------------
+source("fun_auxiliares.R")
 
 # Cargar datos AVP -------------------------------------------------------
 ## Tabla de vida Argentina (2019) -----
@@ -142,11 +144,8 @@ proy_pob <- import("datos_limpios/arg_proy_pob.rds")
 pob_est_2010 <- import("datos_limpios/pob_est_2010.rds")
 
 
-# Funciones auxiliares ---------------------------------------------------
-source("fun_auxiliares.R")
-
 # Limpiar datos AVP ------------------------------------------------------
-## Esperanza de vida -----
+## Esperanza de vida -----------------------------------------------------
 ex_ge10 <- ex_ge10 |>
   # Seleccionar columnas
   select(
@@ -202,7 +201,7 @@ ex_ge10 <- ex_ge10 |>
   )
 
 
-## Defunciones 2004-2019 -----
+## Defunciones 2004-2019 -------------------------------------------------
 defun_dm2 <- def04 |>
   # Estandarizar nombres de columnas
   clean_names() |>
@@ -294,7 +293,7 @@ defun_dm2 <- def04 |>
 
 
 # Limpiar datos AVD ------------------------------------------------------
-## Complicaciones DM2 -----
+## Complicaciones DM2 ----------------------------------------------------
 comp_dm2 <- comp_dm2_raw |>
   # Filtrar menores de 30 años
   filter(between(grupo_edad_10, "30 a 39", "80+")) |>
@@ -342,7 +341,7 @@ comp_dm2 <- comp_dm2_raw |>
   )
 
 
-# Prevalencia DM2 -----
+# Prevalencia DM2 --------------------------------------------------------
 prev_dm2 <- list(
   "2005" = enfr05,
   "2009" = enfr09,
@@ -368,6 +367,7 @@ prev_dm2 <- list(
   }) |>
   bind_rows(.id = "anio_enfr")
 
+
 # Combinar datos AVP y AVD -----------------------------------------------
 datos_dm2 <- prev_dm2 |>
   # Añadir datos defunciones
@@ -383,69 +383,10 @@ datos_dm2 <- prev_dm2 |>
   left_join(comp_dm2)
 
 
-# ## Guardar datos limpios
-# export(datos_dm2, file = "datos_limpios/arg_datos_dm2.rds")
+## Guardar datos limpios
+export(datos_dm2, file = "datos_limpios/arg_datos_dm2.rds")
 
-# ### Complicaciones individuales ----
-# comp_dm2_ind <- comp_dm2 |>
-
-#   # Agregar variable anio_enfr para posterior join
-#   mutate(anio_enfr = as.character(anio)) %>%
-
-#   # Calcular promedio ponderado de discapacidad (fwd) por complicación
-#   group_by(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab) |>
-#   summarise(
-#     fwd = sum(comp_frec * dw, na.rm = TRUE),
-#     .groups = "drop"
-#   )
-
-# ## Prevalencia DM para AVD individual - Total país por sexo y grupo etario ----
-# datos_dm2_arg_AVD_ind <- list(
-#   "2005" = enfr05,
-#   "2009" = enfr09,
-#   "2013" = enfr13,
-#   "2018" = enfr18
-# ) |>
-#   map(\(x) {
-#     x |>
-#       # Aplicar función de limpieza
-#       clean_enfr() |>
-#       # Calcular total personas con DM y prevalencia
-#       group_by(sexo, grupo_edad_10) |>
-#       summarise(
-#         dm_total = survey_total(dm_auto),
-#         dm2_total = survey_total(dm2_auto),
-#         dm2_prev = survey_mean(
-#           dm2_auto,
-#           vartype = c("ci", "cv"),
-#           na.rm = TRUE
-#         ),
-#         .groups = "drop"
-#       )
-#   }) |>
-#   bind_rows(.id = "anio_enfr") |>
-
-#   # Combinar con proyecciones poblacionales
-#   left_join(
-#     proy_pob |>
-#       # Calcular proyecciones por región
-#       count(
-#         anio_enfr,
-#         sexo,
-#         grupo_edad_10,
-#         wt = proy_pob,
-#         name = "proy_pob"
-#       )
-#   ) |>
-
-#   # Combinar con pesos discapacidad DM2
-#   left_join(comp_dm2_ind, by = join_by(anio_enfr, sexo, grupo_edad_10)) |>
-
-#   # Añadir población estándar 2010
-#   left_join(pob_est_2010)
-
-# Simular AVP, AVD y AVAD ------------------------------------------------
-## Sexo y grupo etario -----
+# Simular AVP, AVD y AVAD totales ----------------------------------------
 set.seed(123)
 sim_avad <- datos_dm2 |>
   # Seleccionar columnas
@@ -464,7 +405,7 @@ sim_avad <- datos_dm2 |>
 
   # Monte Carlo fila por fila
   mutate(
-    sim = pmap(
+    sims = pmap(
       list(
         dm2_total,
         dm2_total_se,
@@ -475,21 +416,17 @@ sim_avad <- datos_dm2 |>
         proy_pob
       ),
       sim_AVAD
-    ),
-
-    sim_raw = map(sim, "sim_raw"),
-    resumen = map(sim, "resumen")
+    )
   ) |>
 
-  unnest_wider(resumen) |>
-
-  select(-sim) |>
+  # Expandir resultados
+  unnest_wider(sims) |>
 
   # Añadir población estándar 2010
   left_join(pob_est_2010)
 
 
-# Simular AVP, AVD y AVAD microvascular -----
+# Simular AVP, AVD y AVAD microvascular ----------------------------------
 set.seed(123)
 
 sim_avad_micro <- datos_dm2 |>
@@ -509,7 +446,7 @@ sim_avad_micro <- datos_dm2 |>
 
   # Monte Carlo fila por fila
   mutate(
-    sim = pmap(
+    sims = pmap(
       list(
         dm2_total,
         dm2_total_se,
@@ -520,21 +457,17 @@ sim_avad_micro <- datos_dm2 |>
         proy_pob
       ),
       sim_AVAD
-    ),
-
-    sim_raw = map(sim, "sim_raw"),
-    resumen = map(sim, "resumen")
+    )
   ) |>
 
-  unnest_wider(resumen) |>
-
-  select(-sim) |>
+  # Expandir resultados
+  unnest_wider(sims) |>
 
   # Añadir población estándar 2010
   left_join(pob_est_2010)
 
 
-# Simular AVP, AVD y AVAD macrovascular -----
+# Simular AVP, AVD y AVAD macrovascular ----------------------------------
 set.seed(123)
 
 sim_avad_macro <- datos_dm2 |>
@@ -554,7 +487,7 @@ sim_avad_macro <- datos_dm2 |>
 
   # Monte Carlo fila por fila
   mutate(
-    sim = pmap(
+    sims = pmap(
       list(
         dm2_total,
         dm2_total_se,
@@ -565,192 +498,11 @@ sim_avad_macro <- datos_dm2 |>
         proy_pob
       ),
       sim_AVAD
-    ),
-
-    sim_raw = map(sim, "sim_raw"),
-    resumen = map(sim, "resumen")
+    )
   ) |>
 
-  unnest_wider(resumen) |>
-
-  select(-sim) |>
+  # Expandir resultados
+  unnest_wider(sims) |>
 
   # Añadir población estándar 2010
   left_join(pob_est_2010)
-
-# ## AVD por complicación, sexo y grupo etario ----
-# set.seed(123)
-
-# sim_avd_ind <- datos_dm2_arg_AVD_ind |>
-#   # Crear columna para simulaciones
-#   mutate(
-#     sim_raw = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_comp
-#     )
-#   ) |>
-
-#   # Simular indicadores y tasas específicas
-#   mutate(
-#     sim = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_IU_ind
-#     )
-#   ) |>
-#   unnest_wider(sim) |>
-
-#   # Añadir población estándar 2010
-#   left_join(pob_est_2010)
-
-# Simular tasas estandarizadas -------------------------------------------
-## Año y sexo ----
-tasa_est_arg <- sim_avad |>
-  group_by(anio_enfr, sexo) |>
-  group_modify(~ tasa_est_AVAD(.x, pob_est = pob_est)) |>
-  ungroup()
-
-# # Reordenar datos --------------------------------------------------------
-
-# ## Total país por sexo y grupo etario ----
-# sim_avad_arg <- sim_avad_arg |>
-#   # Reordenar columnas
-#   select(
-#     anio_enfr:grupo_edad_10,
-#     contains(c("pob", "dm", "defun")),
-#     ex,
-#     fwd,
-#     AVP:AVAD_tasa_upp
-#   ) |>
-
-#   # Columnas caracter a factor
-#   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
-
-# ## AVD individuales por sexo y grupo etario ----
-# sim_avd_ind <- sim_avd_ind |>
-#   # Reordenar columnas
-#   select(
-#     anio_enfr:grupo_edad_10,
-#     contains(c("pob", "dm")),
-#     comp_tipo,
-#     comp_qualidiab,
-#     fwd,
-#     AVD:AVD_upp
-#   ) |>
-
-#   # Columnas caracter a factor
-#   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
-
-# # Recuento de AVAD, AVD y AVP totales -------------------------------------
-
-# ## Año y sexo ----
-# abs_avad_arg <- sim_avad_arg %>%
-#   group_by(anio_enfr, sexo) %>%
-#   summarise(
-#     AVAD = sum(AVAD),
-#     AVD = sum(AVD),
-#     AVP = sum(AVP)
-#   )
-
-# # Diccionario de datos ---------------------------------------------------
-# levels_comp <- levels(sim_avd_ind$comp_qualidiab)
-
-# data_dicc <- bind_rows(
-#   tibble(
-#     variable = names(sim_avad_arg),
-
-#     descripción = c(
-#       "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
-#       "Sexo asignado al nacer",
-#       "Grupo etario decenal",
-#       "Proyección poblacional por sexo y grupo etario decenal según Censo Nacional 2010",
-#       "Población estándar por sexo y grupo etario decenal según Censo Nacional 2010",
-#       "Total estimado de personas con diabetes mellitus (DM) por autorreporte según resultados ENFR",
-#       "Error estándar del total estimado de personas con DM por autorreporte según resultados ENFR",
-#       "Total estimado de personas con DM tipo 2 (DM2) por autorreporte según resultados ENFR",
-#       "Error estándar del total estimado de personas con DM2 por autorreporte según resultados ENFR",
-#       "Prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Límite inferior del intervalo de confianza (CI) de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Límite superior del intervalo de confianza (CI) de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Coeficiente de variación de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Defunciones por DM2 para el trienio correspondiente a la ENFR",
-#       "Defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
-#       "Error estándar de las defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
-#       "Esperanza de vida a la edad X según sexo y grupo etario decenal",
-#       "Peso de discapacidad ponderado para secuelas de DM2",
-#       "Años de vida perdidos (AVP) por muerte prematura por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de los AVP por muerte prematura por DM2",
-#       "Límite superior del IU de los AVP por muerte prematura por DM2",
-#       "Años vividos con discapacidad (AVD) por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de los AVD por DM2",
-#       "Límite superior del IU de los AVD por DM2",
-#       "Años de vida ajustados por discapacidad (AVAD) para DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de los AVAD por DM2",
-#       "Límite superior del IU de los AVAD por DM2",
-#       "Tasa específica de AVP por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVP por DM2",
-#       "Límite superior del IU de la tasa de AVP por DM2",
-#       "Tasa específica de AVD por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVD por DM2",
-#       "Límite superior del IU de la tasa de AVD por DM2",
-#       "Tasa específica de AVAD por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVAD por DM2",
-#       "Límite superior del IU de la tasa de AVAD por DM2"
-#     ),
-
-#     tipo_var = map_chr(sim_avad_arg, ~ paste(class(.x), collapse = ", ")),
-
-#     niveles = map_chr(
-#       sim_avad_arg,
-#       ~ if (is.factor(.x)) {
-#         paste(levels(.x), collapse = ", ")
-#       } else {
-#         "0-Inf"
-#       }
-#     )
-#   ),
-#   tibble(
-#     variable = "comp_qualidiab",
-#     descripción = "Complicación crónica asociada a la DM2",
-#     tipo_var = "factor",
-#     niveles = paste(levels_comp, collapse = ", ")
-#   )
-# )
-
-# # Exportar datos limpios -------------------------------------------------
-
-# # AVP, AVD, AVAD y tasas específicas por sexo y grupo etario
-# export(sim_avad_arg, file = "datos_limpios/arg_sim_avad_dm2.rds")
-
-# # AVD por complicación, sexo y grupo etario
-# export(sim_avd_ind, file = "datos_limpios/arg_sim_avd_ind.rds")
-
-# # Tasas estandarizadas por año y sexo
-# export(tasa_est_arg, file = "datos_limpios/arg_tasas_est.rds")
-
-# export(tasa_est_arg, file = "datos_limpios/arg_tasas_est.xlsx") # para Joinpoint
-
-# # Recuentos absolutos por año y sexo
-# export(abs_avad_arg, file = "datos_limpios/arg_avad_abs.rds")
-
-# export(abs_avad_arg, file = "datos_limpios/arg_avad_abs.xlsx") # para Joinpoint
-
-# # Población estándar Censo 2010
-# export(pob_est_2010, file = "datos_limpios/pob_est_2010.rds")
-
-# # Diccionario de datos
-# export(data_dicc, file = "datos_limpios/dic_arg_avad_dm2.xlsx")
-
-# # Limpiar environment ----------------------------------------------------
-# rm(list = ls())
-
-# pacman::p_unload("all")
