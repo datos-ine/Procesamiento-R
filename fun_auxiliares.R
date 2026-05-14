@@ -3,72 +3,31 @@
 ### Autoras:
 ### - Tamara Ricardo
 ### - Micaela Gauto
-# Última modificación: 13-05-2026 15:03
+### Fecha de creación: 27-01-2026
+# Última modificación: 14-05-2026 09:22
 
-# Limpiar datos ENFR -----------------------------------------------------
-clean_enfr <- function(x) {
-  x_clean <- x |>
-    # Filtrar menores de 30 años
-    filter(edad >= 30) |>
-
-    # Crear grupo de edad decenal
-    mutate(
-      grupo_edad_10 = age_categories(
-        edad,
-        lower = 30,
-        upper = 80,
-        by = 10,
-        separator = " a "
-      )
-    ) |>
-
-    # Cambiar etiquetas sexo
-    mutate(sexo = if_else(sexo == 1, "Varón", "Mujer")) |>
-
-    # Convertir DM a binomial y calcular frecuencia DM2
-    mutate(
-      dm_auto = if_else(dm_auto == 1, 1, 0),
-      dm2_auto = dm_auto * 0.9
-    )
-
-  ## Construir diseño muestral ##
-  if ("wt" %in% names(x_clean)) {
-    x_clean |>
-      as_survey_design(weights = wt)
-  } else {
-    x_clean |>
-      as_survey_rep(
-        weights = wf1p,
-        repweights = starts_with("wf1p"),
-        type = "bootstrap"
-      )
-  }
+# Resumen indicadores ----------------------------------------------------
+resumen_ic <- function(x, nombre) {
+  tibble(
+    !!nombre := quantile(x, 0.50, na.rm = TRUE),
+    !!paste0(nombre, "_iu_l") := quantile(x, 0.025, na.rm = TRUE),
+    !!paste0(nombre, "_iu_u") := quantile(x, 0.975, na.rm = TRUE)
+  )
 }
 
 
-# Simulaciones Monte-Carlo para AVP, AVD y AVAD --------------------------
-sim_AVAD <- function(
-  dm2_total,
-  dm2_total_se,
-  fwd,
+# Simulaciones Monte-Carlo para AVP --------------------------------------
+sim_AVP <- function(
   defun_mean,
   defun_se,
   ex,
   proy_pob,
   nsim = 10000
 ) {
-  # SD robustos
-  dm2_sd <- dplyr::if_else(dm2_total > 0, dm2_total_se, 1e-6)
+  ## SD robustos ##
   defun_sd <- dplyr::if_else(defun_mean > 0, defun_se, 1e-6)
 
-  # Simulaciones
-  dm2_sim <- truncnorm::rtruncnorm(
-    n = nsim,
-    a = 0,
-    mean = dm2_total,
-    sd = dm2_sd
-  )
-
+  ## Simular defunciones ##
   defun_sim <- truncnorm::rtruncnorm(
     n = nsim,
     a = 0,
@@ -76,145 +35,111 @@ sim_AVAD <- function(
     sd = defun_sd
   )
 
-  # Métricas
+  ## Simular AVP ##
   AVP_sim <- defun_sim * ex
-  AVD_sim <- dm2_sim * fwd
-  AVAD_sim <- AVP_sim + AVD_sim
 
-  # Tasas
-  AVP_t_sim <- AVP_sim / proy_pob * 1e5
-  AVD_t_sim <- AVD_sim / proy_pob * 1e5
-  AVAD_t_sim <- AVAD_sim / proy_pob * 1e5
+  ## Simular tasa AVP ##
+  AVP_t_sim <- (AVP_sim / proy_pob) * 1e5
 
-  sims <- list(
-    AVP = AVP_sim,
-    AVD = AVD_sim,
-    AVAD = AVAD_sim,
-    AVP_tasa = AVP_t_sim,
-    AVD_tasa = AVD_t_sim,
-    AVAD_tasa = AVAD_t_sim
-  )
-
-  # función auxiliar
-  resumen_ic <- function(x) {
-    c(
-      est = quantile(x, 0.50, na.rm = TRUE),
-      low = quantile(x, 0.025, na.rm = TRUE),
-      upp = quantile(x, 0.975, na.rm = TRUE)
-    )
-  }
-
-  resumen <- purrr::imap_dfc(
-    sims,
-    \(x, nombre) {
-      q <- resumen_ic(x)
-
-      tibble::tibble(
-        !!nombre := q["est"],
-        !!paste0(nombre, "_low") := q["low"],
-        !!paste0(nombre, "_upp") := q["upp"]
-      )
-    }
-  )
-
-  # devolver TODO
+  ## Devolver resultados ##
   list(
-    sim_raw = list(
-      AVP_t_sim = AVP_t_sim,
-      AVD_t_sim = AVD_t_sim,
-      AVAD_t_sim = AVAD_t_sim
-    ),
-    resumen = resumen
+    sim = AVP_sim,
+    tasa_sim = AVP_t_sim,
+    resumen = dplyr::bind_cols(
+      resumen_ic(AVP_sim, "AVP"),
+      resumen_ic(AVP_t_sim, "AVP_tasa")
+    )
+  )
+}
+
+
+# Simulaciones Monte-Carlo para AVD --------------------------------------
+sim_AVD <- function(
+  n,
+  n_se,
+  fwd,
+  proy_pob,
+  nsim = 10000
+) {
+  ## SD robustos ##
+  n_sd <- dplyr::if_else(n > 0, n_se, 1e-6)
+
+  ## Simular prevalencia ##
+  prev_sim <- truncnorm::rtruncnorm(
+    n = nsim,
+    a = 0,
+    mean = n,
+    sd = n_sd
+  )
+
+  ## Simular AVD ##
+  AVD_sim <- prev_sim * fwd
+
+  ## Simular tasa AVD ##
+  AVD_t_sim <- (AVD_sim / proy_pob) * 1e5
+
+  ## Devolver resultados ##
+  list(
+    sim = AVD_sim,
+    tasa_sim = AVD_t_sim,
+    resumen = dplyr::bind_cols(
+      resumen_ic(AVD_sim, "AVD"),
+      resumen_ic(AVD_t_sim, "AVD_tasa")
+    )
+  )
+}
+
+
+# Simulaciones Monte-Carlo para AVAD -------------------------------------
+sim_AVAD <- function(avp, avd) {
+  ## Simular AVAD ##
+  AVAD_sim <- avp$sim + avd$sim
+
+  ## Simular tasa AVAD ##
+  AVAD_t_sim <- avp$tasa_sim + avd$tasa_sim
+
+  ## Devolver resultados ##
+  list(
+    sim = AVAD_sim,
+    tasa_sim = AVAD_t_sim,
+    resumen = dplyr::bind_cols(
+      resumen_ic(AVAD_sim, "AVAD"),
+      resumen_ic(AVAD_t_sim, "AVAD_tasa")
+    )
   )
 }
 
 
 # Tasas estandarizadas con IU --------------------------------------------
-tasa_est_AVAD <- function(df, pob_est) {
-  # ordenar grupos etarios
+tasa_est <- function(df, sim_col, nombre, pob_est) {
+  # ordenar edades
   df <- df |>
-    dplyr::arrange(grupo_edad_10)
+    arrange(grupo_edad_10)
 
-  # pesos normalizados
+  # pesos
   w <- df |>
-    dplyr::pull({{ pob_est }}) |>
+    pull({{ pob_est }}) |>
     (\(x) x / sum(x, na.rm = TRUE))()
 
-  # matrices nsim x edad
-  tasas_mat <- list(
-    AVP = do.call(cbind, lapply(df$sim_raw, \(x) x$AVP_t_sim)),
-    AVD = do.call(cbind, lapply(df$sim_raw, \(x) x$AVD_t_sim)),
-    AVAD = do.call(cbind, lapply(df$sim_raw, \(x) x$AVAD_t_sim))
+  # matriz nsim x edad
+  mat <- do.call(
+    cbind,
+    lapply(df[[sim_col]], \(x) x$tasa_sim)
   )
 
-  # estandarización directa
-  tasas_std <- purrr::map(
-    tasas_mat,
-    \(m) as.numeric(m %*% w)
-  )
+  # tasa estandarizada por réplica
+  tasa_std <- as.numeric(mat %*% w)
 
-  # resumen IC
-  resumen_ic <- function(x, nombre) {
-    tibble::tibble(
-      !!paste0(nombre, "_tasa_std") := quantile(x, 0.50, na.rm = TRUE),
-
-      !!paste0(nombre, "_tasa_std_low") := quantile(x, 0.025, na.rm = TRUE),
-
-      !!paste0(nombre, "_tasa_std_upp") := quantile(x, 0.975, na.rm = TRUE)
-    )
-  }
-
-  purrr::imap_dfc(tasas_std, resumen_ic)
-}
-
-
-## Simulaciones de Monte-Carlo para AVD por cada complicación ------------
-sim_AVD_comp <- function(
-  dm2_total,
-  dm2_total_se,
-  fwd,
-  proy_pob,
-  nsim = 10000
-) {
-  # SDs robustos cuando no hay casos
-  dm2_sd <- if_else(dm2_total > 0, dm2_total_se, 1e-6)
-
-  # Simular casos (truncados en 0)
-  dm2_sim <- rtruncnorm(
-    n = nsim,
-    a = 0,
-    mean = dm2_total,
-    sd = dm2_sd
-  )
-
-  # AVP, AVD, AVAD
-  AVD_sim <- dm2_sim * fwd
-
-  # devolver lista con nombres fijos
-  list(
-    AVD_sim = AVD_sim
-  )
-}
-
-## AVD por complicación con IU -------------------------------------------
-sim_AVD_IU_ind <- function(
-  dm2_total,
-  dm2_total_se,
-  fwd,
-  proy_pob,
-  nsim = 10000
-) {
-  sims <- sim_AVD_comp(
-    dm2_total,
-    dm2_total_se,
-    fwd,
-    proy_pob,
-    nsim
-  )
-
+  # resumen
   tibble(
-    AVD = quantile(sims$AVD_sim, 0.50, na.rm = TRUE),
-    AVD_low = quantile(sims$AVD_sim, 0.025, na.rm = TRUE),
-    AVD_upp = quantile(sims$AVD_sim, 0.975, na.rm = TRUE)
+    !!paste0(nombre, "_tasa_std") := quantile(tasa_std, 0.50, na.rm = TRUE),
+
+    !!paste0(nombre, "_tasa_std_low") := quantile(
+      tasa_std,
+      0.025,
+      na.rm = TRUE
+    ),
+
+    !!paste0(nombre, "_tasa_std_upp") := quantile(tasa_std, 0.975, na.rm = TRUE)
   )
 }
