@@ -6,7 +6,7 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 14-05-2026 09:46
+# Última modificación: 18-05-2026 13:24
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -26,7 +26,7 @@ pacman::p_load(
 
 # Cargar datos AVP -------------------------------------------------------
 ## WHO-GHO: Tablas de vida Argentina (2019) -----
-ex_ge10 <- read_csv2(
+ex_ge10_raw <- read_csv2(
   "bases_datos/argentina_tabla de vida_GHO.csv",
   skip = 1
 )
@@ -63,7 +63,10 @@ def05_19 <- list.files(
 # según registros de la Red Qualidiab.
 # Se incluyen aquellas complicaciones consensuadas con la Red.
 # Pesos de discapacidad: se consideraron los publicados por el Global Burden Disease.
-comp_dm2_raw <- import("datos_limpios/fr_comp_DW_ge10.csv")
+comp_dm2_raw <- import(
+  "datos_limpios/fr_comp_DW_ge10.csv",
+  na.strings = ""
+)
 
 
 # INDEC - Encuesta Nacional de Factores de Riesgo (ENFR): Autorreporte de diabetes
@@ -136,59 +139,18 @@ pob_est_2010 <- import("datos_limpios/pob_est_2010.rds")
 
 
 # Funciones auxiliares ---------------------------------------------------
-## Limpiar datos ENFR ----------------------------------------------------
-clean_enfr <- function(x) {
-  x_clean <- x |>
-    # Filtrar menores de 30 años
-    filter(edad >= 30) |>
-
-    # Crear grupo de edad decenal
-    mutate(
-      grupo_edad_10 = age_categories(
-        edad,
-        lower = 30,
-        upper = 80,
-        by = 10,
-        separator = " a "
-      )
-    ) |>
-
-    # Cambiar etiquetas sexo
-    mutate(sexo = if_else(sexo == 1, "Varón", "Mujer")) |>
-
-    # Convertir DM a binomial y calcular frecuencia DM2
-    mutate(
-      dm_auto = if_else(dm_auto == 1, 1, 0),
-      dm2_auto = dm_auto * 0.9
-    )
-
-  ## Construir diseño muestral ##
-  if ("wt" %in% names(x_clean)) {
-    x_clean |>
-      as_survey_design(weights = wt)
-  } else {
-    x_clean |>
-      as_survey_rep(
-        weights = wf1p,
-        repweights = starts_with("wf1p"),
-        type = "bootstrap"
-      )
-  }
-}
-
-## Simulación de AVP, AVD y AVAD -----------------------------------------
 source("fun_auxiliares.R")
-
 
 # Limpiar datos AVP ------------------------------------------------------
 ## Esperanza de vida -----
-ex_ge10 <- ex_ge10 |>
+ex_ge10 <- ex_ge10_raw |>
   # Seleccionar columnas
   select(
     ind = 1,
     grupo_edad = 2,
+    # Total = 3,
     "Varón" = 4,
-    "Mujer" = 5
+    Mujer = 5
   ) |>
 
   # Filtrar menores de 30 años y totales
@@ -201,7 +163,7 @@ ex_ge10 <- ex_ge10 |>
   mutate(ind = str_extract(ind, '^[^ ]+')) |>
 
   # Pasar a formato long
-  pivot_longer(cols = c(Varón, Mujer), names_to = "sexo") |>
+  pivot_longer(cols = c("Varón":Mujer), names_to = "sexo") |>
 
   # Volver a formato wide
   pivot_wider(names_from = ind, values_from = value) |>
@@ -242,7 +204,6 @@ defun_dm2 <- def04 |>
   # Estandarizar nombres de columnas
   clean_names() |>
   rename(
-    prov_nombre = jurisdiccion,
     grupo_edad = grupo_de_edad,
     cie10_causa = causa_de_muerte_cie_10
   ) |>
@@ -253,7 +214,6 @@ defun_dm2 <- def04 |>
       # Estandarizar nombres de columnas
       clean_names() |>
       rename(
-        codprov_censo = provres,
         grupo_edad = grupedad,
         cie10_causa = causa,
         total = cuenta
@@ -267,46 +227,47 @@ defun_dm2 <- def04 |>
   filter(cie10_causa %in% c("E11", "E14")) |>
 
   # Filtrar datos de otro país
-  filter_out(prov_nombre == "Otro país" | codprov_censo == "98") |>
+  filter_out(jurisdiccion == "Otro país" | provres == "98") |>
 
   # Filtrar valores ausentes sexo
   filter_out(sexo %in% c("Desconocido", "Indeterminado", "9")) |>
 
-  # Filtrar datos ausentes edad
-  filter_out(str_detect(grupo_edad, "esp")) |>
+  # Modificar etiquetas grupo edad
+  mutate(grupo_edad = str_sub(grupo_edad, 4)) |>
 
-  # Completar datos faltantes año
-  mutate(anio = replace_na(anio, "2004")) |>
+  # Filtrar menores de 30 años
+  filter_out(
+    between(grupo_edad, "1 a 9", "3 años") |
+      str_detect(grupo_edad, "4 |5 a 9|Men|esp")
+  ) |>
 
   # Cambiar etiquetas sexo
   mutate(sexo = fct_recode(sexo, Varón = "1", Mujer = "2")) |>
 
-  # Modificar etiquetas grupo edad
-  mutate(grupo_edad = str_sub(grupo_edad, 4)) |>
-
   # Crear grupo etario decenal
   mutate(
-    grupo_edad_10 = case_when(
-      between(grupo_edad, "30 a 34", "35 a 39") ~ "30 a 39",
-      between(grupo_edad, "40 a 44", "45 a 49") ~ "40 a 49",
-      between(grupo_edad, "50 a 54", "55 a 59") ~ "50 a 59",
-      between(grupo_edad, "60 a 64", "65 a 69") ~ "60 a 69",
-      between(grupo_edad, "70 a 74", "75 a 79") ~ "70 a 79",
-      between(grupo_edad, "80 a 84", "85 y más") ~ "80+",
-      .default = NA
+    grupo_edad_10 = fct_collapse(
+      grupo_edad,
+      "30 a 39" = c("30 a 34", "35 a 39"),
+      "40 a 49" = c("40 a 44", "45 a 49"),
+      "50 a 59" = c("50 a 54", "55 a 59"),
+      "60 a 69" = c("60 a 64", "65 a 69"),
+      "70 a 79" = c("70 a 74", "75 a 79"),
+      other_level = "80+"
     )
   ) |>
 
-  # Filtrar menores de 30 años
-  filter_out(is.na(grupo_edad_10)) |>
+  # # Completar datos faltantes año
+  mutate(anio = replace_na(anio, "2004")) |>
 
   # Crear columna para año ENFR
   mutate(
-    anio_enfr = case_when(
-      between(anio, "2004", "2006") ~ "2005",
-      between(anio, "2008", "2010") ~ "2009",
-      between(anio, "2012", "2014") ~ "2013",
-      between(anio, "2017", "2019") ~ "2018"
+    anio_enfr = fct_collapse(
+      anio,
+      "2005" = c("2004", "2005", "2006"),
+      "2009" = c("2008", "2009", "2010"),
+      "2013" = c("2012", "2013", "2014"),
+      other_level = "2018"
     )
   ) |>
 
@@ -334,46 +295,55 @@ comp_dm2 <- comp_dm2_raw |>
   # Filtrar menores de 30 años
   filter(between(grupo_edad_10, "30 a 39", "80+")) |>
 
-  # Reemplazar NAs tipo complicación
-  mutate(comp_tipo = na_if(comp_tipo, "")) |>
-
   # Crear variable año ENFR
-  mutate(anio_enfr = as.character(anio)) |>
+  mutate(anio_enfr = factor(anio)) |>
 
   # Crear variable complicacion:tipo
   mutate(
-    comp_qd_tipo = if_else(
-      !is.na(comp_tipo),
-      paste(comp_tipo, comp_qualidiab, sep = "_"),
-      comp_qualidiab
+    comp_qd_tipo = case_when(
+      comp_tipo == "macrovascular" ~ paste0(
+        "macro_",
+        make_clean_names(comp_qualidiab, allow_dupes = TRUE)
+      ),
+      comp_tipo == "microvascular" ~ paste0(
+        "micro_",
+        make_clean_names(comp_qualidiab, allow_dupes = TRUE)
+      ),
+      .default = "sin_complicaciones"
     )
   ) |>
 
   # Calcular promedio ponderado de discapacidad (fwd)
-  group_by(anio_enfr, sexo, grupo_edad_10, comp_qd_tipo) |>
+  group_by(anio_enfr, grupo_edad_10, sexo, comp_qd_tipo) |>
   summarise(
     fwd = sum(comp_frec * dw, na.rm = TRUE),
     .groups = "drop"
   ) |>
 
-  # Niveles complicaciones a formato tidy
-  mutate(
-    comp_qd_tipo = make_clean_names(comp_qd_tipo, allow_dupes = TRUE) |>
-      str_remove_all("vascular|atia|iferativa|funcion|_miembros_inferiores")
-  ) |>
-
   # Pasar a formato wide
   pivot_wider(
     names_from = comp_qd_tipo,
-    values_from = fwd,
-    names_glue = "{comp_qd_tipo}_{.value}"
+    values_from = fwd
   ) |>
 
   # Crear columnas de totales micro y macro
   mutate(
-    total_micro_fwd = rowSums(pick(starts_with("micro")), na.rm = TRUE),
-    total_macro_fwd = rowSums(pick(starts_with("macro")), na.rm = TRUE),
-    total_comp_fwd = total_micro_fwd + total_macro_fwd,
+    total_micro = rowSums(pick(starts_with("micro")), na.rm = TRUE),
+    total_macro = rowSums(pick(starts_with("macro")), na.rm = TRUE),
+    total_compl = rowSums(pick(macro_acv:sin_complicaciones), na.rm = TRUE)
+  ) |>
+
+  # Ordenar columnas
+  select(
+    anio_enfr:sexo,
+    micro_neuropatia_p = micro_neuropatia_periferica,
+    micro_retinopatia_np = micro_retinopatia_no_proliferativa,
+    micro_retinopatia_p = micro_retinopatia_proliferativa,
+    micro_disf_erectil = micro_disfuncion_erectil,
+    starts_with("micro"),
+    macro_claudicacion = macro_claudicacion_miembros_inferiores,
+    starts_with("macro"),
+    sin_complicaciones:total_compl
   )
 
 
@@ -384,113 +354,108 @@ prev_dm2 <- list(
   "2013" = enfr13,
   "2018" = enfr18
 ) |>
-  map(\(x) {
-    x |>
-      # Aplicar función de limpieza
-      clean_enfr() |>
-      # Calcular total personas con DM y prevalencia
-      group_by(sexo, grupo_edad_10) |>
-      summarise(
-        dm_total = survey_total(dm_auto),
-        dm2_total = survey_total(dm2_auto),
-        dm2_prev = survey_mean(
-          dm2_auto,
-          vartype = c("ci", "cv"),
-          na.rm = TRUE
-        ),
-        .groups = "drop"
-      )
-  }) |>
-  bind_rows(.id = "anio_enfr")
 
+  map(
+    \(x) {
+      # =========================
+      # Limpieza
+      # =========================
+      x <- x |>
 
-# Combinar datos AVP y AVD -----------------------------------------------
-datos_dm2 <- prev_dm2 |>
-  # Añadir datos defunciones
-  left_join(defun_dm2) |>
+        filter(edad >= 30) |>
 
-  # Añadir esperanza de vida
-  left_join(ex_ge10) |>
+        mutate(
+          grupo_edad_10 = age_categories(
+            edad,
+            lower = 30,
+            upper = 80,
+            by = 10,
+            separator = " a "
+          ),
 
-  # Añadir proyecciones poblacionales
-  left_join(proy_pob) |>
+          sexo = if_else(
+            sexo == 1,
+            "Varón",
+            "Mujer"
+          ),
 
-  # Añadir pesos discapacidad complicaciones
-  left_join(comp_dm2) |>
+          dm_auto = if_else(
+            dm_auto == 1,
+            1,
+            0
+          ),
 
-  # Seleccionar columnas relevantes
-  select(
-    anio_enfr,
-    grupo_edad_10,
-    sexo,
-    contains("dm2_"),
-    defun_mean,
-    defun_se,
-    ex,
-    proy_pob,
-    contains("fwd")
+          dm2_auto = dm_auto * 0.9
+        )
+
+      # =========================
+      # Diseño muestral
+      # =========================
+      diseno <- if ("wt" %in% names(x)) {
+        x |>
+          as_survey_design(
+            weights = wt
+          )
+      } else {
+        x |>
+          as_survey_rep(
+            weights = wf1p,
+            repweights = starts_with("wf1p"),
+            type = "bootstrap"
+          )
+      }
+
+      # =========================
+      # Prevalencia
+      # =========================
+      diseno |>
+
+        group_by(
+          sexo,
+          grupo_edad_10
+        ) |>
+
+        summarise(
+          dm2_total = survey_total(
+            dm2_auto
+          ),
+
+          dm2_prev = survey_mean(
+            dm2_auto,
+            vartype = c("se", "cv"),
+            na.rm = TRUE
+          ),
+
+          .groups = "drop"
+        )
+    }
+  ) |>
+
+  bind_rows(
+    .id = "anio_enfr"
   )
 
-# ### Complicaciones individuales ----
-# comp_dm2_ind <- comp_dm2 |>
 
-#   # Agregar variable anio_enfr para posterior join
-#   mutate(anio_enfr = as.character(anio)) %>%
+# Unir datos limpios -----------------------------------------------------
+datos_dm2 <- prev_dm2 |>
+  # Añadir fallecimientos
+  left_join(defun_dm2) |>
 
-#   # Calcular promedio ponderado de discapacidad (fwd) por complicación
-#   group_by(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab) |>
-#   summarise(
-#     fwd = sum(comp_frec * dw, na.rm = TRUE),
-#     .groups = "drop"
-#   )
+  # Añadir proyecciones poblacionales y población estándar
+  left_join(proy_pob) |>
+  left_join(pob_est_2010) |>
 
-# ## Prevalencia DM para AVD individual - Total país por sexo y grupo etario ----
-# datos_dm2_arg_AVD_ind <- list(
-#   "2005" = enfr05,
-#   "2009" = enfr09,
-#   "2013" = enfr13,
-#   "2018" = enfr18
-# ) |>
-#   map(\(x) {
-#     x |>
-#       # Aplicar función de limpieza
-#       clean_enfr() |>
-#       # Calcular total personas con DM y prevalencia
-#       group_by(sexo, grupo_edad_10) |>
-#       summarise(
-#         dm_total = survey_total(dm_auto),
-#         dm2_total = survey_total(dm2_auto),
-#         dm2_prev = survey_mean(
-#           dm2_auto,
-#           vartype = c("ci", "cv"),
-#           na.rm = TRUE
-#         ),
-#         .groups = "drop"
-#       )
-#   }) |>
-#   bind_rows(.id = "anio_enfr") |>
+  # Añadir esperanza de vida
+  left_join(
+    ex_ge10 |>
+      select(sexo, grupo_edad_10, ex)
+  ) |>
 
-#   # Combinar con proyecciones poblacionales
-#   left_join(
-#     proy_pob |>
-#       # Calcular proyecciones por región
-#       count(
-#         anio_enfr,
-#         sexo,
-#         grupo_edad_10,
-#         wt = proy_pob,
-#         name = "proy_pob"
-#       )
-#   ) |>
+  # Añadir pesos discapacidad
+  left_join(comp_dm2)
 
-#   # Combinar con pesos discapacidad DM2
-#   left_join(comp_dm2_ind, by = join_by(anio_enfr, sexo, grupo_edad_10)) |>
 
-#   # Añadir población estándar 2010
-#   left_join(pob_est_2010)
-#
-
-# Simular AVP, AVD y AVAD ------------------------------------------------
+# Simular AVP, AVD, AVAD y tasas -----------------------------------------
 # Cálculo de AVP, AVD y AVAD e intervalos de incertidumbre mediante cadenas de
 # Monte-Carlo con 10.000 réplicas. Se usaron las siguientes simulaciones:
 # - Defunciones: distribución normal truncada en cero, con media igual al
@@ -501,7 +466,7 @@ set.seed(123)
 
 sim_avad_dm2 <- datos_dm2 |>
   # Seleccionar columnas
-  select(anio_enfr:proy_pob, contains("total")) |>
+  select(anio_enfr:ex, contains("total")) |>
 
   ## Simular AVP ##
   mutate(
@@ -518,38 +483,13 @@ sim_avad_dm2 <- datos_dm2 |>
     avp_res = map(avp, "resumen")
   ) |>
 
-  ## Simular AVD y AVAD total complicaciones ##
-  mutate(
-    avd = pmap(
-      list(
-        dm2_total,
-        dm2_total_se,
-        total_comp_fwd,
-        proy_pob
-      ),
-      sim_AVD
-    ),
-
-    avad = map2(avp, avd, sim_AVAD),
-
-    res_total = pmap(
-      list(avd, avad),
-      \(b, c) {
-        bind_cols(
-          b$resumen,
-          c$resumen
-        )
-      }
-    )
-  ) |>
-
   ## Simular AVD y AVAD complicaciones microvasculares ##
   mutate(
     avd_micro = pmap(
       list(
         dm2_total,
         dm2_total_se,
-        total_micro_fwd,
+        total_micro,
         proy_pob
       ),
       sim_AVD
@@ -578,7 +518,7 @@ sim_avad_dm2 <- datos_dm2 |>
       list(
         dm2_total,
         dm2_total_se,
-        total_macro_fwd,
+        total_macro,
         proy_pob
       ),
       sim_AVD
@@ -601,6 +541,31 @@ sim_avad_dm2 <- datos_dm2 |>
     )
   ) |>
 
+  ## Simular AVD y AVAD total complicaciones ##
+  mutate(
+    avd = pmap(
+      list(
+        dm2_total,
+        dm2_total_se,
+        total_compl,
+        proy_pob
+      ),
+      sim_AVD
+    ),
+
+    avad = map2(avp, avd, sim_AVAD),
+
+    res_total = pmap(
+      list(avd, avad),
+      \(b, c) {
+        bind_cols(
+          b$resumen,
+          c$resumen
+        )
+      }
+    )
+  ) |>
+
   ## Expandir a columnas
   unnest_wider(c(
     avp_res,
@@ -609,68 +574,36 @@ sim_avad_dm2 <- datos_dm2 |>
     res_macro
   )) |>
 
-  # Añadir población estándar 2010
-  left_join(pob_est_2010) |>
-
   # Columnas caracter a factor
-  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+  mutate(across(
+    .cols = where(is.character),
+    .fns = ~ factor(.x)
+  ))
 
-
-# ## AVD por complicación, sexo y grupo etario ----
-# set.seed(123)
-
-# sim_avd_ind <- datos_dm2_arg_AVD_ind |>
-#   # Crear columna para simulaciones
-#   mutate(
-#     sim_raw = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_comp
-#     )
-#   ) |>
-
-#   # Simular indicadores y tasas específicas
-#   mutate(
-#     sim = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_IU_ind
-#     )
-#   ) |>
-#   unnest_wider(sim) |>
-
-#   # Añadir población estándar 2010
-#   left_join(pob_est_2010)  |>
-#
-#   # Reordenar columnas
-#   select(
-#     anio_enfr:grupo_edad_10,
-#     contains(c("pob", "dm")),
-#     comp_tipo,
-#     comp_qualidiab,
-#     fwd,
-#     AVD:AVD_upp
-#   ) |>
-
-#   # Columnas caracter a factor
-#   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
-#
 
 # Recuento de AVAD, AVD y AVP totales -------------------------------------
 abs_avad_dm2 <- sim_avad_dm2 %>%
   group_by(anio_enfr, sexo) %>%
   summarise(
-    AVAD = sum(AVAD),
-    AVD = sum(AVD),
-    AVP = sum(AVP)
+    across(
+      .cols = c(AVP, AVD, AVAD),
+      .fns = ~ sum(.x)
+    ),
+    .groups = "drop"
+  ) |>
+
+  # Añadir totales
+  bind_rows(
+    sim_avad_dm2 |>
+      group_by(anio_enfr) |>
+      summarise(
+        across(
+          .cols = c(AVP, AVD, AVAD),
+          .fns = ~ sum(.x)
+        ),
+        .groups = "drop"
+      ) |>
+      mutate(sexo = "Total")
   )
 
 
@@ -747,15 +680,18 @@ tasa_est_dm2 <- sim_avad_dm2 |>
 
   ungroup()
 
-# ## Año y sexo ----
-# tasa_est_arg <- sim_avad |>
-#   group_by(anio_enfr, sexo) |>
-#   group_modify(~ tasa_est_AVAD(.x, pob_est = pob_est)) |>
-#   ungroup()
-#
+# Remover columnas innecesarias ------------------------------------------
+sim_avad_dm2 <- sim_avad_dm2 |>
+  select(
+    !where(is.list),
+    -contains("total"),
+    -contains("defun"),
+    -ex
+  )
+
 
 # Guardar datos limpios --------------------------------------------------
-## Datos para calcular AVP, AVD y AVAD
+## Dataset para simulaciones AVP, AVD y AVAD
 export(datos_dm2, file = "datos_limpios/arg_datos_dm2.rds")
 
 ## AVP, AVD, AVAD y tasas simuladas
@@ -764,81 +700,133 @@ export(sim_avad_dm2, file = "datos_limpios/arg_sim_avad.rds")
 ## Tasas estandarizadas simuladas
 export(tasa_est_dm2, file = "datos_limpios/arg_sim_tasa_est.rds")
 
-# # AVD por complicación, sexo y grupo etario
-# export(sim_avd_ind, file = "datos_limpios/arg_sim_avd_ind.rds")
-
 # Recuentos absolutos por año y sexo
 export(abs_avad_dm2, file = "datos_limpios/arg_avad_abs.rds")
 export(abs_avad_dm2, file = "datos_limpios/arg_avad_abs.xlsx") # para Joinpoint
 
 
-# # Diccionario de datos ---------------------------------------------------
-# levels_comp <- levels(sim_avd_ind$comp_qualidiab)
+# Diccionarios de datos --------------------------------------------------
+## Dataset para simulaciones AVP, AVD y AVAD -----
+dicc_dm2 <- tibble(
+  variable = names(datos_dm2),
+  tipo_var = map_chr(datos_dm2, ~ paste(class(.x), collapse = ", ")),
+  niveles = map_chr(
+    datos_dm2,
+    ~ if (is.factor(.x)) {
+      paste(levels(.x), collapse = ", ")
+    } else {
+      "0-Inf"
+    }
+  ),
+  descripcion = c(
+    "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
+    "Sexo asignado al nacer",
+    "Grupo etario decenal",
+    "Total estimado de personas con DM tipo 2 (DM2) por autorreporte según resultados ENFR",
+    "Error estándar del total estimado de personas con DM2 por autorreporte según resultados ENFR",
+    "Prevalencia estimada de personas con DM2 por autorreporte según resultados ENFR",
+    "Error estándar de la prevalencia estimada de personas con DM2 por autorreporte según resultados ENFR",
+    "Coeficiente de variación de la prevalencia estimada de personas con DM2 por autorreporte según resultados ENFR",
+    "Número de defunciones por DM2 para el trienio correspondiente a la ENFR",
+    "Defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
+    "Error estándar de las defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
+    "Proyección poblacional según sexo y grupo etario decenal",
+    "Población estándar según sexo y grupo etario decenal según Censo Nacional 2010",
+    "Esperanza de vida a la edad X según sexo y grupo etario decenal",
+    "Peso de discapacidad ponderado para DM2 con neuropatía periférica",
+    "Peso de discapacidad ponderado para DM2 con retinopatía no proliferativa",
+    "Peso de discapacidad ponderado para DM2 con retinopatía proliferativa",
+    "Peso de discapacidad ponderado para DM2 con disfunción eréctil",
+    "Peso de discapacidad ponderado para DM2 con amputación",
+    "Peso de discapacidad ponderado para DM2 con ceguera",
+    "Peso de discapacidad ponderado para DM2 con nefropatía",
+    "Peso de discapacidad ponderado para DM2 con claudicación de miembros inferiores",
+    "Peso de discapacidad ponderado para DM2 con ACV",
+    "Peso de discapacidad ponderado para DM2 con IAM",
+    "Peso de discapacidad ponderado para DM2 con IC",
+    "Peso de discapacidad ponderado para DM2 sin secuelas",
+    "Peso de discapacidad ponderado para DM2 con secuelas microvasculares",
+    "Peso de discapacidad ponderado para DM2 con secuelas macrovasculares",
+    "Peso de discapacidad ponderado para DM2 con secuelas micro y macrovasculares"
+  )
+)
 
-# data_dicc <- bind_rows(
-#   tibble(
-#     variable = names(sim_avad_arg),
+## Guardar
+export(dicc_dm2, file = "datos_limpios/dicc_arg_datos_dm2.xlsx")
 
-#     descripción = c(
-#       "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
-#       "Sexo asignado al nacer",
-#       "Grupo etario decenal",
-#       "Proyección poblacional por sexo y grupo etario decenal según Censo Nacional 2010",
-#       "Población estándar por sexo y grupo etario decenal según Censo Nacional 2010",
-#       "Total estimado de personas con diabetes mellitus (DM) por autorreporte según resultados ENFR",
-#       "Error estándar del total estimado de personas con DM por autorreporte según resultados ENFR",
-#       "Total estimado de personas con DM tipo 2 (DM2) por autorreporte según resultados ENFR",
-#       "Error estándar del total estimado de personas con DM2 por autorreporte según resultados ENFR",
-#       "Prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Límite inferior del intervalo de confianza (CI) de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Límite superior del intervalo de confianza (CI) de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Coeficiente de variación de la prevalencia de personas con DM2 por autorreporte según resultados ENFR",
-#       "Defunciones por DM2 para el trienio correspondiente a la ENFR",
-#       "Defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
-#       "Error estándar de las defunciones promedio por DM2 para el trienio correspondiente a la ENFR",
-#       "Esperanza de vida a la edad X según sexo y grupo etario decenal",
-#       "Peso de discapacidad ponderado para secuelas de DM2",
-#       "Años de vida perdidos (AVP) por muerte prematura por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de los AVP por muerte prematura por DM2",
-#       "Límite superior del IU de los AVP por muerte prematura por DM2",
-#       "Años vividos con discapacidad (AVD) por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de los AVD por DM2",
-#       "Límite superior del IU de los AVD por DM2",
-#       "Años de vida ajustados por discapacidad (AVAD) para DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de los AVAD por DM2",
-#       "Límite superior del IU de los AVAD por DM2",
-#       "Tasa específica de AVP por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVP por DM2",
-#       "Límite superior del IU de la tasa de AVP por DM2",
-#       "Tasa específica de AVD por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVD por DM2",
-#       "Límite superior del IU de la tasa de AVD por DM2",
-#       "Tasa específica de AVAD por DM2",
-#       "Límite inferior del intervalo de incertidumbre (IU) de la tasa de AVAD por DM2",
-#       "Límite superior del IU de la tasa de AVAD por DM2"
-#     ),
 
-#     tipo_var = map_chr(sim_avad_arg, ~ paste(class(.x), collapse = ", ")),
+## Dataset AVP, AVD y AVAD simulados -----
+dicc_dm2_sim <- tibble(
+  variable = names(sim_avad_dm2),
+  tipo_var = map_chr(sim_avad_dm2, ~ paste(class(.x), collapse = ", ")),
+  niveles = map_chr(
+    sim_avad_dm2,
+    ~ if (is.factor(.x)) {
+      paste(levels(.x), collapse = ", ")
+    } else {
+      "0-Inf"
+    }
+  ),
+  descripcion = c(
+    "Año de realización de la Encuesta Nacional de Factores de Riesgo (ENFR)",
+    "Sexo asignado al nacer",
+    "Grupo etario decenal",
+    "Prevalencia estimada de personas con DM2 por autorreporte según resultados ENFR",
+    "Error estándar de la prevalencia estimada de personas con DM2 por autorreporte según resultados ENFR",
+    "Coeficiente de variación de la prevalencia estimada de personas con DM2 por autorreporte según resultados ENFR",
+    "Proyección poblacional según sexo y grupo etario decenal",
+    "Población estándar según sexo y grupo etario decenal según Censo Nacional 2010",
+    "Años de vida perdidos por muerte prematura (AVP) por DM2",
+    "Límite inferior intervalo de incertidumbre AVP por DM2",
+    "Límite superior intervalo de incertidumbre AVP por DM2",
+    "Tasa AVP por DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVP por DM2",
+    "Límite superior intervalo de incertidumbre tasa AVP por DM2",
 
-#     niveles = map_chr(
-#       sim_avad_arg,
-#       ~ if (is.factor(.x)) {
-#         paste(levels(.x), collapse = ", ")
-#       } else {
-#         "0-Inf"
-#       }
-#     )
-#   ),
-#   tibble(
-#     variable = "comp_qualidiab",
-#     descripción = "Complicación crónica asociada a la DM2",
-#     tipo_var = "factor",
-#     niveles = paste(levels_comp, collapse = ", ")
-#   )
-# )
+    "Años vividos con discapacidad (AVD) por DM2 (complicaciones microvasculares)",
+    "Límite inferior intervalo de incertidumbre AVD por DM2 (complicaciones microvasculares)",
+    "Límite superior intervalo de incertidumbre AVD por DM2 (complicaciones microvasculares)",
+    "Tasa AVD por DM2 (complicaciones microvasculares)",
+    "Límite inferior intervalo de incertidumbre tasa AVD por DM2 (complicaciones microvasculares)",
+    "Límite superior intervalo de incertidumbre tasa AVD por DM2 (complicaciones microvasculares)",
+    "Años de vida ajustados por discapacidad (AVAD) por DM2 (complicaciones microvasculares)",
+    "Límite inferior intervalo de incertidumbre AVAD por DM2 (complicaciones microvasculares)",
+    "Límite superior intervalo de incertidumbre AVAD por DM2 (complicaciones microvasculares)",
+    "Tasa AVAD por DM2 (complicaciones microvasculares)",
+    "Límite inferior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones microvasculares)",
+    "Límite superior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones microvasculares)",
 
-## Guardar diccionario de datos -----
-# export(data_dicc, file = "datos_limpios/dic_arg_avad_dm2.xlsx")
+    "Años vividos con discapacidad (AVD) por DM2 (complicaciones macrovasculares)",
+    "Límite inferior intervalo de incertidumbre AVD por DM2 (complicaciones macrovasculares)",
+    "Límite superior intervalo de incertidumbre AVD por DM2 (complicaciones macrovasculares)",
+    "Tasa AVD por DM2 (complicaciones macrovasculares)",
+    "Límite inferior intervalo de incertidumbre tasa AVD por DM2 (complicaciones macrovasculares)",
+    "Límite superior intervalo de incertidumbre tasa AVD por DM2 (complicaciones macrovasculares)",
+    "Años de vida ajustados por discapacidad (AVAD) por DM2 (complicaciones macrovasculares)",
+    "Límite inferior intervalo de incertidumbre AVAD por DM2 (complicaciones macrovasculares)",
+    "Límite superior intervalo de incertidumbre AVAD por DM2 (complicaciones macrovasculares)",
+    "Tasa AVAD por DM2 (complicaciones macrovasculares)",
+    "Límite inferior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones macrovasculares)",
+    "Límite superior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones macrovasculares)",
+
+    "Años vividos con discapacidad (AVD) por DM2 (todas las complicaciones)",
+    "Límite inferior intervalo de incertidumbre AVD por DM2 (todas las complicaciones)",
+    "Límite superior intervalo de incertidumbre AVD por DM2 (todas las complicaciones)",
+    "Tasa AVD por DM2 (todas las complicaciones)",
+    "Límite inferior intervalo de incertidumbre tasa AVD por DM2 (todas las complicaciones)",
+    "Límite superior intervalo de incertidumbre tasa AVD por DM2 (todas las complicaciones)",
+    "Años de vida ajustados por discapacidad (AVAD) por DM2 (todas las complicaciones)",
+    "Límite inferior intervalo de incertidumbre AVAD por DM2 (todas las complicaciones)",
+    "Límite superior intervalo de incertidumbre AVAD por DM2 (todas las complicaciones)",
+    "Tasa AVAD por DM2 (todas las complicaciones)",
+    "Límite inferior intervalo de incertidumbre tasa AVAD por DM2 (todas las complicaciones)",
+    "Límite superior intervalo de incertidumbre tasa AVAD por DM2 (todas las complicaciones)"
+  )
+)
+
+## Guardar
+export(dicc_dm2, file = "datos_limpios/dicc_arg_sim_avad.xlsx")
+
 
 # Limpiar environment ----------------------------------------------------
 rm(list = ls())

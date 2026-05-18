@@ -6,7 +6,6 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 11-02-2026
-# Última modificación: 23-04-2026
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -23,7 +22,7 @@ pacman::p_load(
   hrbrthemes,
   viridis,
   ggpattern,
-  ggbump,
+  # ggbump,
   # Manejo de datos
   rio,
   janitor,
@@ -33,16 +32,19 @@ pacman::p_load(
 
 # Cargar datos limpios ----------------------------------------------------
 ## Datos de AVAD, AVP y AVD por grupo decenal y sexo a nivel nacional
-avad_arg <- import("datos_limpios/")
+avad_arg <- import("datos_limpios/arg_sim_avad.rds")
 
 # ## Datos de AVD por complicación por grupo decenal y sexo
 # avd_ind <- import("datos_limpios/arg_sim_avd_ind.rds")
 
 ## Tasas de AVAD, AVP y AVD ajustadas por edad según sexo a nivel nacional
-tasas_avad_arg <- import("datos_limpios/arg_tasas_est.rds")
+tasas_avad_arg <- import("datos_limpios/arg_sim_tasa_est.rds")
 
 ## Recuento absoluto de AVAD, AVP y AVD según sexo a nivel nacional
 abs_avad_arg <- import("datos_limpios/arg_avad_abs.rds")
+
+## Proyecciones poblacionales
+proy_pob <- import("datos_limpios/arg_proy_pob.rds")
 
 ## Población estándar Censo 2010
 pob_est_2010 <- import("datos_limpios/pob_est_2010.rds")
@@ -50,61 +52,57 @@ pob_est_2010 <- import("datos_limpios/pob_est_2010.rds")
 
 # Tablas anexas para gráficos ---------------------------------------------
 
-## Población estándar Censo 2010: varones, mujeres y ambos sexos
-pob_est_2010_t <- bind_rows(
-  pob_est_2010,
+# ## Población estándar Censo 2010: varones, mujeres y ambos sexos
+# pob_est_2010_t <- bind_rows(
+#   pob_est_2010,
 
-  pob_est_2010 %>%
-    group_by(grupo_edad_10) %>%
-    summarise(pob_est_2010 = sum(pob_est_2010)) %>%
-    mutate(sexo = "Ambos sexos") %>%
-    select(sexo, grupo_edad_10, pob_est_2010)
-)
+#   pob_est_2010 %>%
+#     group_by(grupo_edad_10) %>%
+#     summarise(pob_est_2010 = sum(pob_est_2010)) %>%
+#     mutate(sexo = "Ambos sexos") %>%
+#     select(sexo, grupo_edad_10, pob_est_2010)
+# )
 
+# ## Proyección poblacional por año: varones, mujeres y ambos sexos
+# proy_pob <- avad_arg %>%
+#   select(anio_enfr, sexo, grupo_edad_10, proy_pob)
 
-## Proyección poblacional por año: varones, mujeres y ambos sexos
-proy_pob <- avad_arg %>%
-  select(anio_enfr, sexo, grupo_edad_10, proy_pob)
+# proy_pob <- bind_rows(
+#   proy_pob,
 
-proy_pob <- bind_rows(
-  proy_pob,
+#   proy_pob %>%
+#     group_by(anio_enfr, grupo_edad_10) %>%
+#     summarise(proy_pob = sum(proy_pob)) %>%
+#     mutate(sexo = "Ambos sexos") %>%
+#     select(anio_enfr, sexo, grupo_edad_10, proy_pob)
+# )
 
-  proy_pob %>%
-    group_by(anio_enfr, grupo_edad_10) %>%
-    summarise(proy_pob = sum(proy_pob)) %>%
-    mutate(sexo = "Ambos sexos") %>%
-    select(anio_enfr, sexo, grupo_edad_10, proy_pob)
-)
+# # Recuento absoluto de AVAD a nivel nacional: varones, mujeres y ambos sexos ----
 
+# indic_abs <- bind_rows(
+#   # Saco recuentos de AVAD, AVD y AVP para población total
+#   abs_avad_arg %>%
+#     group_by(anio_enfr) %>%
+#     summarise(AVAD = sum(AVAD), AVD = sum(AVD), AVP = sum(AVP)) %>%
+#     mutate(sexo = "Ambos sexos") %>%
 
-## Recuento absoluto de AVAD a nivel nacional: varones, mujeres y ambos sexos ----
+#     select(1, 5, 2:4),
 
-indic_abs <- bind_rows(
-  # Saco recuentos de AVAD, AVD y AVP para población total
-  abs_avad_arg %>%
-    group_by(anio_enfr) %>%
-    summarise(AVAD = sum(AVAD), AVD = sum(AVD), AVP = sum(AVP)) %>%
-    mutate(sexo = "Ambos sexos") %>%
+#   # Sumo datos por sexo (base original)
+#   abs_avad_arg
+# ) %>%
 
-    select(1, 5, 2:4),
-
-  # Sumo datos por sexo (base original)
-  abs_avad_arg
-) %>%
-
-  # Edito categorías de sexo para etiquetas
-  mutate(
-    sexo = case_when(
-      sexo == "Mujer" ~ "Mujeres",
-      sexo == "Varón" ~ "Varones",
-      .default = sexo
-    )
-  )
-
+#   # Edito categorías de sexo para etiquetas
+#   mutate(
+#     sexo = case_when(
+#       sexo == "Mujer" ~ "Mujeres",
+#       sexo == "Varón" ~ "Varones",
+#       .default = sexo
+#     )
+#   )
 
 ## Aumento proporcional de AVAD, AVD y AVP 2005-2018 ----
-
-indic_cambio <- indic_abs %>%
+indic_cambio <- abs_avad_arg %>%
 
   pivot_longer(
     cols = c("AVAD", "AVD", "AVP"),
@@ -122,7 +120,6 @@ indic_cambio <- indic_abs %>%
 
 
 ## Distribución de AVAD, AVD y AVP por sexo y grupo de edad para pirámides ----
-
 datos_piramide <- avad_arg |>
 
   group_by(anio_enfr) %>%
@@ -153,7 +150,6 @@ datos_piramide <- avad_arg |>
 
 
 ## Distribución de AVAD, AVD y AVP por sexo y grupo de edad para áreas ----
-
 datos_area <- datos_piramide %>%
 
   # Filtro proporción de cada indicador sobre recuento total de AVAD
@@ -173,61 +169,57 @@ datos_area <- datos_piramide %>%
   )
 
 
-## AVD por complicación: recuento absoluto ----
+# ## AVD por complicación: recuento absoluto ----
 
-AVD_abs_ind <- bind_rows(
-  avd_ind %>%
-    # Selecciono variables de interés
-    select(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab, AVD),
+# AVD_abs_ind <- bind_rows(
+#   avd_ind %>%
+#     # Selecciono variables de interés
+#     select(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab, AVD),
 
-  # Uno con recuento de AVD para ambos sexos
-  avd_ind %>%
-    group_by(anio_enfr, grupo_edad_10, comp_tipo, comp_qualidiab) %>%
-    summarise(AVD = sum(AVD)) %>%
-    mutate(sexo = "Ambos sexos") %>%
-    select(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab, AVD)
-) %>%
+#   # Uno con recuento de AVD para ambos sexos
+#   avd_ind %>%
+#     group_by(anio_enfr, grupo_edad_10, comp_tipo, comp_qualidiab) %>%
+#     summarise(AVD = sum(AVD)) %>%
+#     mutate(sexo = "Ambos sexos") %>%
+#     select(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab, AVD)
+# ) %>%
 
-  # Agrego proyecciones poblacionales
-  left_join(proy_pob, by = join_by(anio_enfr, sexo, grupo_edad_10)) %>%
+#   # Agrego proyecciones poblacionales
+#   left_join(proy_pob, by = join_by(anio_enfr, sexo, grupo_edad_10)) %>%
 
-  # Edito nombre de categorías de sexo e tipo de complicación para etiquetas
-  mutate(
-    sexo = case_when(
-      sexo == "Mujer" ~ "Mujeres",
-      sexo == "Varón" ~ "Varones",
-      .default = sexo
-    ),
+#   # Edito nombre de categorías de sexo e tipo de complicación para etiquetas
+#   mutate(
+#     sexo = case_when(
+#       sexo == "Mujer" ~ "Mujeres",
+#       sexo == "Varón" ~ "Varones",
+#       .default = sexo
+#     ),
 
-    comp_tipo = case_when(
-      comp_tipo == "" ~ "Sin complicaciones",
-      comp_tipo == "microvascular" ~ "Microvasculares",
-      comp_tipo == "macrovascular" ~ "Macrovasculares"
-    )
-  )
+#     comp_tipo = case_when(
+#       comp_tipo == "" ~ "Sin complicaciones",
+#       comp_tipo == "microvascular" ~ "Microvasculares",
+#       comp_tipo == "macrovascular" ~ "Macrovasculares"
+#     )
+#   )
 
+# ## AVD por complicación: cambios relativos y absolutos respecto del 2005 ----
+# AVD_cambio <- AVD_abs_ind %>%
 
-## AVD por complicación: cambios relativos y absolutos respecto del 2005 ----
+#   # Recuento de AVD individuales según año, sexo y tipo de complicación (microvascular, macrovascular, sin complicaciones)
+#   group_by(anio_enfr, sexo, comp_tipo) %>%
+#   summarise(AVD_tipo = sum(AVD)) %>%
+#   ungroup() %>%
 
-AVD_cambio <- AVD_abs_ind %>%
-
-  # Recuento de AVD individuales según año, sexo y tipo de complicación (microvascular, macrovascular, sin complicaciones)
-  group_by(anio_enfr, sexo, comp_tipo) %>%
-  summarise(AVD_tipo = sum(AVD)) %>%
-  ungroup() %>%
-
-  # Calculo cambio absoluto y relativo de cada AVD respecto del año basal (2005)
-  group_by(sexo, comp_tipo) %>%
-  arrange(anio_enfr) %>%
-  mutate(
-    AVD_cambio_abs = AVD_tipo - first(AVD_tipo), # cambio absoluto
-    AVD_cambio_perc = (AVD_tipo - first(AVD_tipo)) * 100 / first(AVD_tipo)
-  ) # cambio relativo
-
+#   # Calculo cambio absoluto y relativo de cada AVD respecto del año basal (2005)
+#   group_by(sexo, comp_tipo) %>%
+#   arrange(anio_enfr) %>%
+#   mutate(
+#     AVD_cambio_abs = AVD_tipo - first(AVD_tipo), # cambio absoluto
+#     AVD_cambio_perc = (AVD_tipo - first(AVD_tipo)) * 100 / first(AVD_tipo)
+#   ) # cambio relativo
 
 # Gráficos exploratorios --------------------------------------------------
-
-## Paleta por indicador y sexo (accesible) ----
+# Paleta por indicador y sexo (accesible) ----
 colores_indicador <- c(
   "AVAD" = "#1B6FA8",
   "AVD" = "#2E9B6E",
@@ -239,7 +231,6 @@ colores_indicador <- c(
 ## Tendencia del recuento absoluto AVAD, AVD y AVP por año y sexo ----
 
 ### Gráfico de tendencia: líneas ----
-
 indic_abs |>
 
   pivot_longer(
@@ -291,7 +282,6 @@ indic_abs |>
 
 
 ### Gráfico de tendencia: área ----
-
 indic_abs |>
 
   # pivot_longer(cols = c(AVD, AVP, AVAD), names_to = "indicador", values_to = "recuento") %>%
@@ -1084,6 +1074,8 @@ mod_AVAD <- tasas_avad_arg %>%
   model_jp(
     value = "AVAD_tasa_std",
     time = "anio_enfr",
+    k = 2,
+    test = FALSE,
     group = "sexo"
   )
 
@@ -1115,7 +1107,9 @@ mod_AVD <- tasas_avad_arg %>%
   model_jp(
     value = "AVD_tasa_std",
     time = "anio_enfr",
-    group = "sexo"
+    group = "sexo",
+    k = 2,
+    test = FALSE
   )
 
 
@@ -1147,7 +1141,8 @@ mod_AVP <- tasas_avad_arg %>%
   model_jp(
     value = "AVP_tasa_std",
     time = "anio_enfr",
-    group = "sexo"
+    group = "sexo",
+    test = FALSE
   )
 
 # APC (only works when class segmented lm)

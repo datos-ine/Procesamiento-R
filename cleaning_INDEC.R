@@ -2,7 +2,7 @@
 ## - Proyecciones poblacionales por sexo y grupo etario quinquenal, 2001-2018 (INDEC)
 ## - Población estándar por sexo y grupo etario, Argentina, Censo 2010 (INDEC)
 ### Autora: Tamara Ricardo
-# Última modificación: 13-05-2026 12:00
+# Última modificación: 18-05-2026 08:13
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -55,10 +55,10 @@ proy_01_18 <- proy_01_05_raw |>
   # Seleccionar columnas
   select(
     grupo_edad = 1,
-    # Total_2001 = 2,
+    Total_2001 = 2,
     Varón_2001 = 3,
     Mujer_2001 = 4,
-    # Total_2005 = 5,
+    Total_2005 = 5,
     Varón_2005 = 6,
     Mujer_2005 = 7
   ) |>
@@ -67,7 +67,7 @@ proy_01_18 <- proy_01_05_raw |>
   drop_na() |>
 
   # Pasar a formato long
-  pivot_longer(cols = Varón_2001:Mujer_2005) |>
+  pivot_longer(cols = Total_2001:Mujer_2005) |>
 
   # Unir con proyecciones 2010, 2013 y 2018 -----
   bind_rows(
@@ -75,20 +75,20 @@ proy_01_18 <- proy_01_05_raw |>
       # Seleccionar columnas
       select(
         grupo_edad = 1,
-        # Total_2010 = 2,
+        Total_2010 = 2,
         Varón_2010 = 3,
         Mujer_2010 = 4,
-        # Total_2013 = 5,
+        Total_2013 = 5,
         Varón_2013 = 6,
         Mujer_2013 = 7,
-        # Total_2018 = 8,
+        Total_2018 = 8,
         Varón_2018 = 9,
         Mujer_2018 = 10
       ) |>
       drop_na() |>
 
       # Pasar a formato long
-      pivot_longer(cols = Varón_2010:Mujer_2018)
+      pivot_longer(cols = Total_2010:Mujer_2018)
   ) |>
 
   # Crear grupo etario decenal
@@ -142,7 +142,7 @@ proy_01_18 <- proy_01_05_raw |>
     )
   })() |>
 
-  # Quitar datos 2010
+  # Quitar datos 2001 y 2010
   filter_out(anio_enfr %in% c("2001", "2010"))
 
 
@@ -151,7 +151,7 @@ pob_est_2010 <- pob_est_2010_raw |>
   # Estandarizar nombres de columnas
   rename(
     grupo_edad = 1,
-    total = 2,
+    Total = 2,
     "Varón" = 3,
     "Mujer" = 4
   ) |>
@@ -174,24 +174,13 @@ pob_est_2010 <- pob_est_2010_raw |>
   drop_na() |>
 
   # Pasar a formato long
-  pivot_longer(cols = c("Varón", "Mujer"), names_to = "sexo") |>
+  pivot_longer(cols = c("Total":"Mujer"), names_to = "sexo") |>
 
   # Población a numérico
-  mutate(across(
-    .cols = c(total, value),
-    .fns = ~ parse_number(.x, locale = locale(decimal_mark = ","))
-  )) |>
+  mutate(value = parse_number(value, locale = locale(decimal_mark = ","))) |>
 
   # Agrupar por grupo etario decenal
-  group_by(grupo_edad_10, sexo) |>
-  summarise(
-    pob_est_total = sum(total, na.rm = TRUE),
-    pob_est = sum(value, na.rm = TRUE),
-    .groups = "drop"
-  ) |>
-
-  # Ordenar columnas
-  select(grupo_edad_10, sexo, pob_est, pob_est_total)
+  count(grupo_edad_10, sexo, wt = value, name = "pob_est")
 
 
 # Guardar datos limpios --------------------------------------------------
