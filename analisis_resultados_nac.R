@@ -17,6 +17,7 @@ pacman::p_load(
   MetBrewer,
   ggrepel,
   readxl,
+  segmented,
   joinpointR,
   ggridges, # ridge plot
   hrbrthemes,
@@ -1064,37 +1065,51 @@ AVD_abs_ind %>%
 
 
 # Análisis joinpoint ------------------------------------------------------
+tasas_jp <- tasas_avad_arg |>
+  # Año ENFR a numérico
+  mutate(anio_enfr = parse_number(as.character(anio_enfr)))
+
 
 ## Tasa de AVAD ajustada por edad ----
-
-mod_AVAD <- tasas_avad_arg %>%
-
-  mutate(anio_enfr = as.numeric(anio_enfr)) %>%
-
-  model_jp(
-    value = "AVAD_tasa_std",
-    time = "anio_enfr",
-    k = 2,
-    test = FALSE,
-    group = "sexo"
+## model_jp no selecciona joinpoints porque la diferencia entre el modelo con 0
+## y 1 breakpoints no es significativa (menos de 2 puntos de diferencia en el BIC).
+## Para ajustar directamente un joinpoint usar segmented::segmented(), aunque igual da
+## un warning y no calcula IC, probablemente porque solo tenemos 4 puntos en el tiempo.
+## Voy a crear una nueva función en el paquete joinpointR para que permita ajustar la
+## lista de modelos al ingresar la variable de agrupamiento. Por ahora usar:
+mod_avad <- list(
+  mujer = segmented(
+    obj = lm(
+      log(AVAD_tasa_std) ~ anio_enfr,
+      data = tasas_jp |> filter(sexo == "Mujer")
+    ),
+    npsi = 1
+  ),
+  varon = segmented(
+    obj = lm(
+      log(AVAD_tasa_std) ~ anio_enfr,
+      data = tasas_jp |> filter(sexo == "Varón")
+    ),
+    npsi = 1
   )
+)
 
 # APC (only works when class segmented lm)
-get_apc(mod_AVAD$Mujer, digits = 1, time = "year", dec = ".") # Will generate an error
+get_apc(mod_avad$mujer, digits = 1, time = "year", dec = ".") # Will generate an error
 
-get_apc(mod_AVAD$Varón, digits = 1, time = "year", dec = ".")
-
-# AAPC with 95% CI
-get_aapc(mod_AVAD$Mujer, show_ci = TRUE)
+get_apc(mod_avad$varon, digits = 1, time = "year", dec = ".")
 
 # AAPC with 95% CI
-get_aapc(mod_AVAD$Varón, show_ci = TRUE)
+get_aapc(mod_avad$mujer, show_ci = TRUE)
+
+# AAPC with 95% CI
+get_aapc(mod_avad$mujer, show_ci = TRUE)
 
 # Summary Table
-summary_jp(mod_AVAD)
+summary_jp(mod_avad)
 
 # Gráfico facetado
-mod_AVAD |>
+mod_avad |>
   gg_jpoint(obs = TRUE, jp = TRUE, facets = TRUE)
 
 
