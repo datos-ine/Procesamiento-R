@@ -832,3 +832,157 @@ export(dicc_dm2, file = "datos_limpios/dicc_arg_sim_avad.xlsx")
 rm(list = ls())
 
 pacman::p_unload("all")
+
+# ### Complicaciones individuales ----
+# comp_dm2_ind <- comp_dm2 |>
+
+#   # Agregar variable anio_enfr para posterior join
+#   mutate(anio_enfr = as.character(anio)) %>%
+
+#   # Calcular promedio ponderado de discapacidad (fwd) por complicación
+#   group_by(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab) |>
+#   summarise(
+#     fwd = sum(comp_frec * dw, na.rm = TRUE),
+#     .groups = "drop"
+#   )
+# ## AVD por complicación, sexo y grupo etario ----
+# set.seed(123)
+
+# sim_avd_ind <- datos_dm2_arg_AVD_ind |>
+#   # Crear columna para simulaciones
+#   mutate(
+#     sim_raw = pmap(
+#       .l = list(
+#         dm2_total,
+#         dm2_total_se,
+#         fwd,
+#         proy_pob
+#       ),
+#       .f = sim_AVD_comp
+#     )
+#   ) |>
+
+#   # Simular indicadores y tasas específicas
+#   mutate(
+#     sim = pmap(
+#       .l = list(
+#         dm2_total,
+#         dm2_total_se,
+#         fwd,
+#         proy_pob
+#       ),
+#       .f = sim_AVD_IU_ind
+#     )
+#   ) |>
+#   unnest_wider(sim) |>
+
+#   # Añadir población estándar 2010
+#   left_join(pob_est_2010)  |>
+#
+#   # Reordenar columnas
+#   select(
+#     anio_enfr:grupo_edad_10,
+#     contains(c("pob", "dm")),
+#     comp_tipo,
+#     comp_qualidiab,
+#     fwd,
+#     AVD:AVD_upp
+#   ) |>
+
+#   # Columnas caracter a factor
+#   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+#
+# ## Prevalencia DM para AVD individual - Total país por sexo y grupo etario ----
+# datos_dm2_arg_AVD_ind <- list(
+#   "2005" = enfr05,
+#   "2009" = enfr09,
+#   "2013" = enfr13,
+#   "2018" = enfr18
+# ) |>
+#   map(\(x) {
+#     x |>
+#       # Aplicar función de limpieza
+#       clean_enfr() |>
+#       # Calcular total personas con DM y prevalencia
+#       group_by(sexo, grupo_edad_10) |>
+#       summarise(
+#         dm_total = survey_total(dm_auto),
+#         dm2_total = survey_total(dm2_auto),
+#         dm2_prev = survey_mean(
+#           dm2_auto,
+#           vartype = c("ci", "cv"),
+#           na.rm = TRUE
+#         ),
+#         .groups = "drop"
+#       )
+#   }) |>
+#   bind_rows(.id = "anio_enfr") |>
+
+#   # Combinar con proyecciones poblacionales
+#   left_join(
+#     proy_pob |>
+#       # Calcular proyecciones por región
+#       count(
+#         anio_enfr,
+#         sexo,
+#         grupo_edad_10,
+#         wt = proy_pob,
+#         name = "proy_pob"
+#       )
+#   ) |>
+
+#   # Combinar con pesos discapacidad DM2
+#   left_join(comp_dm2_ind, by = join_by(anio_enfr, sexo, grupo_edad_10)) |>
+
+#   # Añadir población estándar 2010
+#   left_join(pob_est_2010)
+#
+# ## AVD por complicación, sexo y grupo etario ----
+# set.seed(123)
+
+# sim_avd_ind <- datos_dm2_arg_AVD_ind |>
+#   # Crear columna para simulaciones
+#   mutate(
+#     sim_raw = pmap(
+#       .l = list(
+#         dm2_total,
+#         dm2_total_se,
+#         fwd,
+#         proy_pob
+#       ),
+#       .f = sim_AVD_comp
+#     )
+#   ) |>
+
+#   # Simular indicadores y tasas específicas
+#   mutate(
+#     sim = pmap(
+#       .l = list(
+#         dm2_total,
+#         dm2_total_se,
+#         fwd,
+#         proy_pob
+#       ),
+#       .f = sim_AVD_IU_ind
+#     )
+#   ) |>
+#   unnest_wider(sim) |>
+
+#   # Añadir población estándar 2010
+#   left_join(pob_est_2010)  |>
+#
+#   # Reordenar columnas
+#   select(
+#     anio_enfr:grupo_edad_10,
+#     contains(c("pob", "dm")),
+#     comp_tipo,
+#     comp_qualidiab,
+#     fwd,
+#     AVD:AVD_upp
+#   ) |>
+
+#   # Columnas caracter a factor
+#   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
+#
+# # AVD por complicación, sexo y grupo etario
+# export(sim_avd_ind, file = "datos_limpios/arg_sim_avd_ind.rds")

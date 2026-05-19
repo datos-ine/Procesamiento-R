@@ -143,3 +143,54 @@ tasa_est <- function(df, sim_col, nombre, pob_est) {
     !!paste0(nombre, "_tasa_std_upp") := quantile(tasa_std, 0.975, na.rm = TRUE)
   )
 }
+
+# ## Simulaciones de Monte-Carlo para AVD por cada complicación ------------
+# sim_AVD_comp <- function(
+#   dm2_total,
+#   dm2_total_se,
+#   fwd,
+#   proy_pob,
+#   nsim = 10000
+# ) {
+#   # SDs robustos cuando no hay casos
+#   dm2_sd <- if_else(dm2_total > 0, dm2_total_se, 1e-6)
+
+#   # Simular casos (truncados en 0)
+#   dm2_sim <- rtruncnorm(
+#     n = nsim,
+#     a = 0,
+#     mean = dm2_total,
+#     sd = dm2_sd
+#   )
+
+#   # AVP, AVD, AVAD
+#   AVD_sim <- dm2_sim * fwd
+
+#   # devolver lista con nombres fijos
+#   list(
+#     AVD_sim = AVD_sim
+#   )
+# }
+
+# ## AVD por complicación con IU -------------------------------------------
+# sim_AVD_IU_ind <- function(
+#   dm2_total,
+#   dm2_total_se,
+#   fwd,
+#   proy_pob,
+#   nsim = 10000
+# ) {
+#   sims <- sim_AVD_comp(
+#     dm2_total,
+#     dm2_total_se,
+#     fwd,
+#     proy_pob,
+#     nsim
+#   )
+
+#   tibble(
+#     AVD = quantile(sims$AVD_sim, 0.50, na.rm = TRUE),
+#     AVD_low = quantile(sims$AVD_sim, 0.025, na.rm = TRUE),
+#     AVD_upp = quantile(sims$AVD_sim, 0.975, na.rm = TRUE)
+#   )
+# }
