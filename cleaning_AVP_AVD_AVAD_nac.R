@@ -6,7 +6,7 @@
 ## - Micaela Gauto
 ## - Tamara Ricardo
 ### Fecha de creación: 27-01-2026
-# Última modificación: 18-05-2026 13:24
+# Última modificación: 27-05-2026 13:24
 
 # Cargar paquetes --------------------------------------------------------
 pacman::p_load(
@@ -58,7 +58,7 @@ def05_19 <- list.files(
 
 
 # Cargar datos AVD -------------------------------------------------------
-# QualiDiab: Complicaciones DM2 por sexo, grupo etario y año -----
+# Qualidiab: Complicaciones DM2 por sexo, grupo etario y año -----
 # Frecuencia de complicaciones microvasculares y macrovasculares por sexo y grupo etario
 # según registros de la Red Qualidiab.
 # Se incluyen aquellas complicaciones consensuadas con la Red.
@@ -328,9 +328,9 @@ comp_dm2 <- comp_dm2_raw |>
 
   # Crear columnas de totales micro y macro
   mutate(
-    total_micro = rowSums(pick(starts_with("micro")), na.rm = TRUE),
-    total_macro = rowSums(pick(starts_with("macro")), na.rm = TRUE),
-    total_compl = rowSums(pick(macro_acv:sin_complicaciones), na.rm = TRUE)
+    # total_micro = rowSums(pick(starts_with("micro")), na.rm = TRUE),
+    # total_macro = rowSums(pick(starts_with("macro")), na.rm = TRUE),
+    total_compl = rowSums(pick(starts_with(c("micro", "macro", "sin"))), na.rm = TRUE)
   ) |>
 
   # Ordenar columnas
@@ -462,131 +462,241 @@ datos_dm2 <- prev_dm2 |>
 ## valor estimado y SD aproximada por sqrt(mu/3).
 # - Prevalencia DM2: se simularon con una normal truncada en [0,1], con media
 ## igual a la estimación puntual y desviación estándar igual a su error estándar.
+
+# set.seed(123)
+
+# sim_avad_dm2 <- datos_dm2 |>
+#   # Seleccionar columnas
+#   select(anio_enfr:ex, contains("total")) |>
+# 
+#   ## Simular AVP ##
+#   mutate(
+#     avp = pmap(
+#       list(
+#         defun_mean,
+#         defun_se,
+#         ex,
+#         proy_pob
+#       ),
+#       sim_AVP
+#     ),
+# 
+#     avp_res = map(avp, "resumen")
+#   ) |>
+# 
+#   ## Simular AVD y AVAD complicaciones microvasculares ##
+#   mutate(
+#     avd_micro = pmap(
+#       list(
+#         dm2_total,
+#         dm2_total_se,
+#         total_micro,
+#         proy_pob
+#       ),
+#       sim_AVD
+#     ),
+# 
+#     avad_micro = map2(avp, avd_micro, sim_AVAD),
+# 
+#     res_micro = pmap(
+#       list(avd_micro, avad_micro),
+#       \(b, c) {
+#         bind_cols(
+#           b$resumen,
+#           c$resumen
+#         ) |>
+# 
+#           rename_with(
+#             ~ paste0(.x, "_micro")
+#           )
+#       }
+#     )
+#   ) |>
+# 
+#   ## Simular AVD y AVAD complicaciones macrovasculares ##
+#   mutate(
+#     avd_macro = pmap(
+#       list(
+#         dm2_total,
+#         dm2_total_se,
+#         total_macro,
+#         proy_pob
+#       ),
+#       sim_AVD
+#     ),
+# 
+#     avad_macro = map2(avp, avd_macro, sim_AVAD),
+# 
+#     res_macro = pmap(
+#       list(avd_macro, avad_macro),
+#       \(b, c) {
+#         bind_cols(
+#           b$resumen,
+#           c$resumen
+#         ) |>
+# 
+#           rename_with(
+#             ~ paste0(.x, "_macro")
+#           )
+#       }
+#     )
+#   ) |>
+# 
+#   ## Simular AVD y AVAD total complicaciones ##
+#   mutate(
+#     avd = pmap(
+#       list(
+#         dm2_total,
+#         dm2_total_se,
+#         total_compl,
+#         proy_pob
+#       ),
+#       sim_AVD
+#     ),
+# 
+#     avad = map2(avp, avd, sim_AVAD),
+# 
+#     res_total = pmap(
+#       list(avd, avad),
+#       \(b, c) {
+#         bind_cols(
+#           b$resumen,
+#           c$resumen
+#         )
+#       }
+#     )
+#   ) |>
+# 
+#   ## Expandir a columnas
+#   unnest_wider(c(
+#     avp_res,
+#     res_total,
+#     res_micro,
+#     res_macro
+#   )) |>
+# 
+#   # Columnas caracter a factor
+#   mutate(across(
+#     .cols = where(is.character),
+#     .fns = ~ factor(.x)
+#   ))
+
+
+# Alternativa para el cálculo de indicadores ------------------------------
+# AVP, AVD (individuales, microvasculares, macrovasculares y totales) y AVAD
+
+## Nombres de las columnas fwd organizados por grupo
+cols_micro <- c(
+  "micro_neuropatia_p",
+  "micro_retinopatia_np",
+  "micro_retinopatia_p",
+  "micro_disf_erectil",
+  "micro_nefropatia",
+  "micro_ceguera",
+  "micro_amputacion"
+)
+cols_macro <- c(
+  "macro_claudicacion",
+  "macro_acv",
+  "macro_iam",
+  "macro_ic"
+)
+cols_fwd_individuales <- c(
+  cols_micro,
+  cols_macro,
+  "sin_complicaciones"
+)
+
+## Simulaciones
 set.seed(123)
-
 sim_avad_dm2 <- datos_dm2 |>
-  # Seleccionar columnas
-  select(anio_enfr:ex, contains("total")) |>
-
-  ## Simular AVP ##
+  
   mutate(
+    
+    # Cálculo de AVP
     avp = pmap(
-      list(
-        defun_mean,
-        defun_se,
-        ex,
-        proy_pob
-      ),
+      list(defun_mean, 
+           defun_se, 
+           ex, 
+           proy_pob),
       sim_AVP
     ),
-
-    avp_res = map(avp, "resumen")
-  ) |>
-
-  ## Simular AVD y AVAD complicaciones microvasculares ##
-  mutate(
-    avd_micro = pmap(
-      list(
-        dm2_total,
-        dm2_total_se,
-        total_micro,
-        proy_pob
+    avp_res = map(avp, "resumen"),
+    
+    # Cálculo de AVD (por complicación, tipo de complicación y total) y AVAD
+    avd_comp = pmap(
+      c(
+        list(
+          n        = dm2_total,
+          n_se     = dm2_total_se,
+          proy_pob = proy_pob
+        ),
+        select(datos_dm2, all_of(cols_fwd_individuales))
       ),
-      sim_AVD
-    ),
-
-    avad_micro = map2(avp, avd_micro, sim_AVAD),
-
-    res_micro = pmap(
-      list(avd_micro, avad_micro),
-      \(b, c) {
-        bind_cols(
-          b$resumen,
-          c$resumen
-        ) |>
-
-          rename_with(
-            ~ paste0(.x, "_micro")
-          )
-      }
-    )
-  ) |>
-
-  ## Simular AVD y AVAD complicaciones macrovasculares ##
-  mutate(
-    avd_macro = pmap(
-      list(
-        dm2_total,
-        dm2_total_se,
-        total_macro,
-        proy_pob
-      ),
-      sim_AVD
-    ),
-
-    avad_macro = map2(avp, avd_macro, sim_AVAD),
-
-    res_macro = pmap(
-      list(avd_macro, avad_macro),
-      \(b, c) {
-        bind_cols(
-          b$resumen,
-          c$resumen
-        ) |>
-
-          rename_with(
-            ~ paste0(.x, "_macro")
-          )
-      }
-    )
-  ) |>
-
-  ## Simular AVD y AVAD total complicaciones ##
-  mutate(
-    avd = pmap(
-      list(
-        dm2_total,
-        dm2_total_se,
-        total_compl,
-        proy_pob
-      ),
-      sim_AVD
-    ),
-
-    avad = map2(avp, avd, sim_AVAD),
-
-    res_total = pmap(
-      list(avd, avad),
-      \(b, c) {
-        bind_cols(
-          b$resumen,
-          c$resumen
+      function(n, n_se, proy_pob, ...) {
+        fwd_vec <- c(...)
+        sim_AVD_multi(
+          n          = n,
+          n_se       = n_se,
+          fwd_vec    = fwd_vec,
+          proy_pob   = proy_pob,
+          cols_micro = cols_micro,
+          cols_macro = cols_macro
         )
       }
-    )
-  ) |>
-
+    ),
+    
+    # Cálculo de AVD total
+    avd = map(avd_comp, "total_compl"),
+    
+    # Cálculo de AVAD total
+    avad = map2(avp, avd, sim_AVAD),
+    
+    # Resúmenes
+    # AVP
+    avp_res   = map(avp,  "resumen"),
+    # AVD y AVAD
+    res_total = pmap(
+      list(avd, avad),
+      \(b, c) bind_cols(b$resumen, c$resumen)
+    ),
+    # AVD por tipo de complicación
+    res_tipo = map(avd_comp, \(comp_list) {
+      purrr::map_dfc(
+        c("total_micro", "total_macro"),
+        \(nm) comp_list[[nm]]$resumen |>
+          rename_with(~ paste0(.x, "_", nm))
+      )
+    }), 
+    # AVD individuales
+    res_comp = map(avd_comp, \(comp_list) {
+      purrr::map_dfc(
+        cols_fwd_individuales,
+        \(nm) comp_list[[nm]]$resumen |>
+          rename_with(~ paste0(.x, "_", nm))
+      )
+    })
+    ) %>% 
+    
   ## Expandir a columnas
-  unnest_wider(c(
-    avp_res,
-    res_total,
-    res_micro,
-    res_macro
-  )) |>
-
-  # Columnas caracter a factor
+  unnest_wider(c(avp_res, res_total, res_tipo, res_comp)) %>% 
+  
+  ## Columnas caracter a factor
   mutate(across(
     .cols = where(is.character),
     .fns = ~ factor(.x)
   ))
 
+names(sim_avad_dm2)
 
 # Recuento de AVAD, AVD y AVP totales -------------------------------------
 abs_avad_dm2 <- sim_avad_dm2 %>%
   group_by(anio_enfr, sexo) %>%
   summarise(
     across(
-      .cols = c(AVP, AVD, AVAD),
+      .cols = c(AVP, AVD, AVAD, AVD_total_micro, AVD_total_macro, AVD_sin_complicaciones,
+                contains("AVD_micro"),
+                contains("AVD_macro")),
       .fns = ~ sum(.x)
     ),
     .groups = "drop"
@@ -598,12 +708,14 @@ abs_avad_dm2 <- sim_avad_dm2 %>%
       group_by(anio_enfr) |>
       summarise(
         across(
-          .cols = c(AVP, AVD, AVAD),
+          .cols = c(AVP, AVD, AVAD, AVD_total_micro, AVD_total_macro, AVD_sin_complicaciones,
+                    contains("AVD_micro"),
+                    contains("AVD_macro")),
           .fns = ~ sum(.x)
         ),
         .groups = "drop"
       ) |>
-      mutate(sexo = "Total")
+      mutate(sexo = "Ambos sexos")
   )
 
 
@@ -611,8 +723,13 @@ abs_avad_dm2 <- sim_avad_dm2 %>%
 # Cálculo de tasas estandarizadas AVP, AVD y AVAD e intervalos de incertidumbre (IU)
 # mediante cadenas de Monte-Carlo con 10.000 réplicas.
 set.seed(123)
-
 tasa_est_dm2 <- sim_avad_dm2 |>
+  
+  mutate(
+    avd_micro = map(avd_comp, "total_micro"),
+    avd_macro = map(avd_comp, "total_macro")
+  ) %>% 
+
   # Agrupar datos
   group_by(anio_enfr, sexo) |>
 
@@ -651,29 +768,14 @@ tasa_est_dm2 <- sim_avad_dm2 |>
           pob_est = pob_est
         ),
 
-        # AVAD micro
-        tasa_est(
-          df,
-          sim_col = "avad_micro",
-          nombre = "AVAD_micro",
-          pob_est = pob_est
-        ),
-
         # AVD macro
         tasa_est(
           df,
           sim_col = "avd_macro",
           nombre = "AVD_macro",
           pob_est = pob_est
-        ),
-
-        # AVAD macro
-        tasa_est(
-          df,
-          sim_col = "avad_macro",
-          nombre = "AVAD_macro",
-          pob_est = pob_est
         )
+
       )
     }
   ) |>
@@ -684,9 +786,10 @@ tasa_est_dm2 <- sim_avad_dm2 |>
 sim_avad_dm2 <- sim_avad_dm2 |>
   select(
     !where(is.list),
-    -contains("total"),
+    -contains("dm2_total"),
     -contains("defun"),
-    -ex
+    -ex,
+    -(micro_neuropatia_p:total_compl)
   )
 
 
@@ -745,9 +848,7 @@ dicc_dm2 <- tibble(
     "Peso de discapacidad ponderado para DM2 con IAM",
     "Peso de discapacidad ponderado para DM2 con IC",
     "Peso de discapacidad ponderado para DM2 sin secuelas",
-    "Peso de discapacidad ponderado para DM2 con secuelas microvasculares",
-    "Peso de discapacidad ponderado para DM2 con secuelas macrovasculares",
-    "Peso de discapacidad ponderado para DM2 con secuelas micro y macrovasculares"
+    "Peso de discapacidad ponderado para DM2 total"
   )
 )
 
@@ -776,56 +877,129 @@ dicc_dm2_sim <- tibble(
     "Coeficiente de variación de la prevalencia estimada de personas con DM2 por autorreporte según resultados ENFR",
     "Proyección poblacional según sexo y grupo etario decenal",
     "Población estándar según sexo y grupo etario decenal según Censo Nacional 2010",
+    
     "Años de vida perdidos por muerte prematura (AVP) por DM2",
     "Límite inferior intervalo de incertidumbre AVP por DM2",
     "Límite superior intervalo de incertidumbre AVP por DM2",
     "Tasa AVP por DM2",
     "Límite inferior intervalo de incertidumbre tasa AVP por DM2",
     "Límite superior intervalo de incertidumbre tasa AVP por DM2",
+    "Años vividos con discapacidad (AVD) por DM2",
+    "Límite inferior intervalo de incertidumbre AVD por DM2",
+    "Límite superior intervalo de incertidumbre AVD por DM2",
+    "Tasa AVD por DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por DM2",
+    "Años de vida ajustados por discapacidad (AVAD) por DM2",
+    "Límite inferior intervalo de incertidumbre AVAD por DM2",
+    "Límite superior intervalo de incertidumbre AVAD por DM2",
+    "Tasa AVAD por DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVAD por DM2",
+    "Límite superior intervalo de incertidumbre tasa AVAD por DM2",
 
-    "Años vividos con discapacidad (AVD) por DM2 (complicaciones microvasculares)",
-    "Límite inferior intervalo de incertidumbre AVD por DM2 (complicaciones microvasculares)",
-    "Límite superior intervalo de incertidumbre AVD por DM2 (complicaciones microvasculares)",
-    "Tasa AVD por DM2 (complicaciones microvasculares)",
-    "Límite inferior intervalo de incertidumbre tasa AVD por DM2 (complicaciones microvasculares)",
-    "Límite superior intervalo de incertidumbre tasa AVD por DM2 (complicaciones microvasculares)",
-    "Años de vida ajustados por discapacidad (AVAD) por DM2 (complicaciones microvasculares)",
-    "Límite inferior intervalo de incertidumbre AVAD por DM2 (complicaciones microvasculares)",
-    "Límite superior intervalo de incertidumbre AVAD por DM2 (complicaciones microvasculares)",
-    "Tasa AVAD por DM2 (complicaciones microvasculares)",
-    "Límite inferior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones microvasculares)",
-    "Límite superior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones microvasculares)",
-
-    "Años vividos con discapacidad (AVD) por DM2 (complicaciones macrovasculares)",
-    "Límite inferior intervalo de incertidumbre AVD por DM2 (complicaciones macrovasculares)",
-    "Límite superior intervalo de incertidumbre AVD por DM2 (complicaciones macrovasculares)",
-    "Tasa AVD por DM2 (complicaciones macrovasculares)",
-    "Límite inferior intervalo de incertidumbre tasa AVD por DM2 (complicaciones macrovasculares)",
-    "Límite superior intervalo de incertidumbre tasa AVD por DM2 (complicaciones macrovasculares)",
-    "Años de vida ajustados por discapacidad (AVAD) por DM2 (complicaciones macrovasculares)",
-    "Límite inferior intervalo de incertidumbre AVAD por DM2 (complicaciones macrovasculares)",
-    "Límite superior intervalo de incertidumbre AVAD por DM2 (complicaciones macrovasculares)",
-    "Tasa AVAD por DM2 (complicaciones macrovasculares)",
-    "Límite inferior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones macrovasculares)",
-    "Límite superior intervalo de incertidumbre tasa AVAD por DM2 (complicaciones macrovasculares)",
-
-    "Años vividos con discapacidad (AVD) por DM2 (todas las complicaciones)",
-    "Límite inferior intervalo de incertidumbre AVD por DM2 (todas las complicaciones)",
-    "Límite superior intervalo de incertidumbre AVD por DM2 (todas las complicaciones)",
-    "Tasa AVD por DM2 (todas las complicaciones)",
-    "Límite inferior intervalo de incertidumbre tasa AVD por DM2 (todas las complicaciones)",
-    "Límite superior intervalo de incertidumbre tasa AVD por DM2 (todas las complicaciones)",
-    "Años de vida ajustados por discapacidad (AVAD) por DM2 (todas las complicaciones)",
-    "Límite inferior intervalo de incertidumbre AVAD por DM2 (todas las complicaciones)",
-    "Límite superior intervalo de incertidumbre AVAD por DM2 (todas las complicaciones)",
-    "Tasa AVAD por DM2 (todas las complicaciones)",
-    "Límite inferior intervalo de incertidumbre tasa AVAD por DM2 (todas las complicaciones)",
-    "Límite superior intervalo de incertidumbre tasa AVAD por DM2 (todas las complicaciones)"
+    "Años vividos con discapacidad (AVD) por complicaciones microvasculares de DM2",
+    "Límite inferior intervalo de incertidumbre AVD por complicaciones microvasculares de DM2",
+    "Límite superior intervalo de incertidumbre AVD por complicaciones microvasculares de DM2",
+    "Tasa AVD por complicaciones microvasculares de DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por complicaciones microvasculares de DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por complicaciones microvasculares de DM2",
+    
+    "Años vividos con discapacidad (AVD) por complicaciones macrovasculares de DM2",
+    "Límite inferior intervalo de incertidumbre AVD por complicaciones macrovasculares de DM2",
+    "Límite superior intervalo de incertidumbre AVD por complicaciones macrovasculares de DM2",
+    "Tasa AVD por complicaciones macrovasculares de DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por complicaciones macrovasculares de DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por complicaciones macrovasculares de DM2",
+    
+    "Años vividos con discapacidad (AVD) por neuropatía periférica asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por neuropatía periférica asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por neuropatía periférica asociada a DM2",
+    "Tasa AVD por neuropatía periférica asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por neuropatía periférica asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por neuropatía periférica asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por retinopatía no proliferativa asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por retinopatía no proliferativa asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por retinopatía no proliferativa asociada a DM2",
+    "Tasa AVD por retinopatía no proliferativa asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por retinopatía no proliferativa asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por retinopatía no proliferativa asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por retinopatía proliferativa asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por retinopatía proliferativa asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por retinopatía proliferativa asociada a DM2",
+    "Tasa AVD por retinopatía proliferativa asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por retinopatía proliferativa asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por retinopatía proliferativa asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por disfunción eréctil asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por disfunción eréctil asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por disfunción eréctil asociada a DM2",
+    "Tasa AVD por disfunción eréctil asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por disfunción eréctil asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por disfunción eréctil asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por nefropatía asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por nefropatía asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por nefropatía asociada a DM2",
+    "Tasa AVD por nefropatía asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por nefropatía asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por nefropatía asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por ceguera asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por ceguera asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por ceguera asociada a DM2",
+    "Tasa AVD por ceguera asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por ceguera asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por ceguera asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por amputación asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por amputación asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por amputación asociada a DM2",
+    "Tasa AVD por amputación asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por amputación asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por amputación asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por claudicación de miembros inferiores asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por claudicación de miembros inferiores asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por claudicación de miembros inferiores asociada a DM2",
+    "Tasa AVD por claudicación de miembros inferiores asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por claudicación de miembros inferiores asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por claudicación de miembros inferiores asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por accidente cerebrovascular asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por accidente cerebrovascular asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por accidente cerebrovascular asociada a DM2",
+    "Tasa AVD por accidente cerebrovascular asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por accidente cerebrovascular asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por accidente cerebrovascular asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por infarto agudo de miocardio asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por infarto agudo de miocardio asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por infarto agudo de miocardio asociada a DM2",
+    "Tasa AVD por infarto agudo de miocardio asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por infarto agudo de miocardio asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por infarto agudo de miocardio asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por insuficiencia cardíaca asociada a DM2",
+    "Límite inferior intervalo de incertidumbre AVD por insuficiencia cardíaca asociada a DM2",
+    "Límite superior intervalo de incertidumbre AVD por insuficiencia cardíaca asociada a DM2",
+    "Tasa AVD por insuficiencia cardíaca asociada a DM2",
+    "Límite inferior intervalo de incertidumbre tasa AVD por insuficiencia cardíaca asociada a DM2",
+    "Límite superior intervalo de incertidumbre tasa AVD por insuficiencia cardíaca asociada a DM2",
+    
+    "Años vividos con discapacidad (AVD) por DM2 sin secuelas",
+    "Límite inferior intervalo de incertidumbre AVD por DM2 sin secuelas",
+    "Límite superior intervalo de incertidumbre AVD por DM2 sin secuelas",
+    "Tasa AVD por DM2 sin secuelas",
+    "Límite inferior intervalo de incertidumbre tasa AVD por DM2 sin secuelas",
+    "Límite superior intervalo de incertidumbre tasa AVD por DM2 sin secuelas"
+    
   )
 )
 
 ## Guardar
-export(dicc_dm2, file = "datos_limpios/dicc_arg_sim_avad.xlsx")
+export(dicc_dm2_sim, file = "datos_limpios/dicc_arg_sim_avad.xlsx")
 
 
 # Limpiar environment ----------------------------------------------------
@@ -833,156 +1007,3 @@ rm(list = ls())
 
 pacman::p_unload("all")
 
-# ### Complicaciones individuales ----
-# comp_dm2_ind <- comp_dm2 |>
-
-#   # Agregar variable anio_enfr para posterior join
-#   mutate(anio_enfr = as.character(anio)) %>%
-
-#   # Calcular promedio ponderado de discapacidad (fwd) por complicación
-#   group_by(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab) |>
-#   summarise(
-#     fwd = sum(comp_frec * dw, na.rm = TRUE),
-#     .groups = "drop"
-#   )
-# ## AVD por complicación, sexo y grupo etario ----
-# set.seed(123)
-
-# sim_avd_ind <- datos_dm2_arg_AVD_ind |>
-#   # Crear columna para simulaciones
-#   mutate(
-#     sim_raw = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_comp
-#     )
-#   ) |>
-
-#   # Simular indicadores y tasas específicas
-#   mutate(
-#     sim = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_IU_ind
-#     )
-#   ) |>
-#   unnest_wider(sim) |>
-
-#   # Añadir población estándar 2010
-#   left_join(pob_est_2010)  |>
-#
-#   # Reordenar columnas
-#   select(
-#     anio_enfr:grupo_edad_10,
-#     contains(c("pob", "dm")),
-#     comp_tipo,
-#     comp_qualidiab,
-#     fwd,
-#     AVD:AVD_upp
-#   ) |>
-
-#   # Columnas caracter a factor
-#   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
-#
-# ## Prevalencia DM para AVD individual - Total país por sexo y grupo etario ----
-# datos_dm2_arg_AVD_ind <- list(
-#   "2005" = enfr05,
-#   "2009" = enfr09,
-#   "2013" = enfr13,
-#   "2018" = enfr18
-# ) |>
-#   map(\(x) {
-#     x |>
-#       # Aplicar función de limpieza
-#       clean_enfr() |>
-#       # Calcular total personas con DM y prevalencia
-#       group_by(sexo, grupo_edad_10) |>
-#       summarise(
-#         dm_total = survey_total(dm_auto),
-#         dm2_total = survey_total(dm2_auto),
-#         dm2_prev = survey_mean(
-#           dm2_auto,
-#           vartype = c("ci", "cv"),
-#           na.rm = TRUE
-#         ),
-#         .groups = "drop"
-#       )
-#   }) |>
-#   bind_rows(.id = "anio_enfr") |>
-
-#   # Combinar con proyecciones poblacionales
-#   left_join(
-#     proy_pob |>
-#       # Calcular proyecciones por región
-#       count(
-#         anio_enfr,
-#         sexo,
-#         grupo_edad_10,
-#         wt = proy_pob,
-#         name = "proy_pob"
-#       )
-#   ) |>
-
-#   # Combinar con pesos discapacidad DM2
-#   left_join(comp_dm2_ind, by = join_by(anio_enfr, sexo, grupo_edad_10)) |>
-
-#   # Añadir población estándar 2010
-#   left_join(pob_est_2010)
-#
-# ## AVD por complicación, sexo y grupo etario ----
-# set.seed(123)
-
-# sim_avd_ind <- datos_dm2_arg_AVD_ind |>
-#   # Crear columna para simulaciones
-#   mutate(
-#     sim_raw = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_comp
-#     )
-#   ) |>
-
-#   # Simular indicadores y tasas específicas
-#   mutate(
-#     sim = pmap(
-#       .l = list(
-#         dm2_total,
-#         dm2_total_se,
-#         fwd,
-#         proy_pob
-#       ),
-#       .f = sim_AVD_IU_ind
-#     )
-#   ) |>
-#   unnest_wider(sim) |>
-
-#   # Añadir población estándar 2010
-#   left_join(pob_est_2010)  |>
-#
-#   # Reordenar columnas
-#   select(
-#     anio_enfr:grupo_edad_10,
-#     contains(c("pob", "dm")),
-#     comp_tipo,
-#     comp_qualidiab,
-#     fwd,
-#     AVD:AVD_upp
-#   ) |>
-
-#   # Columnas caracter a factor
-#   mutate(across(.cols = where(is.character), .fns = ~ factor(.x)))
-#
-# # AVD por complicación, sexo y grupo etario
-# export(sim_avd_ind, file = "datos_limpios/arg_sim_avd_ind.rds")

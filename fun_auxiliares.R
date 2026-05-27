@@ -53,40 +53,75 @@ sim_AVP <- function(
 }
 
 
-# Simulaciones Monte-Carlo para AVD --------------------------------------
-sim_AVD <- function(
-  n,
-  n_se,
-  fwd,
-  proy_pob,
-  nsim = 10000
+# Simulaciones Monte-Carlo para AVD ---------------------------------------
+# Por complicación, tipo de complicación y AVD totales
+sim_AVD_multi <- function(
+    n,
+    n_se,
+    fwd_vec,
+    proy_pob,
+    cols_micro,
+    cols_macro,
+    nsim = 10000
 ) {
-  ## SD robustos ##
   n_sd <- dplyr::if_else(n > 0, n_se, 1e-6)
-
-  ## Simular prevalencia ##
+  
   prev_sim <- truncnorm::rtruncnorm(
-    n = nsim,
-    a = 0,
+    n    = nsim,
+    a    = 0,
     mean = n,
-    sd = n_sd
+    sd   = n_sd
   )
-
-  ## Simular AVD ##
-  AVD_sim <- prev_sim * fwd
-
-  ## Simular tasa AVD ##
-  AVD_t_sim <- (AVD_sim / proy_pob) * 1e5
-
-  ## Devolver resultados ##
-  list(
-    sim = AVD_sim,
-    tasa_sim = AVD_t_sim,
-    resumen = dplyr::bind_cols(
-      resumen_ic(AVD_sim, "AVD"),
-      resumen_ic(AVD_t_sim, "AVD_tasa")
+  
+  ## AVD por complicación individual ##
+  resultados <- purrr::map(fwd_vec, function(fwd) {
+    
+    # Si fwd es NA o 0, devuelve ceros directamente sin simular
+    if (is.na(fwd) || fwd == 0) {
+      AVD_sim   <- rep(0, nsim)
+      AVD_t_sim <- rep(0, nsim)
+    } else {
+      AVD_sim   <- prev_sim * fwd
+      AVD_t_sim <- (AVD_sim / proy_pob) * 1e5
+    }
+    
+    list(
+      sim      = AVD_sim,
+      tasa_sim = AVD_t_sim,
+      resumen  = dplyr::bind_cols(
+        resumen_ic(AVD_sim,   "AVD"),
+        resumen_ic(AVD_t_sim, "AVD_tasa")
+      )
     )
+  })
+  
+  ## Función interna para sumar grupos ##
+  sumar_grupo <- function(nombres) {
+    sims <- purrr::map(nombres, \(nm) {
+      s <- resultados[[nm]]$sim
+      # Si la simulación es NA (fwd ausente), reemplaza por vector de ceros
+      if (all(is.na(s))) rep(0, length(s)) else s
+    }) |>
+      purrr::reduce(`+`)
+    tasa <- (sims / proy_pob) * 1e5
+    list(
+      sim      = sims,
+      tasa_sim = tasa,
+      resumen  = dplyr::bind_cols(
+        resumen_ic(sims, "AVD"),
+        resumen_ic(tasa, "AVD_tasa")
+      )
+    )
+  }
+  
+  ## Totales derivados ##
+  resultados[["total_micro"]] <- sumar_grupo(cols_micro)
+  resultados[["total_macro"]] <- sumar_grupo(cols_macro)
+  resultados[["total_compl"]] <- sumar_grupo(
+    c(cols_micro, cols_macro, "sin_complicaciones")
   )
+  
+  resultados
 }
 
 
@@ -144,53 +179,39 @@ tasa_est <- function(df, sim_col, nombre, pob_est) {
   )
 }
 
-# ## Simulaciones de Monte-Carlo para AVD por cada complicación ------------
-# sim_AVD_comp <- function(
-#   dm2_total,
-#   dm2_total_se,
+
+# # Simulaciones Monte-Carlo para AVD --------------------------------------
+# sim_AVD <- function(
+    #   n,
+#   n_se,
 #   fwd,
 #   proy_pob,
 #   nsim = 10000
 # ) {
-#   # SDs robustos cuando no hay casos
-#   dm2_sd <- if_else(dm2_total > 0, dm2_total_se, 1e-6)
-
-#   # Simular casos (truncados en 0)
-#   dm2_sim <- rtruncnorm(
+#   ## SD robustos ##
+#   n_sd <- dplyr::if_else(n > 0, n_se, 1e-6)
+# 
+#   ## Simular prevalencia ##
+#   prev_sim <- truncnorm::rtruncnorm(
 #     n = nsim,
 #     a = 0,
-#     mean = dm2_total,
-#     sd = dm2_sd
+#     mean = n,
+#     sd = n_sd
 #   )
-
-#   # AVP, AVD, AVAD
-#   AVD_sim <- dm2_sim * fwd
-
-#   # devolver lista con nombres fijos
+# 
+#   ## Simular AVD ##
+#   AVD_sim <- prev_sim * fwd
+# 
+#   ## Simular tasa AVD ##
+#   AVD_t_sim <- (AVD_sim / proy_pob) * 1e5
+# 
+#   ## Devolver resultados ##
 #   list(
-#     AVD_sim = AVD_sim
-#   )
-# }
-
-# ## AVD por complicación con IU -------------------------------------------
-# sim_AVD_IU_ind <- function(
-#   dm2_total,
-#   dm2_total_se,
-#   fwd,
-#   proy_pob,
-#   nsim = 10000
-# ) {
-#   sims <- sim_AVD_comp(
-#     dm2_total,
-#     dm2_total_se,
-#     fwd,
-#     proy_pob,
-#     nsim
-#   )
-
-#   tibble(
-#     AVD = quantile(sims$AVD_sim, 0.50, na.rm = TRUE),
-#     AVD_low = quantile(sims$AVD_sim, 0.025, na.rm = TRUE),
-#     AVD_upp = quantile(sims$AVD_sim, 0.975, na.rm = TRUE)
+#     sim = AVD_sim,
+#     tasa_sim = AVD_t_sim,
+#     resumen = dplyr::bind_cols(
+#       resumen_ic(AVD_sim, "AVD"),
+#       resumen_ic(AVD_t_sim, "AVD_tasa")
+#     )
 #   )
 # }

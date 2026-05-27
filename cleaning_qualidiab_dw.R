@@ -2,27 +2,40 @@
 ###  en Argentina, período 2005-2018
 ### Limpieza y procesamiento de los datasets:
 ## - Complicaciones asociadas a DM en Argentina, según datos provistos por la red
-## QUALIDIAB correspondientes al año 2014.
+## QUALIDIAB correspondientes a los años 2005, 2009, 2013 y 2018.
 ## - Pesos de discapacidad (DW) asociados a DM según tablas publicadas por el GBD
+
 ### Corrección de los registros sin datos:
 ## - DM2: antidiabético oral y/o mayor de 70 años con tratamiento de insulina
 ## - DM1: menor de 70 años con tratamiento de insulina
-## - IAM: se usará como proxy si el paciente recibió stent o CRM (cirugía de revascularización miocárdica)
-#  a confirmar por Jorge Elgart
-## - Neuropatía periférica: se usará como proxy si el paciente fue revascularizado.
-## - No se considerarán en el análisis: HVI, AIT e hipotensión ortostática.
+
+### Complicaciones macrovasculares:
+## - Se consideran infarto agudo de miocardio (IAM), insuficiencia cardíaca (IC),
+## accidente cerebrovascular (ACV) y claudicación de miembros inferiores.
+## - Años 2005 y 2009: no se incluye IC por falta de registro de esa complicación.
+## - Años 2013 y 2018: la colocación de Stent se utilizó como proxy de IAM.
+### Complicaciones microvasculares:
+## - Se consideran neuropatía periférica, amputación, disfunción eréctil, 
+## retinopatía no proliferativa, retinopatía proliferativa, ceguera y nefropatía.
+## - El registro de diálisis/transplante se utilizó como proxy de nefropatía.
+## - La revascularización de miembros inferiores se utilizó como proxy de neuropatía periférica.
+## - Años 2005 y 2009: se unificaron las dos categorías relativas a amputación (debajo del tobillo o sobre el tobillo).
+## Para el caso de las retinopatías, la categoría “retinopatía preproliferativa” se combinó con “retinopatía no proliferativa”.
+### Categoría "sin complicaciones"
+## - Se calculó como la frecuencia de personas que en las complicaciones consideradas registraban las categorías
+## “No” o “Sin dato”, asumiendo ésta última como ausencia de la complicación.
+
 ### Corrección de DW:
-## - Si existe más de un DW para la complicación se utilizará el promedio.
-## - Retinopatía no proliferativa: se usará el promedio de DW para retinopatías np.
+## - Si existe más de un DW para la complicación se utiliza el promedio.
+## - Retinopatía no proliferativa: se usará el promedio de DW para retinopatías.
 ## - Retinopatía proliferativa: se usará el DW correspondiente a retinopatía severa.
 ## - Disfunción eréctil: se asumirá el mismo DW que para neuropatía periférica.
-## - Nefropatía: se evaluará usar los DW promedio de estadíos 3-5 (incluye diálisis/
-## transplante) o evaluar por separado nefropatía (DW promedio estadíos 3-4) y
-## diálisis/transplante (DW estadío 5).
+## - Nefropatía: se usará el promedio de los DW para los estadíos 3, 4 y 5 de enfermedad renal crónica.
+
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
-# Última modificación: 19-02-2026 13:30
+# Última modificación: 20-05-2026 13:30
 
 # Carga de paquetes -------------------------------------------------------
 pacman::p_load(
@@ -344,7 +357,6 @@ qualidiab_2013_2018 <- qualidiab_13_18_raw |>
   # Corregir nefropatía
   mutate(
     # Usar diálisis/transplante como proxy
-    # (opción si usamos categoría combinada) -> Avanzamos con esta
     comp_nefropatia_c1 = if_else(
       comp_nefropatia != "Sí" & comp_dialisis_transplante == "Sí",
       "Sí",
@@ -490,7 +502,6 @@ qualidiab_dm2_05_09 <- qualidiab_2005_2009 |>
     grupo_edad_10,
     comp_alguna,
     comp_iam,
-    #comp_ic,
     comp_acv,
     comp_claud_mi,
     comp_retinopatia_np_c,
@@ -615,42 +626,15 @@ qualidiab_dm2_dw <-
   mutate(dw = replace_na(dw_promedio, 0.0490114147)) |>
 
   # Variables caracter a factor
-  mutate(across(.cols = where(is.character), .fns = ~ factor(.x)),
-         
-         # Para eliminar filas de "disfunción eréctil" en mujeres: se asumen como errores
-         filtro = case_when(
-           sexo == "Mujer" & comp_qualidiab == "Disfunción eréctil" ~ "eliminar",
-           .default = "ok")) %>% 
+  mutate(across(.cols = where(is.character), .fns = ~ factor(.x))) %>% 
   
-  # Elimino filas erróneas
-  filter(filtro == "ok") %>% 
-
+  # Eliminar filas de "disfunción eréctil" en mujeres: se asumen como errores
+  filter_out(sexo == "Mujer" & comp_qualidiab == "Disfunción eréctil") %>% 
+         
   # Reordenar columnas
   select(anio, sexo, grupo_edad_10, comp_tipo, comp_qualidiab, comp_frec, dw)
   
   
-qualidiab_dm2_dw %>% 
-  filter(grupo_edad_10 != "0 a 9" & grupo_edad_10 != "10 a 19" & grupo_edad_10 != "20 a 29") %>% 
-  pivot_wider(names_from = anio, values_from = comp_frec) %>% 
-  view()
-
-qualidiab_dm2_dw %>% 
-  mutate(anio = as.character(anio)) %>% 
-  ggplot(aes(x = anio, y = comp_frec)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~comp_qualidiab + sexo, scales = "free_y")
-
-qualidiab_dm2_05_09 %>% 
-  bind_rows(qualidiab_dm2_13_18) %>% 
-  filter(grupo_edad_10 != "0 a 9" & grupo_edad_10 != "10 a 19" & grupo_edad_10 != "20 a 29") %>% 
-  count(anio, sexo, grupo_edad_10, wt = n) %>% 
-  #pivot_wider(names_from = anio, values_from = n) %>% 
-  ggplot(aes(x = anio, y = n)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~sexo, scales = "free_y")
-  #facet_wrap(~sexo + grupo_edad_10, scales = "free_y")
-
-
 
 # Diccionario de datos ----------------------------------------------------
 data_dict <- tibble(

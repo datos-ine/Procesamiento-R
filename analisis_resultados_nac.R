@@ -5,7 +5,9 @@
 ### Autoras:
 ## - Micaela Gauto
 ## - Tamara Ricardo
+
 ### Fecha de creación: 11-02-2026
+# Última modificación: 27-05-2026 13:24
 
 # Cargar paquetes ---------------------------------------------------------
 pacman::p_load(
@@ -23,7 +25,7 @@ pacman::p_load(
   hrbrthemes,
   viridis,
   ggpattern,
-  # ggbump,
+  ggbump,
   # Manejo de datos
   rio,
   janitor,
@@ -34,9 +36,6 @@ pacman::p_load(
 # Cargar datos limpios ----------------------------------------------------
 ## Datos de AVAD, AVP y AVD por grupo decenal y sexo a nivel nacional
 avad_arg <- import("datos_limpios/arg_sim_avad.rds")
-
-# ## Datos de AVD por complicación por grupo decenal y sexo
-# avd_ind <- import("datos_limpios/arg_sim_avd_ind.rds")
 
 ## Tasas de AVAD, AVP y AVD ajustadas por edad según sexo a nivel nacional
 tasas_avad_arg <- import("datos_limpios/arg_sim_tasa_est.rds")
@@ -53,57 +52,22 @@ pob_est_2010 <- import("datos_limpios/pob_est_2010.rds")
 
 # Tablas anexas para gráficos ---------------------------------------------
 
-# ## Población estándar Censo 2010: varones, mujeres y ambos sexos
-# pob_est_2010_t <- bind_rows(
-#   pob_est_2010,
+## Recuento absoluto de AVAD a nivel nacional: varones, mujeres y ambos sexos ----
+abs_avad_arg <- abs_avad_arg %>% 
 
-#   pob_est_2010 %>%
-#     group_by(grupo_edad_10) %>%
-#     summarise(pob_est_2010 = sum(pob_est_2010)) %>%
-#     mutate(sexo = "Ambos sexos") %>%
-#     select(sexo, grupo_edad_10, pob_est_2010)
-# )
-
-# ## Proyección poblacional por año: varones, mujeres y ambos sexos
-# proy_pob <- avad_arg %>%
-#   select(anio_enfr, sexo, grupo_edad_10, proy_pob)
-
-# proy_pob <- bind_rows(
-#   proy_pob,
-
-#   proy_pob %>%
-#     group_by(anio_enfr, grupo_edad_10) %>%
-#     summarise(proy_pob = sum(proy_pob)) %>%
-#     mutate(sexo = "Ambos sexos") %>%
-#     select(anio_enfr, sexo, grupo_edad_10, proy_pob)
-# )
-
-# # Recuento absoluto de AVAD a nivel nacional: varones, mujeres y ambos sexos ----
-
-# indic_abs <- bind_rows(
-#   # Saco recuentos de AVAD, AVD y AVP para población total
-#   abs_avad_arg %>%
-#     group_by(anio_enfr) %>%
-#     summarise(AVAD = sum(AVAD), AVD = sum(AVD), AVP = sum(AVP)) %>%
-#     mutate(sexo = "Ambos sexos") %>%
-
-#     select(1, 5, 2:4),
-
-#   # Sumo datos por sexo (base original)
-#   abs_avad_arg
-# ) %>%
-
-#   # Edito categorías de sexo para etiquetas
-#   mutate(
-#     sexo = case_when(
-#       sexo == "Mujer" ~ "Mujeres",
-#       sexo == "Varón" ~ "Varones",
-#       .default = sexo
-#     )
-#   )
+  # Edito categorías de sexo para etiquetas
+  mutate(
+    sexo = case_when(
+      sexo == "Mujer" ~ "Mujeres",
+      sexo == "Varón" ~ "Varones",
+      .default = sexo
+    )
+  )
 
 ## Aumento proporcional de AVAD, AVD y AVP 2005-2018 ----
 indic_cambio <- abs_avad_arg %>%
+  
+  select(anio_enfr:AVAD) %>% 
 
   pivot_longer(
     cols = c("AVAD", "AVD", "AVP"),
@@ -116,8 +80,7 @@ indic_cambio <- abs_avad_arg %>%
   arrange(anio_enfr) %>%
   mutate(
     indic_cambio_abs = valor - first(valor), # cambio absoluto
-    indic_cambio_perc = (valor - first(valor)) * 100 / first(valor)
-  ) # cambio relativo
+    indic_cambio_perc = (valor - first(valor)) * 100 / first(valor)) # cambio relativo
 
 
 ## Distribución de AVAD, AVD y AVP por sexo y grupo de edad para pirámides ----
@@ -170,54 +133,38 @@ datos_area <- datos_piramide %>%
   )
 
 
-# ## AVD por complicación: recuento absoluto ----
+## AVD por complicación: tasas específicas para tipo de complicación por sexo y grupo de edad ----
+AVD_tasas_ind <- avad_arg %>% 
+  
+  select(anio_enfr, sexo, grupo_edad_10,
+         contains("AVD_tasa_total")) %>% 
+  
+  # Edito nombre de categorías de sexo e tipo de complicación para etiquetas
+  mutate(
+    sexo = case_when(
+      sexo == "Mujer" ~ "Mujeres",
+      sexo == "Varón" ~ "Varones",
+      .default = sexo
+    ))
 
-# AVD_abs_ind <- bind_rows(
-#   avd_ind %>%
-#     # Selecciono variables de interés
-#     select(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab, AVD),
+## AVD por complicación: cambios relativos y absolutos respecto del 2005 ----
+AVD_cambio <- abs_avad_arg %>%
 
-#   # Uno con recuento de AVD para ambos sexos
-#   avd_ind %>%
-#     group_by(anio_enfr, grupo_edad_10, comp_tipo, comp_qualidiab) %>%
-#     summarise(AVD = sum(AVD)) %>%
-#     mutate(sexo = "Ambos sexos") %>%
-#     select(anio_enfr, sexo, grupo_edad_10, comp_tipo, comp_qualidiab, AVD)
-# ) %>%
+  select(c(anio_enfr, sexo, AVD_total_micro, AVD_total_macro, AVD_sin_complicaciones)) %>% 
+  
+  pivot_longer(
+    cols = contains("AVD"),
+    names_to = "indicador",
+    values_to = "valor"
+  ) %>%
+  
+  # Calculo cambio absoluto y relativo de cada indicador respecto del año basal (2005)
+  group_by(sexo, indicador) %>%
+  arrange(anio_enfr) %>%
+  mutate(
+    indic_cambio_abs = valor - first(valor), # cambio absoluto
+    indic_cambio_perc = (valor - first(valor)) * 100 / first(valor)) # cambio relativo
 
-#   # Agrego proyecciones poblacionales
-#   left_join(proy_pob, by = join_by(anio_enfr, sexo, grupo_edad_10)) %>%
-
-#   # Edito nombre de categorías de sexo e tipo de complicación para etiquetas
-#   mutate(
-#     sexo = case_when(
-#       sexo == "Mujer" ~ "Mujeres",
-#       sexo == "Varón" ~ "Varones",
-#       .default = sexo
-#     ),
-
-#     comp_tipo = case_when(
-#       comp_tipo == "" ~ "Sin complicaciones",
-#       comp_tipo == "microvascular" ~ "Microvasculares",
-#       comp_tipo == "macrovascular" ~ "Macrovasculares"
-#     )
-#   )
-
-# ## AVD por complicación: cambios relativos y absolutos respecto del 2005 ----
-# AVD_cambio <- AVD_abs_ind %>%
-
-#   # Recuento de AVD individuales según año, sexo y tipo de complicación (microvascular, macrovascular, sin complicaciones)
-#   group_by(anio_enfr, sexo, comp_tipo) %>%
-#   summarise(AVD_tipo = sum(AVD)) %>%
-#   ungroup() %>%
-
-#   # Calculo cambio absoluto y relativo de cada AVD respecto del año basal (2005)
-#   group_by(sexo, comp_tipo) %>%
-#   arrange(anio_enfr) %>%
-#   mutate(
-#     AVD_cambio_abs = AVD_tipo - first(AVD_tipo), # cambio absoluto
-#     AVD_cambio_perc = (AVD_tipo - first(AVD_tipo)) * 100 / first(AVD_tipo)
-#   ) # cambio relativo
 
 # Gráficos exploratorios --------------------------------------------------
 # Paleta por indicador y sexo (accesible) ----
@@ -231,68 +178,15 @@ colores_indicador <- c(
 
 ## Tendencia del recuento absoluto AVAD, AVD y AVP por año y sexo ----
 
-### Gráfico de tendencia: líneas ----
-indic_abs |>
+### Gráfico de tendencia: áreas ----
+abs_avad_arg |>
 
-  pivot_longer(
-    cols = c(AVD, AVP, AVAD),
-    names_to = "indicador",
-    values_to = "recuento"
-  ) %>%
-
-  ggplot(aes(
-    x = anio_enfr,
-    y = recuento,
-    colour = indicador,
-    group = indicador
-  )) +
-  geom_line() +
-  geom_point() +
-
-  # Dividir por sexo
-  facet_grid(cols = vars(sexo)) +
-
-  # Etiquetas ejes
-  labs(x = "Año", y = "Recuento", colour = "Indicador") +
-
-  # Formato eje y
-  scale_y_continuous(
-    labels = label_number(
-      big.mark = ".", # separador de miles
-      decimal.mark = ","
-    )
-  ) +
-
-  # Tema
-  theme_minimal(base_size = 14) +
-
-  theme(
-    legend.position = "right",
-    axis.title.x = element_text(face = "bold", margin = margin(t = 15)),
-    axis.text.x = element_text(size = 10),
-    axis.title.y = element_text(face = "bold", margin = margin(r = 15)),
-    axis.text.y = element_text(size = 10),
-    legend.title = element_text(face = "bold"),
-    strip.text = element_text(face = "bold")
-  ) +
-
-  scale_colour_manual(
-    values = c("#1B6FA8", "#2E9B6E", "#D4660A"),
-    labels = c("AVAD_total" = "AVAD", "AVD_total" = "AVD", "AVP_total" = "AVP")
-  )
-
-
-### Gráfico de tendencia: área ----
-indic_abs |>
-
-  # pivot_longer(cols = c(AVD, AVP, AVAD), names_to = "indicador", values_to = "recuento") %>%
   pivot_longer(
     cols = c(AVD, AVP),
     names_to = "indicador",
     values_to = "recuento"
   ) %>%
 
-  # ggplot(aes(x = anio_enfr, y = recuento, colour = indicador, group = indicador)) +
   ggplot(aes(
     x = anio_enfr,
     y = recuento,
@@ -334,8 +228,7 @@ indic_abs |>
 
 
 ### Decomposition plot: tendencia y relación entre AVP y AVD por año y sexo  ----
-
-indic_abs %>%
+abs_avad_arg %>%
 
   filter(sexo != "Ambos sexos") %>%
 
@@ -672,7 +565,6 @@ datos_piramide %>%
 
 
 ### Gráfico de áreas: proporción de cada indicador sobre AVAD totales ----
-
 datos_area %>%
 
   ggplot(aes(x = grupo_edad_10, group = indicador, fill = indicador)) +
@@ -778,15 +670,26 @@ colores_comp <- c(
 
 ### Bump chart según tipo de complicación (microvascular o macrovascular) y sexo ----
 
-AVD_abs_ind %>%
-  group_by(anio_enfr, sexo, comp_tipo) %>%
-  summarise(AVD_tipo = sum(AVD)) %>%
-
+abs_avad_arg %>%
+  select(anio_enfr, sexo, AVD_total_micro, AVD_total_macro, AVD_sin_complicaciones) %>% 
+  
+  pivot_longer(
+    cols = c(AVD_total_micro, AVD_total_macro, AVD_sin_complicaciones),
+    names_to = "indicador",
+    values_to = "recuento"
+  ) %>%
+  
+  mutate(indicador = case_when(
+    indicador == "AVD_total_micro" ~ "Microvasculares",
+    indicador == "AVD_total_macro" ~ "Macrovasculares",
+    indicador == "AVD_sin_complicaciones" ~ "Sin complicaciones"
+  )) %>% 
+  
   ggplot(aes(
     x = anio_enfr,
-    y = AVD_tipo,
-    color = comp_tipo,
-    group = comp_tipo
+    y = recuento,
+    color = indicador,
+    group = indicador
   )) +
 
   geom_bump(linewidth = 0.9, smooth = 6) +
@@ -830,17 +733,31 @@ AVD_abs_ind %>%
 
 ### Recuento de AVD para complicaciones microvasculares ----
 
-AVD_abs_ind %>%
-  group_by(anio_enfr, sexo, comp_tipo, comp_qualidiab) %>%
-  summarise(AVD = sum(AVD)) %>%
-
-  filter(comp_tipo == "Microvasculares" & sexo != "Ambos sexos") %>%
+abs_avad_arg %>% 
+  select(anio_enfr, sexo, contains("AVD_micro")) %>% 
+  filter(sexo != "Ambos sexos") %>% 
+  
+  pivot_longer(
+    cols = contains("AVD_micro"),
+    names_to = "indicador",
+    values_to = "recuento"
+  ) %>%
+  
+  mutate(indicador = case_when(
+    indicador == "AVD_micro_amputacion" ~ "Amputación",
+    indicador == "AVD_micro_ceguera" ~ "Ceguera",
+    indicador == "AVD_micro_disf_erectil" ~ "Disfunción eréctil",
+    indicador == "AVD_micro_nefropatia" ~ "Nefropatía",
+    indicador == "AVD_micro_neuropatia_p" ~ "Neuropatía periférica",
+    indicador == "AVD_micro_retinopatia_np" ~ "Retinopatía no proliferativa",
+    indicador == "AVD_micro_retinopatia_p" ~ "Retinopatía proliferativa"
+  )) %>%
 
   ggplot(aes(
     x = anio_enfr,
-    y = AVD,
-    group = comp_qualidiab,
-    color = comp_qualidiab
+    y = recuento,
+    group = indicador,
+    color = indicador
   )) +
 
   geom_bump(linewidth = 0.9, smooth = 6) +
@@ -856,16 +773,31 @@ AVD_abs_ind %>%
 
   # Etiquetas al final de cada línea
   geom_text_repel(
-    data = AVD_abs_ind %>%
-      group_by(anio_enfr, sexo, comp_tipo, comp_qualidiab) %>%
-      summarise(AVD = sum(AVD)) %>%
+    data = abs_avad_arg %>% 
+      select(anio_enfr, sexo, contains("AVD_micro")) %>% 
+      
+      pivot_longer(
+        cols = contains("AVD_micro"),
+        names_to = "indicador",
+        values_to = "recuento"
+      ) %>%
+      
       filter(
-        comp_tipo == "Microvasculares" &
           anio_enfr == 2018 &
           sexo != "Ambos sexos"
-      ),
+      ) %>% 
+      
+      mutate(indicador = case_when(
+        indicador == "AVD_micro_amputacion" ~ "Amputación",
+        indicador == "AVD_micro_ceguera" ~ "Ceguera",
+        indicador == "AVD_micro_disf_erectil" ~ "Disfunción eréctil",
+        indicador == "AVD_micro_nefropatia" ~ "Nefropatía",
+        indicador == "AVD_micro_neuropatia_p" ~ "Neuropatía periférica",
+        indicador == "AVD_micro_retinopatia_np" ~ "Retinopatía no proliferativa",
+        indicador == "AVD_micro_retinopatia_p" ~ "Retinopatía proliferativa"
+      )),
 
-    aes(label = comp_qualidiab),
+    aes(label = indicador),
     hjust = 0,
     nudge_x = 0.7, # empuja las etiquetas hacia la derecha
     direction = "y", # solo se mueven verticalmente para evitar solapamiento
@@ -903,19 +835,30 @@ AVD_abs_ind %>%
 
 ### Recuento de AVD para complicaciones macrovasculares ----
 
-AVD_abs_ind %>%
-  group_by(anio_enfr, sexo, comp_tipo, comp_qualidiab) %>%
-  summarise(AVD = sum(AVD)) %>%
+abs_avad_arg %>% 
+  select(anio_enfr, sexo, contains("AVD_macro")) %>% 
+  filter(sexo != "Ambos sexos") %>% 
+  
+  pivot_longer(
+    cols = contains("AVD_macro"),
+    names_to = "indicador",
+    values_to = "recuento"
+  ) %>%
 
-  filter(comp_tipo == "Macrovasculares" & sexo != "Ambos sexos") %>%
-
+  mutate(indicador = case_when(
+    indicador == "AVD_macro_iam" ~ "IAM",
+    indicador == "AVD_macro_acv" ~ "ACV",
+    indicador == "AVD_macro_ic" ~ "IC",
+    indicador == "AVD_macro_claudicacion" ~ "Claudicación miembros inferiores",
+    )) %>%
+  
   ggplot(aes(
     x = anio_enfr,
-    y = AVD,
-    group = comp_qualidiab,
-    color = comp_qualidiab
+    y = recuento,
+    group = indicador,
+    color = indicador
   )) +
-
+  
   geom_bump(linewidth = 0.9, smooth = 6) +
   geom_point(size = 2.5) +
   geom_hline(
@@ -924,46 +867,58 @@ AVD_abs_ind %>%
     color = "grey50",
     linewidth = 0.4
   ) +
-
+  
   scale_color_manual(values = colores_comp) +
-
+  
   # Etiquetas al final de cada línea
   geom_text_repel(
-    data = AVD_abs_ind %>%
-      group_by(anio_enfr, sexo, comp_tipo, comp_qualidiab) %>%
-      summarise(AVD = sum(AVD)) %>%
+    data = abs_avad_arg %>% 
+      select(anio_enfr, sexo, contains("AVD_macro")) %>% 
+      
+      pivot_longer(
+        cols = contains("AVD_macro"),
+        names_to = "indicador",
+        values_to = "recuento"
+      ) %>%
+      
       filter(
-        comp_tipo == "Macrovasculares" &
-          anio_enfr == 2018 &
+        anio_enfr == 2018 &
           sexo != "Ambos sexos"
-      ),
-
-    aes(label = comp_qualidiab),
+      ) %>% 
+      
+      mutate(indicador = case_when(
+        indicador == "AVD_macro_iam" ~ "IAM",
+        indicador == "AVD_macro_acv" ~ "ACV",
+        indicador == "AVD_macro_ic" ~ "IC",
+        indicador == "AVD_macro_claudicacion" ~ "Claudicación miembros inferiores",
+      )),
+    
+    aes(label = indicador),
     hjust = 0,
-    nudge_x = 0.3, # empuja las etiquetas hacia la derecha
+    nudge_x = 0.7, # empuja las etiquetas hacia la derecha
     direction = "y", # solo se mueven verticalmente para evitar solapamiento
     segment.size = 0.3, # grosor de la línea que conecta etiqueta con punto
     segment.color = "grey60",
     size = 3,
     fontface = "plain",
-    box.padding = 0.4 # espacio mínimo entre etiquetas
+    box.padding = 0.3 # espacio mínimo entre etiquetas
   ) +
-
+  
   facet_wrap(~sexo) +
-
+  
   # Etiquetas de eje
   labs(
     x = "Año",
     y = "AVD (recuento)"
   ) +
-
+  
   scale_x_discrete(
     expand = expansion(mult = c(0.05, 0.35)) # espacio para etiquetas
   ) +
-
+  
   # Tema
   theme_minimal(base_size = 14) +
-
+  
   theme(
     legend.position = "none",
     axis.title.x = element_text(face = "bold", margin = margin(t = 15)),
@@ -974,22 +929,23 @@ AVD_abs_ind %>%
     strip.text = element_text(face = "bold")
   )
 
+### Según tasas por tipo de complicación y grupo de edad ----
 
-### Según tipo de complicación y grupo de edad ----
-
-AVD_abs_ind %>%
-
-  # Recuento de AVD por tipo de complicación
-  group_by(anio_enfr, sexo, grupo_edad_10, proy_pob, comp_tipo) %>%
-  summarise(AVD = sum(AVD)) %>%
-  filter(comp_tipo != "Sin complicaciones") %>%
-
-  # Cálculo de tasas específicas por grupo de edad
-  mutate(tasa_AVD_ind = AVD / proy_pob * 100000) %>%
+AVD_tasas_ind %>%
+  pivot_longer(
+    cols = contains("AVD_tasa"),
+    names_to = "indicador",
+    values_to = "tasa_esp"
+  ) %>%
+  
+  mutate(indicador = case_when(
+    indicador == "AVD_tasa_total_micro" ~ "Microvasculares",
+    indicador == "AVD_tasa_total_macro" ~ "Macrovasculares"
+  )) %>%
 
   ggplot(aes(
     x = anio_enfr,
-    y = tasa_AVD_ind,
+    y = tasa_esp,
     group = grupo_edad_10,
     color = grupo_edad_10
   )) +
@@ -1005,12 +961,19 @@ AVD_abs_ind %>%
 
   # Etiquetas al final de cada línea
   geom_text_repel(
-    data = AVD_abs_ind %>%
-      group_by(anio_enfr, sexo, grupo_edad_10, proy_pob, comp_tipo) %>%
-      summarise(AVD = sum(AVD)) %>%
-      mutate(tasa_AVD_ind = AVD / proy_pob * 100000) %>%
+    data = AVD_tasas_ind %>%
+      pivot_longer(
+        cols = contains("AVD_tasa"),
+        names_to = "indicador",
+        values_to = "tasa_esp"
+      ) %>%
+      
+      mutate(indicador = case_when(
+        indicador == "AVD_tasa_total_micro" ~ "Microvasculares",
+        indicador == "AVD_tasa_total_macro" ~ "Macrovasculares"
+      )) %>%
 
-      filter(comp_tipo != "Sin complicaciones" & anio_enfr == 2018),
+      filter(anio_enfr == 2018),
 
     aes(label = grupo_edad_10),
     hjust = 0,
@@ -1020,7 +983,7 @@ AVD_abs_ind %>%
     segment.color = "grey60",
     size = 3,
     fontface = "plain",
-    box.padding = 0.7 # espacio mínimo entre etiquetas
+    box.padding = 0.8 # espacio mínimo entre etiquetas
   ) +
 
   scale_color_manual(
@@ -1042,7 +1005,7 @@ AVD_abs_ind %>%
     )
   ) +
 
-  facet_grid(rows = vars(sexo), cols = vars(comp_tipo)) +
+  facet_grid(rows = vars(sexo), cols = vars(indicador)) +
 
   labs(
     x = "Año",
